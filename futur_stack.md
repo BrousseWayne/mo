@@ -38,15 +38,15 @@ Système de coaching premium pour femmes, architecture pipeline multi-agents où
 
 ### Agents & Couleurs
 
-| Agent | Couleur | Hex | Responsabilité |
-|-------|---------|-----|----------------|
-| Médecin | Rouge | `#E63946` | Screening médical, contre-indications, red flags, clearance |
-| Scientifique | Bleu | `#457B9D` | Analyse data, calculs TDEE/macros, métriques, tracking stats |
-| Nutritionniste | Vert | `#2A9D8F` | Stratégie nutritionnelle, energy balance, timing protéines |
-| Diététicien | Orange | `#F4A261` | Traduction en plan alimentaire, adaptation restrictions/préférences |
-| Chef Étoilé | Or | `#E9C46A` | Recettes gourmandes, batch cooking, créativité culinaire |
-| Coach Sportif | Violet | `#9B5DE5` | Programmation training, exercices, progression, périodisation cycle |
-| Dermatologue | Rose | `#F15BB5` | Santé peau/cheveux/ongles, hydratation, suppléments beauté |
+| Agent          | Couleur | Hex       | Responsabilité                                                      |
+| -------------- | ------- | --------- | ------------------------------------------------------------------- |
+| Médecin        | Rouge   | `#E63946` | Screening médical, contre-indications, red flags, clearance         |
+| Scientifique   | Bleu    | `#457B9D` | Analyse data, calculs TDEE/macros, métriques, tracking stats        |
+| Nutritionniste | Vert    | `#2A9D8F` | Stratégie nutritionnelle, energy balance, timing protéines          |
+| Diététicien    | Orange  | `#F4A261` | Traduction en plan alimentaire, adaptation restrictions/préférences |
+| Chef Étoilé    | Or      | `#E9C46A` | Recettes gourmandes, batch cooking, créativité culinaire            |
+| Coach Sportif  | Violet  | `#9B5DE5` | Programmation training, exercices, progression, périodisation cycle |
+| Dermatologue   | Rose    | `#F15BB5` | Santé peau/cheveux/ongles, hydratation, suppléments beauté          |
 
 ### Format Output Agent
 
@@ -99,16 +99,19 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 ### Fonctionnalités Tracking
 
 1. **Inventory Management**
+
    - Ingrédients en stock (avec dates expiration)
    - Quantités restantes
    - Alertes stock bas
 
 2. **Smart Shopping**
+
    - Génération liste courses depuis meal plan
    - Agrégation ingrédients multi-recettes
    - Optimisation par magasin/rayon
 
 3. **Recettes Dynamiques**
+
    - Suggérer recettes avec ingrédients disponibles
    - Prioriser items proches expiration
    - Adapter portions au stock
@@ -126,12 +129,14 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 ### Features Core
 
 1. **Mode Courses**
+
    - Liste interactive (swipe to check)
    - Groupement par rayon
    - Scan code-barres pour ajouter
    - Mode offline avec sync
 
 2. **Sync & Notifications**
+
    - Push alerts depuis serveur
    - Sync bidirectionnelle inventory
    - Rappels programmés
@@ -158,12 +163,14 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 **Input**: Questionnaire sections 5 (cycle), 7 (médical), 3 (injuries)
 
 **Responsabilités**:
+
 - Screening contre-indications absolues
 - Identification red flags (aménorrhée, TCA, conditions chroniques)
 - Clearance training (avec restrictions si applicable)
 - Recommandations examens complémentaires
 
 **Output critique**:
+
 - `clearance_status`: approved | conditional | denied
 - `restrictions`: liste limitations training/nutrition
 - `referrals`: spécialistes à consulter
@@ -174,6 +181,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 **Input**: Questionnaire sections 1-4, output Médecin
 
 **Responsabilités**:
+
 - Calcul TDEE (Mifflin-St Jeor + multiplicateur activité)
 - Définition surplus/déficit selon objectif
 - Baselines métriques (poids, mensurations, force)
@@ -181,6 +189,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 - Analyse somatotype et réponse attendue
 
 **Output critique**:
+
 - `tdee_calculated`: nombre
 - `caloric_target`: nombre (avec surplus/déficit)
 - `macro_split`: {protein_g, carbs_g, fat_g}
@@ -192,6 +201,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 **Input**: Output Scientifique, préférences alimentaires questionnaire
 
 **Responsabilités**:
+
 - Stratégie nutritionnelle globale
 - Distribution protéines (MPS optimization)
 - Timing nutrition peri-workout
@@ -199,6 +209,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 - Intégration cycle menstruel (adaptation lutéale)
 
 **Output critique**:
+
 - `nutrition_strategy`: description approche
 - `meal_frequency`: nombre repas/snacks
 - `protein_distribution`: par repas
@@ -210,6 +221,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 **Input**: Output Nutritionniste, restrictions/aversions questionnaire
 
 **Responsabilités**:
+
 - Plan alimentaire concret jour par jour
 - Adaptation restrictions (allergies, culturel, préférences)
 - Alternatives pour aversions
@@ -217,6 +229,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 - Quantités précises
 
 **Output critique**:
+
 - `weekly_meal_plan`: structure 7 jours
 - `daily_breakdown`: {meal: {foods, quantities, macros}}
 - `ingredient_list`: ingrédients nécessaires avec quantités
@@ -228,6 +241,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 **Input**: Output Diététicien, cuisine preferences questionnaire
 
 **Responsabilités**:
+
 - Transformation plan diététique en recettes gourmandes
 - Créativité culinaire dans les contraintes
 - Techniques de préparation
@@ -235,6 +249,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 - Présentation/plaisir (l'oeil mange aussi)
 
 **Output critique**:
+
 - `recipes`: [{name, ingredients, steps, prep_time, cook_time, servings, macros_per_serving}]
 - `weekly_prep_guide`: batch cooking plan
 - `shopping_list_optimized`: agrégé par recette
@@ -246,6 +261,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 **Input**: Output Scientifique, training history questionnaire, clearance Médecin
 
 **Responsabilités**:
+
 - Programme training périodisé
 - Sélection exercices selon équipement/niveau
 - Progression loads (principe Strong Curves / B2B)
@@ -253,6 +269,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 - Form cues et technique
 
 **Output critique**:
+
 - `training_program`: structure par phase
 - `weekly_schedule`: {day: {session_type, exercises, sets, reps, load, rest}}
 - `progression_protocol`: règles d'augmentation
@@ -264,12 +281,14 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 **Input**: Questionnaire (si questions peau ajoutées), outputs autres agents
 
 **Responsabilités**:
+
 - Impact nutrition sur peau/cheveux/ongles
 - Hydratation recommandations
 - Suppléments beauté (collagène, biotine, etc.)
 - Alertes carences visibles
 
 **Output critique**:
+
 - `skin_nutrition_tips`: aliments bénéfiques
 - `hydration_target`: litres/jour
 - `supplement_suggestions`: si pertinent
@@ -383,6 +402,7 @@ def log_agent(agent_name: str, message: str):
 ## MVP ROADMAP
 
 ### Phase 1: Core Pipeline (Semaine 1-2)
+
 - [ ] Setup projet (repo, env, deps)
 - [ ] Questionnaire web basique (formulaire + API)
 - [ ] Agents en mode script (sans orchestration)
@@ -390,23 +410,27 @@ def log_agent(agent_name: str, message: str):
 - [ ] Stockage JSON/CSV
 
 ### Phase 2: Orchestration (Semaine 3-4)
+
 - [ ] LangGraph pipeline complet
 - [ ] PostgreSQL setup
 - [ ] API endpoints CRUD
 - [ ] Dashboard client basique
 
 ### Phase 3: Smart Features (Semaine 5-6)
+
 - [ ] Gestion ingrédients/inventory
 - [ ] Génération liste courses
 - [ ] Recettes dynamiques
 
 ### Phase 4: Mobile (Semaine 7-8)
+
 - [ ] App Android React Native
 - [ ] Mode courses checklist
 - [ ] Push notifications
 - [ ] Sync offline
 
 ### Phase 5: Polish (Semaine 9+)
+
 - [ ] Alertes intelligentes
 - [ ] Historique/analytics
 - [ ] Optimisations UX
@@ -416,7 +440,7 @@ def log_agent(agent_name: str, message: str):
 
 ## EXEMPLE FLOW COMPLET
 
-**Input**: Questionnaire Mo (56kg, 174cm, ectomorphe, objectif 65kg, chicken thighs lover, home cook expérimenté, training 1j/2)
+**Input**: Questionnaire Mo (56kg, 174cm, e, objectif 65kg, chicken thighs lover, home cook expérimenté, training 1j/2)
 
 **Pipeline Execution**:
 
@@ -466,6 +490,7 @@ def log_agent(agent_name: str, message: str):
 ### Prompts Agents
 
 Chaque agent a un system prompt dédié incluant:
+
 1. Rôle et expertise spécifique
 2. Input attendu (structure)
 3. Output requis (structure JSON)

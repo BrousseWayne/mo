@@ -11,7 +11,7 @@
 - Height: 174 cm
 - BMI: 18.5 (lower end of normal range)
 - Body fat percentage: Unknown (estimation required)
-- Somatotype: Suspected ectomorph phenotype
+- Somatotype: Suspected phenotype
 
 **Morphological Assessment**:
 
@@ -57,7 +57,7 @@
 
 **Metabolic Considerations**:
 
-- Suspected high metabolic rate (ectomorphic presentation)
+- Suspected high metabolic rate ( ic presentation)
 - Poor weight gain response to current energy intake
 - No data on: meal frequency, macronutrient partitioning, peri-workout nutrition, digestive capacity
 
@@ -86,7 +86,7 @@ butter and minimizing alternative nut butters if aversion extends beyond peanuts
 
 **Sub-requirements**:
 
-- Identify calorie-dense whole food alternatives suitable for ectomorphic metabolism
+- Identify calorie-dense whole food alternatives suitable for ic metabolism
 - Structure macronutrient partitioning for muscle protein synthesis optimization
 - Account for high metabolic rate and potential digestive limitations
 

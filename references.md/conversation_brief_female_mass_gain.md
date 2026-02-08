@@ -1,5 +1,6 @@
 # Female Mass Gain Research Brief
-## Conversation Summary — Biohacking Protocol for an Ectomorph Profile
+
+## Conversation Summary — Biohacking Protocol for an Profile
 
 ---
 
@@ -8,10 +9,11 @@
 A 27+ year old woman seeking a complete body recomposition. She has never been able to gain weight and wants both muscle and fat — a rare request that distinguishes her from the typical "lean bulk" crowd.
 
 **Anthropometrics:**
+
 - Height: 174 cm (5'8.5")
 - Current weight: 55–56 kg (121–123 lbs)
 - BMI: ~18.5 (borderline underweight)
-- Classification: Presumed ectomorph / hardgainer
+- Classification: Presumed / hardgainer
 
 **Target:** 65 kg (+9 kg / ~20 lbs gain)
 
@@ -51,14 +53,17 @@ The goal is not simply to "get bigger." It is targeted and aesthetic:
 Three core threads emerged from this conversation:
 
 ### 1. Does the Somatotype Model Actually Hold Up?
-Sheldon's ectomorph/mesomorph/endomorph classification is widely used in fitness culture, but what does the current scientific literature say? Is "ectomorph" a real, fixed constitutional type — or is it a description of current habits and hormonal state that can be changed?
+
+Sheldon's /mesomorph/endomorph classification is widely used in fitness culture, but what does the current scientific literature say? Is " " a real, fixed constitutional type — or is it a description of current habits and hormonal state that can be changed?
 
 ### 2. What Does the Research Say About Female Mass Gain?
+
 Specifically for women who are underweight or classified as hardgainers. What are the mechanisms, timelines, and realistic expectations? How does female physiology (estrogen, progesterone cycling, lower baseline testosterone) affect hypertrophy rates and fat gain distribution?
 
 ### 3. How to Biohack the Process?
+
 Beyond "eat more and lift heavy" — what does the evidence support for optimizing every variable? This includes caloric surplus strategies, meal timing, sleep optimization, stress management, supplement protocols, and training periodization tailored to a female beginner who needs to gain significant mass.
 
 ---
 
-*Next step: Deep research across all three threads to build the complete protocol.*
+_Next step: Deep research across all three threads to build the complete protocol._
