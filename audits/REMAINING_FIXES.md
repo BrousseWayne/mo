@@ -50,6 +50,8 @@ Option 1 is simplest for DIETITIAN (meal template is ~200 lines). CHEF reference
 
 **Whichever option is chosen**: document the decision in `agents/pipeline.md` under a new "Prompt Assembly" section.
 
+**Decision (2026-02-09)**: Tool-use approach wins. The USDA FoodData Central integration (`plans/NUTRITION_API_SPEC.md`) establishes the tool-use pattern for CHEF and DIETITIAN. Both agents will receive nutrition lookup tools (`search_food`, `get_food_macros`, `get_food_micros`) that provide real-time ingredient data. Artifact files (`chef-shake-recipes.md`, `chef-batch-cooking.md`, `dietitian-meal-template.md`) become templates/examples injected into system prompts via RAG (pipeline prompt assembly), while runtime macro data comes from API tool calls. Implementation: Option 2 (RAG) for static reference content + Option 3 (tools) for dynamic nutrition data.
+
 ---
 
 ### P1-9: Specify Feedback Loop Implementation
