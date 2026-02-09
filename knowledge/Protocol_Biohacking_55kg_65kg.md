@@ -1,340 +1,340 @@
-# PROTOCOL COMPLET : DE 55 KG À 65 KG
+# COMPLETE PROTOCOL: FROM 55 KG TO 65 KG
 
-## Plan Biohacking pour Femme e — Fondé sur la Science, Ancré dans TON Corps
-
----
-
-## TON POINT DE DÉPART
-
-Tu n'es pas une statistique générique. Voici ce qu'on sait de toi, et pourquoi chaque recommandation en découle :
-
-**Les chiffres** : 174 cm, 55 kg, BMI 18.5 — à la limite inférieure du poids santé. Objectif : 65 kg (+10 kg).
-
-**Ce que ton corps montre** : Le haut du corps est sous-développé partout — bras très fins, dos plat, poitrine plate. Malgré des hanches structurellement larges, le bas du corps manque de muscle : les fesses sont grasses et tombantes ("ça jiggle"), les ischio-jambiers sont absents, les hip dips et la culotte de cheval sont visibles. C'est le tableau classique d'une femme sous-musclée avec un stockage adipeux gynoïde sélectif — tu as de la graisse aux bons endroits (hanches, fesses), mais pas le muscle en dessous pour lui donner forme et tenue.
-
-**Ce que ça signifie concrètement** : Tes fesses "jigglent" non pas parce que tu as trop de gras, mais parce que tu n'as pas assez de muscle glutéal pour servir de structure. Le gras est là, posé sur un châssis vide. Quand tu auras construit le grand fessier et les ischio-jambiers, ce même gras sera projeté vers l'arrière et vers le haut — la ptose disparaîtra. Les hip dips sont un déficit du moyen fessier (gluteus medius), pas un problème de gras : c'est du muscle manquant dans la zone latérale de la hanche.
-
-**Le statut de débutante totale est un avantage massif.** Les études montrent que les femmes non entraînées gagnent du muscle au même taux relatif que les hommes (Roberts et al., 2020, méta-analyse : différence d'effet = 0.07, p = 0.31 — non significatif). Une revue McMaster de 111 études (2025) établit qu'une femme débutante peut réalistement gagner environ **1 kg de masse maigre en 10 semaines**. Sur ta première année, avec nutrition et entraînement optimisés : **3 à 5 kg de muscle** sont réalistes, plus 5-7 kg de graisse saine = ton objectif de +10 kg en 8-14 mois.
+## Biohacking Plan for Women with Difficulty Gaining Weight — Science-Based, Anchored in YOUR Body
 
 ---
 
-## PARTIE 1 : NUTRITION — LE LEVIER N°1
+## YOUR STARTING POINT
 
-### Pourquoi tu ne grossis pas (et ce n'est pas ton "métabolisme rapide")
+You're not a generic statistic. Here's what we know about you, and why each recommendation follows:
 
-La recherche a démontré que le métabolisme basal (BMR) varie de seulement **5-8%** entre personnes de même taille et composition corporelle (Johnstone et al., 2005, _American Journal of Clinical Nutrition_, 150 adultes). 63% de la variance est expliquée par la masse maigre seule. Le mythe du "métabolisme rapide" est exactement ça — un mythe.
+**The numbers**: 174 cm, 55 kg, BMI 18.5 — at the lower limit of healthy weight. Goal: 65 kg (+10 kg).
 
-Ce qui varie énormément, c'est le **NEAT** (Non-Exercise Activity Thermogenesis) : les mouvements inconscients, le fait de gigoter, de se lever souvent, de marcher sans y penser. L'étude de Levine et al. (1999, _Science_) a montré que lors d'une suralimentation de 1 000 kcal/jour pendant 8 semaines, les variations de NEAT expliquaient **les différences de stockage de graisse par un facteur 10** (r = 0.77). Certaines personnes augmentent inconsciemment leur dépense de **700 kcal/jour** juste en bougeant plus.
+**What your body shows**: Upper body is underdeveloped everywhere — very thin arms, flat back, flat chest. Despite structurally wide hips, the lower body lacks muscle: glutes are fatty and sagging ("they jiggle"), hamstrings are absent, hip dips and saddlebag fat are visible. This is the classic picture of an undermuscled woman with selective gynoid fat storage — you have fat in the right places (hips, glutes), but not the muscle underneath to give it shape and support.
 
-**Ce que ça veut dire pour toi** : Tu ne grossis pas probablement parce que (a) tu manges moins que tu ne penses (les études de suivi alimentaire montrent que les "hardgainers" surestiment leur apport de 20-50%), et/ou (b) ton NEAT compense inconsciemment tout surplus calorique. La solution n'est pas mystérieuse : il faut manger plus que ce que ton corps dépense, de façon mesurable et consistante.
+**What this means concretely**: Your glutes "jiggle" not because you have too much fat, but because you don't have enough gluteal muscle to serve as structure. The fat is there, sitting on an empty chassis. When you've built the gluteus maximus and hamstrings, that same fat will be projected backward and upward — the ptosis will disappear. Hip dips are a gluteus medius (middle glute) deficit, not a fat problem: it's missing muscle in the lateral hip zone.
 
-### Tes objectifs caloriques — calculés pour TON corps
-
-**BMR estimé (Mifflin-St Jeor)** : 10 × 55 + 6.25 × 174 - 5 × 27 - 161 = **~1 327 kcal/jour**
-
-**TDEE avec activité modérée** (3-4 séances/semaine, facteur 1.55) : **~2 057 kcal/jour**
-
-**Avec surplus de +400-500 kcal** : **~2 450 - 2 550 kcal/jour**
-
-> **Cible : 2 500 kcal/jour pour démarrer.** Si après 2 semaines tu ne gagnes pas 0.25-0.5 kg/semaine en moyenne, augmente de 200 kcal. Si tu gagnes plus de 0.75 kg/semaine, réduis de 150 kcal.
-
-### Macronutriments — exactement combien de quoi
-
-| Macro         | Cible             | Quantité quotidienne           | Pourquoi ce chiffre                                                                                                                                                                              |
-| ------------- | ----------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Protéines** | 1.6-2.0 g/kg      | **88-110 g** (352-440 kcal)    | Morton et al. 2018, méta-analyse de 49 études : breakpoint à 1.62 g/kg, au-delà aucun bénéfice supplémentaire                                                                                    |
-| **Lipides**   | ≥25% des calories | **~69 g** (621 kcal)           | Mumford et al. 2016, 259 femmes : les graisses alimentaires augmentent la testostérone de 4% et réduisent le risque d'anovulation de 58%. En dessous de 20%, perturbation des hormones sexuelles |
-| **Glucides**  | Le reste          | **~220-275 g** (880-1100 kcal) | Carburant pour l'entraînement, reconstitution du glycogène, soutien mTOR                                                                                                                         |
-
-### Distribution des protéines — le détail qui change tout
-
-Areta et al. (2013, _The Journal of Physiology_) ont montré que **4 × 20 g toutes les 3 heures** stimule mieux la synthèse protéique musculaire que 2 gros repas ou 8 petites doses. Mamerow et al. (2014) ont démontré chez des femmes que distribuer les protéines équitablement (30/30/30g) augmente la MPS de 24h de **25%** par rapport à une distribution déséquilibrée.
-
-**Ta distribution idéale sur la journée :**
-
-- **8h - Petit-déjeuner** : 25-30g protéines (ex : 3 œufs + tartine + yaourt grec)
-- **12h - Déjeuner** : 25-30g protéines (ex : poulet/poisson + riz + légumes + huile d'olive)
-- **16h - Collation** : 20-25g protéines (ex : shake protéiné + banane + tahini)
-- **20h - Dîner** : 25-30g protéines (ex : viande/poisson + pâtes + fromage)
-- **22h30 - Pré-sommeil** : 30-40g protéines (caséine ou fromage blanc)
-
-Le repas pré-sommeil est crucial : Res et al. (2012) ont montré que 40g de caséine avant le coucher augmente la synthèse protéique nocturne de **22%**. Snijders et al. (2015) ont confirmé sur 12 semaines des gains significativement supérieurs en taille des fibres musculaires.
-
-### Stratégies spécifiques pour toi qui n'as "pas faim"
-
-Le problème central des hardgainers est l'appétit, pas le métabolisme. Voici les hacks fondés sur la recherche :
-
-**1. Calories liquides** : DiMeglio & Mattes (2000) ont démontré que les calories liquides produisent moins de satiété que les solides. Un shake maison (banane + flocons d'avoine + whey + tahini + lait entier) = **600-800 kcal** en 2 minutes. Prends-en un par jour minimum.
-
-**2. Densité calorique** : Choisis systématiquement les versions les plus denses — lait entier plutôt qu'écrémé (+120 kcal/jour), fromage sur tout, huile d'olive sur les salades et les plats (+100-200 kcal), noix et fruits secs comme snacks (30g d'amandes = 180 kcal).
-
-**3. Mange sur un horaire, pas sur la faim** : Programme 5 repas/collations à heures fixes. N'attends jamais d'avoir faim — ton signal de faim est clairement sous-calibré.
-
-**4. Bois APRÈS les repas, pas avant ni pendant** : Les liquides pendant le repas remplissent l'estomac et réduisent l'apport.
-
-**5. Commence par les aliments denses** : Mange la viande/le riz EN PREMIER, les légumes ensuite. Ne remplis pas ton estomac de fibres et d'eau avant les calories.
-
-### La "fenêtre anabolique" — oublie le mythe
-
-Schoenfeld, Aragon & Krieger (2013, méta-analyse de 23 études) : après contrôle de l'apport protéique total, **l'effet du timing post-entraînement disparaît complètement**. Ce qui compte : ton total quotidien de protéines et de calories. Si tu veux optimiser, prends une source de protéines dans les 2-3 heures autour de l'entraînement — mais ne stress pas si tu manges 45 minutes avant et 1h après.
+**Complete beginner status is a massive advantage.** Studies show that untrained women gain muscle at the same relative rate as men (Roberts et al., 2020, meta-analysis: effect difference = 0.07, p = 0.31 — not significant). A McMaster review of 111 studies (2025) establishes that a beginner woman can realistically gain about **1 kg of lean mass in 10 weeks**. In your first year, with optimized nutrition and training: **3 to 5 kg of muscle** is realistic, plus 5-7 kg of healthy fat = your goal of +10 kg in 8-14 months.
 
 ---
 
-## PARTIE 2 : ENTRAÎNEMENT — CONÇU POUR TES OBJECTIFS
+## PART 1: NUTRITION — LEVER #1
 
-### Ce que la science dit sur les femmes et l'hypertrophie
+### Why You're Not Gaining Weight (and It's Not Your "Fast Metabolism")
 
-Les femmes produisent 15-20x moins de testostérone que les hommes. Pourtant, les taux relatifs de gain musculaire sont **identiques** (Roberts et al., 2020). Comment ? Trois mécanismes compensatoires :
+Research has demonstrated that basal metabolic rate (BMR) varies by only **5-8%** between people of the same size and body composition (Johnstone et al., 2005, _American Journal of Clinical Nutrition_, 150 adults). 63% of the variance is explained by lean mass alone. The "fast metabolism" myth is exactly that — a myth.
 
-1. **Production de GH 3x supérieure** : Les femmes produisent environ trois fois plus d'hormone de croissance que les hommes (Burman et al., 2000, _JCEM_).
-2. **L'estrogène est anabolique** : Lowe et al. (2010) ont montré en méta-analyse que l'estrogène augmente la force musculaire de ~5% et la force spécifique de ~10%, via l'activation des cellules satellites et l'inhibition du catabolisme protéique.
-3. **Réponse IGF-1 unique** : Les femmes produisent des fractions d'IGF-1 libre que les hommes ne produisent pas après l'exercice (Nindl et al., 2019, _Frontiers in Endocrinology_).
+What varies enormously is **NEAT** (Non-Exercise Activity Thermogenesis): unconscious movements, fidgeting, standing up often, walking without thinking about it. The study by Levine et al. (1999, _Science_) showed that during overfeeding of 1,000 kcal/day for 8 weeks, NEAT variations explained **differences in fat storage by a factor of 10** (r = 0.77). Some people unconsciously increase their expenditure by **700 kcal/day** just by moving more.
 
-**Tu n'as pas besoin de testostérone pour construire du muscle. Ton corps a ses propres voies anaboliques.**
+**What this means for you**: You're probably not gaining weight because (a) you eat less than you think (food tracking studies show that "hardgainers" overestimate their intake by 20-50%), and/or (b) your NEAT unconsciously compensates for any caloric surplus. The solution isn't mysterious: you need to eat more than your body expends, in a measurable and consistent way.
 
-### Fréquence et structure — pourquoi le full body 3x/semaine
+### Your Caloric Targets — Calculated for YOUR Body
 
-Schoenfeld et al. (2016, méta-analyse) : entraîner chaque muscle **≥2x/semaine** est supérieur à 1x/semaine pour l'hypertrophie. Pour une débutante, le full body 3x/semaine est optimal car :
+**Estimated BMR (Mifflin-St Jeor)**: 10 × 55 + 6.25 × 174 - 5 × 28 - 161 = **~1,327 kcal/day**
 
-- Chaque muscle est stimulé 3x/semaine
-- Le volume est distribué pour réduire la fatigue
-- Plus de pratique technique sur les mouvements clés
-- 48h de récupération entre chaque séance
+**TDEE with moderate activity** (3-4 sessions/week, factor 1.55): **~2,057 kcal/day**
 
-### Volume — combien de séries par muscle
+**With surplus of +400-500 kcal**: **~2,450 - 2,550 kcal/day**
 
-Schoenfeld et al. (2017) : relation dose-réponse — chaque série supplémentaire augmente l'effet. Le minimum efficace est **~10 séries/muscle/semaine**. Barbalho et al. (2019, 40 femmes entraînées) : 5-10 séries/semaine = résultats égaux ou supérieurs à 15-20 séries. **Ne t'enterre pas sous le volume au début.**
+> **Target: 2,500 kcal/day to start.** If after 2 weeks you're not gaining 0.25-0.5 kg/week on average, increase by 200 kcal. If you're gaining more than 0.75 kg/week, reduce by 150 kcal.
 
-### TES muscles prioritaires — mappés à tes objectifs esthétiques
+### Macronutrients — Exactly How Much of What
 
-| Objectif esthétique                    | Muscle(s) cible(s)     | Volume hebdomadaire | Exercices clés                                  |
-| -------------------------------------- | ---------------------- | ------------------- | ----------------------------------------------- |
-| Fesses tombantes → rondes et projetées | **Grand fessier**      | 12-15 séries        | Hip thrust, squat, RDL                          |
-| Hip dips → hanches remplies            | **Moyen fessier**      | 4-6 séries          | Abduction latérale couchée, cable hip abduction |
-| Cuisses plates → galbe postérieur      | **Ischio-jambiers**    | 8-10 séries         | RDL, leg curl, split squat                      |
-| Bras très fins → proportionnés         | **Biceps + triceps**   | 4-6 séries directes | Curls, dips/extensions                          |
-| Dos inexistant → posture et forme      | **Dorsaux + trapèzes** | 9-12 séries         | Lat pulldown, rowing, face pulls                |
+| Macro | Target | Daily Amount | Why This Number |
+|-------|--------|--------------|-----------------|
+| **Protein** | 1.6-2.0 g/kg | **88-110 g** (352-440 kcal) | Morton et al. 2018, meta-analysis of 49 studies: breakpoint at 1.62 g/kg, beyond which no additional benefit |
+| **Fat** | ≥25% of calories | **~69 g** (621 kcal) | Mumford et al. 2016, 259 women: dietary fats increase testosterone by 4% and reduce anovulation risk by 58%. Below 20%, sex hormone disruption |
+| **Carbs** | The rest | **~220-275 g** (880-1100 kcal) | Fuel for training, glycogen replenishment, mTOR support |
 
-**Pourquoi le hip thrust est roi pour tes fesses** : Contreras et al. (2015) ont mesuré une activation du grand fessier de **69-87% MVIC** au hip thrust contre 29-45% au squat. Cependant, Plotkin et al. (2023, premier RCT avec mesure IRM) ont montré que l'hypertrophie glutéale est **similaire** entre hip thrust et squat sur 9 semaines — mais le squat développe en plus les quadriceps et adducteurs. **Conclusion : fais LES DEUX.** Le hip thrust pour cibler le grand fessier, le squat pour le développement global.
+### Protein Distribution — The Detail That Changes Everything
 
-**Pour les hip dips spécifiquement** : Plotkin et al. ont trouvé **quasi aucune croissance du moyen fessier** avec les squats ou hip thrusts seuls. Ce muscle nécessite un travail d'abduction ciblé (Moore et al., 2020, _IJSPT_). C'est non négociable dans ton programme.
+Areta et al. (2013, _The Journal of Physiology_) showed that **4 × 20 g every 3 hours** stimulates muscle protein synthesis better than 2 large meals or 8 small doses. Mamerow et al. (2014) demonstrated in women that distributing protein evenly (30/30/30g) increases 24h MPS by **25%** compared to uneven distribution.
 
-### Programme concret — Mois 1 à 4
+**Your ideal distribution throughout the day:**
 
-#### JOUR A (Lundi) — Focus Fessiers + Dos
+- **8am - Breakfast**: 25-30g protein (e.g., 3 eggs + toast + Greek yogurt)
+- **12pm - Lunch**: 25-30g protein (e.g., chicken/fish + rice + vegetables + olive oil)
+- **4pm - Snack**: 20-25g protein (e.g., protein shake + banana + tahini)
+- **8pm - Dinner**: 25-30g protein (e.g., meat/fish + pasta + cheese)
+- **10:30pm - Pre-sleep**: 30-40g protein (casein or cottage cheese)
 
-| Exercice                     | Séries × Reps  | Repos | Notes pour toi                                                                                           |
-| ---------------------------- | -------------- | ----- | -------------------------------------------------------------------------------------------------------- |
-| Barbell Hip Thrust           | 3 × 10-15      | 2 min | C'est ton exercice N°1. Commence avec juste la barre, monte progressivement. Serre les fesses EN HAUT.   |
-| Goblet Squat → Barbell Squat | 3 × 8-12       | 2 min | Goblet les 4 premières semaines pour apprendre le pattern. Profondeur : cuisse parallèle au sol minimum. |
-| Lat Pulldown                 | 3 × 8-12       | 90s   | Pour ton dos inexistant. Tire les coudes vers les hanches, pas les mains vers le menton.                 |
-| Abduction latérale couchée   | 2 × 15-20/côté | 60s   | Pour tes hip dips. Contrôle lent, pas d'élan. Tu sentiras le moyen fessier brûler.                       |
-| Face Pulls                   | 2 × 15-20      | 60s   | Posture + épaules arrières.                                                                              |
+The pre-sleep meal is crucial: Res et al. (2012) showed that 40g of casein before bed increases overnight protein synthesis by **22%**. Snijders et al. (2015) confirmed significantly greater muscle fiber size gains over 12 weeks.
 
-#### JOUR B (Mercredi) — Focus Postérieur + Bras
+### Specific Strategies for You Who "Aren't Hungry"
 
-| Exercice                                 | Séries × Reps   | Repos | Notes pour toi                                                                                                                                 |
-| ---------------------------------------- | --------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Romanian Deadlift (RDL)                  | 3 × 8-12        | 2 min | Pour tes ischio-jambiers absents. Haltères au début, barre ensuite. Sens l'étirement derrière la cuisse.                                       |
-| Bulgarian Split Squat                    | 3 × 10-12/jambe | 90s   | Unilatéral = stimulation maximale. Un pied sur un banc, descendre le genou arrière.                                                            |
-| Seated Cable Row                         | 3 × 8-12        | 90s   | Dos : tire les omoplates ensemble.                                                                                                             |
-| Dumbbell Curls (connexion esprit-muscle) | 2 × 10-12       | 60s   | Pour tes bras fins. Schoenfeld (2018) : le focus interne augmente l'hypertrophie du biceps de 12.4% vs 6.9%. Concentre-toi sur LA contraction. |
-| Cable Hip Abduction                      | 2 × 15-20/côté  | 60s   | Hip dips encore. Debout, câble bas, jambe vers l'extérieur.                                                                                    |
+The central problem for hardgainers is appetite, not metabolism. Here are research-based hacks:
 
-#### JOUR C (Vendredi) — Full Body Hypertrophie
+**1. Liquid calories**: DiMeglio & Mattes (2000) demonstrated that liquid calories produce less satiety than solids. A homemade shake (banana + oats + whey + tahini + whole milk) = **600-800 kcal** in 2 minutes. Have at least one per day.
 
-| Exercice                                | Séries × Reps | Repos | Notes pour toi                                                               |
-| --------------------------------------- | ------------- | ----- | ---------------------------------------------------------------------------- |
-| Leg Press (pieds hauts et larges)       | 3 × 10-15     | 2 min | Pieds hauts = plus de fessier/ischio. Pieds bas = plus de quadriceps.        |
-| Hip Thrust (bandes ou barbell)          | 3 × 10-15     | 90s   | 2ème dose de la semaine pour tes fesses.                                     |
-| Assisted Pull-ups ou Lat Pulldown large | 3 × 8-12      | 90s   | Progression vers un vrai pull-up en 6-12 mois.                               |
-| Lateral Raises                          | 3 × 12-15     | 60s   | Pour élargir visuellement le haut du corps et équilibrer tes hanches larges. |
-| Leg Curl assis ou couché                | 2 × 10-15     | 60s   | Isolation ischio.                                                            |
+**2. Calorie density**: Systematically choose the densest versions — whole milk rather than skim (+120 kcal/day), cheese on everything, olive oil on salads and dishes (+100-200 kcal), nuts and dried fruit as snacks (30g almonds = 180 kcal).
 
-**Volume total hebdomadaire** :
+**3. Eat on a schedule, not on hunger**: Schedule 5 meals/snacks at fixed times. Never wait until you're hungry — your hunger signal is clearly under-calibrated.
 
-- Grand fessier : ~12-15 séries (direct + indirect) ✓
-- Moyen fessier : ~4-6 séries ✓ ← la clé pour tes hip dips
-- Ischio-jambiers : ~8-10 séries ✓
-- Dos : ~9 séries ✓
-- Épaules : ~5 séries
-- Bras : ~2-4 séries directes
-- Quadriceps : ~6-9 séries (indirect via squats/leg press)
+**4. Drink AFTER meals, not before or during**: Liquids during the meal fill the stomach and reduce intake.
 
-### Progression — comment tu avances
+**5. Start with dense foods**: Eat the meat/rice FIRST, vegetables after. Don't fill your stomach with fiber and water before calories.
 
-Méthode de **double progression** :
+### The "Anabolic Window" — Forget the Myth
 
-1. Travaille dans la fourchette de reps (ex : 8-12)
-2. Quand tu atteins le HAUT de la fourchette sur TOUTES les séries avec bonne forme → augmente le poids de 2.5 kg (haut du corps) ou 5 kg (bas du corps)
-3. Retombe au BAS de la fourchette avec le nouveau poids
-4. Recommence
-
-**Effort** : Travaille à RPE 7-8 (2-3 reps en réserve). Ne va PAS à l'échec systématiquement — Refalo et al. (2022) : 1-3 RIR = même hypertrophie que l'échec, avec moins de fatigue.
-
-### Cycle menstruel et entraînement
-
-Sung et al. (2014) et Wikström-Frisén et al. (2017) ont trouvé que concentrer le volume en **phase folliculaire** (jours 1-14) donne de meilleurs résultats. MAIS la revue de Colenso-Semple et al. (2023) note que la qualité des preuves est faible.
-
-**Approche pragmatique** : Entraîne-toi régulièrement tout le cycle. Si tu te sens forte et motivée en phase folliculaire, pousse un peu plus. Si la phase lutéale (jours 15-28) te fatigue, accorde-toi plus de repos entre les séries. **La consistance bat l'optimisation cyclique à chaque fois.**
-
-### Après les mois 4-6 — Évolution vers un Upper/Lower 4x/semaine
-
-Quand tu stagneras sur le full body 3x (et tu stagneras, c'est normal), passe à :
-
-- Lundi : Lower (focus fessier/ischio)
-- Mardi : Upper (dos + épaules + bras)
-- Jeudi : Lower (focus quads + fessier moyen)
-- Vendredi : Upper (dos + bras + épaules)
-
-Volume total augmenté à 14-20 séries pour les muscles prioritaires.
+Schoenfeld, Aragon & Krieger (2013, meta-analysis of 23 studies): after controlling for total protein intake, **the post-workout timing effect completely disappears**. What matters: your daily total of protein and calories. If you want to optimize, have a protein source within 2-3 hours around training — but don't stress if you eat 45 minutes before and 1 hour after.
 
 ---
 
-## PARTIE 3 : SUPPLÉMENTATION — PAR ORDRE D'IMPORTANCE
+## PART 2: TRAINING — DESIGNED FOR YOUR GOALS
 
-### Tier 1 : Essentiels (preuves solides)
+### What Science Says About Women and Hypertrophy
 
-**Créatine monohydrate — 3-5 g/jour, tous les jours**
-L'ISSN (Kreider et al., 2017) confirme : >680 essais cliniques, 12 800+ participants, aucun effet secondaire clinique. Sûre et efficace chez les femmes. Les femmes ont des réserves de créatine plus basses, ce qui rend la supplémentation potentiellement plus bénéfique. Le gain initial de 1-3 kg est de l'eau intracellulaire — pas du "gonflement" superficiel, mais un signal anabolique. **C'est exactement ce que tu veux : du poids sur la balance ET un boost de performance.**
+Women produce 15-20x less testosterone than men. Yet relative rates of muscle gain are **identical** (Roberts et al., 2020). How? Three compensatory mechanisms:
 
-**Vitamine D3 — 2 000-4 000 UI/jour**
-Tomlinson et al. (2015) : amélioration significative de la force chez les personnes déficientes. Cible : 40-60 ng/mL en sérum. Fais un dosage sanguin d'abord si possible.
+1. **3x higher GH production**: Women produce about three times more growth hormone than men (Burman et al., 2000, _JCEM_).
+2. **Estrogen is anabolic**: Lowe et al. (2010) showed in meta-analysis that estrogen increases muscle strength by ~5% and specific force by ~10%, via satellite cell activation and protein catabolism inhibition.
+3. **Unique IGF-1 response**: Women produce free IGF-1 fractions that men don't produce after exercise (Nindl et al., 2019, _Frontiers in Endocrinology_).
 
-**Magnésium glycinate — 200-400 mg au coucher**
-Améliore la qualité du sommeil via activation GABA. Souvent déficient chez les personnes actives.
+**You don't need testosterone to build muscle. Your body has its own anabolic pathways.**
 
-### Tier 2 : Recommandés
+### Frequency and Structure — Why Full Body 3x/Week
 
-**Oméga-3 (EPA + DHA) — 2-4 g/jour**
-Smith et al. (2011) : augmentation de la MPS stimulée par les acides aminés d'environ **3 fois** avec 4g/jour d'huile de poisson. Bénéfices anti-inflammatoires et de récupération.
+Schoenfeld et al. (2016, meta-analysis): training each muscle **≥2x/week** is superior to 1x/week for hypertrophy. For a beginner, full body 3x/week is optimal because:
 
-**Ashwagandha (KSM-66) — 300-600 mg/jour**
-Wankhede et al. (2015) : augmentation significative de la force et de la taille musculaire + **réduction du cortisol de 27.9%** (Chandrasekhar et al., 2012). Particulièrement utile si tu es stressée. Cycles de 8-12 semaines.
+- Each muscle is stimulated 3x/week
+- Volume is distributed to reduce fatigue
+- More technical practice on key movements
+- 48h recovery between each session
 
-**Collagène — 10-15 g + 50 mg vitamine C, 30-60 min avant l'entraînement**
-Shaw et al. (2017) : double la synthèse de collagène. Protège les tendons et articulations pendant que tes charges progressent.
+### Volume — How Many Sets Per Muscle
 
-### Tier 3 : Optionnels
+Schoenfeld et al. (2017): dose-response relationship — each additional set increases the effect. The effective minimum is **~10 sets/muscle/week**. Barbalho et al. (2019, 40 trained women): 5-10 sets/week = equal or superior results to 15-20 sets. **Don't bury yourself under volume at the start.**
 
-Zinc (15-30 mg/jour si carence), HMB (3 g/jour — bénéfice modeste pour les débutantes).
+### YOUR Priority Muscles — Mapped to Your Aesthetic Goals
 
----
+| Aesthetic Goal | Target Muscle(s) | Weekly Volume | Key Exercises |
+|----------------|------------------|---------------|---------------|
+| Sagging glutes → round and projected | **Gluteus maximus** | 12-15 sets | Hip thrust, squat, RDL |
+| Hip dips → filled hips | **Gluteus medius** | 4-6 sets | Side-lying abduction, cable hip abduction |
+| Flat thighs → posterior curve | **Hamstrings** | 8-10 sets | RDL, leg curl, split squat |
+| Very thin arms → proportionate | **Biceps + triceps** | 4-6 direct sets | Curls, dips/extensions |
+| Non-existent back → posture and shape | **Lats + traps** | 9-12 sets | Lat pulldown, rows, face pulls |
 
-## PARTIE 4 : SOMMEIL — L'HORMONE DE CROISSANCE NOCTURNE
+**Why the hip thrust is king for your glutes**: Contreras et al. (2015) measured gluteus maximus activation of **69-87% MVIC** in hip thrust versus 29-45% in squat. However, Plotkin et al. (2023, first RCT with MRI measurement) showed that gluteal hypertrophy is **similar** between hip thrust and squat over 9 weeks — but the squat also develops quads and adductors. **Conclusion: do BOTH.** Hip thrust to target gluteus maximus, squat for overall development.
 
-Lamon et al. (2021) : **une seule nuit de privation** réduit la MPS de 18%, augmente le cortisol de 21%, diminue la testostérone de 24%. Le pic de GH (70% de la production quotidienne) survient dans les 1-2h de sommeil profond.
+**For hip dips specifically**: Plotkin et al. found **almost no gluteus medius growth** with squats or hip thrusts alone. This muscle requires targeted abduction work (Moore et al., 2020, _IJSPT_). This is non-negotiable in your program.
 
-**Protocole sommeil :**
+### Concrete Program — Months 1 to 4
 
-- **7-9 heures par nuit**, non négociable
-- Horaires constants (±30 min)
-- Chambre fraîche : 18-20°C
-- Pas d'écran 1h avant le coucher (ou mode nuit + faible luminosité)
-- 30-40g caséine + 200-400 mg magnésium glycinate au coucher = double rôle : MPS nocturne + qualité de sommeil
+#### DAY A (Monday) — Glutes + Back Focus
 
----
+| Exercise | Sets × Reps | Rest | Notes for You |
+|----------|-------------|------|---------------|
+| Barbell Hip Thrust | 3 × 10-15 | 2 min | This is your #1 exercise. Start with just the bar, progress gradually. Squeeze glutes AT THE TOP. |
+| Goblet Squat → Barbell Squat | 3 × 8-12 | 2 min | Goblet for the first 4 weeks to learn the pattern. Depth: thigh parallel to floor minimum. |
+| Lat Pulldown | 3 × 8-12 | 90s | For your non-existent back. Pull elbows toward hips, not hands toward chin. |
+| Side-lying Hip Abduction | 2 × 15-20/side | 60s | For your hip dips. Slow control, no momentum. You'll feel the gluteus medius burn. |
+| Face Pulls | 2 × 15-20 | 60s | Posture + rear shoulders. |
 
-## PARTIE 5 : OPTIMISATION HORMONALE NATURELLE
+#### DAY B (Wednesday) — Posterior Focus + Arms
 
-### Ton BMI 18.5 est probablement LE problème hormonal
+| Exercise | Sets × Reps | Rest | Notes for You |
+|----------|-------------|------|---------------|
+| Romanian Deadlift (RDL) | 3 × 8-12 | 2 min | For your absent hamstrings. Dumbbells at first, barbell later. Feel the stretch behind the thigh. |
+| Bulgarian Split Squat | 3 × 10-12/leg | 90s | Unilateral = maximum stimulation. One foot on a bench, lower the back knee. |
+| Seated Cable Row | 3 × 8-12 | 90s | Back: pull shoulder blades together. |
+| Dumbbell Curls (mind-muscle connection) | 2 × 10-12 | 60s | For your thin arms. Schoenfeld (2018): internal focus increases biceps hypertrophy by 12.4% vs 6.9%. Focus on THE contraction. |
+| Cable Hip Abduction | 2 × 15-20/side | 60s | Hip dips again. Standing, low cable, leg outward. |
 
-Être en insuffisance énergétique chronique (même légère) supprime l'axe HPG : l'estrogène baisse, la progestérone chute, la testostérone est minimale, la T3 thyroïdienne diminue (ralentissant le métabolisme comme mécanisme protecteur), le cortisol augmente (catabolique), et la leptine tombe sous le seuil de ~3 ng/mL nécessaire à l'ovulation.
+#### DAY C (Friday) — Full Body Hypertrophy
 
-Mallinson et al. (2013) : deux femmes aménorrhéiques qui ont simplement augmenté leur apport calorique ont vu le retour de leurs règles en **23 et 74 jours** respectivement, avec normalisation de la T3, de la leptine, et du métabolisme de repos.
+| Exercise | Sets × Reps | Rest | Notes for You |
+|----------|-------------|------|---------------|
+| Leg Press (feet high and wide) | 3 × 10-15 | 2 min | Feet high = more glute/hamstring. Feet low = more quads. |
+| Hip Thrust (banded or barbell) | 3 × 10-15 | 90s | 2nd weekly dose for your glutes. |
+| Assisted Pull-ups or Wide Lat Pulldown | 3 × 8-12 | 90s | Progression toward a real pull-up in 6-12 months. |
+| Lateral Raises | 3 × 12-15 | 60s | To visually widen the upper body and balance your wide hips. |
+| Seated or Lying Leg Curl | 2 × 10-15 | 60s | Hamstring isolation. |
 
-**Le surplus calorique est ta meilleure intervention hormonale.** Pas les compléments, pas les routines spéciales — manger suffisamment.
+**Total weekly volume**:
 
-### Autres leviers naturels
+- Gluteus maximus: ~12-15 sets (direct + indirect) ✓
+- Gluteus medius: ~4-6 sets ✓ ← the key for your hip dips
+- Hamstrings: ~8-10 sets ✓
+- Back: ~9 sets ✓
+- Shoulders: ~5 sets
+- Arms: ~2-4 direct sets
+- Quads: ~6-9 sets (indirect via squats/leg press)
 
-- **Entraînement composé** (squats, deadlifts, hip thrusts) = plus grande réponse aiguë GH/testostérone
-- **Sommeil 7-9h** = GH maximale
-- **Gestion du stress** : 10-20 min de méditation/jour (multiples revues systématiques : réduction du cortisol)
-- **Sauna** (si accessible) : Leppäluoto et al. : augmentation aiguë de GH de 2-16x (s'habitue avec l'usage)
-- **ÉVITE le froid post-entraînement** : Roberts et al. (2015, _The Journal of Physiology_) : 12 semaines d'immersion froide post-entraînement = **-13 points de pourcentage** sur le gain de masse des quadriceps + atténuation de l'activation des cellules satellites. Piñero et al. (2024, première méta-analyse) confirme. **Pas de bain froid après la muscu.**
+### Progression — How You Advance
 
----
+**Double progression** method:
 
-## PARTIE 6 : GESTION DU NEAT — LE LEVIER CACHÉ
+1. Work within the rep range (e.g., 8-12)
+2. When you reach the TOP of the range on ALL sets with good form → increase weight by 2.5 kg (upper body) or 5 kg (lower body)
+3. Fall back to the BOTTOM of the range with the new weight
+4. Repeat
 
-Puisque le NEAT peut varier de 2 000 kcal/jour (Levine, 2004) et que c'est le principal mécanisme de résistance à la prise de poids chez les "hardgainers", tu dois le surveiller.
+**Effort**: Work at RPE 7-8 (2-3 reps in reserve). Don't go to failure systematically — Refalo et al. (2022): 1-3 RIR = same hypertrophy as failure, with less fatigue.
 
-**Règles :**
+### Menstrual Cycle and Training
 
-- **5 000-7 000 pas/jour max** — assez pour la santé cardiovasculaire sans cramer tes calories
-- Limite le cardio dédié à 1-2 sessions de 15-20 min à basse intensité par semaine
-- Si tu as un métier où tu es debout/en mouvement toute la journée, **augmente tes calories de 200-300 kcal** pour compenser
-- Si ton poids ne monte pas malgré le surplus ciblé, c'est ton NEAT qui a augmenté inconsciemment → ajoute 200-300 kcal
+Sung et al. (2014) and Wikström-Frisén et al. (2017) found that concentrating volume in the **follicular phase** (days 1-14) gives better results. BUT the review by Colenso-Semple et al. (2023) notes that evidence quality is low.
 
----
+**Pragmatic approach**: Train consistently throughout the cycle. If you feel strong and motivated in the follicular phase, push a bit more. If the luteal phase (days 15-28) tires you, give yourself more rest between sets. **Consistency beats cycle optimization every time.**
 
-## PARTIE 7 : SUIVI ET AJUSTEMENTS
+### After Months 4-6 — Evolution to Upper/Lower 4x/Week
 
-### Que mesurer et quand
+When you plateau on full body 3x (and you will plateau, it's normal), switch to:
 
-| Mesure                    | Fréquence               | Comment                                                                             |
-| ------------------------- | ----------------------- | ----------------------------------------------------------------------------------- |
-| **Poids**                 | Quotidien, matin à jeun | Fais la MOYENNE hebdomadaire. Ignore les fluctuations quotidiennes (eau, hormones). |
-| **Tour de hanches**       | Toutes les 2 semaines   | Au point le plus large des fesses. C'est ton marqueur principal.                    |
-| **Tour de cuisse**        | Toutes les 2 semaines   | À mi-cuisse.                                                                        |
-| **Tour de bras**          | Toutes les 2 semaines   | Bras fléchi, contracté, au plus gros.                                               |
-| **Tour de taille**        | Toutes les 2 semaines   | Au nombril.                                                                         |
-| **Photos**                | Mensuelles              | Même éclairage, même pose, même heure. Face, profil, dos.                           |
-| **Carnet d'entraînement** | Chaque séance           | Exercices, poids, séries, reps. La surcharge progressive est le moteur principal.   |
-| **Marqueurs subjectifs**  | Hebdomadaire            | Énergie, qualité de sommeil, humeur, régularité des règles, appétit.                |
+- Monday: Lower (glute/hamstring focus)
+- Tuesday: Upper (back + shoulders + arms)
+- Thursday: Lower (quad + gluteus medius focus)
+- Friday: Upper (back + arms + shoulders)
 
-### Règles d'ajustement
-
-- **Gain < 0.25 kg/semaine pendant 2 semaines consécutives** → +200 kcal/jour
-- **Gain > 0.75 kg/semaine** → -150 kcal/jour (tu prends trop de gras trop vite)
-- **Gain 0.25-0.5 kg/semaine** → parfait, ne change rien
-- **Stagnation sur un exercice pendant 3 séances** → change la variante ou ajoute une série
-
-### DEXA scan optionnel
-
-Si tu peux, fais un DEXA tous les 3-6 mois. C'est le gold standard pour voir exactement combien de muscle vs gras tu gagnes, et OÙ.
-
----
-
-## PARTIE 8 : DISTRIBUTION DES GRAISSES — POURQUOI TU STOCKES LÀ
-
-Tu stockes aux hanches/cuisses/fesses à cause de l'**estrogène**. Pedersen et al. (2004, _JCEM_) ont identifié le mécanisme : l'estradiol augmente les récepteurs adrénergiques alpha-2A (antilipolytiques) dans le tissu adipeux sous-cutané — mais uniquement dans les dépôts sous-cutanés, pas viscéraux. Résultat : la graisse glutéofémorale chez les femmes préménopausées résiste plus à la lipolyse que la graisse abdominale.
-
-**Ce que ça veut dire pour toi** : Quand tu entres en surplus calorique, l'estrogène va diriger la nouvelle graisse préférentiellement vers les **hanches, cuisses et fesses** — pas vers le ventre. C'est métaboliquement protecteur et esthétiquement aligné avec tes objectifs. Tu veux du volume aux fesses et aux cuisses ? Tu vas en avoir, naturellement, par pure biologie.
-
-La "culotte de cheval" et les "hip dips" ne vont pas empirer — au contraire :
-
-- La **culotte de cheval** est du stockage gynoïde normal. Avec du muscle en dessous, elle sera mieux soutenue et visuellement intégrée dans un galbe musculaire.
-- Les **hip dips** sont un déficit musculaire du moyen fessier. Le travail d'abduction va littéralement remplir cette zone de muscle, réduisant la "dip".
+Total volume increased to 14-20 sets for priority muscles.
 
 ---
 
-## TIMELINE RÉALISTE — CE QUE TU PEUX ATTENDRE
+## PART 3: SUPPLEMENTATION — IN ORDER OF IMPORTANCE
 
-| Période       | Poids estimé | Ce qui se passe                                                                                     | Ce que tu verras                                                                                                                    |
-| ------------- | ------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **Mois 1-2**  | 56-58 kg     | Gain rapide initial (glycogène, eau, créatine, début de graisse). Adaptation neurale aux exercices. | La balance monte vite. Tes vêtements commencent à serrer légèrement aux cuisses. Pas encore de changement visuel musculaire majeur. |
-| **Mois 3-4**  | 58-60 kg     | Pic des "newbie gains" musculaires. 1-2 kg de muscle acquis. Graisse qui remplit les contours.      | Tes bras sont un peu plus pleins. Tes fesses commencent à avoir de la forme — la ptose diminue. Tu sens tes muscles travailler.     |
-| **Mois 5-8**  | 60-63 kg     | Hypertrophie visible. Force qui augmente rapidement. La graisse se distribue harmonieusement.       | Les hip dips s'estompent. Tes fesses projettent. Ton dos a des lignes. Les gens commencent à faire des commentaires.                |
-| **Mois 9-14** | 63-65 kg     | Objectif atteint. Croissance musculaire ralentit mais continue.                                     | Tu portes des vêtements taille différente. Le "jiggle" est toujours là mais AVEC de la forme en dessous. Le galbe est là.           |
+### Tier 1: Essentials (solid evidence)
 
-**Total estimé à 65 kg** : ~3-5 kg de muscle + ~5-7 kg de graisse saine. BMI : 21.5 — milieu de la zone optimale.
+**Creatine monohydrate — 3-5 g/day, every day**
+The ISSN (Kreider et al., 2017) confirms: >680 clinical trials, 12,800+ participants, no clinical side effects. Safe and effective in women. Women have lower creatine stores, making supplementation potentially more beneficial. The initial 1-3 kg gain is intracellular water — not superficial "bloating," but an anabolic signal. **This is exactly what you want: weight on the scale AND a performance boost.**
+
+**Vitamin D3 — 2,000-4,000 IU/day**
+Tomlinson et al. (2015): significant strength improvement in deficient individuals. Target: 40-60 ng/mL in serum. Get a blood test first if possible.
+
+**Magnesium glycinate — 200-400 mg at bedtime**
+Improves sleep quality via GABA activation. Often deficient in active people.
+
+### Tier 2: Recommended
+
+**Omega-3 (EPA + DHA) — 2-4 g/day**
+Smith et al. (2011): approximately **3-fold increase** in amino acid-stimulated MPS with 4g/day fish oil. Anti-inflammatory and recovery benefits.
+
+**Ashwagandha (KSM-66) — 300-600 mg/day**
+Wankhede et al. (2015): significant increase in strength and muscle size + **cortisol reduction of 27.9%** (Chandrasekhar et al., 2012). Particularly useful if you're stressed. 8-12 week cycles.
+
+**Collagen — 10-15 g + 50 mg vitamin C, 30-60 min before training**
+Shaw et al. (2017): doubles collagen synthesis. Protects tendons and joints as your loads progress.
+
+### Tier 3: Optional
+
+Zinc (15-30 mg/day if deficient), HMB (3 g/day — modest benefit for beginners).
 
 ---
 
-## RÉSUMÉ EXÉCUTIF — TA CHECKLIST QUOTIDIENNE
+## PART 4: SLEEP — NOCTURNAL GROWTH HORMONE
 
-☐ **2 500 kcal consommées** (pesées ou estimées avec précision)
-☐ **88-110 g de protéines** réparties en 4-5 prises de ~25-30g
-☐ **30-40 g de caséine/fromage blanc avant le coucher**
-☐ **3-5 g créatine** (dans n'importe quel repas ou shake)
-☐ **2 000-4 000 UI vitamine D3**
-☐ **Entraînement 3x/semaine** avec surcharge progressive
-☐ **Hip thrusts + abductions** à chaque séance du bas du corps
-☐ **7-9 heures de sommeil**
-☐ **5 000-7 000 pas/jour** (pas plus)
-☐ **Pesée matinale** (moyenne hebdomadaire)
+Lamon et al. (2021): **one night of deprivation** reduces MPS by 18%, increases cortisol by 21%, decreases testosterone by 24%. The GH peak (70% of daily production) occurs in the first 1-2 hours of deep sleep.
 
-Ce n'est pas de la magie. C'est de la biologie appliquée avec rigueur et patience. Chaque femme débutante qui a suivi ces principes dans les études citées a gagné du muscle et du poids. Il n'y a pas d'exception documentée quand le surplus calorique est réel et l'entraînement structuré.
+**Sleep protocol:**
 
-**Ton corps n'est pas "incapable de grossir". Il attend juste les bons signaux.**
+- **7-9 hours per night**, non-negotiable
+- Consistent schedule (±30 min)
+- Cool room: 18-20°C
+- No screens 1 hour before bed (or night mode + low brightness)
+- 30-40g casein + 200-400 mg magnesium glycinate at bedtime = dual role: overnight MPS + sleep quality
+
+---
+
+## PART 5: NATURAL HORMONAL OPTIMIZATION
+
+### Your BMI 18.5 Is Probably THE Hormonal Problem
+
+Being in chronic energy insufficiency (even slight) suppresses the HPG axis: estrogen drops, progesterone falls, testosterone is minimal, thyroid T3 decreases (slowing metabolism as a protective mechanism), cortisol rises (catabolic), and leptin falls below the ~3 ng/mL threshold needed for ovulation.
+
+Mallinson et al. (2013): two amenorrheic women who simply increased their caloric intake saw their periods return in **23 and 74 days** respectively, with normalization of T3, leptin, and resting metabolism.
+
+**The caloric surplus is your best hormonal intervention.** Not supplements, not special routines — eating enough.
+
+### Other Natural Levers
+
+- **Compound training** (squats, deadlifts, hip thrusts) = greatest acute GH/testosterone response
+- **Sleep 7-9h** = maximum GH
+- **Stress management**: 10-20 min of meditation/day (multiple systematic reviews: cortisol reduction)
+- **Sauna** (if accessible): Leppäluoto et al.: acute GH increase of 2-16x (habituates with use)
+- **AVOID cold post-training**: Roberts et al. (2015, _The Journal of Physiology_): 12 weeks of post-training cold immersion = **-13 percentage points** on quad mass gain + attenuation of satellite cell activation. Piñero et al. (2024, first meta-analysis) confirms. **No cold baths after strength training.**
+
+---
+
+## PART 6: NEAT MANAGEMENT — THE HIDDEN LEVER
+
+Since NEAT can vary by 2,000 kcal/day (Levine, 2004) and it's the main mechanism of weight gain resistance in "hardgainers," you must monitor it.
+
+**Rules:**
+
+- **5,000-7,000 steps/day max** — enough for cardiovascular health without burning your calories
+- Limit dedicated cardio to 1-2 sessions of 15-20 min at low intensity per week
+- If you have a job where you're standing/moving all day, **increase your calories by 200-300 kcal** to compensate
+- If your weight isn't rising despite the target surplus, it's your NEAT that has unconsciously increased → add 200-300 kcal
+
+---
+
+## PART 7: TRACKING AND ADJUSTMENTS
+
+### What to Measure and When
+
+| Measurement | Frequency | How |
+|-------------|-----------|-----|
+| **Weight** | Daily, fasted in the morning | Take the WEEKLY AVERAGE. Ignore daily fluctuations (water, hormones). |
+| **Hip circumference** | Every 2 weeks | At the widest point of the glutes. This is your main marker. |
+| **Thigh circumference** | Every 2 weeks | At mid-thigh. |
+| **Arm circumference** | Every 2 weeks | Flexed arm, contracted, at the largest point. |
+| **Waist circumference** | Every 2 weeks | At the navel. |
+| **Photos** | Monthly | Same lighting, same pose, same time. Front, side, back. |
+| **Training log** | Each session | Exercises, weights, sets, reps. Progressive overload is the main driver. |
+| **Subjective markers** | Weekly | Energy, sleep quality, mood, period regularity, appetite. |
+
+### Adjustment Rules
+
+- **Gain < 0.25 kg/week for 2 consecutive weeks** → +200 kcal/day
+- **Gain > 0.75 kg/week** → -150 kcal/day (you're gaining too much fat too fast)
+- **Gain 0.25-0.5 kg/week** → perfect, change nothing
+- **Plateau on an exercise for 3 sessions** → change the variant or add a set
+
+### Optional DEXA Scan
+
+If you can, get a DEXA every 3-6 months. It's the gold standard for seeing exactly how much muscle vs fat you're gaining, and WHERE.
+
+---
+
+## PART 8: FAT DISTRIBUTION — WHY YOU STORE THERE
+
+You store at hips/thighs/glutes because of **estrogen**. Pedersen et al. (2004, _JCEM_) identified the mechanism: estradiol increases alpha-2A adrenergic receptors (antilipolytic) in subcutaneous adipose tissue — but only in subcutaneous deposits, not visceral. Result: gluteofemoral fat in premenopausal women resists lipolysis more than abdominal fat.
+
+**What this means for you**: When you enter a caloric surplus, estrogen will direct new fat preferentially to the **hips, thighs, and glutes** — not to the belly. This is metabolically protective and aesthetically aligned with your goals. You want volume in the glutes and thighs? You'll get it, naturally, through pure biology.
+
+The "saddlebags" and "hip dips" won't get worse — on the contrary:
+
+- **Saddlebags** are normal gynoid storage. With muscle underneath, they'll be better supported and visually integrated into a muscular curve.
+- **Hip dips** are a gluteus medius muscle deficit. Abduction work will literally fill this zone with muscle, reducing the "dip."
+
+---
+
+## REALISTIC TIMELINE — WHAT YOU CAN EXPECT
+
+| Period | Estimated Weight | What's Happening | What You'll See |
+|--------|------------------|------------------|-----------------|
+| **Months 1-2** | 56-58 kg | Rapid initial gain (glycogen, water, creatine, beginning of fat). Neural adaptation to exercises. | The scale rises quickly. Your clothes start to fit tighter at the thighs. No major visible muscle change yet. |
+| **Months 3-4** | 58-60 kg | Peak of "newbie gains." 1-2 kg of muscle acquired. Fat filling out the contours. | Your arms are a bit fuller. Your glutes are starting to have shape — ptosis diminishes. You feel your muscles working. |
+| **Months 5-8** | 60-63 kg | Visible hypertrophy. Strength increasing rapidly. Fat distributing harmoniously. | Hip dips fading. Your glutes project. Your back has lines. People start making comments. |
+| **Months 9-14** | 63-65 kg | Goal achieved. Muscle growth slows but continues. | You wear different size clothes. The "jiggle" is still there but WITH shape underneath. The curve is there. |
+
+**Total estimated at 65 kg**: ~3-5 kg of muscle + ~5-7 kg of healthy fat. BMI: 21.5 — middle of the optimal zone.
+
+---
+
+## EXECUTIVE SUMMARY — YOUR DAILY CHECKLIST
+
+☐ **2,500 kcal consumed** (weighed or estimated with precision)
+☐ **88-110 g of protein** distributed in 4-5 servings of ~25-30g
+☐ **30-40 g of casein/cottage cheese before bed**
+☐ **3-5 g creatine** (in any meal or shake)
+☐ **2,000-4,000 IU vitamin D3**
+☐ **Training 3x/week** with progressive overload
+☐ **Hip thrusts + abductions** in every lower body session
+☐ **7-9 hours of sleep**
+☐ **5,000-7,000 steps/day** (not more)
+☐ **Morning weigh-in** (weekly average)
+
+This isn't magic. It's biology applied with rigor and patience. Every beginner woman who followed these principles in the cited studies gained muscle and weight. There is no documented exception when the caloric surplus is real and training is structured.
+
+**Your body isn't "incapable of gaining weight." It's just waiting for the right signals.**

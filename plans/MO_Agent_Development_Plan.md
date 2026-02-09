@@ -1,5 +1,5 @@
 # MO — Agent Personas Development Plan
-## Version 2.2 — Expert Audit Applied (25 specialist flags resolved)
+## Version 2.3 — Research Gaps Resolved (PHYSICIAN, SCIENTIST, NUTRITIONIST, COACH)
 
 ---
 
@@ -206,6 +206,93 @@ The PHYSICIAN provides the CONTEXT for red flags, not just the binary detection.
 | Ashwagandha KSM-66 300-600mg | Good safety profile in trials up to 12 weeks. | Thyroid medications (may potentiate thyroid hormone), autoimmune conditions, pregnancy | Chandrasekhar 2012 |
 | Collagen 10-15g/day | Safe. No significant interactions. | None known at standard doses | |
 
+**Subclinical deficiency prevalence in underweight women:**
+
+| Marker | Deficiency Threshold | Insufficiency | Prevalence in Target Population | Source |
+|---|---|---|---|---|
+| Ferritin | <15 ng/mL (WHO) / <30 ng/mL (updated) | 15-50 ng/mL | 35-48% of premenopausal women under updated thresholds | Columbia CUIMC 2023, ASH 2023 |
+| Vitamin D | <12-20 ng/mL | 12-30 ng/mL | ~40% of US women insufficient | Cui et al. 2022 |
+| B12 | <200 pg/mL | 200-300 pg/mL | Paradoxically ELEVATED in acute AN (38.5% above normal) — indicates hepatic stress | Bayes et al. 2025 |
+| Zinc | <70 μg/dL (women, fasting) | 40-70 μg/dL | 33% deficient in Japanese women; OR 1.443 for BMI <25 | Satoh et al. 2024 |
+
+**Key clinical notes:**
+- Traditional ferritin cutoff (15 ng/mL) misses 30-40% of functionally deficient women. Use 30-50 ng/mL threshold.
+- Underweight women may have preserved vitamin D vs overweight peers (inverse BMI relationship), but seasonal/latitude factors still create risk.
+- Elevated B12 in underweight women = potential red flag for liver dysfunction, not sufficiency.
+- Zinc deficiency impairs appetite signaling — may impede mass-gain efforts.
+
+**GI adaptation to caloric increase:**
+
+| Phase | Timeline | What Happens |
+|---|---|---|
+| Acute symptoms (bloating, discomfort) | Days 1-14 | Nearly universal in refeeding. Gastroparesis from malnutrition causes early satiety. |
+| Symptom resolution | 2-4 weeks | Bloating decreases as gut adapts to increased volume |
+| Full intestinal adaptation | 3-4 months | Complete structural and functional normalization |
+
+**Optimal ramp-up protocol:**
+- Start: ~20 kcal/kg/day (for 55kg = ~1,100 kcal baseline)
+- Increase: +100-200 kcal every 3-4 days based on tolerance
+- Target: Full surplus by Week 3-4
+- Rationale: Prevents GI distress, NEAT compensation, food aversion
+
+**Bloating management strategies:**
+- Consistent meal timing (2-3h intervals) trains gut to expect food
+- Temporarily prioritize refined grains over whole grains (lower fermentation)
+- Gradual fiber reintroduction as tolerance improves
+- Peppermint capsules for intestinal smooth muscle relaxation
+- Pre-educate about symptom normalcy; frame as healing signal
+
+**Refeeding syndrome risk assessment:**
+- BMI 18.5 with normal recent intake = LOW risk → safe to proceed with 20 kcal/kg start
+- BMI 18.5 with recent severe restriction = MODERATE risk → require baseline electrolytes + physician oversight first 2 weeks
+- Symptoms appear within 4-7 days of refeeding; monitor phosphate, potassium, magnesium
+
+**Psychology of intentional weight gain:**
+
+**CBT techniques:**
+- Cognitive restructuring: Identify/challenge distorted body thoughts (large effect size, Alleva et al. 2015)
+- Thought challenging: Weigh evidence for negative beliefs
+- Exposure therapy: Gradual exposure to body-related triggers
+
+**ACT (Acceptance and Commitment Therapy) techniques — preferred for weight restoration:**
+- Psychological flexibility: Accept negative thoughts while acting on values
+- Defusion: "I notice I'm having the thought that..." (changes relationship to thoughts)
+- Values clarification: Connect weight gain to meaningful life goals (energy, strength, fertility)
+- Committed action: Take valued steps despite discomfort
+
+**Referral triggers for psychological support:**
+- History of eating disorder diagnosis
+- Persistent fear of weight gain despite understanding rationale
+- Compensatory behaviors (purging, excessive exercise, restriction)
+- Marked distress interfering with daily function
+- Food rituals, hiding food, withdrawal from social eating
+- Incomplete weight restoration is the most consistent predictor of relapse
+
+**Normal discomfort vs emerging eating disorder:**
+| Feature | Normal Discomfort | Emerging ED |
+|---|---|---|
+| Cognitive focus | Transient thoughts | Morbid preoccupation |
+| Fear response | Manageable anxiety | Intense, persistent terror |
+| Behavior | Voices concerns, continues plan | Restriction, compensation, deception |
+| Duration | Decreases over weeks | Persists or intensifies |
+| Function | Minimally affected | Interference with work, relationships, sleep |
+
+**Female-specific exercise considerations:**
+
+**Pelvic floor:**
+- 32-46% of female strength athletes report stress urinary incontinence (PMC 2025)
+- Risk factors: High intra-abdominal pressure, incorrect breathing (prolonged Valsalva), rapid load progression
+- ~30% of women cannot correctly contract pelvic floor initially — supervision improves outcomes
+- Prevention: Exhale on exertion, avoid prolonged breath-holding, gradual loading, include pelvic floor cuing in warm-ups
+- Screen for existing incontinence/prolapse symptoms at intake
+
+**Luteal phase joint laxity:**
+- Relaxin peaks during luteal phase (days 21-24), even in non-pregnant women (PMC 2024)
+- Mechanism: Activates matrix metalloproteinases → collagen degradation; suppresses new collagen synthesis
+- Ligaments are 42-56% type I collagen — high target availability
+- ACL injury risk: Potentially elevated during late follicular/ovulatory AND luteal phases (evidence inconclusive but directional)
+- Practical application: Consider reducing maximal/ballistic loads during late luteal (days 21-28); emphasize neuromuscular control exercises during high-laxity phases
+
 **Female physiology — medical context (complements cross-cutting knowledge):**
 
 | Topic | Medical Context |
@@ -292,11 +379,66 @@ Creatine causes 1-2 kg intracellular water weight gain in the first 1-3 weeks. T
 - If unavailable: Navy method estimate (neck + waist + hip circumferences)
 - Repeat DEXA every 3-6 months if accessible
 
+**Body composition estimation accuracy:**
+
+| Method | Accuracy vs DEXA | Best Use | Limitations |
+|---|---|---|---|
+| DEXA | Gold standard (±0.8% precision) | Baseline + quarterly tracking | Cost ($40-150), radiation, clinic visit required, 3-6 month minimum intervals |
+| BIA | r = 0.85-0.95 correlation; underestimates BF% by 2-4% | Monthly trend monitoring | Hydration-sensitive; overestimates fat in lean individuals; at BMI <16, underestimates FFM by 2.25 kg |
+| Navy Method | ±3-4% body fat; female underestimation -1.6 to -2.3% | Supplementary only | Proportional bias; doesn't detect small changes; individual fat distribution confounds |
+
+**Practical protocol for underweight women:**
+1. Baseline DEXA at program start
+2. Monthly BIA (same time of day, same hydration state, same cycle phase) for trend monitoring
+3. Quarterly DEXA to validate BIA trends
+4. True change detection threshold: ~5% body fat or ~2 kg tissue mass
+
+**⚠️ Menstrual cycle weight fluctuation — quantified data:**
+
+| Phase | Typical Weight Change | Mechanism |
+|---|---|---|
+| Menstruation (days 1-5) | +0.45 to +0.5 kg vs mid-follicular | Extracellular water retention |
+| Follicular (days 6-13) | Baseline/lowest | Estrogen rising, minimal retention |
+| Ovulation (day 14) | +0.2 to +0.5 kg | Estrogen peak → fluid accumulation |
+| Luteal (days 15-28) | +0.5 to 2.3 kg peak | Progesterone → aldosterone activation |
+
+**Total cycle fluctuation range:** 0.5-2.3 kg typical; up to 3 kg in some individuals
+
+**Cycle-adjusted weight tracking protocol:**
+- Weigh on same cycle day each month for long-term trend monitoring
+- Optimal timing: Days 7-10 (mid-follicular) = lowest water retention, most stable
+- Avoid: Days 1-3 (menstruation) and Days 25-28 (late luteal) = peak retention
+- If daily weighing: use weekly rolling average, compare same-phase weights month-over-month
+- Flag any weight loss >0.5 kg during expected retention phase as potential true fat loss
+
 **NEAT monitoring:**
 - Levine et al. (1999, *Science*): NEAT varies up to 2,000 kcal/day; explains 10x differences in fat storage
 - Levine (2004): NEAT is the primary mechanism of weight-gain resistance in "hardgainers"
 - Bouchard et al. (1990, *NEJM*): ALL participants gained weight under sufficient surplus (mean 8.1 kg, 84 days)
 - If no weight gain despite hitting calorie target → most likely NEAT upregulation → add 200-300 kcal
+
+**NEAT measurement — practical indicators beyond step count:**
+
+| Activity | Energy Expenditure Increase | Source |
+|---|---|---|
+| Sitting motionless | +4% vs supine | Levine 2000 |
+| Fidgeting while seated | +54 ± 29% vs supine | Levine 2000 |
+| Standing motionless | +13 ± 8% vs supine | Levine 2000 |
+| Fidgeting while standing | +94 ± 38% vs supine | Levine 2000 |
+| Total fidgeting-like activities | 100-800 kcal/day range | NCBI Endotext |
+
+**Observable proxies for NEAT:**
+- Standing time vs sitting time (wearable-accessible)
+- Posture transitions per hour
+- Non-ambulatory movement episodes
+- Movement variability/entropy (irregular patterns = fidgeting)
+- Subjective restlessness ("feeling antsy")
+
+**Detecting NEAT upregulation during surplus:**
+- Levine 1999: NEAT change ranged from -98 to +692 kcal/day during +1000 kcal overfeeding (8-fold variation)
+- Maximum individual NEAT increase = 69% of excess calories
+- Monitor: increased standing time, more frequent posture transitions, higher step count without intentional exercise
+- Individual NEAT response is highly variable and cannot be predicted from baseline characteristics
 
 ---
 
@@ -359,6 +501,86 @@ Creatine causes 1-2 kg intracellular water weight gain in the first 1-3 weeks. T
 | Sunflower seed butter | ~99 kcal/tbsp | Nut-free, comparable density |
 | Coconut cream | ~100 kcal/2 tbsp | Excellent for shakes |
 | Avocado | ~120 kcal/half | High fat, versatile |
+
+**⚠️ Fiber optimization in calorie-dense diets:**
+
+**Minimum effective dose:**
+- 25-30g/day = ideal for chronic disease prevention
+- **15-20g/day = functional floor** for maintaining GI health during surplus
+- Below 12g/day = significantly increased constipation risk, especially with high protein
+
+**Low-volume, high-fiber sources (fiber density ranking):**
+
+| Source | Fiber per Serving | Fiber Density (g/100g) | Notes |
+|---|---|---|---|
+| Psyllium husk | 7g per 1 tbsp (10g) | 71g | Pure soluble fiber; add to liquids |
+| Wheat bran | 6g per 2 tbsp (14g) | 43g | Add to oatmeal, shakes |
+| Chia seeds | 10g per 2 tbsp (28g) | 34g | Can add to shakes; forms gel |
+| Flaxseed (ground) | 8g per 2 tbsp (20g) | 27g | Must be ground for absorption |
+| Dark chocolate (85%+) | 3.5g per 30g | 12g | Also provides calories |
+| Avocado | 5g per half (75g) | 7g | High calorie density |
+
+**Fiber strategy for hardgainers:**
+- Add 1 tbsp ground flaxseed to each shake (+4g fiber, minimal volume)
+- Stir 1 tbsp chia seeds into overnight oats (+5g fiber)
+- Mix psyllium husk into sauces or smoothies (1 tsp = 2.5g fiber)
+- Prioritize soluble fiber (60-70%) over insoluble during aggressive surplus
+- Every 5g supplemental fiber requires ~250ml additional water
+
+**⚠️ Hydration requirements for creatine-supplementing women:**
+
+**Mechanism:** Each gram of creatine stored draws ~2.7-3g of water into muscle cells (intracellular, not edema).
+
+| Phase | Additional Water Requirement |
+|---|---|
+| Loading (20g/day × 5-7 days) | +500-750 ml/day |
+| Maintenance (3-5g/day) | +300-500 ml/day |
+
+**Combined target for 56kg woman taking 3g creatine, training 1hr/day:**
+- Baseline: 1,800 ml (30-35 ml/kg)
+- Creatine: +400 ml
+- Training: +600 ml
+- **Total: 2,800 ml/day (~50 ml/kg)**
+
+**Female-specific considerations:**
+- 3g/day maintenance often sufficient for women (vs 5g for men) — equally effective, less water burden
+- During luteal phase: add 200-300 ml to offset progesterone's diuretic effect
+- Signs of inadequate hydration: dark urine, muscle cramping, GI distress (often misattributed to creatine)
+
+**⚠️ Anti-nutrient interactions — calcium and iron:**
+
+**Calcium's inhibition of iron absorption:**
+
+| Calcium Dose | Iron Absorption Reduction | Source |
+|---|---|---|
+| 40 mg | Minimal (<10%) | Hallberg 1991 |
+| 165 mg | 50-60% | Hallberg 1991 |
+| 300 mg | 60-65% | Hallberg 1998 |
+| 500+ mg | Plateaus at ~60-65% | Cook et al. 1991 |
+
+**Key finding:** A single glass of milk (~300mg calcium) with an iron-rich meal reduces iron absorption by ~50-60%.
+
+**Timing separation protocol:**
+- Minimum separation: **2 hours** between significant calcium source (>150mg) and iron source
+- Iron supplements: Morning, empty stomach, with vitamin C
+- Calcium supplements: Bedtime (also aids sleep and bone remodeling)
+- Never take iron and calcium supplements together
+
+**Meal planning strategy:**
+
+| Meal/Snack | Iron-Rich Foods | Calcium-Rich Foods | Enhancers |
+|---|---|---|---|
+| Breakfast | Fortified cereal, eggs | Avoid dairy | Orange juice (vitamin C) |
+| Morning snack | — | Greek yogurt, cheese | — |
+| Lunch | Red meat, legumes, spinach | Minimal dairy | Bell peppers, tomatoes |
+| Afternoon snack | — | Milk, fortified foods | — |
+| Dinner | Poultry, fish, tofu | Minimal dairy | Lemon-dressed salad |
+| Evening | — | Calcium supplement | 2h after dinner |
+
+**Vitamin C enhancement:**
+- 50mg vitamin C with a meal doubles non-heme iron absorption
+- Partially (not fully) counteracts calcium's inhibitory effect
+- Best sources: bell peppers (127mg/cup), citrus, strawberries, broccoli
 
 ---
 
@@ -600,11 +822,110 @@ Upper body days:
 4. Arm circles × 10 forward + 10 backward
 5. First working set at 50% target weight × 8 (ramp-up set)
 
+**⚠️ Gym anxiety in female beginners:**
+
+**Prevalence:**
+- 65% of women avoid the gym due to anxiety or fear of judgment (Ultimate Performance)
+- 58% feel people will judge them if they don't know how to use equipment
+- 45% feel too unfit to start attending the gym
+- 76% felt uncomfortable exercising in public (Myprotein Survey)
+
+**Primary barriers:**
+- Perceived judgment (being watched, body scrutiny)
+- Gendered spaces (weights areas feel like "male territory")
+- Equipment knowledge gaps
+- Fitness level comparison
+- Harassment/staring
+
+**Self-efficacy framework (Bandura 1977) — four sources:**
+
+| Source | Application | Implementation |
+|---|---|---|
+| Past Performance (most powerful) | Create early success experiences | Phase 0 at home provides mastery experiences |
+| Vicarious Experience | Observe similar others succeeding | Videos of female beginners; female trainer |
+| Verbal Persuasion | Encouragement from respected sources | Partner support; positive self-talk |
+| Physiological Cues | Interpret body signals positively | Reframe nervousness as excitement |
+
+**Progressive exposure protocol:**
+
+| Phase | Location | Focus |
+|---|---|---|
+| Phase 0 (Weeks 1-2) | Home only | Master movement patterns in private; zero gym pressure |
+| Gym Introduction (Weeks 3-4) | Off-peak gym hours | First 2 visits: orientation only; Sessions 3-4: low-traffic areas |
+| Full Gym (Week 5+) | Gradually expand | Progress to weights area; schedule consistent times; use headphones |
+
+**Practical strategies:**
+- Partner accompanies if available (leverage experienced homecook partner)
+- Training during off-peak hours (early morning, mid-afternoon)
+- Gym crowding apps to time visits
+- Female trainers reduce intimidation
+- Home start builds competence before gym exposure
+
+**⚠️ Home training alternative (equipment-minimal program):**
+
+**Evidence:** Bodyweight + bands + dumbbells produces comparable hypertrophy to gym training in beginners when training to near-failure in 6-35 rep range (PMC meta-analysis).
+
+**Minimum equipment needed:**
+
+| Equipment | Purpose | Cost |
+|---|---|---|
+| Resistance bands (mini loop + long) | Glute activation, back work, progressive overload | $15-30 |
+| Dumbbells (2-20kg range) | Hip hinge loading, rows, compounds | $50-200 |
+| Sturdy chair/bench | Split squats, hip thrusts, step-ups | $0-50 |
+| Yoga mat | Floor exercises | $15-30 |
+
+**Total: ~$80-200 for minimum viable setup**
+
+**12-Week Home Program Structure:**
+
+**Weeks 1-4 (Foundation):**
+- Glute Bridge 3×15 → add 5kg dumbbell Week 3
+- Goblet Squat 3×12 (5kg → 8kg)
+- DB Row 3×10/side (5kg → 8kg)
+- Banded Lateral Walk 2×15/side
+- Band Pull-Apart 2×15
+- Split Squat 2×10/leg → add DB Week 3
+
+**Weeks 5-8 (Loading):**
+- Single-Leg Glute Bridge 3×12/side + dumbbell
+- Bulgarian Split Squat 3×10/leg (5kg → 12kg)
+- DB RDL 3×12 (8kg → 12kg)
+- Band Lat Pulldown 3×12
+- DB Row 3×10/side (8kg → 12kg)
+- Side-lying Hip Abduction (banded) 3×15/side
+
+**Weeks 9-12 (Intensity):**
+- Hip Thrust (back on bench, DB on hips) 3×12
+- Bulgarian Split Squat 3×12/leg (heaviest DBs, slow eccentric)
+- Sumo Squat 3×12 (12kg+)
+- Single-Arm Row 3×10/side (12kg+, pause at top)
+- DB Pullover 3×12 (8-12kg)
+- Standing Banded Hip Abduction 3×15/side
+
+**Progression rules:**
+1. When all reps completed with 2-3 RIR across all sets → progress
+2. Sequence: Add reps (+3) → Add load → Add sets (up to 4)
+3. If no heavier dumbbell: slow tempo (3-1-2), pause reps, single-leg variants
+
+**Transition to gym criteria:**
+- Completed 12-week home program
+- Using heaviest available dumbbells for all exercises
+- Confident in all movement patterns
+- Psychologically ready (per gym anxiety framework)
+
 **Programs:**
 
 ### ⚠️ Phase 0: Weeks 1-2 (Anatomical Adaptation — FORM LEARNING)
 
+**Evidence base:** Mersmann et al. 2017 (Frontiers in Physiology) demonstrated that tendon stiffness adaptation lags muscle adaptation in athletes — athletic training provides more efficient stimulus for muscle vs tendon. NSCA periodization literature confirms all models begin with anatomical adaptation phase for safety.
+
 **Purpose**: Tendon/ligament preparation, neural pathway establishment, movement pattern learning, confidence building. Connective tissue adapts SLOWER than muscle (Mersmann et al. 2017). Skipping this phase risks tendinopathy and poor motor patterns that are harder to correct later.
+
+**Duration evidence:**
+- Fit individuals returning to exercise: 1-2 weeks
+- General untrained adults: 3-4 weeks standard
+- Very deconditioned/sedentary: up to 8 weeks
+- 2 weeks appropriate for healthy 28-year-old beginner with no injury history
 
 **Rules**: Bodyweight or very light load ONLY. No progressive overload. RPE 5-6 maximum. Focus is 100% on movement quality and mind-muscle connection. 3 sessions/week.
 
@@ -1084,12 +1405,12 @@ All terminology complies with [RULES.md](../RULES.md).
 
 | Agent | Knowledge Status | Source Files |
 |---|---|---|
-| PHYSICIAN | ✅ Complete | This document (Section: PHYSICIAN core knowledge) + knowledge/KNOWLEDGE_BASE_training_agent.md |
-| SCIENTIST | ✅ Complete (updated v2.2: ramp-up, creatine timing, cycle tracking, fiber/hydration) | knowledge/KNOWLEDGE_BASE_training_agent.md |
-| NUTRITIONIST | ✅ Complete | knowledge/KNOWLEDGE_BASE_training_agent.md, knowledge/Protocol_Biohacking_55kg_65kg.md |
+| PHYSICIAN | ✅ Complete (v2.3: +deficiency prevalence, GI adaptation, psychology, female exercise) | This document (Section: PHYSICIAN core knowledge) + knowledge/KNOWLEDGE_BASE_training_agent.md |
+| SCIENTIST | ✅ Complete (v2.3: +cycle fluctuation quantified, NEAT indicators, body comp accuracy) | This document + knowledge/KNOWLEDGE_BASE_training_agent.md |
+| NUTRITIONIST | ✅ Complete (v2.3: +fiber optimization, creatine hydration, Ca-Fe interaction) | This document + knowledge/KNOWLEDGE_BASE_training_agent.md, knowledge/Protocol_Biohacking_55kg_65kg.md |
 | DIETITIAN | ✅ Complete | agents/DIETITIAN_meal_template.md (7-day template with alternatives) |
 | CHEF | ✅ Complete | agents/CHEF_batch_cooking.md, agents/CHEF_shake_recipes.md |
-| COACH | ✅ Complete (updated v2.2: Phase 0, warm-ups, micro-loading, gym assessment) | knowledge/KNOWLEDGE_BASE_training_agent.md, knowledge/Protocol_Biohacking_55kg_65kg.md |
+| COACH | ✅ Complete (v2.3: +Phase 0 evidence, gym anxiety protocol, home training program) | This document + knowledge/KNOWLEDGE_BASE_training_agent.md, knowledge/Protocol_Biohacking_55kg_65kg.md |
 
 ## Gaps to Fill — With Deep Research Requirements
 
@@ -1107,26 +1428,30 @@ All terminology complies with [RULES.md](../RULES.md).
 **Delivered in agents/:**
 - agents/DIETITIAN_meal_template.md: Complete 7-day template with per-slot macros, 2-3 alternatives per slot, emergency/travel options, shopping list, compliance checkpoints, JSON handoff to CHEF
 
-### Gap 3: PHYSICIAN — Additional Research Needed
-- Subclinical deficiency prevalence in underweight women (ferritin, D, B12, zinc rates)
-- GI adaptation to caloric increase: evidence on ramp-up timelines, bloating management
-- Psychology of intentional weight gain: evidence-based reframing, when to refer
-- Female-specific exercise considerations: pelvic floor, joint laxity during luteal phase
+### Gap 3: PHYSICIAN — ✅ RESOLVED
+Research completed and integrated into PHYSICIAN Core Knowledge section:
+- Subclinical deficiency prevalence tables with thresholds
+- GI adaptation timelines and bloating management
+- Psychology of weight gain (CBT/ACT frameworks, referral triggers)
+- Female exercise considerations (pelvic floor, luteal joint laxity)
 
-### Gap 4: SCIENTIST — Minor Research Needed
-- Menstrual cycle weight fluctuation quantified data
+### Gap 4: SCIENTIST — ✅ RESOLVED
+Research completed and integrated into SCIENTIST Core Knowledge section:
+- Menstrual cycle weight fluctuation: 0.5-2.3 kg, phase-specific data
 - NEAT measurement: practical indicators beyond step count
-- Body composition estimation accuracy: Navy method vs bioimpedance reliability
+- Body composition: Navy vs BIA vs DEXA accuracy comparison
 
-### Gap 5: NUTRITIONIST — Minor Research Needed
-- Fiber optimization in calorie-dense diets: minimum effective dose, best low-volume sources
-- Hydration requirements for creatine-supplementing women
-- Anti-nutrient interactions: high dairy calcium blocking iron absorption, practical timing solutions
+### Gap 5: NUTRITIONIST — ✅ RESOLVED
+Research completed and integrated into NUTRITIONIST Core Knowledge section:
+- Fiber optimization: 15-20g/day minimum, low-volume sources
+- Hydration + creatine: 40-50 ml/kg/day target
+- Ca-Fe interaction: 2-hour separation protocol
 
-### Gap 6: COACH — Minor Research Needed
-- Phase 0 anatomical adaptation: evidence for duration, bodyweight progression criteria
-- Gym anxiety in female beginners: evidence on barriers, practical solutions
-- Home training alternative: equipment-minimal program variant
+### Gap 6: COACH — ✅ RESOLVED
+Research completed and integrated into COACH Core Knowledge section:
+- Phase 0 evidence base (Mersmann 2017, NSCA periodization)
+- Gym anxiety framework (65% prevalence, self-efficacy protocol)
+- Home training alternative: 12-week equipment-minimal program
 
 ### Gap 7: SOURCE DOCUMENT CLEANUP ✅ RESOLVED
 - ~~KNOWLEDGE_BASE line 275 + 293: contained "peanut butter"~~ → Changed to "tahini"
