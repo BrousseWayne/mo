@@ -54,7 +54,9 @@ Three core threads emerged from this conversation:
 
 ### 1. Does the Somatotype Model Actually Hold Up?
 
-Sheldon's /mesomorph/endomorph classification is widely used in fitness culture, but what does the current scientific literature say? Is " " a real, fixed constitutional type — or is it a description of current habits and hormonal state that can be changed?
+Sheldon's body type classification is widely used in fitness culture, but what does the current scientific literature say? Is "difficulty gaining weight" a real, fixed constitutional type — or is it a description of current habits (appetite, NEAT) and hormonal state that can be changed?
+
+**Answer**: The KNOWLEDGE_BASE confirms somatotypes are debunked pseudoscience (Rafter 2007). Individual differences are explained by NEAT, appetite, and training history — all modifiable.
 
 ### 2. What Does the Research Say About Female Mass Gain?
 

@@ -44,24 +44,17 @@ Cross-cutting health guardrails (not a dedicated agent) pause pipeline on red fl
 4. DIETITIAN overrides CHEF on macro compliance
 5. COACH autonomous on training, defers to SCIENTIST on recovery metrics
 
-## Scientific Constraints
+## Canonical Rules
 
-### Banned Terminology (Pseudoscience)
+**See [RULES.md](./RULES.md)** for the complete, authoritative reference on:
+- Banned terminology (somatotypes, "fast metabolism", "toning", etc.)
+- Correct alternatives and evidence-based framing
+- Food constraints (no peanut butter, no nut butters)
+- Key scientific references
+- Red flags triggering referral
+- Agent-specific constraints
 
-Never use: ectomorph, mesomorph, endomorph, somatotype, "fast metabolism", "fixed body type", "anabolic window", "toning", "long lean muscles"
-
-### Correct Alternatives
-
-- "Difficulty gaining weight" → likely lower appetite + higher NEAT
-- "Fast metabolism" → "High NEAT (non-exercise activity thermogenesis)"
-- "Anabolic window" → "Peri-workout nutrition (beneficial but not critical)"
-
-### Key References
-
-- Morton 2018: Protein breakpoint at 1.62g/kg (49 studies, 1863 participants)
-- Schoenfeld 2013: Post-workout timing effects disappear when daily intake controlled
-- Roberts 2020: Relative hypertrophy identical men/women (effect 0.07, p=0.31)
-- Levine 1999: NEAT varies up to 2000 kcal/day between similar-sized people
+All project documents must comply with RULES.md. When conflicts exist, RULES.md takes precedence.
 
 ## Data Exchange Format
 
@@ -89,22 +82,49 @@ Agents communicate via structured JSON:
 ## File Structure
 
 ```
-references.md/          # Research papers, methodologies, knowledge bases
-MO_Agent_Development_Plan_v2.md   # Master specification document
-futur_stack.md          # Architecture and feature roadmap
+RULES.md                # CANONICAL — All terminology, constraints, scientific standards
+CLAUDE.md               # Project guidance for Claude Code
+
+plans/                  # Authoritative planning documents
+  MO_Agent_Development_Plan.md    # Master specification document
+
+agents/                 # Agent-specific protocols and deliverables
+  CHEF_batch_cooking.md           # Batch cooking protocols, sauce recipes
+  CHEF_shake_recipes.md           # Calorie-dense shake formulations
+  DIETITIAN_meal_template.md      # 7-day meal template with alternatives
+
+knowledge/              # Research papers, methodologies, knowledge bases
+  KNOWLEDGE_BASE_training_agent.md
+  Protocol_Biohacking_55kg_65kg.md
+  conversation_brief_female_mass_gain.md
+  references.md
+
+audits/                 # Expert reviews and compliance checks
+  EXPERT_AUDIT_25_flags.md
+
+archive/                # Historical/deprecated documents (non-authoritative)
+  old_plans/            # Previous plan versions
+  compass_artifacts/    # Original compass exports
+  futur_stack_FR.md     # French architecture doc (archived)
+
 initial.md              # Client intake protocol
-prompt1.md              # Development plan with corrections
+intake-questionnaire.md # Client assessment form (69 questions, agent-mapped)
 ```
 
 ## Cross-Cutting Constraints
 
 - All output in English, metric units only (kg, cm, g, ml, kcal)
-- Peanut butter excluded from all recommendations (substitutes: almond butter, cashew butter, tahini, sunflower seed butter)
+- Peanut butter and nut butters excluded from all recommendations (substitutes: tahini, sunflower seed butter, coconut cream, avocado)
 - Fat gain framed as desired outcome at BMI 18.5, not negative side effect
 - Health guardrails trigger medical referral on: amenorrhea >3mo, eating disorder history, persistent training pain >1wk, thyroid dysfunction signs, RED-S indicators
 
-## Development Gaps
+## Development Status
 
-1. **CHEF**: No recipes or batch cooking protocols documented
-2. **DIETITIAN**: No concrete 7-day meal template with alternatives
-3. **Feedback loop**: Adjustment triggers defined but weekly monitoring cycle not implemented
+### Completed
+- **CHEF**: Batch cooking protocols, sauce rotation system, shake recipes (see agents/)
+- **DIETITIAN**: 7-day meal template with alternatives, slot specs (see agents/)
+
+### Pending
+- **Feedback loop**: Weekly monitoring cycle not implemented
+- **SCIENTIST**: Calculation engine not documented
+- **COACH**: Training protocols referenced but not fully specified

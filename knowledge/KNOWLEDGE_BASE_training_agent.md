@@ -37,7 +37,7 @@
 | BMI                 | ~18.5 (borderline underweight)                          |
 | Target weight       | 65 kg (+9-10 kg gain)                                   |
 | Target BMI          | ~21.5 (mid-healthy range)                               |
-| Age range           | 27+ years                                               |
+| Age range           | 28 years                                                |
 | Training experience | Complete beginner (zero structured resistance training) |
 | Dietary constraints | None                                                    |
 | Known health issues | None reported                                           |
@@ -272,7 +272,7 @@ Mallinson et al. (2013, _JISSN_): Two amenorrheic women who increased caloric in
 | -------------------- | ------- | -------------------------------------------- |
 | 8:00 AM - Breakfast  | 25-30g  | 3 eggs + toast + Greek yogurt                |
 | 12:00 PM - Lunch     | 25-30g  | Chicken/fish + rice + vegetables + olive oil |
-| 4:00 PM - Snack      | 20-25g  | Protein shake + banana + peanut butter       |
+| 4:00 PM - Snack      | 20-25g  | Protein shake + banana + tahini              |
 | 8:00 PM - Dinner     | 25-30g  | Meat/fish + pasta + cheese                   |
 | 10:30 PM - Pre-sleep | 30-40g  | Casein or cottage cheese                     |
 
@@ -290,7 +290,7 @@ Schoenfeld, Aragon & Krieger (2013, _JISSN_), meta-analysis of 23 studies: After
 
 | Strategy            | Mechanism                                              | Implementation                                                                               |
 | ------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| Liquid calories     | Less satiety than solid food (DiMeglio & Mattes, 2000) | Daily homemade shake: banana + oats + whey + peanut butter + whole milk = 600-800 kcal       |
+| Liquid calories     | Less satiety than solid food (DiMeglio & Mattes, 2000) | Daily homemade shake: banana + oats + whey + tahini + whole milk = 600-800 kcal              |
 | Calorie-dense foods | More energy per gram/volume                            | Whole milk, nuts, nut butters, dried fruit, granola, full-fat dairy, olive oil on everything |
 | Scheduled eating    | Override inadequate hunger signals                     | 5 meals/snacks at fixed times, don't wait for hunger                                         |
 | Drink AFTER meals   | Prevent stomach volume displacement                    | No fluids 15 min before or during meals                                                      |

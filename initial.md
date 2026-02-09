@@ -11,7 +11,7 @@
 - Height: 174 cm
 - BMI: 18.5 (lower end of normal range)
 - Body fat percentage: Unknown (estimation required)
-- Somatotype: Suspected phenotype
+- Weight gain pattern: Difficulty gaining (suspected high NEAT)
 
 **Morphological Assessment**:
 
@@ -57,7 +57,7 @@
 
 **Metabolic Considerations**:
 
-- Suspected high metabolic rate ( ic presentation)
+- Suspected high NEAT (non-exercise activity thermogenesis)
 - Poor weight gain response to current energy intake
 - No data on: meal frequency, macronutrient partitioning, peri-workout nutrition, digestive capacity
 
@@ -86,7 +86,7 @@ butter and minimizing alternative nut butters if aversion extends beyond peanuts
 
 **Sub-requirements**:
 
-- Identify calorie-dense whole food alternatives suitable for ic metabolism
+- Identify calorie-dense whole food alternatives suitable for high-NEAT individuals
 - Structure macronutrient partitioning for muscle protein synthesis optimization
 - Account for high metabolic rate and potential digestive limitations
 

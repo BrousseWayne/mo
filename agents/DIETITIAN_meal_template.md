@@ -35,7 +35,7 @@
 | Lunch     | Chicken thigh + rice + roasted veg      | Salmon rice bowl                   | Beef stir-fry + rice           |
 | Snack     | Mass gainer shake (700 kcal)            | Cottage cheese + nuts + honey      | Protein bar + banana           |
 | Dinner    | Mediterranean chicken + couscous        | Salmon teriyaki + rice             | Beef meatballs + pasta         |
-| Pre-sleep | Cottage cheese + walnuts + honey        | Casein shake + banana              | Greek yogurt + almond butter   |
+| Pre-sleep | Cottage cheese + walnuts + honey        | Casein shake + banana              | Greek yogurt + tahini   |
 
 ### TUESDAY
 
@@ -45,7 +45,7 @@
 | Lunch     | Beef stir-fry + rice (batch)            | Chicken rice bowl                  | Salmon + quinoa                |
 | Snack     | Cottage cheese + nuts + dried fruit     | Mass gainer shake                  | Trail mix + protein bar        |
 | Dinner    | Asian salmon + rice + bok choy (batch)  | Chicken curry + rice               | Ground beef tacos              |
-| Pre-sleep | Casein shake + banana                   | Cottage cheese + berries           | Quark + almond butter          |
+| Pre-sleep | Casein shake + banana                   | Cottage cheese + berries           | Quark + tahini          |
 
 ### WEDNESDAY (Batch B cook day)
 
@@ -63,7 +63,7 @@
 |-----------|-----------------------------------------|------------------------------------|--------------------------------|
 | Breakfast | Overnight oats + whey + berries         | Egg muffins (batch) + toast        | Smoothie + toast               |
 | Lunch     | Ground beef + rice + beans (batch B)    | Chicken thigh + quinoa             | Salmon bowl                    |
-| Snack     | Protein smoothie + oats + almond butter | Cottage cheese + granola           | Cheese + crackers + nuts       |
+| Snack     | Protein smoothie + oats + tahini | Cottage cheese + granola           | Cheese + crackers + nuts       |
 | Dinner    | European beef stew + crusty bread       | Chicken thigh + cream sauce + rice | Salmon + lentils               |
 | Pre-sleep | Casein shake + banana                   | Cottage cheese + honey             | Quark + berries                |
 
@@ -75,7 +75,7 @@
 | Lunch     | Salmon + rice + greens (batch B)        | Beef bowl                          | Chicken + couscous             |
 | Snack     | Mass gainer shake                       | Trail mix + protein bar            | Cottage cheese + fruit         |
 | Dinner    | Chicken parmesan + pasta                | Beef bolognese + pasta             | Salmon + risotto               |
-| Pre-sleep | Cottage cheese + almond butter + honey  | Casein shake                       | Greek yogurt + walnuts         |
+| Pre-sleep | Cottage cheese + tahini + honey  | Casein shake                       | Greek yogurt + walnuts         |
 
 ### SATURDAY
 
@@ -95,7 +95,7 @@
 | Lunch     | Restaurant or takeout (protein-focused) | Simple sandwich + soup             | Rotisserie chicken + sides     |
 | Snack     | Mass gainer shake                       | Nuts + cheese + fruit              | Protein bar + banana           |
 | Dinner    | Simple: rotisserie chicken + sides      | Pasta with quick meat sauce        | Grilled fish + vegetables      |
-| Pre-sleep | Cottage cheese + walnuts + honey        | Casein shake                       | Greek yogurt + almond butter   |
+| Pre-sleep | Cottage cheese + walnuts + honey        | Casein shake                       | Greek yogurt + tahini   |
 
 ---
 
@@ -131,7 +131,7 @@ When normal meals aren't possible:
 - 2 protein bars (30g protein total)
 - 100g mixed nuts (600 kcal)
 - 50g dried fruit (150 kcal)
-- Single-serve nut butter packets (almond/cashew)
+- Single-serve seed butter packets (tahini/sunflower)
 - Protein powder single-serve packets
 
 ---
@@ -155,10 +155,11 @@ When normal meals aren't possible:
 | Oats              | Cream of rice, muesli, granola           |
 | Bread             | Rice cakes + nut butter, wraps           |
 
-### Fat Swaps (similar calories, no peanut butter ever)
+### Fat Swaps (similar calories, no peanut butter or nut butters)
 | Standard          | Alternatives                             |
 |-------------------|------------------------------------------|
-| ~~Peanut butter~~ | Almond butter, cashew butter, tahini, sunflower seed butter, hazelnut butter |
+| ~~Peanut butter~~ | Tahini, sunflower seed butter, coconut cream, avocado |
+| ~~Nut butters~~   | Tahini, sunflower seed butter, coconut cream, avocado |
 | Olive oil         | Avocado oil, butter, ghee                |
 | Nuts (peanuts)    | Almonds, cashews, walnuts, macadamias    |
 
@@ -207,7 +208,7 @@ When normal meals aren't possible:
 |------------------|---------|----------|-----------|
 | Cottage cheese 250g + walnuts 20g + honey | 32g | 340 | 2 min |
 | Casein shake + banana | 35g | 320 | 2 min |
-| Greek yogurt 200g + almond butter 1 tbsp + granola 30g | 30g | 350 | 2 min |
+| Greek yogurt 200g + tahini 1 tbsp + granola 30g | 30g | 350 | 2 min |
 | Quark 200g + berries + honey | 28g | 280 | 2 min |
 
 ---
@@ -233,7 +234,7 @@ When normal meals aren't possible:
 
 ### Fats
 - Olive oil: 500ml
-- Almond butter: 1 jar
+- Tahini: 1 jar
 - Butter: 250g
 - Mixed nuts: 400g
 - Avocados: 4

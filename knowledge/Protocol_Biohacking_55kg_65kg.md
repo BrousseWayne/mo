@@ -54,7 +54,7 @@ Areta et al. (2013, _The Journal of Physiology_) ont montré que **4 × 20 g tou
 
 - **8h - Petit-déjeuner** : 25-30g protéines (ex : 3 œufs + tartine + yaourt grec)
 - **12h - Déjeuner** : 25-30g protéines (ex : poulet/poisson + riz + légumes + huile d'olive)
-- **16h - Collation** : 20-25g protéines (ex : shake protéiné + banane + beurre de cacahuète)
+- **16h - Collation** : 20-25g protéines (ex : shake protéiné + banane + tahini)
 - **20h - Dîner** : 25-30g protéines (ex : viande/poisson + pâtes + fromage)
 - **22h30 - Pré-sommeil** : 30-40g protéines (caséine ou fromage blanc)
 
@@ -64,7 +64,7 @@ Le repas pré-sommeil est crucial : Res et al. (2012) ont montré que 40g de cas
 
 Le problème central des hardgainers est l'appétit, pas le métabolisme. Voici les hacks fondés sur la recherche :
 
-**1. Calories liquides** : DiMeglio & Mattes (2000) ont démontré que les calories liquides produisent moins de satiété que les solides. Un shake maison (banane + flocons d'avoine + whey + beurre de cacahuète + lait entier) = **600-800 kcal** en 2 minutes. Prends-en un par jour minimum.
+**1. Calories liquides** : DiMeglio & Mattes (2000) ont démontré que les calories liquides produisent moins de satiété que les solides. Un shake maison (banane + flocons d'avoine + whey + tahini + lait entier) = **600-800 kcal** en 2 minutes. Prends-en un par jour minimum.
 
 **2. Densité calorique** : Choisis systématiquement les versions les plus denses — lait entier plutôt qu'écrémé (+120 kcal/jour), fromage sur tout, huile d'olive sur les salades et les plats (+100-200 kcal), noix et fruits secs comme snacks (30g d'amandes = 180 kcal).
 

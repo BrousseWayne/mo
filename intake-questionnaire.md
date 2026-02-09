@@ -1,6 +1,17 @@
-# Female Coaching Premium - Client Intake Questionnaire
+# MO — Client Intake Questionnaire
+
+> **Compliance**: This questionnaire adheres to [RULES.md](./RULES.md). All terminology and framing are evidence-based.
 
 **Instructions**: Complete all sections. Use the provided scales and options where indicated. For open-ended questions, provide as much detail as relevant to your goals.
+
+**Data Flow**: Your responses feed directly into the MO agent pipeline:
+- Sections 1-2 → SCIENTIST (calculations, baselines)
+- Section 3 → COACH (training programming)
+- Section 4 → NUTRITIONIST, DIETITIAN, CHEF (nutrition strategy, meal plans, recipes)
+- Section 5 → SCIENTIST, NUTRITIONIST (cycle-based adjustments)
+- Section 6 → SCIENTIST, COACH (recovery, TDEE factors)
+- Section 7 → PHYSICIAN (red flag screening, referrals)
+- Section 8 → All agents (preferences, constraints)
 
 ---
 
@@ -50,12 +61,12 @@
 **Q7**: Height  
 `[Number]` cm
 
-**Q8**: Body type self-assessment (select closest match)
+**Q8**: Weight history self-assessment (select closest match)
 
-- [ ] (naturally lean, difficulty gaining weight/muscle)
-- [ ] Mesomorph (athletic build, gains muscle relatively easily)
-- [ ] Endomorph (higher body fat, gains weight easily)
-- [ ] Combination (describe): `[Text]`
+- [ ] Difficulty gaining weight (low appetite, high daily activity, historically lean)
+- [ ] Moderate weight stability (weight responds predictably to diet changes)
+- [ ] Tendency to gain weight easily (high appetite, weight increases with small surplus)
+- [ ] Variable (describe): `[Text]`
 
 **Q9**: Current body fat percentage (if known)
 
@@ -82,7 +93,7 @@
 - Upper arms: `[Number]` cm
 
 **Q12**: Describe specific body areas you want to develop or change  
-`[Open-ended text - e.g., "build glutes and hamstrings, tone arms, reduce hip dips"]`
+`[Open-ended text - e.g., "build glutes and hamstrings, add arm muscle, fill hip dips"]`
 
 ---
 

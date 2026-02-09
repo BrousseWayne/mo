@@ -186,7 +186,7 @@ alerts (id, client_id, type, message, trigger_condition, is_active, last_trigger
 - Définition surplus/déficit selon objectif
 - Baselines métriques (poids, mensurations, force)
 - Projection timeline réaliste
-- Analyse somatotype et réponse attendue
+- Analyse profil métabolique et réponse attendue (NEAT, appetite pattern)
 
 **Output critique**:
 

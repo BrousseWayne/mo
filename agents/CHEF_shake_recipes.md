@@ -5,7 +5,7 @@
 4 shake variants designed for hardgainers. Each shake:
 - 600-800 kcal per serving
 - 30-40g protein
-- No peanut butter, no almond butter
+- No peanut butter or nut butters
 - Blends smooth, drinks easy
 - Prep time: 3-5 minutes
 

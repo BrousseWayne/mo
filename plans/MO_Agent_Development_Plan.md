@@ -136,7 +136,7 @@ When a user uses banned terminology, agents should:
 
 | Constraint | Impact | Agents Affected |
 |---|---|---|
-| **Peanut butter aversion** | Exclude from ALL recommendations. Substitutes: almond butter, cashew butter, tahini, sunflower seed butter, hazelnut butter. | NUTRITIONIST, DIETITIAN, CHEF |
+| **Peanut butter and nut butter aversion** | Exclude from ALL recommendations. Substitutes: tahini, sunflower seed butter, coconut cream, avocado. | NUTRITIONIST, DIETITIAN, CHEF |
 | **Complete beginner** | No assumed movement competency. All exercises need learning progression. RPE concept must be taught. | COACH |
 | **Experienced homecook partner** | Complex recipes are feasible. Batch cooking for multiple days is realistic. Meal variety can be high. Partner can be accountability lever. | DIETITIAN, CHEF, (COACH for compliance) |
 | **Likely under-eater** | Primary failure mode = not actually consuming target calories. All food-related agents must prioritize EASE of eating and calorie density over nutritional perfection. | NUTRITIONIST, DIETITIAN, CHEF |
@@ -351,15 +351,14 @@ Creatine causes 1-2 kg intracellular water weight gain in the first 1-3 weeks. T
 | 3 - Optional | Zinc | 15-30mg/day if deficient | Deficiency-dependent benefit only |
 | 3 - Optional | HMB | 3g/day | Modest benefit for untrained |
 
-**Peanut butter aversion — substitution map:**
+**Peanut butter and nut butter aversion — substitution map:**
 
-| Instead of peanut butter | Use | Calorie density |
+| Instead of peanut/nut butters | Use | Calorie density |
 |---|---|---|
-| Almond butter | ~98 kcal/tbsp | Comparable |
-| Cashew butter | ~94 kcal/tbsp | Slightly lower protein |
 | Tahini (sesame) | ~89 kcal/tbsp | Higher in calcium |
-| Sunflower seed butter | ~99 kcal/tbsp | Nut-free alternative |
-| Hazelnut butter | ~100 kcal/tbsp | Rich flavor |
+| Sunflower seed butter | ~99 kcal/tbsp | Nut-free, comparable density |
+| Coconut cream | ~100 kcal/2 tbsp | Excellent for shakes |
+| Avocado | ~120 kcal/half | High fat, versatile |
 
 ---
 
@@ -389,7 +388,7 @@ Creatine causes 1-2 kg intracellular water weight gain in the first 1-3 weeks. T
 **Substitution rules:**
 - Every meal slot must have 2-3 alternatives to prevent monotony
 - Rotate weekly: prevent the same dinner more than 2x/week
-- **ABSOLUTE RULE**: No peanut butter in any recipe, any slot, any alternative. Substitutes: almond butter, cashew butter, tahini, sunflower seed butter, hazelnut butter.
+- **ABSOLUTE RULE**: No peanut butter or nut butters in any recipe, any slot, any alternative. Substitutes: tahini, sunflower seed butter, coconut cream, avocado.
 - If user reports difficulty eating a specific meal → replace with liquid calories (shake) before reducing total intake
 
 **Batch cooking integration:**
@@ -430,7 +429,7 @@ For days when appetite is zero (illness, stress, exhaustion, emotional difficult
 
 | Component | What | Calories | Protein |
 |---|---|---|---|
-| Shake 1 (morning) | Banana + oats + whey + almond butter + whole milk | ~650 kcal | ~35g |
+| Shake 1 (morning) | Banana + oats + whey + tahini + whole milk | ~650 kcal | ~35g |
 | Shake 2 (afternoon) | Frozen berries + casein + coconut cream + honey + whole milk | ~600 kcal | ~30g |
 | Minimal meal (evening) | Whatever is tolerable — even just toast with cheese and eggs | ~550 kcal | ~20g |
 | **TOTAL** | | **~1,800 kcal** | **~85g protein** |
@@ -486,9 +485,9 @@ For days when appetite is zero (illness, stress, exhaustion, emotional difficult
    - Coconut milk/cream in curries and shakes
    - Avocado as a calorie-dense addition
 
-4. **Shake recipes (600-800 kcal per shake, no peanut butter)**
+4. **Shake recipes (600-800 kcal per shake, no peanut/nut butter)**
    - Base: banana + oats + whey + whole milk
-   - Variants: add almond butter / tahini / coconut cream / dates / cacao
+   - Variants: add tahini / coconut cream / dates / cacao / avocado
    - Frozen fruit versions for palatability
    - Overnight oats (liquid meal prep)
 
@@ -496,7 +495,7 @@ For days when appetite is zero (illness, stress, exhaustion, emotional difficult
    - Cottage cheese + honey + walnuts
    - Greek yogurt parfait with granola
    - Casein shake + banana
-   - Quark with berries and almond butter
+   - Quark with berries and sunflower seed butter
 
 **Culinary principles for hardgainers:**
 - Calorie density > volume: Never serve low-calorie fillers (salad) as a significant portion
@@ -1066,99 +1065,47 @@ Three functions: (1) Standardized vocabulary for inter-agent communication. (2) 
 
 # CURRENT STATE & GAPS
 
-## ⚠️ Consolidated Intake Questionnaire (ALL AGENTS)
+## Intake Questionnaire
 
-This must be completed before the pipeline runs. Each question maps to a specific agent need.
+**See**: [intake-questionnaire.md](../intake-questionnaire.md) — the authoritative client intake form.
 
-**PHYSICIAN / Health Baseline:**
-- Are your menstrual cycles regular? When was your last period?
-- Have you ever gone 3+ months without a period?
-- Any history of eating disorders or disordered eating?
-- Current medications or supplements?
-- Any chronic conditions, allergies, or ongoing health issues?
-- Do you experience: cold intolerance, hair thinning, persistent fatigue, dizziness?
-- Recent blood work available? (if yes, share results)
+The questionnaire is organized into 8 sections with agent mappings:
+- Sections 1-2 → SCIENTIST (calculations, baselines)
+- Section 3 → COACH (training programming)
+- Section 4 → NUTRITIONIST, DIETITIAN, CHEF (nutrition strategy)
+- Section 5 → SCIENTIST, NUTRITIONIST (cycle-based adjustments)
+- Section 6 → SCIENTIST, COACH (recovery, TDEE factors)
+- Section 7 → PHYSICIAN (red flag screening)
+- Section 8 → All agents (preferences, constraints)
 
-**SCIENTIST / Metrics Baseline:**
-- Current weight (fasted, morning)
-- Height
-- Age (LOCKED: 28)
-- Describe your typical daily food intake (3-day recall: what and approximately how much)
-- What is your job? (sedentary/standing/active — for TDEE activity factor)
-- How many steps do you typically walk per day?
-- How many hours do you sleep per night?
-- Previous weight history (highest weight, lowest weight as adult)
-
-**NUTRITIONIST / Food Strategy:**
-- Any food aversions? (KNOWN: peanut butter)
-- Any dietary restrictions or preferences? (vegetarian, halal, etc.)
-- Rate your appetite on a typical day (1-10, where 10 = always hungry)
-- How would you describe your relationship with food?
-- Do you currently take any supplements?
-- Are you comfortable with protein shakes?
-
-**DIETITIAN / Meal Architecture:**
-- What does your daily schedule look like? (work hours, meal timing availability)
-- Who cooks in your household? How often?
-- Do you eat at home, at work, or both?
-- Do you batch-cook or meal prep currently?
-- Approximate weekly food budget?
-- Do you own a food scale?
-
-**CHEF / Culinary Feasibility:**
-- How comfortable are you in the kitchen? (1-5: 1=can't cook, 5=confident cook)
-- How comfortable is your partner? (KNOWN: experienced homecook)
-- Does your partner cook FOR you or WITH you?
-- What kitchen equipment do you have? (oven, stovetop, microwave, blender, rice cooker, etc.)
-- How much time for daily meal prep? (5/10/20/30 min)
-- Cuisine preferences? (Mediterranean, Asian, Latin, comfort food, etc.)
-
-**COACH / Training Feasibility:**
-- Any previous training experience? (KNOWN: zero)
-- Where will you train? (commercial gym / home gym / other)
-- What equipment is available?
-- How do you feel about training in a gym environment?
-- Are you comfortable with exercises being demonstrated via video?
-- Any physical limitations or areas of pain?
-- Have you played any sports or done regular physical activity?
-- How many days per week can you commit to training?
+All terminology complies with [RULES.md](../RULES.md).
 
 ## Coverage Audit
 
 | Agent | Knowledge Status | Source Files |
 |---|---|---|
-| PHYSICIAN | ✅ Complete | This document (Section: PHYSICIAN core knowledge) + KNOWLEDGE_BASE (Sections 4, 8, 9) |
-| SCIENTIST | ✅ Complete (updated v2.2: ramp-up, creatine timing, cycle tracking, fiber/hydration) | KNOWLEDGE_BASE (Sections 3, 5, 10, 11) |
-| NUTRITIONIST | ✅ Complete | KNOWLEDGE_BASE (Sections 4, 5, 7), Protocol_Biohacking (Parts 1, 3) |
-| DIETITIAN | ⚠️ Partial (improved v2.2: tiered plans, emergency protocol, solo week, tracking method) | Still needs concrete 7-day template |
-| CHEF | ❌ Missing | No recipes, no batch cooking protocols, no culinary techniques |
-| COACH | ✅ Complete (updated v2.2: Phase 0, warm-ups, micro-loading, gym assessment) | KNOWLEDGE_BASE (Section 6), Protocol_Biohacking (Part 2) |
+| PHYSICIAN | ✅ Complete | This document (Section: PHYSICIAN core knowledge) + knowledge/KNOWLEDGE_BASE_training_agent.md |
+| SCIENTIST | ✅ Complete (updated v2.2: ramp-up, creatine timing, cycle tracking, fiber/hydration) | knowledge/KNOWLEDGE_BASE_training_agent.md |
+| NUTRITIONIST | ✅ Complete | knowledge/KNOWLEDGE_BASE_training_agent.md, knowledge/Protocol_Biohacking_55kg_65kg.md |
+| DIETITIAN | ✅ Complete | agents/DIETITIAN_meal_template.md (7-day template with alternatives) |
+| CHEF | ✅ Complete | agents/CHEF_batch_cooking.md, agents/CHEF_shake_recipes.md |
+| COACH | ✅ Complete (updated v2.2: Phase 0, warm-ups, micro-loading, gym assessment) | knowledge/KNOWLEDGE_BASE_training_agent.md, knowledge/Protocol_Biohacking_55kg_65kg.md |
 
 ## Gaps to Fill — With Deep Research Requirements
 
-### Gap 1: CHEF — Needs DEEP RESEARCH (Phase 1) — LARGEST GAP
-**Minimum recipe library required before CHEF agent can function:**
-- 5 breakfasts (batch-preppable, 500-550 kcal, 25-30g protein)
-- 7 lunches (batch-cookable, 600-650 kcal, 25-30g protein, multi-cuisine)
-- 7 dinners (partner-cooked, 600-650 kcal, 25-30g protein, multi-cuisine)
-- 3 snacks (portable, 400-450 kcal, 20-25g protein, including shake variants)
-- 3 pre-sleep options (simple, 300-350 kcal, 30-40g casein)
-- 3 emergency shakes (600+ kcal, high protein, for minimum viable days)
-- 5-6 "survival recipes" (solo-cookable, max 5 steps, max 15 min)
+### Gap 1: CHEF ✅ RESOLVED
+**Delivered in agents/:**
+- agents/CHEF_batch_cooking.md: 2 batch protocols (Sunday 2.5h, Wednesday 2h), 6 sauce recipes, storage/reheating guidelines, portioning guide
+- agents/CHEF_shake_recipes.md: 4 calorie-dense shake variants (680-780 kcal), all nut-free
 
-**Additional CHEF research:**
-- Batch cooking protocols: tested workflows, storage times, reheating guidelines, sauce rotation
-- Calorie-dense cooking techniques: evidence-based methods for maximizing kcal without volume
-- Culinary science for protein: optimal cooking methods to preserve bioavailability
-- Multi-cuisine high-protein recipe research: Mediterranean, Asian, Latin, European
-- Cost tiers: budget/mid/premium protein sources and recipes
+**Remaining CHEF work** (user will fill later):
+- Additional recipes across cuisines
+- Marinating procedures, reheating refinements
+- Preferred ingredient lists
 
-### Gap 2: DIETITIAN — Needs Concrete Template (Phase 2)
-- 7-day meal template with per-slot macros and 2-3 alternatives per slot
-- Rotation schedule (prevent same dinner >2x/week)
-- Emergency/travel portable options (researched products + homemade)
-- Budget optimization: cost per gram of protein across sources
-- Batch cooking logistics: food safety, container systems, portioning accuracy
+### Gap 2: DIETITIAN ✅ RESOLVED
+**Delivered in agents/:**
+- agents/DIETITIAN_meal_template.md: Complete 7-day template with per-slot macros, 2-3 alternatives per slot, emergency/travel options, shopping list, compliance checkpoints, JSON handoff to CHEF
 
 ### Gap 3: PHYSICIAN — Additional Research Needed
 - Subclinical deficiency prevalence in underweight women (ferritin, D, B12, zinc rates)
@@ -1181,17 +1128,13 @@ This must be completed before the pipeline runs. Each question maps to a specifi
 - Gym anxiety in female beginners: evidence on barriers, practical solutions
 - Home training alternative: equipment-minimal program variant
 
-### Gap 7: SOURCE DOCUMENT CLEANUP
-- KNOWLEDGE_BASE line 265 + 283: still contains "peanut butter" — must be corrected
-- Protocol_Biohacking lines 56, 66: still contains "beurre de cacahuète" — must be corrected
-- KNOWLEDGE_BASE line 36: age listed as "27+" — must be locked to 28
-- These corrections prevent peanut butter contamination when agents reference source materials
+### Gap 7: SOURCE DOCUMENT CLEANUP ✅ RESOLVED
+- ~~KNOWLEDGE_BASE line 275 + 293: contained "peanut butter"~~ → Changed to "tahini"
+- ~~Protocol_Biohacking lines 57, 67: contained "beurre de cacahuète"~~ → Changed to "tahini"
+- ~~KNOWLEDGE_BASE line 40: age listed as "27+"~~ → Changed to "28 years"
+- All source documents now compliant with client constraints
 
-### Gap 2: DIETITIAN — Needs Template
-- Concrete 7-day meal template with per-slot macro specs
-- 2-3 alternatives per slot
-- Rotation schedule (prevent same dinner >2x/week)
-- "Emergency" portable meal options for travel/busy days
+### Gap 2: DIETITIAN ✅ RESOLVED (duplicate entry — see above)
 
 ### Gap 3: Inter-Agent — Now Formalized ✅
 - Data flow: defined above
@@ -1210,17 +1153,16 @@ This must be completed before the pipeline runs. Each question maps to a specifi
 
 # ACTION PLAN
 
-## Phase 1: Fill CHEF Gap (Research)
-- Research high-protein multi-cuisine recipes suitable for batch cooking
-- Develop 3-4 shake recipes (600-800 kcal, no peanut butter)
-- Create batch cooking protocols for partner execution
-- Document calorie-dense cooking techniques
+## Phase 1: Fill CHEF Gap ✅ COMPLETE
+- ✅ Batch cooking protocols: agents/CHEF_batch_cooking.md
+- ✅ Shake recipes (4 variants, 680-780 kcal, nut-free): agents/CHEF_shake_recipes.md
+- ✅ Sauce rotation system: 6 calorie-dense sauces
+- ⏳ Additional multi-cuisine recipes (user will expand)
 
-## Phase 2: Fill DIETITIAN Gap (Template)
-- Build concrete 7-day meal template
-- Per-slot macro specifications
-- 2-3 alternatives per slot
-- Emergency/travel options
+## Phase 2: Fill DIETITIAN Gap ✅ COMPLETE
+- ✅ 7-day meal template: agents/DIETITIAN_meal_template.md
+- ✅ Per-slot macro specifications with alternatives
+- ✅ Emergency/travel protocol included
 
 ## Phase 3: Create Agent Persona Files
 For each of the 6 agents, produce a complete persona file containing:
