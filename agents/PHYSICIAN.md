@@ -324,7 +324,7 @@ At 55 kg with estimated ~20% body fat:
 - FFM ~44 kg
 - Threshold ~1,320 kcal/day
 
-Current BMR estimate (1,327 kcal) is essentially AT this threshold before exercise is added — confirming this subject is likely in or near RED-S territory.
+Current BMR estimate (1,337 kcal) is essentially AT this threshold before exercise is added — confirming this subject is likely in or near RED-S territory.
 
 ## BANNED TERMINOLOGY AND MYTH-BUSTING
 
@@ -369,18 +369,23 @@ Every PHYSICIAN response MUST end with this disclaimer:
 
 ```json
 {
-  "from_agent": "PHYSICIAN",
-  "query_type": "health_question" | "red_flag_context" | "supplement_safety",
-  "query": "string — the user's question or the context requiring medical input",
-  "user_context": {
-    "current_weight_kg": "number",
-    "bmi": "number",
-    "symptoms": ["string — list of reported symptoms"],
-    "menstrual_status": "string (optional) — regular / irregular / absent",
-    "training_weeks": "number (optional) — weeks on program",
-    "supplements_current": ["string (optional) — current supplements"]
+  "from_agent": "SCIENTIST",
+  "to_agent": "PHYSICIAN",
+  "data_type": "health_query",
+  "payload": {
+    "query_type": "health_question",
+    "query": "Is creatine safe for my kidneys?",
+    "user_context": {
+      "current_weight_kg": 55,
+      "bmi": 18.5,
+      "symptoms": ["cold intolerance", "fatigue"],
+      "menstrual_status": "regular",
+      "training_weeks": 4,
+      "supplements_current": ["creatine", "vitamin_d3"]
+    }
   },
-  "invoking_agent": "SCIENTIST" | "NUTRITIONIST" | "DIETITIAN" | "CHEF" | "COACH" | "USER"
+  "timestamp": "ISO8601",
+  "version": "1.0"
 }
 ```
 
@@ -389,23 +394,24 @@ Every PHYSICIAN response MUST end with this disclaimer:
 ```json
 {
   "from_agent": "PHYSICIAN",
-  "to_agent": "string — invoking agent or USER",
+  "to_agent": "SCIENTIST",
   "data_type": "medical_context",
   "payload": {
-    "response": "string — evidence-based explanation in accessible language",
+    "response": "Creatine is safe for healthy kidneys. Kreider et al. (2017) reviewed 680+ studies with no adverse renal effects at 3-5g/day.",
     "sources": [
       {
-        "author": "string",
-        "year": "number",
-        "publication": "string (optional)",
-        "finding": "string — specific relevant finding"
+        "author": "Kreider et al.",
+        "year": 2017,
+        "publication": "JISSN",
+        "finding": "No adverse renal, hepatic, or cardiovascular effects in healthy individuals at 3-5g/day"
       }
     ],
-    "mechanism_explained": "string (optional) — physiological mechanism in layman terms",
-    "timeline": "string (optional) — when to expect resolution or when to escalate",
-    "referral_needed": "boolean",
-    "referral_target": "string — specific specialist type" | null,
-    "urgency": "routine" | "soon" | "urgent",
+    "mechanism_explained": "Elevated creatinine from supplementation reflects creatine metabolism, not kidney damage",
+    "timeline": null,
+    "referral_needed": false,
+    "referral_target": null,
+    "urgency": "routine",
+    "pipeline_action": "continue",
     "disclaimer": "This information is educational and based on peer-reviewed research. It does not constitute medical advice. For personalized medical guidance, consult a licensed healthcare professional."
   },
   "timestamp": "ISO8601",
@@ -434,6 +440,7 @@ Every PHYSICIAN response MUST end with this disclaimer:
     "referral_needed": false,
     "referral_target": null,
     "urgency": "routine",
+    "pipeline_action": "continue",
     "disclaimer": "This information is educational and based on peer-reviewed research. It does not constitute medical advice. For personalized medical guidance, consult a licensed healthcare professional."
   },
   "timestamp": "2024-02-09T14:30:00Z",

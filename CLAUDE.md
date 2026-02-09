@@ -18,17 +18,18 @@ MO (Multi-Agent Wellness Orchestrator) is a pipeline-based coaching system for f
 QUESTIONNAIRE → SCIENTIST → NUTRITIONIST → DIETITIAN → CHEF → COACH → OUTPUT
 ```
 
-Cross-cutting health guardrails (not a dedicated agent) pause pipeline on red flags.
+PHYSICIAN is on-demand (any agent can invoke it for health questions or red flags).
 
-### 5 Agents
+### 6 Agents
 
-| Agent        | Color   | Owns                                                    |
-|--------------|---------|--------------------------------------------------------|
-| SCIENTIST    | #457B9D | Calculations: BMR, TDEE, macros, metrics, timelines    |
-| NUTRITIONIST | #2A9D8F | Strategy: MPS optimization, protein distribution, cycle adjustments |
-| DIETITIAN    | #F4A261 | Architecture: weekly meal templates, substitutions, slot specs |
-| CHEF         | #E9C46A | Execution: recipes, batch cooking, culinary techniques |
-| COACH        | #9B5DE5 | Programming: training, progression, recovery protocols |
+| Agent        | Color   | Owns                                                    | Position |
+|--------------|---------|--------------------------------------------------------|----------|
+| SCIENTIST    | #457B9D | Calculations: BMR, TDEE, macros, metrics, timelines    | 1st (sequential) |
+| NUTRITIONIST | #2A9D8F | Strategy: MPS optimization, protein distribution, cycle adjustments | 2nd (sequential) |
+| DIETITIAN    | #F4A261 | Architecture: weekly meal templates, substitutions, slot specs | 3rd (sequential) |
+| CHEF         | #E9C46A | Execution: recipes, batch cooking, culinary techniques | 4th (sequential) |
+| COACH        | #9B5DE5 | Programming: training, progression, recovery protocols | 5th (sequential) |
+| PHYSICIAN    | #E63946 | Health advisory: red flags, referrals, medical context | On-demand |
 
 ### Agent Boundaries
 
@@ -71,44 +72,57 @@ Agents communicate via structured JSON:
 }
 ```
 
-## Planned Tech Stack
+## Tech Stack (see plans/TECH_STACK_ADR.md)
 
-- Backend: FastAPI + PostgreSQL + Redis
-- Frontend: Next.js or SvelteKit
-- Mobile: React Native or Flutter
-- Agent Orchestration: LangGraph or CrewAI
-- Notifications: Firebase Cloud Messaging
+- Backend: Fastify (TypeScript) + PostgreSQL
+- Frontend: Next.js (later, not MVP)
+- Mobile: React Native + Expo (later)
+- Agent Orchestration: Custom TypeScript pipeline
+- LLM: Anthropic Claude (Sonnet 4.5 pipeline, Haiku 4.5 PHYSICIAN)
+- Cache: Redis (later, not MVP)
+- Notifications: Firebase Cloud Messaging (later)
+- Cloud: AWS (ECS Fargate, RDS, ElastiCache) (later)
 
 ## File Structure
 
 ```
-RULES.md                # CANONICAL — All terminology, constraints, scientific standards
-CLAUDE.md               # Project guidance for Claude Code
+CLAUDE.md                              # Project entry point (Claude Code config)
+RULES.md                               # Canonical constraints (absolute authority)
+intake-questionnaire.md                # Client intake form (69 questions)
 
-plans/                  # Authoritative planning documents
-  MO_Agent_Development_Plan.md    # Master specification document
+agents/                                # AUTHORITATIVE: system prompts + I/O schemas
+  SCIENTIST.md                         # Calculation engine agent
+  NUTRITIONIST.md                      # Nutrition strategy agent
+  DIETITIAN.md                         # Meal plan architecture agent
+  CHEF.md                              # Recipe/culinary execution agent
+  COACH.md                             # Training programming agent
+  PHYSICIAN.md                         # On-demand health advisory agent
+  pipeline.md                          # Pipeline orchestration spec
 
-agents/                 # Agent-specific protocols and deliverables
-  CHEF_batch_cooking.md           # Batch cooking protocols, sauce recipes
-  CHEF_shake_recipes.md           # Calorie-dense shake formulations
-  DIETITIAN_meal_template.md      # 7-day meal template with alternatives
+agents/artifacts/                      # DELIVERABLES: runtime-injected content
+  chef-batch-cooking.md                # Batch cooking protocols, sauce recipes
+  chef-shake-recipes.md                # Calorie-dense shake formulations
+  dietitian-meal-template.md           # 7-day meal template with alternatives
 
-knowledge/              # Research papers, methodologies, knowledge bases
-  KNOWLEDGE_BASE_training_agent.md
-  Protocol_Biohacking_55kg_65kg.md
-  conversation_brief_female_mass_gain.md
-  references.md
+plans/                                 # ARCHITECTURE: decisions & schemas
+  CLIENT_PROFILE.md                    # Target client locked parameters
+  TECH_STACK_ADR.md                    # Architecture decision record
+  DATABASE_SCHEMA.md                   # PostgreSQL schema design
+  MVP_IMPLEMENTATION_PLAN.md           # MVP implementation plan
 
-audits/                 # Expert reviews and compliance checks
-  EXPERT_AUDIT_25_flags.md
+knowledge/                             # REFERENCE: non-authoritative context
+  references.md                        # Scientific references
+  client-protocol.md                   # Client biohacking protocol
+  training-knowledge-base.md           # Training agent knowledge base
 
-archive/                # Historical/deprecated documents (non-authoritative)
-  old_plans/            # Previous plan versions
-  compass_artifacts/    # Original compass exports
-  futur_stack_FR.md     # French architecture doc (archived)
+audits/                                # TRACKING: temporal, non-authoritative
+  FULL_AUDIT_REPORT.md                 # 6-pass audit results
+  REMAINING_FIXES.md                   # Outstanding work items
 
-initial.md              # Client intake protocol
-intake-questionnaire.md # Client assessment form (69 questions, agent-mapped)
+archive/                               # HISTORICAL: non-authoritative
+  old_plans/                           # Previous plan versions
+  compass_artifacts/                   # Original compass exports
+  MO_Agent_Development_Plan.md         # Superseded (extracted to CLIENT_PROFILE.md)
 ```
 
 ## Cross-Cutting Constraints
@@ -118,13 +132,26 @@ intake-questionnaire.md # Client assessment form (69 questions, agent-mapped)
 - Fat gain framed as desired outcome at BMI 18.5, not negative side effect
 - Health guardrails trigger medical referral on: amenorrhea >3mo, eating disorder history, persistent training pain >1wk, thyroid dysfunction signs, RED-S indicators
 
+## Compliance Hierarchy
+
+1. **RULES.md** — absolute authority
+2. **agents/*.md** — agent system prompts
+3. **plans/CLIENT_PROFILE.md** — locked client parameters
+4. **agents/pipeline.md** — pipeline orchestration
+5. **plans/*.md** — architecture decisions
+6. **agents/artifacts/*.md** — deliverable content
+7. **knowledge/*.md** — supporting reference
+
+If conflict exists, higher-numbered documents defer to lower-numbered ones.
+
 ## Development Status
 
 ### Completed
-- **CHEF**: Batch cooking protocols, sauce rotation system, shake recipes (see agents/)
-- **DIETITIAN**: 7-day meal template with alternatives, slot specs (see agents/)
+- **SCIENTIST**: Calculation engine with tiered BMR/TDEE/macro system (see agents/SCIENTIST.md)
+- **CHEF**: Batch cooking protocols, sauce rotation system, shake recipes (see agents/artifacts/)
+- **DIETITIAN**: 7-day meal template with alternatives, slot specs (see agents/artifacts/)
+- **Pipeline**: Agent orchestration spec formalized (see agents/pipeline.md)
 
 ### Pending
 - **Feedback loop**: Weekly monitoring cycle not implemented
-- **SCIENTIST**: Calculation engine not documented
 - **COACH**: Training protocols referenced but not fully specified

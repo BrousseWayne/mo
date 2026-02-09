@@ -32,8 +32,8 @@
 
 | Parameter           | Value                                                   |
 | ------------------- | ------------------------------------------------------- |
-| Height              | 174 cm (5'8.5")                                         |
-| Current weight      | 55-56 kg (121-123 lbs)                                  |
+| Height              | 174 cm                                                  |
+| Current weight      | 55-56 kg                                                |
 | BMI                 | ~18.5 (borderline underweight)                          |
 | Target weight       | 65 kg (+9-10 kg gain)                                   |
 | Target BMI          | ~21.5 (mid-healthy range)                               |
@@ -260,7 +260,7 @@ Mallinson et al. (2013, _JISSN_): Two amenorrheic women who increased caloric in
 | ------------- | ------------------ | -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Protein       | 1.6-2.0 g/kg/day   | 88-110 g (352-440 kcal)    | Morton et al. 2018 (49 studies, 1,863 participants): breakpoint at 1.62 g/kg. Nunes & Colenso-Semple 2022 (74 RCTs): confirmed. Sex NOT a significant moderator. |
 | Fat           | ≥25% of calories   | ~69 g (621 kcal)           | Mumford et al. 2016 (259 women): higher fat → +4% testosterone, +4.1% free testosterone, omega-3 DPA → -58% anovulation risk. Below 20% → menstrual disruption.  |
-| Carbohydrates | Remaining calories | ~220-275 g (880-1100 kcal) | Henselmans et al. 2022 (49 studies): CHO unlikely to limit RT performance in fed state with ≤10 sets/muscle. Glycogen adequacy supports mTOR.                    |
+| Carbohydrates | Remaining calories | ~270-368 g (Tier 0: ~270g, Tier 1: ~320g, Tier 2: ~368g) | Henselmans et al. 2022 (49 studies): CHO unlikely to limit RT performance in fed state with ≤10 sets/muscle. Glycogen adequacy supports mTOR.                    |
 
 ## 5.3 Protein Distribution Protocol
 
@@ -291,7 +291,7 @@ Schoenfeld, Aragon & Krieger (2013, _JISSN_), meta-analysis of 23 studies: After
 | Strategy            | Mechanism                                              | Implementation                                                                               |
 | ------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
 | Liquid calories     | Less satiety than solid food (DiMeglio & Mattes, 2000) | Daily homemade shake: banana + oats + whey + tahini + whole milk = 600-800 kcal              |
-| Calorie-dense foods | More energy per gram/volume                            | Whole milk, nuts, nut butters, dried fruit, granola, full-fat dairy, olive oil on everything |
+| Calorie-dense foods | More energy per gram/volume                            | Whole milk, nuts, tahini, sunflower seed butter, dried fruit, granola, full-fat dairy, olive oil on everything |
 | Scheduled eating    | Override inadequate hunger signals                     | 5 meals/snacks at fixed times, don't wait for hunger                                         |
 | Drink AFTER meals   | Prevent stomach volume displacement                    | No fluids 15 min before or during meals                                                      |
 | Dense foods first   | Prioritize calories before fiber fills stomach         | Eat protein/starch first, vegetables last                                                    |
@@ -325,7 +325,7 @@ Schoenfeld, Aragon & Krieger (2013, _JISSN_), meta-analysis of 23 studies: After
 **Progressive overload method — Double Progression**:
 
 1. Work within rep range (e.g., 8-12)
-2. When top of range hit on ALL sets with good form → increase weight (+2.5 kg upper body, +5 kg lower body)
+2. When top of range hit on ALL sets with good form → increase weight (+1 kg upper body, +2.5 kg lower body)
 3. Drop back to bottom of range with new weight
 4. Repeat
 

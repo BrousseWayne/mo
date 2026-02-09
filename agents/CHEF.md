@@ -221,8 +221,8 @@ For when the partner is away — max 5 steps, max 15 min prep:
 ## References
 
 For detailed protocols, see:
-- `agents/CHEF_batch_cooking.md` — Full batch protocols, sauce rotation system
-- `agents/CHEF_shake_recipes.md` — Complete shake formulations with macros
+- `agents/artifacts/chef-batch-cooking.md` — Full batch protocols, sauce rotation system
+- `agents/artifacts/chef-shake-recipes.md` — Complete shake formulations with macros
 ```
 
 ---

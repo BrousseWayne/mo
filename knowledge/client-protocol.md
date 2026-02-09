@@ -30,9 +30,9 @@ What varies enormously is **NEAT** (Non-Exercise Activity Thermogenesis): uncons
 
 ### Your Caloric Targets — Calculated for YOUR Body
 
-**Estimated BMR (Mifflin-St Jeor)**: 10 × 55 + 6.25 × 174 - 5 × 28 - 161 = **~1,327 kcal/day**
+**Estimated BMR (Mifflin-St Jeor)**: 10 × 55 + 6.25 × 174 - 5 × 28 - 161 = 550 + 1,087.5 - 140 - 161 = **~1,337 kcal/day**
 
-**TDEE with moderate activity** (3-4 sessions/week, factor 1.55): **~2,057 kcal/day**
+**TDEE with moderate activity** (3-4 sessions/week, factor 1.55): **~2,072 kcal/day**
 
 **With surplus of +400-500 kcal**: **~2,450 - 2,550 kcal/day**
 
@@ -44,7 +44,7 @@ What varies enormously is **NEAT** (Non-Exercise Activity Thermogenesis): uncons
 |-------|--------|--------------|-----------------|
 | **Protein** | 1.6-2.0 g/kg | **88-110 g** (352-440 kcal) | Morton et al. 2018, meta-analysis of 49 studies: breakpoint at 1.62 g/kg, beyond which no additional benefit |
 | **Fat** | ≥25% of calories | **~69 g** (621 kcal) | Mumford et al. 2016, 259 women: dietary fats increase testosterone by 4% and reduce anovulation risk by 58%. Below 20%, sex hormone disruption |
-| **Carbs** | The rest | **~220-275 g** (880-1100 kcal) | Fuel for training, glycogen replenishment, mTOR support |
+| **Carbs** | The rest | **~270-368 g** (Tier 0: ~270g, Tier 1: ~320g, Tier 2: ~368g) | Fuel for training, glycogen replenishment, mTOR support |
 
 ### Protein Distribution — The Detail That Changes Everything
 

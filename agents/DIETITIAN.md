@@ -68,7 +68,7 @@ MEAL TEMPLATE STRUCTURE (5 Daily Meals)
 | Pre-sleep | ~22:30   | 30-40g  | 300-350   | Casein-based; simple, consistent  |
 
 Daily Total: ~2,400-2,650 kcal, ~105-155g protein
-(Overshoots to account for tracking imprecision)
+(Template ranges buffer 10-15% above SCIENTIST targets for tracking imprecision. SCIENTIST daily targets take precedence.)
 
 ═══════════════════════════════════════════════════════════════════════════════
 TIERED CALORIE RAMP-UP
@@ -218,7 +218,7 @@ CONFLICT RESOLUTION
 REFERENCE DOCUMENT
 ═══════════════════════════════════════════════════════════════════════════════
 
-See agents/DIETITIAN_meal_template.md for:
+See agents/artifacts/dietitian-meal-template.md for:
 - Complete 7-day template with all alternatives
 - Weekly shopping list
 - Slot-specific macro breakdowns
@@ -238,18 +238,18 @@ See agents/DIETITIAN_meal_template.md for:
   "to_agent": "DIETITIAN",
   "data_type": "nutrition_strategy",
   "payload": {
+    "target_intake_kcal": 2500,
+    "protein_g": 100,
+    "fat_g": 70,
+    "carbs_g": 368,
     "protein_distribution": {
-      "breakfast_g": 30,
-      "lunch_g": 30,
-      "snack_g": 25,
-      "dinner_g": 30,
+      "breakfast_g": 28,
+      "lunch_g": 28,
+      "snack_g": 22,
+      "dinner_g": 28,
       "presleep_g": 35
     },
-    "daily_calories": 2500,
-    "daily_protein_g": 150,
-    "daily_fat_g": 90,
-    "daily_carbs_g": 280,
-    "fiber_target_g": 25,
+    "fiber_target_g": 22,
     "hardgainer_tactics": [
       "liquid_calories_priority",
       "stealth_fats",

@@ -85,11 +85,14 @@ Protein: 1.6-2.0 g/kg/day
 
 Fat: ≥25% of calories
 - Mumford 2016: +4% testosterone, -58% anovulation risk at adequate fat intake
-- At 2,500 kcal: ≥69g fat
+- At 2,500 kcal: ≥70g fat (70g × 9 = 630 kcal = 25.2%)
 
 Carbohydrates: Remainder after protein and fat
-- At 2,500 kcal with 100g protein and 70g fat: ~280g carbs
 - Formula: (Total kcal - (protein_g × 4) - (fat_g × 9)) / 4
+- Per tier at 100g protein + 70g fat:
+  - Tier 0 (2,100 kcal): ~270g carbs
+  - Tier 1 (2,300 kcal): ~320g carbs
+  - Tier 2 (2,500 kcal): ~368g carbs
 
 Fiber: ≥20g/day minimum
 - GI health, constipation prevention
@@ -205,8 +208,8 @@ Always provide structured numeric outputs. Use tables for clarity. Cite sources 
   "target_intake_kcal": 2500,
   "macros": {
     "protein_g": 100,
-    "fat_g": 69,
-    "carbs_g": 280,
+    "fat_g": 70,
+    "carbs_g": 368,
     "fiber_g_min": 20
   },
   "hydration_L": 2.5,
@@ -329,9 +332,9 @@ SCIENTIST outputs structured data to NUTRITIONIST:
     "target_intake_kcal": 2500,
     "protein_g": 100,
     "protein_g_per_kg": 1.8,
-    "fat_g": 69,
-    "fat_percent": 25,
-    "carbs_g": 280,
+    "fat_g": 70,
+    "fat_percent": 25.2,
+    "carbs_g": 368,
     "fiber_g_min": 20,
     "hydration_L": 2.5,
     "current_weight_kg": 55,
@@ -339,7 +342,13 @@ SCIENTIST outputs structured data to NUTRITIONIST:
     "weekly_weight_target_kg": 0.35,
     "training_phase": "active_training",
     "weeks_on_program": 2,
-    "adaptation_period_complete": false
+    "adaptation_period_complete": false,
+    "client_constraints": {
+      "food_aversions": ["peanut_butter", "nut_butters"],
+      "appetite_level": "low",
+      "cooking_skill": "basic",
+      "partner_cooks": true
+    }
   },
   "timestamp": "2024-02-09T14:30:00Z",
   "version": "1.0"

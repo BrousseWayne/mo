@@ -153,7 +153,7 @@ When normal meals aren't possible:
 | Rice              | Quinoa, couscous, bulgur, potatoes       |
 | Pasta             | Rice noodles, gnocchi, bread             |
 | Oats              | Cream of rice, muesli, granola           |
-| Bread             | Rice cakes + nut butter, wraps           |
+| Bread             | Rice cakes + tahini, wraps               |
 
 ### Fat Swaps (similar calories, no peanut butter or nut butters)
 | Standard          | Alternatives                             |
@@ -173,8 +173,8 @@ When normal meals aren't possible:
 |------------------|-------------|-----------------------------------|
 | Protein source   | 25-30g      | 3 eggs, or whey scoop, or Greek yogurt 200g |
 | Carb source      | 50-60g      | 80g oats, or 2 slices toast, or granola |
-| Fat source       | 15-20g      | Avocado half, or nut butter 1 tbsp, or cheese |
-| Calorie booster  | If needed   | Extra tbsp olive oil, extra nut butter |
+| Fat source       | 15-20g      | Avocado half, or tahini 1 tbsp, or cheese |
+| Calorie booster  | If needed   | Extra tbsp olive oil, extra tahini   |
 
 ### Lunch (600-650 kcal, 25-30g protein)
 
@@ -189,7 +189,7 @@ When normal meals aren't possible:
 
 | Option Type      | Composition                              |
 |------------------|------------------------------------------|
-| Shake            | Whey + oats + banana + whole milk + nut butter |
+| Shake            | Whey + oats + banana + whole milk + tahini |
 | Whole food       | Cottage cheese 200g + nuts 30g + honey   |
 | Portable         | Protein bar + banana + handful nuts      |
 

@@ -216,19 +216,23 @@ Red flags (not normal):
 ### 9.1 File Organization
 
 ```
-plans/          → Authoritative planning documents
-agents/         → Agent-specific protocols and deliverables
-knowledge/      → Research papers, methodologies, knowledge bases
-audits/         → Expert reviews and compliance checks
-archive/        → Historical/deprecated documents (non-authoritative)
+agents/              → AUTHORITATIVE: system prompts + I/O schemas
+agents/artifacts/    → DELIVERABLES: runtime-injected content (not system prompts)
+plans/               → ARCHITECTURE: decisions & schemas
+knowledge/           → REFERENCE: non-authoritative context
+audits/              → TRACKING: temporal, non-authoritative
+archive/             → HISTORICAL: non-authoritative
 ```
 
 ### 9.2 Compliance Hierarchy
 
 1. **RULES.md** (this document) — absolute authority
-2. **plans/MO_Agent_Development_Plan.md** — master specification
-3. **agents/\*.md** — agent-specific protocols
-4. **knowledge/\*.md** — supporting research
+2. **agents/\*.md** — agent system prompts
+3. **plans/CLIENT_PROFILE.md** — locked client parameters
+4. **agents/pipeline.md** — pipeline orchestration
+5. **plans/\*.md** — architecture decisions
+6. **agents/artifacts/\*.md** — deliverable content
+7. **knowledge/\*.md** — supporting reference
 
 If conflict exists, higher-numbered documents defer to lower-numbered ones.
 

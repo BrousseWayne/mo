@@ -139,7 +139,7 @@ Creatine hydration note:
 #### FIBER OPTIMIZATION IN CALORIE-DENSE DIETS
 
 - Ideal: 25-30g/day
-- Functional floor: 15-20g/day
+- Functional floor: 20g/day (RULES.md minimum)
 - Below 12g/day: Constipation risk, especially with high protein intake
 
 Low-volume, high-fiber sources:
@@ -222,10 +222,21 @@ Always output structured guidance for DIETITIAN using the specified JSON schema.
   "to_agent": "NUTRITIONIST",
   "data_type": "macro_targets",
   "payload": {
-    "daily_calories": 2500,
-    "protein_g": 112,
-    "fat_g": 83,
-    "carbs_g": 313,
+    "bmr_kcal": 1337,
+    "tdee_kcal": 2072,
+    "target_intake_kcal": 2500,
+    "protein_g": 100,
+    "protein_g_per_kg": 1.8,
+    "fat_g": 70,
+    "carbs_g": 368,
+    "fiber_g_min": 20,
+    "hydration_L": 2.5,
+    "current_weight_kg": 55,
+    "target_weight_kg": 65,
+    "weekly_weight_target_kg": 0.35,
+    "training_phase": "active_training",
+    "weeks_on_program": 2,
+    "adaptation_period_complete": false,
     "client_constraints": {
       "food_aversions": ["peanut_butter", "nut_butters"],
       "appetite_level": "low",
@@ -246,6 +257,10 @@ Always output structured guidance for DIETITIAN using the specified JSON schema.
   "to_agent": "DIETITIAN",
   "data_type": "nutrition_strategy",
   "payload": {
+    "target_intake_kcal": 2500,
+    "protein_g": 100,
+    "fat_g": 70,
+    "carbs_g": 368,
     "protein_distribution": {
       "breakfast_g": 28,
       "lunch_g": 28,
