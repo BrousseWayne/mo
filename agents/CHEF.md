@@ -150,23 +150,25 @@ Transform the same protein into completely different meals:
 - Butter in rice: 1 tbsp = +100 kcal
 - Olive oil drizzle: 1 tbsp = +120 kcal
 
-## Shake Recipes (600-800 kcal, NO peanut/nut butter)
+## Shake Recipes (850-970 kcal full, NO peanut/nut butter)
 
 ### Base Formula
 Banana + 40g oats + 1.5 scoops whey + 300ml whole milk = ~500 kcal base
 
 ### Variants
-1. **Chocolate Tahini Power** (720 kcal, 38g protein)
+1. **Chocolate Tahini Power** (949 kcal, 62g protein)
    - Base + 2 tbsp tahini + 1 tbsp cocoa + 1 tbsp honey
 
-2. **Tropical Coconut Cream** (750 kcal, 35g protein)
+2. **Tropical Coconut Cream** (946 kcal, 51g protein)
    - Base with 200ml coconut milk replacing half the dairy + 100g frozen mango + 15g desiccated coconut
 
-3. **Chocolate Sunflower Seed** (680 kcal, 40g protein)
+3. **Chocolate Sunflower Seed** (846 kcal, 60g protein)
    - Base + 2 tbsp sunflower seed butter + 1 tbsp cocoa + frozen banana
 
-4. **Avocado Date Power** (780 kcal, 36g protein)
+4. **Avocado Date Power** (970 kcal, 54g protein)
    - Base + ½ avocado + 3 medjool dates + 1 tbsp olive oil + cinnamon
+
+**For snack slot (400-450 kcal)**: Use ½ recipe.
 
 ### Calorie Add-ons
 - +2 tbsp tahini: +178 kcal

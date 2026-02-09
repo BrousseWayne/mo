@@ -89,36 +89,19 @@ Fixed in `agents/artifacts/dietitian-meal-template.md` (4 refs) and `knowledge/t
 Fixed in `knowledge/training-knowledge-base.md` (removed parenthetical imperial conversions).
 Note: `initial.md` and `knowledge/conversation_brief_female_mass_gain.md` archived — no longer active files.
 
-#### C) Negative fat gain framing
+#### ~~C) Negative fat gain framing~~ — DONE
 
-Note: `initial.md` archived — no longer an active file.
+`initial.md` archived — no longer an active file. All active files frame fat gain positively.
 
-#### D) Uncited DIETITIAN myth-busting claims
+#### ~~D) Uncited DIETITIAN myth-busting claims~~ — DONE
 
-| File | Location | Claim | Fix |
-|------|----------|-------|-----|
-| `agents/DIETITIAN.md` | Myth-busting section | "Stomach capacity will expand over 2-3 weeks" | Add citation: Geliebter 1988 or similar gastric accommodation study |
-| `agents/DIETITIAN.md` | Myth-busting section | "Hunger signals have atrophied" | Add citation: Levitsky 2005 or appetite regulation reference |
+Added Geliebter 1988 (gastric accommodation) and Levitsky 2005 (appetite regulation) citations to myth-busting responses in `agents/DIETITIAN.md`.
 
 ---
 
-### P2-12: Fix Shake Recipe Macro Discrepancies
+### ~~P2-12: Fix Shake Recipe Macro Discrepancies~~ — DONE
 
-**Effort**: 1-2 hours
-**File**: `agents/artifacts/chef-shake-recipes.md`
-
-All 4 shakes have ingredient-level macros that sum to ~166-229 kcal MORE than the stated targets. Root cause: targets were calculated for 1-scoop whey, ingredients were later updated to 1.5 scoops without recalculating.
-
-| Shake | Current Target | Actual (ingredient sum) | Delta |
-|-------|---------------|------------------------|-------|
-| Chocolate Tahini Power | 720 kcal, 38g P | ~949 kcal, ~56g P | +229 kcal |
-| Tropical Coconut Cream | 750 kcal, 35g P | ~946 kcal, ~53g P | +196 kcal |
-| Chocolate Sunflower Seed | 680 kcal, 40g P | ~846 kcal, ~58g P | +166 kcal |
-| Avocado Date Power | 780 kcal, 36g P | ~970 kcal, ~54g P | +190 kcal |
-
-**Fix**: Recalculate all target values from ingredient-level macros. Update the target lines to match. Also update the "Macro Verification for DIETITIAN" 3/4-portion values (P1-12 from audit).
-
-Also update the shake summary in `agents/CHEF.md` (system prompt lines 159-169) to match corrected targets.
+Recalculated all 4 shake targets from ingredient-level macros. Updated targets in `agents/artifacts/chef-shake-recipes.md`, quick reference table, ¾-portion table (added ½-portion table for snack slot fit), overview range, and shake summary in `agents/CHEF.md`. Also removed stray "nut butters" mention.
 
 ---
 

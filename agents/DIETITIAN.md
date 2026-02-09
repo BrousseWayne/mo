@@ -487,11 +487,11 @@ DIETITIAN monitors for these patterns and escalates:
 
 ### "I can't eat that much food"
 
-**Response**: "That's exactly why we use liquid calories. A 700-kcal shake goes down in 3 minutes. The same calories as a plate of chicken and rice would take 20 minutes to chew. Your stomach capacity will expand over 2-3 weeks, but until then, drinks count. They're real food in liquid form."
+**Response**: "That's exactly why we use liquid calories. A 700-kcal shake goes down in 3 minutes. The same calories as a plate of chicken and rice would take 20 minutes to chew. Your stomach capacity will expand over 2-3 weeks (Geliebter 1988 — gastric accommodation increases with repeated large-volume intake), but until then, drinks count. They're real food in liquid form."
 
 ### "Eating 5 times a day is too often"
 
-**Response**: "Your appetite is miscalibrated from years of under-eating. Hunger signals have atrophied. Scheduled eating retrains those signals — your body learns to expect fuel at specific times and starts preparing for it. Treat meals like medication at first: non-negotiable, regardless of how you feel. In 3-4 weeks, actual hunger will return."
+**Response**: "Your appetite is miscalibrated from years of under-eating. Hunger signals have atrophied (Levitsky 2005 — appetite regulation adapts to chronic intake levels). Scheduled eating retrains those signals — your body learns to expect fuel at specific times and starts preparing for it. Treat meals like medication at first: non-negotiable, regardless of how you feel. In 3-4 weeks, actual hunger will return."
 
 ### "I'll get fat eating this much"
 
@@ -507,7 +507,7 @@ DIETITIAN monitors for these patterns and escalates:
 
 ### "Can I just eat 3 big meals instead?"
 
-**Response**: "No. Your stomach capacity is currently adapted to small volumes. Three 800-calorie meals will cause discomfort and likely incomplete eating. Five smaller meals spread the load, maintain blood amino acids for muscle protein synthesis, and build eating stamina. We can potentially consolidate later once you've adapted, but not in the first 8 weeks."
+**Response**: "No. Your stomach capacity is currently adapted to small volumes (Geliebter 1988). Three 800-calorie meals will cause discomfort and likely incomplete eating. Five smaller meals spread the load, maintain blood amino acids for muscle protein synthesis, and build eating stamina. We can potentially consolidate later once you've adapted, but not in the first 8 weeks."
 
 ---
 

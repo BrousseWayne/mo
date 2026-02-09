@@ -3,8 +3,8 @@
 ## Overview
 
 4 shake variants designed for hardgainers. Each shake:
-- 600-800 kcal per serving
-- 30-40g protein
+- 850-970 kcal per serving
+- 51-62g protein
 - No peanut butter or nut butters
 - Blends smooth, drinks easy
 - Prep time: 3-5 minutes
@@ -15,7 +15,7 @@
 
 ## Shake 1: Chocolate Tahini Power
 
-**Target**: 720 kcal | 38g protein | 75g carbs | 32g fat
+**Target**: 949 kcal | 62g protein | 107g carbs | 35g fat
 
 | Ingredient               | Amount    | Calories | Protein | Carbs | Fat  |
 |--------------------------|-----------|----------|---------|-------|------|
@@ -42,7 +42,7 @@
 
 ## Shake 2: Tropical Coconut Cream
 
-**Target**: 750 kcal | 35g protein | 68g carbs | 38g fat
+**Target**: 946 kcal | 51g protein | 101g carbs | 40g fat
 
 | Ingredient               | Amount    | Calories | Protein | Carbs | Fat  |
 |--------------------------|-----------|----------|---------|-------|------|
@@ -71,7 +71,7 @@
 
 ## Shake 3: Chocolate Sunflower Seed
 
-**Target**: 680 kcal | 40g protein | 65g carbs | 28g fat
+**Target**: 846 kcal | 60g protein | 81g carbs | 34g fat
 
 | Ingredient                  | Amount    | Calories | Protein | Carbs | Fat  |
 |-----------------------------|-----------|----------|---------|-------|------|
@@ -90,7 +90,7 @@
 4. Add whey protein, pulse 10 seconds
 5. Drink immediately or within 1 hour
 
-**Taste profile**: Rich chocolate with earthy undertone. Sunflower seed butter is more neutral than nut butters.
+**Taste profile**: Rich chocolate with earthy undertone. Sunflower seed butter has a more neutral flavor profile.
 
 **Note**: Sunflower seed butter can oxidize and turn slightly green in smoothies — this is harmless (chlorophyll reaction with baking soda sometimes present). Use fresh butter.
 
@@ -98,7 +98,7 @@
 
 ## Shake 4: Avocado Date Power
 
-**Target**: 780 kcal | 36g protein | 82g carbs | 34g fat
+**Target**: 970 kcal | 54g protein | 106g carbs | 41g fat
 
 | Ingredient               | Amount    | Calories | Protein | Carbs | Fat  |
 |--------------------------|-----------|----------|---------|-------|------|
@@ -129,10 +129,10 @@
 
 | Shake                     | Calories | Protein | Best For                        |
 |---------------------------|----------|---------|--------------------------------|
-| Chocolate Tahini Power    | 720      | 38g     | Those who like sesame flavor   |
-| Tropical Coconut Cream    | 750      | 35g     | Summer, variety, tropical fans |
-| Chocolate Sunflower Seed  | 680      | 40g     | Nut-free, highest protein      |
-| Avocado Date Power        | 780      | 36g     | Highest calories, natural sweet|
+| Chocolate Tahini Power    | 949      | 62g     | Those who like sesame flavor   |
+| Tropical Coconut Cream    | 946      | 51g     | Summer, variety, tropical fans |
+| Chocolate Sunflower Seed  | 846      | 60g     | Highest protein per calorie    |
+| Avocado Date Power        | 970      | 54g     | Highest calories, natural sweet|
 
 ---
 
@@ -177,19 +177,25 @@ Saves 2 minutes morning prep. Oats soften overnight = smoother texture.
 
 ## Macro Verification for DIETITIAN
 
-All shakes fit the snack slot spec:
-- Target: 400-450 kcal, 20-25g protein
+Full-recipe shakes exceed the snack slot spec (400-450 kcal, 20-25g protein). Use reduced portions:
 
-**Adjustment for snack slot**: Use ¾ recipe (reduce all ingredients by 25%)
+**½ recipe** (recommended for snack slot):
+
+| Shake (½ portion)         | Calories | Protein |
+|---------------------------|----------|---------|
+| Chocolate Tahini Power    | 475      | 31g     |
+| Tropical Coconut Cream    | 473      | 26g     |
+| Chocolate Sunflower Seed  | 423      | 30g     |
+| Avocado Date Power        | 485      | 27g     |
+
+**¾ recipe** (for higher-calorie slots or calorie boosting):
 
 | Shake (¾ portion)         | Calories | Protein |
 |---------------------------|----------|---------|
-| Chocolate Tahini Power    | 540      | 28g     |
-| Tropical Coconut Cream    | 562      | 26g     |
-| Chocolate Sunflower Seed  | 510      | 30g     |
-| Avocado Date Power        | 585      | 27g     |
-
-For exact 400-450 kcal target, use **½ recipe** + protein bar or fruit.
+| Chocolate Tahini Power    | 712      | 47g     |
+| Tropical Coconut Cream    | 710      | 38g     |
+| Chocolate Sunflower Seed  | 635      | 45g     |
+| Avocado Date Power        | 728      | 41g     |
 
 ---
 
