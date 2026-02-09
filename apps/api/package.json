@@ -1,0 +1,24 @@
+{
+  "name": "@mo/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "dev": "node --import tsx src/index.ts",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "fastify": "^5",
+    "@fastify/cors": "^11",
+    "@anthropic-ai/sdk": "^0.39",
+    "drizzle-orm": "^0.38",
+    "@mo/shared": "workspace:*",
+    "@mo/database": "workspace:*",
+    "@mo/agents": "workspace:*",
+    "dotenv": "^16"
+  },
+  "devDependencies": {
+    "tsx": "^4"
+  }
+}

@@ -297,7 +297,7 @@ The PHYSICIAN provides the CONTEXT for red flags, not just the binary detection.
 
 | Topic | Medical Context |
 |---|---|
-| Energy availability threshold | Mountjoy et al. (2018, IOC consensus): RED-S occurs below ~30 kcal/kg FFM/day. At 55 kg with estimated ~20% body fat → FFM ~44 kg → threshold ~1,320 kcal/day. Current BMR estimate (1,327 kcal) is essentially AT this threshold before exercise is added — confirming this subject is likely in or near RED-S territory. |
+| Energy availability threshold | Mountjoy et al. (2018, IOC consensus): RED-S occurs below ~30 kcal/kg FFM/day. At 55 kg with estimated ~20% body fat → FFM ~44 kg → threshold ~1,320 kcal/day. Current BMR estimate (1,337 kcal) is essentially AT this threshold before exercise is added — confirming this subject is likely in or near RED-S territory. |
 | Estrogen and bone | Estrogen is the primary regulator of bone turnover in women. Low estrogen → increased osteoclast activity → bone resorption. Weight gain + restored menses = the most effective intervention for BMD recovery. |
 | Cortisol and muscle | Chronic cortisol elevation (from energy insufficiency or psychological stress) directly impairs MPS via glucocorticoid receptor activation and promotes protein catabolism. The caloric surplus directly addresses the physiological stressor. |
 | Iron and women | Menstruating women lose ~1mg iron/day via menses. Combined with low dietary intake in underweight individuals → ferritin depletion is common. Symptoms: fatigue, reduced exercise capacity, cold intolerance (overlaps with thyroid). Recommend: check ferritin at baseline. Supplement if <30 ng/mL. |
@@ -313,10 +313,10 @@ The PHYSICIAN provides the CONTEXT for red flags, not just the binary detection.
 
 **Calculations:**
 - Mifflin-St Jeor BMR (women): 10 × weight(kg) + 6.25 × height(cm) - 5 × age - 161
-- At 55 kg, 174 cm, 28 yrs: BMR = 10(55) + 6.25(174) - 5(28) - 161 = **~1,327 kcal/day**
+- At 55 kg, 174 cm, 28 yrs: BMR = 10(55) + 6.25(174) - 5(28) - 161 = 550 + 1,087.5 - 140 - 161 = **~1,337 kcal/day**
 - TDEE varies by phase:
-  - **Pre-training / Week 1-2**: BMR × 1.3 (light activity) = **~1,725 kcal/day**
-  - **Active training (Week 3+)**: BMR × 1.55 (moderate) = **~2,057 kcal/day**
+  - **Pre-training / Week 1-2**: BMR × 1.3 (light activity) = **~1,738 kcal/day**
+  - **Active training (Week 3+)**: BMR × 1.55 (moderate) = **~2,072 kcal/day**
 - Optimal surplus: +400-500 kcal/day at steady state
 - Surplus rationale: Garthe et al. (2013, *EJSS*): surplus >544 kcal in elite athletes = 5x more fat with no extra lean mass. BUT Slater et al. (2019): novices partition energy more favorably than trained individuals. +400-500 kcal appropriate for underweight beginners.
 
