@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-MO (Multi-Agent Wellness Orchestrator) is a pipeline-based coaching system for female body recomposition. No code implementation exists yet — currently documentation and planning only.
+MO (Multi-Agent Wellness Orchestrator) is a pipeline-based coaching system for female body recomposition. Monorepo scaffolded with Turborepo + pnpm. SCIENTIST agent implemented (tools, agent runner, unit tests). Fastify API live with 4 routes. All 6 agent specs, pipeline orchestration, and knowledge bases are complete.
 
 ### Target Use Case
 
@@ -75,7 +75,7 @@ Agents communicate via structured JSON:
 ## Tech Stack (see plans/TECH_STACK_ADR.md)
 
 - Backend: Fastify (TypeScript) + PostgreSQL
-- Frontend: Next.js (later, not MVP)
+- Frontend: React Router v7 + Vite (later, not MVP)
 - Mobile: React Native + Expo (later)
 - Agent Orchestration: Custom TypeScript pipeline
 - LLM: Anthropic Claude (Sonnet 4.5 pipeline, Haiku 4.5 PHYSICIAN)
@@ -88,7 +88,42 @@ Agents communicate via structured JSON:
 ```
 CLAUDE.md                              # Project entry point (Claude Code config)
 RULES.md                               # Canonical constraints (absolute authority)
+TRACKER.md                             # Single source-of-truth project tracker
 intake-questionnaire.md                # Client intake form (69 questions)
+ideas.md                               # Feature ideas and future enhancements
+package.json                           # Root workspace (pnpm + Turborepo)
+pnpm-workspace.yaml                    # Workspace config
+turbo.json                             # Turborepo pipeline config
+tsconfig.base.json                     # Shared TypeScript config
+docker-compose.yml                     # PostgreSQL 16 container
+
+packages/shared/                       # SHARED: Zod schemas, constants
+  src/index.ts                         # Barrel export
+  src/schemas/intake.ts                # IntakeData schema
+  src/schemas/agent-io.ts              # AgentEnvelope, ScientistOutput schemas
+  src/schemas/pipeline.ts              # PipelineRunRequest, PipelineStatus schemas
+  src/constants.ts                     # Agent list, activity factors, macro ranges
+
+packages/database/                     # DATABASE: Drizzle ORM + PostgreSQL
+  src/index.ts                         # Barrel export
+  src/schema.ts                        # users, intake_responses, pipeline_runs, agent_outputs
+  src/client.ts                        # createDb() with postgres.js driver
+  drizzle.config.ts                    # Drizzle Kit config
+
+packages/agents/                       # AGENTS: tool functions + LLM agent runners
+  src/index.ts                         # Barrel export
+  src/tools/scientist.ts               # 5 pure calculation functions + tool definitions
+  src/tools/__tests__/scientist.test.ts # Unit tests against known values
+  src/agents/scientist.ts              # SCIENTIST agent: system prompt + tool-use loop
+  src/pipeline.ts                      # Sequential pipeline orchestrator
+  src/types.ts                         # ToolDefinition, AgentContext, PipelineResult
+
+apps/api/                              # API: Fastify server
+  src/index.ts                         # Fastify bootstrap
+  src/routes/index.ts                  # Route registration
+  src/routes/intake.ts                 # POST /intake
+  src/routes/pipeline.ts               # POST /pipeline/run, GET /pipeline/:id
+  src/routes/agents.ts                 # GET /agents/:name/output/:runId
 
 agents/                                # AUTHORITATIVE: system prompts + I/O schemas
   SCIENTIST.md                         # Calculation engine agent
@@ -109,20 +144,37 @@ plans/                                 # ARCHITECTURE: decisions & schemas
   TECH_STACK_ADR.md                    # Architecture decision record
   DATABASE_SCHEMA.md                   # PostgreSQL schema design
   MVP_IMPLEMENTATION_PLAN.md           # MVP implementation plan
+  NUTRITION_API_SPEC.md                # USDA FoodData Central integration spec
+  IMPLEMENT_5_AGENTS.md                # Implementation plan for 5 remaining agents
 
 knowledge/                             # REFERENCE: non-authoritative context
   references.md                        # Scientific references
   client-protocol.md                   # Client biohacking protocol
   training-knowledge-base.md           # Training agent knowledge base
+  food-science.md                      # Protein/starch/fat/fiber heat science
+  cooking-techniques.md                # French techniques, sauces, stocks
+  flavor-science.md                    # Taste elements, balancing, seasoning stack
+  cuisine-profiles.md                  # 9 cuisine flavor kits
 
 audits/                                # TRACKING: temporal, non-authoritative
   FULL_AUDIT_REPORT.md                 # 6-pass audit results
-  REMAINING_FIXES.md                   # Outstanding work items
 
 archive/                               # HISTORICAL: non-authoritative
-  old_plans/                           # Previous plan versions
-  compass_artifacts/                   # Original compass exports
+  BMAD_LITE_PROPOSAL.md               # Early architecture proposal
+  conversation-brief.md                # Original project brief
+  EXPERT_AUDIT_25_flags.md             # Pre-restructure audit flags
+  futur_stack_FR.md                    # French-language stack exploration
+  initial.md                           # Initial project notes
   MO_Agent_Development_Plan.md         # Superseded (extracted to CLIENT_PROFILE.md)
+  REMAINING_FIXES_2026-02-09.md        # Migrated to TRACKER.md
+  old_plans/                           # Previous plan versions
+    prompt1.md                         # First prompt draft
+    prompt-iterations.md               # Prompt iteration history
+    MO_Agent_Development_Plan_v2.md    # Dev plan v2
+    MO_Agent_Development_Plan_v2.1.md  # Dev plan v2.1
+  compass_artifacts/                   # Original compass exports
+    compass_artifact_wf-01788e2e-*.md  # Compass workflow export 1
+    compass_artifact_wf-2f159dd6-*.md  # Compass workflow export 2
 ```
 
 ## Cross-Cutting Constraints
@@ -146,12 +198,41 @@ If conflict exists, higher-numbered documents defer to lower-numbered ones.
 
 ## Development Status
 
-### Completed
-- **SCIENTIST**: Calculation engine with tiered BMR/TDEE/macro system (see agents/SCIENTIST.md)
-- **CHEF**: Batch cooking protocols, sauce rotation system, shake recipes (see agents/artifacts/)
-- **DIETITIAN**: 7-day meal template with alternatives, slot specs (see agents/artifacts/)
-- **Pipeline**: Agent orchestration spec formalized (see agents/pipeline.md)
+See [TRACKER.md](./TRACKER.md) for full item-level tracking.
 
-### Pending
-- **Feedback loop**: Weekly monitoring cycle not implemented
-- **COACH**: Training protocols referenced but not fully specified
+### Documentation — Complete
+- All 6 agent system prompts written and audited
+- Pipeline orchestration spec formalized
+- 3 artifacts (meal template, batch cooking, shakes) macro-verified
+- 7 knowledge bases (references, client protocol, training, food science, cooking techniques, flavor science, cuisine profiles)
+
+### Architecture — Complete
+- Tech stack ADR, database schema, MVP implementation plan, nutrition API spec, client profile
+
+### Implementation — In Progress
+- Monorepo scaffolded (Turborepo + pnpm, 3 packages + 1 app)
+- `packages/shared`: Zod schemas (intake, agent-io, pipeline) + constants
+- `packages/database`: Drizzle ORM schema (4 tables), client, migrations
+- `packages/agents`: SCIENTIST tools (5 functions, unit-tested), SCIENTIST agent runner, pipeline orchestrator
+- `apps/api`: Fastify server with 4 routes (intake, pipeline run/status, agent output)
+- Remaining: 5 agents (NUTRITIONIST, DIETITIAN, CHEF, COACH, PHYSICIAN), E2E tests, CI, .env.example
+
+### Pending (Non-Code)
+- P1-7: Full API contract (auth, rate limiting, error format)
+- P1-9: Feedback loop remaining specs (check-in UI, notifications, partial data)
+- P2-14: Test matrix and golden dataset
+- P3-16 through P3-19: UI wireframes, COACH optimization, food cost tiers, missing health guardrails
+
+## Session-End Protocol
+
+Before ending any work session, execute:
+
+1. **Update TRACKER.md** — Mark completed items `[x]`, add new items discovered during work
+2. **Consistency check** — Verify that files modified during the session don't contradict:
+   - RULES.md (banned terms, food constraints, framing)
+   - CLAUDE.md (architecture, data formats, compliance hierarchy)
+   - Other agent specs (if modifying an agent that consumes/produces for another)
+3. **Stale doc scan** — If implementation made a plan doc obsolete or inaccurate:
+   - Update the plan doc to reflect reality, OR
+   - Move to `archive/` if fully superseded
+4. **Git hygiene** — Stage and commit untracked files that belong in the repo

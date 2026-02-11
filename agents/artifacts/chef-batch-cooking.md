@@ -184,13 +184,21 @@ Two batch sessions per week produce 6 days of lunches and dinners. Partner execu
 
 ---
 
-## Sauce Rotation System
+## Sauce System
 
 ### The Principle
 
 Same protein + different sauce = completely different meal.
 
-Prep 2 sauces per batch session. Rotate through 6-8 sauces over 4 weeks.
+CHEF v2.0 generates sauces at runtime from cuisine flavor kits (see knowledge/cuisine-profiles.md). The recipes below serve as examples of the sauce architecture pattern. Prep 2-3 sauces per batch session, varying by cuisine.
+
+### Sauce Architecture (All Cuisines)
+
+1. **Base**: aromatic base cooked in the cuisine's key fat
+2. **Body**: liquid (stock, coconut milk, tomato, wine)
+3. **Seasoning**: signature flavors + umami sources
+4. **Balance**: acid + sweetness adjustment
+5. **Finish**: fresh herbs, quality fat drizzle, or monter au beurre
 
 ### Sauce Storage
 
@@ -240,8 +248,8 @@ Prep 2 sauces per batch session. Rotate through 6-8 sauces over 4 weeks.
 
 | Ingredient        | Amount   |
 |-------------------|----------|
-| Fresh parsley     | 1 cup    |
-| Fresh cilantro    | ½ cup    |
+| Fresh parsley     | 30g      |
+| Fresh cilantro    | 15g      |
 | Olive oil         | 120ml    |
 | Red wine vinegar  | 3 tbsp   |
 | Garlic            | 4 cloves |
@@ -303,14 +311,9 @@ Prep 2 sauces per batch session. Rotate through 6-8 sauces over 4 weeks.
 
 ---
 
-## Weekly Sauce Rotation Example
+## Sauce Generation Notes
 
-| Week | Batch A Sauces              | Batch B Sauces              |
-|------|-----------------------------|-----------------------------|
-| 1    | Mediterranean Tahini, Asian | Latin Chimichurri, Cream    |
-| 2    | Spicy Harissa, Marinara     | Mediterranean Tahini, Asian |
-| 3    | Latin Chimichurri, Cream    | Spicy Harissa, Marinara     |
-| 4    | Asian, Mediterranean Tahini | Cream, Latin Chimichurri    |
+The fixed 4-week rotation above is an example. CHEF v2.0 generates sauce pairings at runtime based on the week's cuisine assignments from DIETITIAN. Any cuisine flavor kit can produce a batch sauce — the architecture pattern (base > body > seasoning > balance > finish) is universal.
 
 ---
 

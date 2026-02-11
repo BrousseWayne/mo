@@ -17,15 +17,15 @@
 | Database            | PostgreSQL + Drizzle ORM          | Prisma, TypeORM       |
 | DB Driver           | postgres.js (postgres)            | pg                    |
 | Monorepo            | Turborepo + pnpm workspaces       | Nx, Lerna             |
-| Validation          | Zod                               | io-ts, Yup            |
-| Frontend            | Next.js (later, not MVP)          | SvelteKit             |
+| Validation          | Zod (single schema source of truth) | io-ts, Yup          |
+| Frontend            | React Router v7 + Vite (later, not MVP) | Next.js, SvelteKit |
 | Mobile              | React Native + Expo (later)       | Flutter               |
 | Notifications       | Firebase Cloud Messaging (later)  | —                     |
 | Cache               | Redis (later, not MVP)            | —                     |
 | Cloud               | AWS (ECS Fargate, RDS, ElastiCache) (later) | GCP, Azure          |
 | CI/CD               | GitHub Actions                    | —                     |
 | Testing             | Vitest                            | Jest                  |
-| LLM Observability   | TBD                               | LangSmith             |
+| LLM Observability   | Pino structured logging + PostgreSQL metrics | LangSmith, LangFuse |
 
 ---
 
@@ -90,7 +90,7 @@ MO agents carry long system prompts. COACH alone is ~400 lines / ~12k characters
 
 **Full-stack TypeScript advantages**:
 
-- **Code sharing**: Types, Zod schemas, constants, validation logic, utility functions are shared between backend, agent pipeline, and future frontend (Next.js) and mobile (React Native) without duplication or drift.
+- **Code sharing**: Types, Zod schemas, constants, validation logic, utility functions are shared between backend, agent pipeline, and future frontend (React Router) and mobile (React Native) without duplication or drift.
 - **Monorepo structure**: Turborepo + pnpm workspaces enable clean separation of concerns across packages (`@mo/agents`, `@mo/api`, `@mo/db`, `@mo/types`, `@mo/web`, `@mo/mobile`) while maintaining shared code and atomic versioning.
 - **Single language expertise**: No context switching between Python (backend) and TypeScript (frontend/mobile). The entire stack uses the same language, tooling, and ecosystem.
 
@@ -167,9 +167,9 @@ MO agents carry long system prompts. COACH alone is ~400 lines / ~12k characters
 
 ---
 
-## 6. Validation: Zod
+## 6. Validation: Zod (Single Schema Source of Truth)
 
-**Decision**: Zod for runtime validation and TypeScript type inference.
+**Decision**: Zod as the single source of truth for all schemas across the stack.
 
 **Alternatives Rejected**: io-ts, Yup.
 
@@ -177,8 +177,21 @@ MO agents carry long system prompts. COACH alone is ~400 lines / ~12k characters
 
 - **Schema = Type**: Zod schemas are the single source of truth for both runtime validation and TypeScript types. No duplication.
 - **DX**: Excellent error messages and composability. Schemas are easy to read and write.
-- **Ecosystem integration**: First-class integration with Fastify, tRPC, React Hook Form, and other tools in the TypeScript ecosystem.
+- **Ecosystem integration**: First-class integration with Fastify, React Hook Form, and other tools in the TypeScript ecosystem.
 - **Agent payloads**: Agent-to-agent JSON payloads are validated with Zod schemas. This ensures type safety across the pipeline and catches schema mismatches at runtime.
+
+**Zod derives everything**:
+
+```
+Zod Schema (source of truth)
+  ├── TypeScript types (z.infer<>)
+  ├── Runtime validation (.parse / .safeParse)
+  ├── Anthropic tool input_schema (via zod-to-json-schema)
+  └── OpenAPI spec (via @fastify/swagger, optional)
+```
+
+- `zod-to-json-schema`: Converts Zod schemas to JSON Schema objects for Anthropic's `input_schema` field in tool definitions. Eliminates the need to maintain parallel hand-written JSON Schemas alongside Zod schemas.
+- `@fastify/swagger` + `@fastify/swagger-ui` (optional): Fastify can derive OpenAPI specs from route schemas. Since Zod schemas already define request/response shapes, this auto-generates API docs at `/docs` with minimal configuration. Nice for personal reference but not essential.
 
 ---
 
@@ -188,7 +201,7 @@ MO agents carry long system prompts. COACH alone is ~400 lines / ~12k characters
 
 **Rationale**:
 
-MO's numeric calculations must be deterministic and reproducible. BMR, TDEE, macro targets, and timelines follow established formulas (Mifflin-St Jeor, activity multipliers, 0.8-1g protein/lb LBM, etc.). These calculations do not require LLM reasoning.
+MO's numeric calculations must be deterministic and reproducible. BMR, TDEE, macro targets, and timelines follow established formulas (Mifflin-St Jeor, activity multipliers, 1.6-2.2g protein/kg LBM, etc.). These calculations do not require LLM reasoning.
 
 **Implementation**:
 
@@ -206,21 +219,26 @@ MO's numeric calculations must be deterministic and reproducible. BMR, TDEE, mac
 
 ---
 
-## 8. Frontend: Next.js (Later, Not MVP)
+## 8. Frontend: React Router v7 + Vite (Later, Not MVP)
 
-**Decision**: Next.js for web frontend.
+**Decision**: React Router v7 with Vite as the bundler. Located at `apps/web/`.
 
 **Rationale**:
 
-- **Larger component library ecosystem**: MO's frontend is primarily a dashboard (progress tracking, plan viewing, meal display, training logs) and benefits from mature charting, table, and layout libraries.
-- **Server Components**: Align with the dashboard read-heavy pattern. Most pages display precomputed plans and progress data with minimal client-side interactivity.
-- **SSR**: Initial load performance on the client-facing progress dashboard.
-- **Code sharing**: Shared TypeScript types, Zod schemas, API client code, and utilities with backend and mobile.
-- **Hiring**: Larger talent pool for a small team.
+MO's frontend is a personal dashboard: progress tracking, plan viewing, meal display, training logs. All content is behind authentication — there are no public-facing pages, no SEO concerns, no need for server-side rendering.
 
-**Why not SvelteKit**:
+- **React Router v7**: File-based routing, data loaders, and form actions. Covers MO's routing needs without framework overhead.
+- **Vite**: Fast HMR, simple configuration, ESM-native. No Webpack complexity.
+- **Data flow**: React Router loaders → `fetch("/api/...")` → Fastify backend. Clean separation between frontend and API.
+- **Code sharing**: `@mo/shared` (Zod schemas, types, constants) imported directly into the web app.
 
-- SvelteKit is technically excellent and would perform well, but the ecosystem and hiring advantages of Next.js outweigh SvelteKit's DX benefits for this project's scale and team size.
+**Why not Next.js**:
+
+- SSR and Server Components add complexity with no benefit for an auth-gated personal dashboard. Every page requires authentication first, so there is no meaningful first-paint advantage from SSR.
+- Vite HMR is faster than Next.js dev server.
+- Simpler mental model: React Router is a router, not a full-stack framework. No blurred boundaries between server and client code.
+- No Vercel dependency or deployment coupling.
+- MO is a personal project. Hiring pool size and enterprise ecosystem breadth are irrelevant.
 
 **Timeline**: Frontend development deferred until post-MVP. Initial focus is on backend API and agent pipeline.
 
@@ -232,12 +250,12 @@ MO's numeric calculations must be deterministic and reproducible. BMR, TDEE, mac
 
 **Rationale**:
 
-- **Code sharing with Next.js**: Shared TypeScript types, Zod schemas, API client code, validation logic, and utility functions. A single TypeScript monorepo serves web, mobile, and backend.
-- **Expo**: Simplifies build, deploy, and OTA updates for a small team without dedicated mobile infrastructure expertise.
+- **Code sharing with web**: Shared TypeScript types, Zod schemas, API client code, validation logic, and utility functions via `@mo/shared`. A single TypeScript monorepo serves web, mobile, and backend.
+- **Expo**: Simplifies build, deploy, and OTA updates without dedicated mobile infrastructure expertise.
 
 **Why not Flutter**:
 
-- Flutter would require maintaining two separate codebases in two different languages (Dart for mobile, TypeScript for web/backend). The React Native + Next.js combination keeps everything in one language and one monorepo.
+- Flutter would require maintaining two separate codebases in two different languages (Dart for mobile, TypeScript for web/backend). The React Native + React Router combination keeps everything in one language and one monorepo.
 
 **Timeline**: Mobile development deferred until post-MVP.
 
@@ -272,7 +290,7 @@ Standard choice for cross-platform push notifications. Works with both React Nat
 | Cache             | ElastiCache (Redis)      |
 | CI/CD             | GitHub Actions           |
 | Testing           | Vitest                   |
-| LLM Observability | TBD                      |
+| LLM Observability | Pino + PostgreSQL (Phase A), Grafana Cloud + OpenTelemetry (Phase B) |
 
 **Rationale**:
 
@@ -281,7 +299,24 @@ Standard choice for cross-platform push notifications. Works with both React Nat
 - **ElastiCache**: Managed Redis. Removes operational burden of self-hosting Redis. Used for pipeline state caching during runs (agent outputs cached for 24h to allow re-execution from any pipeline stage without re-running upstream agents). Also handles session management and rate limiting.
 - **GitHub Actions**: CI/CD integrated with the repository. Standard for small teams.
 - **Vitest**: Modern, fast test runner with first-class TypeScript and ESM support. Better DX than Jest (faster, better error messages, native ESM).
-- **LLM Observability**: TBD. LangSmith is not applicable (requires LangGraph). Alternatives under evaluation: custom logging with structured JSON, LangFuse (open-source LLM observability), or Helicone (Anthropic-compatible proxy with observability).
+
+**LLM Observability**:
+
+Phase A — Immediate (structured logging + token tracking):
+
+- Pino structured logging (already bundled with Fastify). JSON logs to stdout.
+- Token exposure: `llm_tokens_input`, `llm_tokens_output`, `duration_ms` returned in `AgentEnvelope`. SCIENTIST already computes these internally — surface them in the response payload.
+- Persist to `agent_outputs` table (`duration_ms` and `llm_tokens_used` columns already exist in the schema).
+- Cost analysis via direct PostgreSQL queries: `SELECT agent_name, SUM(llm_tokens_used) FROM agent_outputs GROUP BY agent_name`.
+
+Phase B — When needed (Grafana Cloud free tier):
+
+- OpenTelemetry instrumentation: `@opentelemetry/api` + `@opentelemetry/sdk-node`.
+- Wrap each agent call in an OTel span (`agent:{name}`) with token/duration attributes.
+- Export to Grafana Cloud via OTLP (free tier: 50GB logs, 10k metrics, 50GB traces).
+- Dashboards: cost per run, latency per agent, error rates.
+
+Phase B triggers: when the pipeline runs regularly enough that trend visualization provides value, or when debugging becomes harder than adding OTel spans.
 
 **Redis (Later, Not MVP)**:
 
@@ -341,8 +376,10 @@ The final stack is:
 - **Claude Haiku 4.5**: PHYSICIAN agent
 - **Deterministic tools**: SCIENTIST calculations as pure TypeScript functions
 - **Turborepo + pnpm**: Monorepo task orchestration and package management
-- **Zod**: Runtime validation and type inference
+- **Zod**: Single schema source of truth (types, validation, Anthropic tool schemas, OpenAPI)
 - **Vitest**: Fast, modern testing
-- **Next.js + React Native (later)**: Frontend and mobile with maximum code sharing
+- **React Router v7 + Vite (later)**: Lightweight SPA frontend for auth-gated dashboard
+- **React Native + Expo (later)**: Mobile with shared `@mo/shared` package
+- **Pino + PostgreSQL**: LLM observability (Phase A), Grafana Cloud + OTel (Phase B)
 
-This stack leverages the developer's existing TypeScript expertise, enables maximum code sharing across all application layers, and provides full control over the agent pipeline without framework lock-in.
+This stack leverages the developer's existing TypeScript expertise, enables maximum code sharing across all application layers, and provides full control over the agent pipeline without framework lock-in. Simplicity and DX are prioritized over scalability — MO is a personal project, not a commercial product.
