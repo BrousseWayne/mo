@@ -269,7 +269,7 @@ export const mealSlots = pgTable("meal_slots", {
   constraints: jsonb("constraints").notNull().default([]),
   alternatives: jsonb("alternatives").notNull().default([]),
   primaryProtein: text("primary_protein"),
-  cuisineTheme: text("cuisine_theme"),
+  cuisinePreference: text("cuisine_preference"),
   batchPortion: integer("batch_portion"),
 
   recipeId: uuid("recipe_id").references(() => recipes.id),
@@ -856,11 +856,8 @@ export async function up(db) {
       storageFreezerFriendly: true,
       tags: ["high_protein", "batch_friendly", "mediterranean"]
     },
-    // ... add all CHEF recipes:
-    // - Mediterranean recipes (lamb kofta, shakshuka, etc.)
-    // - Asian recipes (teriyaki salmon, Thai basil chicken, Japanese curry, etc.)
-    // - Latin American recipes (burrito bowl, carnitas, chicken tinga, etc.)
-    // - European recipes (beef stroganoff, chicken alfredo, coq au vin, etc.)
+    // CHEF v2.0 generates recipes at runtime from cuisine flavor kits.
+    // Seed data contains only static recipes (shakes, pre-sleep, survival).
     // - Shake recipes (Chocolate Tahini Power, Tropical Coconut Cream, Avocado Date Power, etc.)
     // - Pre-sleep options (cottage cheese + honey, casein shake, Greek yogurt parfait, quark + berries)
     // - Survival recipes (egg scramble, rotisserie chicken bowl, canned salmon rice, overnight oats, etc.)

@@ -299,7 +299,7 @@ See agents/artifacts/dietitian-meal-template.md for:
           },
           "assigned_recipe": null,
           "primary_protein": "chicken_thigh",
-          "cuisine_theme": "Mediterranean"
+          "cuisine_preference": "mediterranean"
         },
         "snack": {
           "slot_spec": {

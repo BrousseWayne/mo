@@ -619,7 +619,7 @@ This catches cases where CHEF's tool-derived totals and its reported totals dive
 | File | Change |
 |------|--------|
 | `agents/artifacts/chef-shake-recipes.md` | Becomes template/example only. Runtime macros sourced from API tool calls. Existing recipes serve as search query guidance for CHEF. |
-| `agents/artifacts/chef-batch-cooking.md` | Unchanged. Cooking protocols, sauce rotation, and technique instructions are not affected by nutrition data. |
+| `agents/artifacts/chef-batch-cooking.md` | Sauce recipes become examples only. CHEF v2.0 generates sauces at runtime from cuisine flavor kits. Batch cooking protocols and technique instructions unaffected. |
 | `agents/artifacts/dietitian-meal-template.md` | Structure unchanged. Slot targets still flow from SCIENTIST → NUTRITIONIST. Template serves as structural reference for DIETITIAN. |
 
 ---

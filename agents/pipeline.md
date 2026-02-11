@@ -183,7 +183,7 @@ All agents use these normalized field names. Deviations are rejected at validati
 | `weekly_template.{day}.{meal}.slot_spec` | object | `protein_g`, `calories`, `carbs_g`, `fat_g`, `prep_time_max_min`, `constraints` |
 | `weekly_template.{day}.{meal}.alternatives` | string[] | recipe IDs for substitution |
 | `weekly_template.{day}.{meal}.primary_protein` | string | protein source assignment |
-| `weekly_template.{day}.{meal}.cuisine_theme` | string or null | |
+| `weekly_template.{day}.{meal}.cuisine_preference` | string or null | One of: `"japanese"`, `"mexican"`, `"french"`, `"korean"`, `"thai"`, `"indian_north"`, `"indian_south"`, `"mediterranean"`, `"chinese_sichuan"`, `"chinese_cantonese"`, `"italian"` |
 | `substitution_bank` | object | keyed by slot type, each an array of recipe IDs |
 | `emergency_protocol` | object | minimum viable day spec: meals, calories, protein targets |
 | `solo_week_protocol` | object | partner-unavailable fallback |
@@ -200,10 +200,13 @@ Meal slot enum: `"breakfast"`, `"lunch"`, `"snack"`, `"dinner"`, `"presleep"`
 | `recipes` | object[] | array of recipe objects |
 | `recipes[].recipe_name` | string | |
 | `recipes[].cuisine` | string | |
+| `recipes[].meal_pattern` | object | `protein`, `technique`, `carb`, `vegetable`, `sauce` |
 | `recipes[].servings` | number | |
 | `recipes[].ingredients` | object[] | each: `item`, `amount_g`, `prep_notes` |
 | `recipes[].macros_per_serving` | object | `protein_g`, `fat_g`, `carbs_g`, `fiber_g`, `calories` |
-| `recipes[].instructions` | string[] | step-by-step |
+| `recipes[].instructions` | string[] | step-by-step with technique names and temperatures |
+| `recipes[].seasoning_stack` | object | `base_salt`, `aromatics`, `spice_layer`, `sauce_layer`, `finishing` |
+| `recipes[].flavor_balance` | object | `salt`, `acid`, `fat`, `sweet`, `umami`, `heat`, `bitter` |
 | `recipes[].time` | object | `prep_min`, `cook_min` |
 | `recipes[].batch_notes` | string | |
 | `recipes[].storage` | object | `fridge_days`, `freezer_friendly` |
