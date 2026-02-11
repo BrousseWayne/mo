@@ -44,7 +44,7 @@ coach_processing      → output_ready
 coach_processing      → paused_physician         (red flag detected)
 coach_processing      → error
 paused_physician      → {previous_state}         (pipeline_action = "continue")
-paused_physician      → paused_physician         (pipeline_action = "pause_pending_referral")
+paused_physician      → paused_physician         (pipeline_action = "pause")
 paused_physician      → error                    (pipeline_action = "abort")
 output_ready          → scientist_processing     (weekly feedback loop triggers re-run)
 ```
@@ -139,20 +139,27 @@ All agents use these normalized field names. Deviations are rejected at validati
 | `bmr_kcal` | number | Mifflin-St Jeor |
 | `tdee_kcal` | number | BMR x activity multiplier |
 | `target_intake_kcal` | number | TDEE + surplus |
-| `protein_g` | number | 1.6-2.0 g/kg |
-| `protein_g_per_kg` | number | |
-| `fat_g` | number | >=25% of calories |
-| `fat_percent` | number | |
-| `carbs_g` | number | remainder |
-| `fiber_g_min` | number | >=20g |
+| `surplus_kcal` | number | target - TDEE |
+| `macros` | object | nested macro targets (see below) |
+| `macros.protein_g` | number | 1.6-2.0 g/kg |
+| `macros.protein_g_per_kg` | number | |
+| `macros.fat_g` | number | >=25% of calories |
+| `macros.fat_percent` | number | |
+| `macros.carbs_g` | number | remainder |
+| `macros.fiber_g_min` | number | >=20g |
 | `hydration_L` | number | |
-| `current_weight_kg` | number | |
-| `target_weight_kg` | number | |
 | `weekly_weight_target_kg` | number | 0.25-0.5 kg/week |
+| `projected_timeline_months` | number | estimated months to reach target |
+| `ramp_up` | object[] | weekly calorie ramp-up schedule |
 | `training_phase` | string | |
 | `weeks_on_program` | number | |
 | `adaptation_period_complete` | boolean | false if weeks_on_program < 4 |
+| `adjustment_triggered` | boolean | whether an adjustment was triggered |
+| `adjustment_type` | string or null | type of adjustment if triggered |
+| `adjustment_amount_kcal` | number or null | kcal change if triggered |
 | `client_constraints` | object | `food_aversions`, `appetite_level`, `cooking_skill`, `partner_cooks` |
+| `red_flags` | string[] | detected health concerns |
+| `notes` | string[] | contextual notes |
 
 ### 4.3 NUTRITIONIST -> DIETITIAN
 
@@ -243,6 +250,7 @@ Meal slot enum: `"breakfast"`, `"lunch"`, `"snack"`, `"dinner"`, `"presleep"`
 | `recovery_protocol` | string[] | |
 | `phase_transition_criteria` | string[] | |
 | `weekly_volume_summary` | object | sets/week per muscle group |
+| `session_notes` | string | additional coaching notes |
 
 ### 4.8 Any Agent -> PHYSICIAN
 
@@ -268,7 +276,7 @@ Meal slot enum: `"breakfast"`, `"lunch"`, `"snack"`, `"dinner"`, `"presleep"`
 | `referral_needed` | boolean | |
 | `referral_target` | string or null | specific specialist type |
 | `urgency` | string | `"routine"`, `"soon"`, `"urgent"` |
-| `pipeline_action` | string | `"continue"`, `"pause_pending_referral"`, `"abort"` |
+| `pipeline_action` | string | `"continue"`, `"pause"`, `"abort"` |
 | `disclaimer` | string | medical disclaimer (always present) |
 
 ---
@@ -292,7 +300,7 @@ PHYSICIAN is not a pipeline stage. It is a synchronous interrupt callable by any
 | Value | Pipeline Behavior |
 |-------|-------------------|
 | `"continue"` | Resume from the state that triggered the pause. PHYSICIAN response attached as context to next agent. |
-| `"pause_pending_referral"` | Pipeline remains in `paused_physician`. User is shown the referral recommendation. Pipeline resumes only when user explicitly confirms they have seen the referral and wish to continue. |
+| `"pause"` | Pipeline remains in `paused_physician`. User is shown the referral recommendation. Pipeline resumes only when user explicitly confirms they have seen the referral and wish to continue. |
 | `"abort"` | Pipeline transitions to `error`. User directed to seek medical care. No further agent processing. Pipeline run is terminated. A new pipeline run is required after medical clearance. |
 
 ### Invocation Rules
@@ -576,8 +584,23 @@ When a weekly adjustment or mid-cycle correction triggers a change, only agents 
 
 ---
 
+## Implementation Notes
+
+The Zod `pipelineStatusSchema` in `packages/shared/src/schemas/pipeline.ts` uses 5 simplified states (`pending`, `running`, `completed`, `failed`, `paused`) that map to the 9-state machine above:
+
+| Code Status | Spec States |
+|-------------|-------------|
+| `pending` | `intake_pending` |
+| `running` | `scientist_processing`, `nutritionist_processing`, `dietitian_processing`, `chef_processing`, `coach_processing` |
+| `completed` | `output_ready` |
+| `failed` | `error` |
+| `paused` | `paused_physician` |
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.1 | 2026-02-11 | Align pipeline_action enum with Zod schema, add macros nesting to SCIENTIST output, add session_notes to COACH output, add implementation notes |
 | 1.0 | 2026-02-09 | Initial specification |

@@ -50,7 +50,7 @@
 - [x] DATABASE_SCHEMA.md — PostgreSQL schema design (2026-02-09)
 - [x] MVP_IMPLEMENTATION_PLAN.md — SCIENTIST agent implementation plan (2026-02-09)
 - [x] NUTRITION_API_SPEC.md — USDA FoodData Central integration spec (2026-02-09)
-- [x] IMPLEMENT_5_AGENTS.md — Implementation plan for 5 remaining agents (2026-02-11)
+- [~] IMPLEMENT_5_AGENTS.md — Implementation plan for 5 remaining agents (archived 2026-02-11, all agents implemented)
 - [ ] API_CONTRACT.md — Full REST endpoint definitions, auth, rate limiting (was P1-7)
 - [ ] GENERALIZATION_SPEC.md — Multi-client parameterization spec (was P2-15)
 
@@ -85,11 +85,11 @@
 
 ### Remaining Agents
 
-- [ ] NUTRITIONIST agent — Tools + agent runner + tests
-- [ ] DIETITIAN agent — Tools + agent runner + tests
-- [ ] CHEF agent — Tools + agent runner + tests (includes USDA nutrition API tools)
-- [ ] COACH agent — Tools + agent runner + tests
-- [ ] PHYSICIAN agent — On-demand invocation handler + tests
+- [x] NUTRITIONIST agent — Tools + agent runner + tests (2026-02-11)
+- [x] DIETITIAN agent — Tools + agent runner + tests (2026-02-11)
+- [x] CHEF agent — Tools + agent runner + tests, hardcoded ingredient table (2026-02-11)
+- [x] COACH agent — Tools + agent runner + tests (2026-02-11)
+- [x] PHYSICIAN agent — On-demand invocation handler + tests (2026-02-11)
 
 ### Infrastructure
 

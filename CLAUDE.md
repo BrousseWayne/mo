@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-MO (Multi-Agent Wellness Orchestrator) is a pipeline-based coaching system for female body recomposition. Monorepo scaffolded with Turborepo + pnpm. SCIENTIST agent implemented (tools, agent runner, unit tests). Fastify API live with 4 routes. All 6 agent specs, pipeline orchestration, and knowledge bases are complete.
+MO (Multi-Agent Wellness Orchestrator) is a pipeline-based coaching system for female body recomposition. Monorepo scaffolded with Turborepo + pnpm. All 6 agents implemented (tools, agent runners, unit tests). Fastify API live with 4 routes. All 6 agent specs, pipeline orchestration, and knowledge bases are complete.
 
 ### Target Use Case
 
@@ -98,27 +98,51 @@ tsconfig.base.json                     # Shared TypeScript config
 docker-compose.yml                     # PostgreSQL 16 container
 
 packages/shared/                       # SHARED: Zod schemas, constants
+  package.json                         # Package config
+  tsconfig.json                        # TypeScript config
   src/index.ts                         # Barrel export
   src/schemas/intake.ts                # IntakeData schema
-  src/schemas/agent-io.ts              # AgentEnvelope, ScientistOutput schemas
+  src/schemas/agent-io.ts              # AgentEnvelope + 6 agent output schemas
   src/schemas/pipeline.ts              # PipelineRunRequest, PipelineStatus schemas
   src/constants.ts                     # Agent list, activity factors, macro ranges
 
 packages/database/                     # DATABASE: Drizzle ORM + PostgreSQL
+  package.json                         # Package config
+  tsconfig.json                        # TypeScript config
   src/index.ts                         # Barrel export
   src/schema.ts                        # users, intake_responses, pipeline_runs, agent_outputs
   src/client.ts                        # createDb() with postgres.js driver
   drizzle.config.ts                    # Drizzle Kit config
 
 packages/agents/                       # AGENTS: tool functions + LLM agent runners
+  package.json                         # Package config
+  tsconfig.json                        # TypeScript config
   src/index.ts                         # Barrel export
+  src/pipeline.ts                      # Sequential pipeline orchestrator (all 6 agents)
+  src/types.ts                         # AgentContext, PipelineResult, PhysicianQuery
   src/tools/scientist.ts               # 5 pure calculation functions + tool definitions
-  src/tools/__tests__/scientist.test.ts # Unit tests against known values
+  src/tools/nutritionist.ts            # 4 nutrition strategy functions + tool definitions
+  src/tools/dietitian.ts               # 3 meal architecture functions + tool definitions
+  src/tools/chef.ts                    # 3 recipe/batch functions + tool definitions
+  src/tools/coach.ts                   # 4 training programming functions + tool definitions
+  src/tools/physician.ts               # 3 health advisory functions + tool definitions
+  src/tools/ingredients.ts             # 41-entry ingredient macro lookup table
+  src/tools/__tests__/scientist.test.ts     # SCIENTIST tool unit tests
+  src/tools/__tests__/nutritionist.test.ts  # NUTRITIONIST tool unit tests
+  src/tools/__tests__/dietitian.test.ts     # DIETITIAN tool unit tests
+  src/tools/__tests__/chef.test.ts          # CHEF tool unit tests
+  src/tools/__tests__/coach.test.ts         # COACH tool unit tests
+  src/tools/__tests__/physician.test.ts     # PHYSICIAN tool unit tests
   src/agents/scientist.ts              # SCIENTIST agent: system prompt + tool-use loop
-  src/pipeline.ts                      # Sequential pipeline orchestrator
-  src/types.ts                         # ToolDefinition, AgentContext, PipelineResult
+  src/agents/nutritionist.ts           # NUTRITIONIST agent: nutrition strategy runner
+  src/agents/dietitian.ts              # DIETITIAN agent: meal template runner
+  src/agents/chef.ts                   # CHEF agent: recipe generation runner
+  src/agents/coach.ts                  # COACH agent: training program runner
+  src/agents/physician.ts              # PHYSICIAN agent: on-demand health advisory (Haiku)
 
 apps/api/                              # API: Fastify server
+  package.json                         # Package config
+  tsconfig.json                        # TypeScript config
   src/index.ts                         # Fastify bootstrap
   src/routes/index.ts                  # Route registration
   src/routes/intake.ts                 # POST /intake
@@ -145,8 +169,6 @@ plans/                                 # ARCHITECTURE: decisions & schemas
   DATABASE_SCHEMA.md                   # PostgreSQL schema design
   MVP_IMPLEMENTATION_PLAN.md           # MVP implementation plan
   NUTRITION_API_SPEC.md                # USDA FoodData Central integration spec
-  IMPLEMENT_5_AGENTS.md                # Implementation plan for 5 remaining agents
-
 knowledge/                             # REFERENCE: non-authoritative context
   references.md                        # Scientific references
   client-protocol.md                   # Client biohacking protocol
@@ -162,6 +184,7 @@ audits/                                # TRACKING: temporal, non-authoritative
   FULL_AUDIT_REPORT.md                 # 6-pass audit results
 
 archive/                               # HISTORICAL: non-authoritative
+  IMPLEMENT_5_AGENTS.md               # Superseded: all 5 agents now implemented
   BMAD_LITE_PROPOSAL.md               # Early architecture proposal
   conversation-brief.md                # Original project brief
   EXPERT_AUDIT_25_flags.md             # Pre-restructure audit flags
@@ -206,18 +229,18 @@ See [TRACKER.md](./TRACKER.md) for full item-level tracking.
 - All 6 agent system prompts written and audited
 - Pipeline orchestration spec formalized
 - 3 artifacts (meal template, batch cooking, shakes) macro-verified
-- 7 knowledge bases (references, client protocol, training, food science, cooking techniques, flavor science, cuisine profiles)
+- 9 knowledge bases (references, client protocol, training, food science, cooking techniques, flavor science, cuisine profiles, nutrition science, meal architecture)
 
 ### Architecture — Complete
 - Tech stack ADR, database schema, MVP implementation plan, nutrition API spec, client profile
 
 ### Implementation — In Progress
 - Monorepo scaffolded (Turborepo + pnpm, 3 packages + 1 app)
-- `packages/shared`: Zod schemas (intake, agent-io, pipeline) + constants
+- `packages/shared`: Zod schemas (intake, agent-io with 6 output schemas, pipeline) + constants
 - `packages/database`: Drizzle ORM schema (4 tables), client, migrations
-- `packages/agents`: SCIENTIST tools (5 functions, unit-tested), SCIENTIST agent runner, pipeline orchestrator
+- `packages/agents`: All 6 agents implemented (tools, runners, unit tests — 58 tests across 6 suites), pipeline orchestrator with PHYSICIAN on-demand callback
 - `apps/api`: Fastify server with 4 routes (intake, pipeline run/status, agent output)
-- Remaining: 5 agents (NUTRITIONIST, DIETITIAN, CHEF, COACH, PHYSICIAN), E2E tests, CI, .env.example
+- Remaining: E2E tests, CI, .env.example
 
 ### Pending (Non-Code)
 - P1-7: Full API contract (auth, rate limiting, error format)
