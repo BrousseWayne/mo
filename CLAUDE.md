@@ -151,6 +151,8 @@ knowledge/                             # REFERENCE: non-authoritative context
   references.md                        # Scientific references
   client-protocol.md                   # Client biohacking protocol
   training-knowledge-base.md           # Training agent knowledge base
+  nutrition-science.md                 # MPS, supplements, cycle physiology, Ca-Fe science
+  meal-architecture.md                 # Meal timing, compliance psychology, substitution science
   food-science.md                      # Protein/starch/fat/fiber heat science
   cooking-techniques.md                # French techniques, sauces, stocks
   flavor-science.md                    # Taste elements, balancing, seasoning stack

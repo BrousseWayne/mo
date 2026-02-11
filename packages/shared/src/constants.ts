@@ -1,12 +1,15 @@
 export const AGENTS = ["SCIENTIST", "NUTRITIONIST", "DIETITIAN", "CHEF", "COACH"] as const;
 export type AgentName = (typeof AGENTS)[number];
 
-export const AGENT_COLORS: Record<AgentName, string> = {
+export const PHYSICIAN_AGENT = "PHYSICIAN" as const;
+
+export const AGENT_COLORS: Record<AgentName | typeof PHYSICIAN_AGENT, string> = {
   SCIENTIST: "#457B9D",
   NUTRITIONIST: "#2A9D8F",
   DIETITIAN: "#F4A261",
   CHEF: "#E9C46A",
   COACH: "#9B5DE5",
+  PHYSICIAN: "#E63946",
 };
 
 export const ACTIVITY_FACTORS = {

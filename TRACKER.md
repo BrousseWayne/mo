@@ -11,8 +11,8 @@
 ### Agent System Prompts
 
 - [x] SCIENTIST — Calculation engine, tiered BMR/TDEE/macro system (2026-02-07)
-- [x] NUTRITIONIST — MPS optimization, protein distribution, cycle adjustments (2026-02-07)
-- [x] DIETITIAN — Meal plan architecture, slot specs, substitutions (2026-02-07)
+- [x] NUTRITIONIST — v2 redesign: generative decision frameworks, knowledge externalization, enriched output (2026-02-11)
+- [x] DIETITIAN — v2 redesign: generative slot grammar, rotation engines, compliance risk assessment (2026-02-11)
 - [x] CHEF — Pattern-based recipe generation, technique-first cooking, 9 cuisine kits (2026-02-08)
 - [x] COACH — Training programming, 3-phase progression, recovery protocols (2026-02-07)
 - [x] PHYSICIAN — On-demand health advisory, red flags, referrals (2026-02-07)
@@ -33,6 +33,8 @@
 - [x] cooking-techniques.md — French techniques, sauces, stocks (2026-02-09)
 - [x] flavor-science.md — Taste elements, balancing, seasoning stack (2026-02-09)
 - [x] cuisine-profiles.md — 9 cuisine flavor kits (2026-02-09)
+- [x] nutrition-science.md — MPS, supplements, cycle physiology, Ca-Fe science (2026-02-11)
+- [x] meal-architecture.md — Meal timing, compliance psychology, substitution science (2026-02-11)
 
 ### Rules & Constraints
 

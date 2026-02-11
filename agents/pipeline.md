@@ -164,14 +164,16 @@ All agents use these normalized field names. Deviations are rejected at validati
 | `protein_g` | number | pass-through |
 | `fat_g` | number | pass-through |
 | `carbs_g` | number | pass-through |
-| `protein_distribution` | object | per-meal protein targets: `breakfast_g`, `lunch_g`, `snack_g`, `dinner_g`, `presleep_g` |
-| `hardgainer_tactics` | string[] | ordered by priority |
-| `supplement_protocol` | object[] | each: `supplement`, `dose`, `timing` |
+| `protein_distribution` | object | per-meal protein targets: `breakfast_g`, `lunch_g`, `snack_g`, `dinner_g`, `presleep_g`, `reasoning` |
+| `hardgainer_tactics` | object[] | each: `tactic`, `reasoning`, `caloric_impact`; ordered by caloric impact descending |
+| `supplement_protocol` | object[] | each: `supplement`, `dose`, `timing`, `reasoning`, `confidence`, `adaptation_trigger` |
 | `hydration_target_L` | number | may exceed SCIENTIST base due to creatine/training |
 | `fiber_target_g` | number | operational target (>= fiber_g_min) |
 | `special_considerations` | string[] | appetite, partner, calcium-iron separation |
-| `cycle_adjustments` | object | `follicular` and `luteal` strategy strings |
+| `cycle_adjustments` | object | `follicular` and `luteal` objects, each with strategy fields + `confidence` level |
+| `calcium_iron_plan` | object | `iron_meals`, `calcium_meals`, `separation_hours`, `iron_enhancers`, `calcium_supplement_timing` |
 | `current_tier` | number | 0, 1, or 2 (calorie ramp-up tier) |
+| `adaptation_triggers` | string[] | conditions that would cause strategy revision |
 
 ### 4.4 DIETITIAN -> CHEF
 
@@ -181,10 +183,16 @@ All agents use these normalized field names. Deviations are rejected at validati
 |-------|------|-------|
 | `weekly_template` | object | keyed by day (monday-sunday), each day keyed by meal slot |
 | `weekly_template.{day}.{meal}.slot_spec` | object | `protein_g`, `calories`, `carbs_g`, `fat_g`, `prep_time_max_min`, `constraints` |
-| `weekly_template.{day}.{meal}.alternatives` | string[] | recipe IDs for substitution |
-| `weekly_template.{day}.{meal}.primary_protein` | string | protein source assignment |
+| `weekly_template.{day}.{meal}.primary_option` | string or null | generated primary option ID; null for batch meals (CHEF generates) |
+| `weekly_template.{day}.{meal}.alternatives` | object[] | each: `option` (string or null), `substitution_reasoning`, optionally `primary_protein`, `cuisine_preference` |
+| `weekly_template.{day}.{meal}.primary_protein` | string or null | protein source assignment |
 | `weekly_template.{day}.{meal}.cuisine_preference` | string or null | One of: `"japanese"`, `"mexican"`, `"french"`, `"korean"`, `"thai"`, `"indian_north"`, `"indian_south"`, `"mediterranean"`, `"chinese_sichuan"`, `"chinese_cantonese"`, `"italian"` |
-| `substitution_bank` | object | keyed by slot type, each an array of recipe IDs |
+| `weekly_template.{day}.{meal}.compliance_risk` | string | `"low"`, `"medium"`, `"high"` |
+| `weekly_template.{day}.{meal}.compliance_note` | string | explanation of risk and mitigation |
+| `weekly_template.{day}.{meal}.dimensional_tags` | object | `prep_time`, `portability`, `complexity`, `social_compatibility` |
+| `rotation_schedule` | object | keyed by day, each with `protein` and `cuisine` assignments |
+| `batch_schedule` | object | `batch_a` and `batch_b` with cook_day, proteins, cuisines, covers |
+| `adaptation_path` | object | keyed by scenario name, value is adaptation description string |
 | `emergency_protocol` | object | minimum viable day spec: meals, calories, protein targets |
 | `solo_week_protocol` | object | partner-unavailable fallback |
 | `tracking_protocol` | object | weeks 1-4 vs 5+ method |

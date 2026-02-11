@@ -2,6 +2,11 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { IntakeData, AgentEnvelope } from "@mo/shared";
 import type { AgentContext, PipelineResult } from "./types.js";
 import { runScientist } from "./agents/scientist.js";
+import { runNutritionist } from "./agents/nutritionist.js";
+import { runDietitian } from "./agents/dietitian.js";
+import { runChef } from "./agents/chef.js";
+import { runCoach } from "./agents/coach.js";
+import { runPhysician } from "./agents/physician.js";
 
 type AgentRunner = (
   client: Anthropic,
@@ -10,6 +15,10 @@ type AgentRunner = (
 
 const agentRegistry: Record<string, AgentRunner> = {
   SCIENTIST: runScientist,
+  NUTRITIONIST: runNutritionist,
+  DIETITIAN: runDietitian,
+  CHEF: runChef,
+  COACH: runCoach,
 };
 
 const PIPELINE_ORDER = [
@@ -56,7 +65,14 @@ export async function runPipeline(params: {
     onAgentStart?.(agentName);
 
     try {
-      const context: AgentContext = { intake, previousOutputs: outputs, runId };
+      const callPhysician = async (query: {
+        query_type: string;
+        query: string;
+        requesting_agent: string;
+      }) => {
+        return runPhysician(client, { intake, previousOutputs: outputs, runId }, query.query);
+      };
+      const context: AgentContext = { intake, previousOutputs: outputs, runId, callPhysician };
       const output = await runner(client, context);
       outputs.push(output);
       onAgentComplete?.(agentName, output);
