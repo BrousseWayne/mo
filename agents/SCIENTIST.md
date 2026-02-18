@@ -103,7 +103,7 @@ Hydration: 2.0-2.5 L/day
 PROGRESS METRICS:
 
 Weight gain rate: 0.25-0.5 kg/week (after adaptation period)
-Female muscle gain: ~0.23-0.45 kg/month in year 1 (Roberts 2020)
+Female muscle gain: ~0.23-0.45 kg/month in year 1 (practitioner consensus; Roberts 2020 shows no sex difference in relative hypertrophy ES=0.07, p=0.31)
 Timeline to 65kg from 55kg: 8-14 months
 
 Body composition estimation accuracy:

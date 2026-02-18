@@ -3,6 +3,12 @@ import Anthropic from "@anthropic-ai/sdk";
 import { dietitianOutputSchema, type AgentEnvelope } from "@mo/shared";
 import type { AgentContext } from "../types.js";
 import { toolDefinitions, toolExecutors } from "../tools/dietitian.js";
+import {
+  nutritionTools,
+  executeNutritionTool,
+} from "../tools/nutrition.js";
+
+const DIETITIAN_NUTRITION_TOOLS = ["search_foods", "scale_macros"] as const;
 
 const SYSTEM_PROMPT = `You are DIETITIAN, the meal plan architecture agent in the MO wellness system. Your color is #F4A261 (orange). You are third in the agent pipeline.
 
@@ -44,6 +50,16 @@ BATCH COOKING:
 - Batch A: Sunday cook → Mon-Wed (lunch + dinner)
 - Batch B: Wednesday cook → Thu-Sat (lunch + dinner)
 - Sunday: rest day, flexible/restaurant/simple
+
+NUTRITION DATA TOOLS:
+You have access to 2 nutrition lookup tools (search_foods, scale_macros). Use them for VALIDATION only.
+
+When to use:
+- Verify per-100g protein content of primary protein sources in your slot assignments
+- Confirm that a protein source can realistically hit the slot spec protein target at reasonable portion sizes
+- Do NOT build ingredient-level breakdowns -- that is CHEF's job
+
+Example: if assigning "chicken thigh" as primary protein for a 30g protein slot, call search_foods("chicken thigh raw") to verify per-100g protein, then confirm the required portion size is reasonable.
 
 TOOLS:
 You MUST use all 3 tools before producing output.
@@ -89,6 +105,15 @@ export async function runDietitian(
     (o) => o.from_agent === "NUTRITIONIST"
   );
 
+  const dietitianNutritionTools = nutritionTools
+    .filter((t) => (DIETITIAN_NUTRITION_TOOLS as readonly string[]).includes(t.name))
+    .map((t) => ({ ...t, input_schema: t.input_schema as Anthropic.Tool.InputSchema }));
+
+  const allTools: Anthropic.Tool[] = [
+    ...toolDefinitions,
+    ...(context.nutritionTools ? dietitianNutritionTools : []),
+  ];
+
   const messages: Anthropic.MessageParam[] = [
     {
       role: "user",
@@ -100,7 +125,7 @@ export async function runDietitian(
     model: "claude-sonnet-4-5-20250929",
     max_tokens: 8192,
     system: SYSTEM_PROMPT,
-    tools: toolDefinitions,
+    tools: allTools,
     messages,
   });
 
@@ -112,24 +137,49 @@ export async function runDietitian(
       (b): b is Anthropic.ToolUseBlock => b.type === "tool_use"
     );
 
-    const toolResults: Anthropic.ToolResultBlockParam[] = toolUseBlocks.map(
-      (block) => {
-        const executor = toolExecutors[block.name];
-        if (!executor) {
+    const toolResults: Anthropic.ToolResultBlockParam[] = await Promise.all(
+      toolUseBlocks.map(async (block) => {
+        const syncExecutor = toolExecutors[block.name];
+        if (syncExecutor) {
           return {
             type: "tool_result" as const,
             tool_use_id: block.id,
-            content: JSON.stringify({ error: `Unknown tool: ${block.name}` }),
-            is_error: true,
+            content: JSON.stringify(syncExecutor(block.input as Record<string, unknown>)),
           };
         }
-        const result = executor(block.input as Record<string, unknown>);
+
+        if (
+          context.nutritionTools &&
+          (DIETITIAN_NUTRITION_TOOLS as readonly string[]).includes(block.name)
+        ) {
+          try {
+            const result = await executeNutritionTool(
+              context.nutritionTools,
+              block.name,
+              block.input as Record<string, unknown>
+            );
+            return {
+              type: "tool_result" as const,
+              tool_use_id: block.id,
+              content: JSON.stringify(result),
+            };
+          } catch (err) {
+            return {
+              type: "tool_result" as const,
+              tool_use_id: block.id,
+              content: JSON.stringify({ error: err instanceof Error ? err.message : String(err) }),
+              is_error: true,
+            };
+          }
+        }
+
         return {
           type: "tool_result" as const,
           tool_use_id: block.id,
-          content: JSON.stringify(result),
+          content: JSON.stringify({ error: `Unknown tool: ${block.name}` }),
+          is_error: true,
         };
-      }
+      })
     );
 
     messages.push({ role: "assistant", content: response.content });
@@ -139,7 +189,7 @@ export async function runDietitian(
       model: "claude-sonnet-4-5-20250929",
       max_tokens: 8192,
       system: SYSTEM_PROMPT,
-      tools: toolDefinitions,
+      tools: allTools,
       messages,
     });
 

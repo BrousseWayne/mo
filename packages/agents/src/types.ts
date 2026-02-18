@@ -1,4 +1,5 @@
 import type { AgentEnvelope, IntakeData } from "@mo/shared";
+import type { NutritionToolContext } from "./tools/nutrition.js";
 
 export interface PhysicianQuery {
   query_type: string;
@@ -11,6 +12,7 @@ export interface AgentContext {
   previousOutputs: AgentEnvelope[];
   runId: string;
   callPhysician?: (query: PhysicianQuery) => Promise<AgentEnvelope>;
+  nutritionTools?: NutritionToolContext;
 }
 
 export interface PipelineResult {

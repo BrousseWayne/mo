@@ -35,7 +35,7 @@
 
 **Equipment Available**:
 
-- Dumbbells: 2 kg (4.4 lbs) maximum load
+- Dumbbells: 2 kg maximum load
 
 **Training Gaps Identified**:
 
@@ -73,7 +73,7 @@
 
 **Risk Mitigation Requirements**:
 
-- Avoid excessive fat gain during hypercaloric phase
+- Monitor body composition to ensure healthy fat-to-muscle gain ratio during hypercaloric phase
 - Maintain aesthetic improvements throughout progression
 - Medical safety verification for underweight-to-normal weight transition
 

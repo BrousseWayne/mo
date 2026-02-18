@@ -5,6 +5,7 @@ import {
   jsonb,
   timestamp,
   integer,
+  real,
   pgEnum,
 } from "drizzle-orm/pg-core";
 
@@ -56,4 +57,27 @@ export const agentOutputs = pgTable("agent_outputs", {
   duration_ms: integer("duration_ms"),
   llm_tokens_used: integer("llm_tokens_used"),
   created_at: timestamp("created_at").defaultNow().notNull(),
+});
+
+export const foods = pgTable("foods", {
+  fdc_id: integer("fdc_id").primaryKey(),
+  name: text("name").notNull(),
+  description: text("description"),
+  category: text("category"),
+  data_type: text("data_type").notNull(),
+
+  calories_kcal: real("calories_kcal").notNull(),
+  protein_g: real("protein_g").notNull(),
+  fat_g: real("fat_g").notNull(),
+  carbs_g: real("carbs_g").notNull(),
+  fiber_g: real("fiber_g").notNull(),
+
+  calcium_mg: real("calcium_mg"),
+  iron_mg: real("iron_mg"),
+  vitamin_d_ug: real("vitamin_d_ug"),
+  vitamin_b12_ug: real("vitamin_b12_ug"),
+  folate_dfe_ug: real("folate_dfe_ug"),
+
+  portions: jsonb("portions").notNull().default("[]"),
+  fetched_at: timestamp("fetched_at", { withTimezone: true }).defaultNow().notNull(),
 });

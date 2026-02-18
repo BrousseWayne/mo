@@ -246,7 +246,7 @@ Mallinson et al. (2013, _JISSN_): Two amenorrheic women who increased caloric in
 
 | Parameter                | Value                     | Calculation                          |
 | ------------------------ | ------------------------- | ------------------------------------ |
-| BMR (Mifflin-St Jeor)    | ~1,327 kcal/day           | 10×55 + 6.25×174 - 5×27 - 161        |
+| BMR (Mifflin-St Jeor)    | ~1,337 kcal/day           | 10×55 + 6.25×174 - 5×28 - 161        |
 | Activity factor          | 1.55                      | 3-4 training sessions/week           |
 | TDEE                     | ~2,057 kcal/day           | BMR × activity factor                |
 | Target surplus           | +400-500 kcal/day         | Appropriate for underweight beginner |
@@ -291,7 +291,7 @@ Schoenfeld, Aragon & Krieger (2013, _JISSN_), meta-analysis of 23 studies: After
 | Strategy            | Mechanism                                              | Implementation                                                                               |
 | ------------------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
 | Liquid calories     | Less satiety than solid food (DiMeglio & Mattes, 2000) | Daily homemade shake: banana + oats + whey + tahini + whole milk = 600-800 kcal              |
-| Calorie-dense foods | More energy per gram/volume                            | Whole milk, nuts, tahini, sunflower seed butter, dried fruit, granola, full-fat dairy, olive oil on everything |
+| Calorie-dense foods | More energy per gram/volume                            | Whole milk, tahini, sunflower seed butter, dried fruit, granola, full-fat dairy, olive oil on everything |
 | Scheduled eating    | Override inadequate hunger signals                     | 5 meals/snacks at fixed times, don't wait for hunger                                         |
 | Drink AFTER meals   | Prevent stomach volume displacement                    | No fluids 15 min before or during meals                                                      |
 | Dense foods first   | Prioritize calories before fiber fills stomach         | Eat protein/starch first, vegetables last                                                    |

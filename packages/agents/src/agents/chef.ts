@@ -3,6 +3,11 @@ import Anthropic from "@anthropic-ai/sdk";
 import { chefOutputSchema, type AgentEnvelope } from "@mo/shared";
 import type { AgentContext } from "../types.js";
 import { toolDefinitions, toolExecutors } from "../tools/chef.js";
+import {
+  nutritionTools,
+  executeNutritionTool,
+  type NutritionToolContext,
+} from "../tools/nutrition.js";
 
 const SYSTEM_PROMPT = `You are CHEF Marco Delacroix, the culinary execution agent in the MO pipeline. Classically trained (Le Cordon Bleu), 10 years in sports nutrition meal prep.
 
@@ -31,6 +36,29 @@ You MUST use calculate_recipe_macros for ALL macro calculations. Never estimate 
 Use scale_batch when adjusting servings.
 Use compose_shake for shake recipes.
 
+## Nutrition Data Tools
+You have access to USDA FoodData Central lookup tools. You MUST use these for every recipe you create.
+
+Workflow for each recipe:
+1. For each ingredient, call search_foods to find the USDA entry
+2. Select the best match (prefer Foundation Foods over SR Legacy)
+3. Call scale_macros with the fdc_id and exact gram amount
+4. Sum all ingredient macros to compute recipe totals
+5. Compare computed totals against DIETITIAN slot spec
+6. Tolerance: computed macros must be within +/-10% of slot spec for calories and protein
+7. If outside tolerance: adjust ingredient amounts or substitute ingredients, then re-verify
+8. Include fdc_id in each ingredient entry in the output
+
+For micronutrient reporting:
+- Call scale_micros for key ingredients (protein sources, dairy, leafy greens)
+- Include micro totals in recipe output when available
+
+Search tips:
+- Search for the correct state: "chicken breast raw" vs "chicken breast cooked"
+- Use specific terms: "jasmine rice cooked" not just "rice"
+- If a search returns no results, try broader terms
+- Foundation Foods entries are higher quality -- prefer them when available
+
 ## Batch Cooking
 - Protein batching: 1.5-2 kg per session (chicken thighs 200C 40-45min, ground beef sauter 8-10min, salmon 200C 12-15min)
 - Carb batching: rice 500g dry 1:1.25 water, pasta 1min under package time, potatoes cubed 200C 30-35min
@@ -54,7 +82,7 @@ Produce a JSON object with this structure:
       "cuisine": string,
       "meal_pattern": { "protein": string, "technique": string, "carb": string, "vegetable": string, "sauce": string },
       "servings": number,
-      "ingredients": [{ "item": string, "amount_g": number, "prep_notes": string | null }],
+      "ingredients": [{ "item": string, "amount_g": number, "prep_notes": string | null, "fdc_id": number | null }],
       "macros_per_serving": { "protein_g": number, "fat_g": number, "carbs_g": number, "fiber_g": number, "calories": number },
       "instructions": string[],
       "seasoning_stack": { ... },
@@ -105,6 +133,11 @@ Client intake data:
 - Equipment: ${JSON.stringify(context.intake.equipment_access ?? [])}
 - Food aversions: ${JSON.stringify(context.intake.food_aversions ?? ["peanut butter", "nut butters"])}`;
 
+  const allTools: Anthropic.Tool[] = [
+    ...toolDefinitions,
+    ...(context.nutritionTools ? nutritionTools.map((t) => ({ ...t, input_schema: t.input_schema as Anthropic.Tool.InputSchema })) : []),
+  ];
+
   const messages: Anthropic.MessageParam[] = [
     { role: "user", content: userMessage },
   ];
@@ -113,7 +146,7 @@ Client intake data:
     model: "claude-sonnet-4-5-20250929",
     max_tokens: 8192,
     system: SYSTEM_PROMPT,
-    tools: toolDefinitions,
+    tools: allTools,
     messages,
   });
 
@@ -125,24 +158,46 @@ Client intake data:
       (b): b is Anthropic.ToolUseBlock => b.type === "tool_use"
     );
 
-    const toolResults: Anthropic.ToolResultBlockParam[] = toolUseBlocks.map(
-      (block) => {
-        const executor = toolExecutors[block.name];
-        if (!executor) {
+    const toolResults: Anthropic.ToolResultBlockParam[] = await Promise.all(
+      toolUseBlocks.map(async (block) => {
+        const syncExecutor = toolExecutors[block.name];
+        if (syncExecutor) {
           return {
             type: "tool_result" as const,
             tool_use_id: block.id,
-            content: JSON.stringify({ error: `Unknown tool: ${block.name}` }),
-            is_error: true,
+            content: JSON.stringify(syncExecutor(block.input as Record<string, unknown>)),
           };
         }
-        const result = executor(block.input as Record<string, unknown>);
+
+        if (context.nutritionTools) {
+          try {
+            const result = await executeNutritionTool(
+              context.nutritionTools,
+              block.name,
+              block.input as Record<string, unknown>
+            );
+            return {
+              type: "tool_result" as const,
+              tool_use_id: block.id,
+              content: JSON.stringify(result),
+            };
+          } catch (err) {
+            return {
+              type: "tool_result" as const,
+              tool_use_id: block.id,
+              content: JSON.stringify({ error: err instanceof Error ? err.message : String(err) }),
+              is_error: true,
+            };
+          }
+        }
+
         return {
           type: "tool_result" as const,
           tool_use_id: block.id,
-          content: JSON.stringify(result),
+          content: JSON.stringify({ error: `Unknown tool: ${block.name}` }),
+          is_error: true,
         };
-      }
+      })
     );
 
     messages.push({ role: "assistant", content: response.content });
@@ -152,7 +207,7 @@ Client intake data:
       model: "claude-sonnet-4-5-20250929",
       max_tokens: 8192,
       system: SYSTEM_PROMPT,
-      tools: toolDefinitions,
+      tools: allTools,
       messages,
     });
 

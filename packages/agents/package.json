@@ -18,7 +18,9 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.39",
+    "@mo/database": "workspace:*",
     "@mo/shared": "workspace:*",
+    "drizzle-orm": "^0.38",
     "zod": "^3.24"
   },
   "devDependencies": {

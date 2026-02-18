@@ -12,6 +12,8 @@
     "db:push": "pnpm --filter @mo/database push"
   },
   "devDependencies": {
+    "dotenv": "^16",
+    "tsx": "^4",
     "turbo": "^2",
     "typescript": "^5.7"
   }

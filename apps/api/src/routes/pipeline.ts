@@ -52,6 +52,7 @@ export async function pipelineRoutes(app: FastifyInstance) {
       runId: run.id,
       intake: intakeRow.data as IntakeData,
       agents,
+      db: app.db,
       onAgentStart: async (agent) => {
         await app.db
           .update(pipelineRuns)

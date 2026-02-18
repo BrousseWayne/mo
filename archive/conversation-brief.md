@@ -10,12 +10,12 @@ A 27+ year old woman seeking a complete body recomposition. She has never been a
 
 **Anthropometrics:**
 
-- Height: 174 cm (5'8.5")
-- Current weight: 55–56 kg (121–123 lbs)
+- Height: 174 cm
+- Current weight: 55–56 kg
 - BMI: ~18.5 (borderline underweight)
 - Classification: Presumed / hardgainer
 
-**Target:** 65 kg (+9 kg / ~20 lbs gain)
+**Target:** 65 kg (+9 kg gain)
 
 ---
 

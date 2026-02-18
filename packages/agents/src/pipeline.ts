@@ -1,6 +1,10 @@
 import Anthropic from "@anthropic-ai/sdk";
 import type { IntakeData, AgentEnvelope } from "@mo/shared";
+import type { Database } from "@mo/database";
 import type { AgentContext, PipelineResult } from "./types.js";
+import type { NutritionToolContext } from "./tools/nutrition.js";
+import { createUsdaFdcClient } from "./clients/usda-fdc.js";
+import { createNutritionCache } from "./clients/nutrition-cache.js";
 import { runScientist } from "./agents/scientist.js";
 import { runNutritionist } from "./agents/nutritionist.js";
 import { runDietitian } from "./agents/dietitian.js";
@@ -29,11 +33,21 @@ const PIPELINE_ORDER = [
   "COACH",
 ];
 
+const NUTRITION_TOOL_AGENTS = new Set(["DIETITIAN", "CHEF"]);
+
+function createNutritionToolContext(db: Database): NutritionToolContext | undefined {
+  if (!process.env.USDA_FDC_API_KEY) return undefined;
+  const usdaClient = createUsdaFdcClient();
+  const nutritionCache = createNutritionCache(db, usdaClient);
+  return { nutritionCache };
+}
+
 export async function runPipeline(params: {
   client: Anthropic;
   runId: string;
   intake: IntakeData;
   agents: string[];
+  db?: Database;
   onAgentStart?: (agent: string) => void;
   onAgentComplete?: (agent: string, output: AgentEnvelope) => void;
   onAgentError?: (agent: string, error: Error) => void;
@@ -43,11 +57,14 @@ export async function runPipeline(params: {
     runId,
     intake,
     agents,
+    db,
     onAgentStart,
     onAgentComplete,
     onAgentError,
   } = params;
   const outputs: AgentEnvelope[] = [];
+
+  const nutritionTools = db ? createNutritionToolContext(db) : undefined;
 
   const orderedAgents = PIPELINE_ORDER.filter((a) => agents.includes(a));
 
@@ -72,7 +89,13 @@ export async function runPipeline(params: {
       }) => {
         return runPhysician(client, { intake, previousOutputs: outputs, runId }, query.query);
       };
-      const context: AgentContext = { intake, previousOutputs: outputs, runId, callPhysician };
+      const context: AgentContext = {
+        intake,
+        previousOutputs: outputs,
+        runId,
+        callPhysician,
+        nutritionTools: NUTRITION_TOOL_AGENTS.has(agentName) ? nutritionTools : undefined,
+      };
       const output = await runner(client, context);
       outputs.push(output);
       onAgentComplete?.(agentName, output);

@@ -30,3 +30,22 @@ export const HYDRATION_RANGE = { min: 2.0, max: 2.5 } as const;
 export const WEIGHT_GAIN_RATE = { min: 0.25, max: 0.5 } as const;
 export const SURPLUS_RANGE = { min: 400, max: 500 } as const;
 export const ADAPTATION_WEEKS = 4;
+
+export const FDC_NUTRIENT_IDS = {
+  energy: 1008,
+  energy_atwater_general: 2047,
+  energy_atwater_specific: 2048,
+  protein: 1003,
+  fat: 1004,
+  carbs: 1005,
+  fiber: 1079,
+  calcium: 1087,
+  iron: 1089,
+  vitamin_d: 1114,
+  vitamin_b12: 1178,
+  folate_dfe: 1190,
+} as const;
+
+export const FDC_BASE_URL = "https://api.nal.usda.gov/fdc/v1";
+export const FDC_RATE_LIMIT = 1000;
+export const FDC_RATE_WINDOW_MS = 3_600_000;

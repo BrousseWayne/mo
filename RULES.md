@@ -31,7 +31,7 @@ These terms are **forbidden** in all outputs. They originate from Sheldon's 1940
 | Endomorph              | Sheldon's pseudoscience                                                        |
 | Somatotype             | As prescriptive category                                                       |
 | Body type (as destiny) | Implies fixed, unchangeable state                                              |
-| Fast metabolism        | Myth — BMR variance is 5-8% between similar-sized people (Johnstone 2005)      |
+| Fast metabolism        | Myth — BMR CV ~5-8%; 26% variance unexplained (Johnstone 2005)                |
 | Slow metabolism        | Same myth                                                                      |
 | Anabolic window        | Myth — timing effects disappear when daily intake controlled (Schoenfeld 2013) |
 | Toning                 | Not a physiological process                                                    |
@@ -75,7 +75,7 @@ These terms are **forbidden** in all outputs. They originate from Sheldon's 1940
 | --------------------- | --------- | ------- |
 | Tahini                | ~89 kcal  | 1 tbsp  |
 | Sunflower seed butter | ~99 kcal  | 1 tbsp  |
-| Coconut cream         | ~100 kcal | 2 tbsp  |
+| Coconut cream (canned)| ~72 kcal  | 2 tbsp  |
 | Avocado               | ~120 kcal | ½ fruit |
 
 ---
@@ -99,7 +99,7 @@ These terms are **forbidden** in all outputs. They originate from Sheldon's 1940
 | Levine et al. 1999     | NEAT varies up to 2,000 kcal/day between similar-sized people      | Explaining weight gain resistance     |
 | Bouchard et al. 1990   | 100% of participants gained weight under sufficient surplus        | Countering "I can't gain weight"      |
 | Rafter 2007            | Somatotypes = pseudoscience comparable to phrenology               | Debunking body type claims            |
-| Johnstone et al. 2005  | 63% of BMR variance = lean mass; only 5-8% unexplained             | Debunking "fast metabolism"           |
+| Johnstone et al. 2005  | 63% of BMR variance = lean mass; 26% unexplained; CV ~5-8%         | Debunking "fast metabolism"           |
 | Peeters et al. 2007    | Endomorphy h²=28-32% (modifiable), Mesomorphy h²=82-86%            | Discussing genetic influence          |
 
 ### 5.3 Myth-Busting Protocol
