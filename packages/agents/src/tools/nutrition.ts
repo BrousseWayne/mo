@@ -1,62 +1,14 @@
 import type { NutritionCache } from "../clients/nutrition-cache.js";
-import type { FoodSearchResult, FoodDetail } from "@mo/shared";
 
-export interface NutritionToolContext {
-  nutritionCache: NutritionCache;
-}
-
-export async function searchFoods(
-  ctx: NutritionToolContext,
-  query: string,
-  dataType?: string[]
-): Promise<FoodSearchResult[]> {
-  return ctx.nutritionCache.searchFoods(query, dataType);
-}
-
-export async function getFoodDetail(
-  ctx: NutritionToolContext,
-  fdcId: number
-): Promise<FoodDetail> {
-  return ctx.nutritionCache.getFoodDetail(fdcId);
-}
-
-export async function scaleMacros(
-  ctx: NutritionToolContext,
-  fdcId: number,
-  amountGrams: number
-): Promise<{
-  fdc_id: number;
-  description: string;
-  amount_g: number;
-  calories_kcal: number;
-  protein_g: number;
-  fat_g: number;
-  carbs_g: number;
-  fiber_g: number;
-}> {
-  return ctx.nutritionCache.scaleMacros(fdcId, amountGrams);
-}
-
-export async function scaleMicros(
-  ctx: NutritionToolContext,
-  fdcId: number,
-  amountGrams: number
-): Promise<{
-  fdc_id: number;
-  description: string;
-  amount_g: number;
-  calcium_mg: number | null;
-  iron_mg: number | null;
-  vitamin_d_ug: number | null;
-  vitamin_b12_ug: number | null;
-  folate_dfe_ug: number | null;
-}> {
-  return ctx.nutritionCache.scaleMicros(fdcId, amountGrams);
-}
+export type NutritionToolName =
+  | "search_foods"
+  | "get_food_detail"
+  | "scale_macros"
+  | "scale_micros";
 
 export const nutritionTools = [
   {
-    name: "search_foods",
+    name: "search_foods" as const,
     description:
       "Search USDA FoodData Central for foods matching a query. Returns up to 10 results with macros per 100g. Use this to find FDC IDs for specific ingredients.",
     input_schema: {
@@ -77,7 +29,7 @@ export const nutritionTools = [
     },
   },
   {
-    name: "get_food_detail",
+    name: "get_food_detail" as const,
     description:
       "Get complete nutrition data for a specific food by FDC ID. Returns macros, micros, and portion sizes. Data is cached in PostgreSQL after first fetch.",
     input_schema: {
@@ -92,7 +44,7 @@ export const nutritionTools = [
     },
   },
   {
-    name: "scale_macros",
+    name: "scale_macros" as const,
     description:
       "Calculate scaled macros for a specific food amount. Takes FDC ID and gram amount, returns calories and macros for that portion.",
     input_schema: {
@@ -111,7 +63,7 @@ export const nutritionTools = [
     },
   },
   {
-    name: "scale_micros",
+    name: "scale_micros" as const,
     description:
       "Calculate scaled micronutrients for a specific food amount. Returns calcium, iron, vitamin D, B12, and folate for the specified portion. Use for micronutrient-sensitive recipes (Ca-Fe competition, cycle-phase optimization).",
     input_schema: {
@@ -132,28 +84,25 @@ export const nutritionTools = [
 ] as const;
 
 export async function executeNutritionTool(
-  ctx: NutritionToolContext,
+  cache: NutritionCache,
   toolName: string,
   toolInput: Record<string, unknown>
 ): Promise<unknown> {
-  switch (toolName) {
+  switch (toolName as NutritionToolName) {
     case "search_foods":
-      return searchFoods(
-        ctx,
+      return cache.searchFoods(
         toolInput.query as string,
         toolInput.dataType as string[] | undefined
       );
     case "get_food_detail":
-      return getFoodDetail(ctx, toolInput.fdcId as number);
+      return cache.getFoodDetail(toolInput.fdcId as number);
     case "scale_macros":
-      return scaleMacros(
-        ctx,
+      return cache.scaleMacros(
         toolInput.fdcId as number,
         toolInput.amountGrams as number
       );
     case "scale_micros":
-      return scaleMicros(
-        ctx,
+      return cache.scaleMicros(
         toolInput.fdcId as number,
         toolInput.amountGrams as number
       );

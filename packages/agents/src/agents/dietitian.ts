@@ -3,10 +3,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import { dietitianOutputSchema, type AgentEnvelope } from "@mo/shared";
 import type { AgentContext } from "../types.js";
 import { toolDefinitions, toolExecutors } from "../tools/dietitian.js";
-import {
-  nutritionTools,
-  executeNutritionTool,
-} from "../tools/nutrition.js";
+import { nutritionTools, executeNutritionTool } from "../tools/nutrition.js";
 
 const DIETITIAN_NUTRITION_TOOLS = ["search_foods", "scale_macros"] as const;
 
@@ -111,7 +108,7 @@ export async function runDietitian(
 
   const allTools: Anthropic.Tool[] = [
     ...toolDefinitions,
-    ...(context.nutritionTools ? dietitianNutritionTools : []),
+    ...(context.nutritionCache ? dietitianNutritionTools : []),
   ];
 
   const messages: Anthropic.MessageParam[] = [
@@ -149,12 +146,12 @@ export async function runDietitian(
         }
 
         if (
-          context.nutritionTools &&
+          context.nutritionCache &&
           (DIETITIAN_NUTRITION_TOOLS as readonly string[]).includes(block.name)
         ) {
           try {
             const result = await executeNutritionTool(
-              context.nutritionTools,
+              context.nutritionCache,
               block.name,
               block.input as Record<string, unknown>
             );

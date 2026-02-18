@@ -75,16 +75,7 @@ export class NutritionCache {
   async scaleMacros(
     fdcId: number,
     amountGrams: number
-  ): Promise<{
-    fdc_id: number;
-    description: string;
-    amount_g: number;
-    calories_kcal: number;
-    protein_g: number;
-    fat_g: number;
-    carbs_g: number;
-    fiber_g: number;
-  }> {
+  ): Promise<ScaledMacros> {
     const detail = await this.getFoodDetail(fdcId);
     const factor = amountGrams / 100;
 
@@ -103,16 +94,7 @@ export class NutritionCache {
   async scaleMicros(
     fdcId: number,
     amountGrams: number
-  ): Promise<{
-    fdc_id: number;
-    description: string;
-    amount_g: number;
-    calcium_mg: number | null;
-    iron_mg: number | null;
-    vitamin_d_ug: number | null;
-    vitamin_b12_ug: number | null;
-    folate_dfe_ug: number | null;
-  }> {
+  ): Promise<ScaledMicros> {
     const detail = await this.getFoodDetail(fdcId);
     const factor = amountGrams / 100;
 

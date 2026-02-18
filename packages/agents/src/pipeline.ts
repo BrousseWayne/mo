@@ -2,9 +2,9 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { IntakeData, AgentEnvelope } from "@mo/shared";
 import type { Database } from "@mo/database";
 import type { AgentContext, PipelineResult } from "./types.js";
-import type { NutritionToolContext } from "./tools/nutrition.js";
 import { createUsdaFdcClient } from "./clients/usda-fdc.js";
 import { createNutritionCache } from "./clients/nutrition-cache.js";
+import type { NutritionCache } from "./clients/nutrition-cache.js";
 import { runScientist } from "./agents/scientist.js";
 import { runNutritionist } from "./agents/nutritionist.js";
 import { runDietitian } from "./agents/dietitian.js";
@@ -35,11 +35,10 @@ const PIPELINE_ORDER = [
 
 const NUTRITION_TOOL_AGENTS = new Set(["DIETITIAN", "CHEF"]);
 
-function createNutritionToolContext(db: Database): NutritionToolContext | undefined {
+function createNutritionCacheIfAvailable(db: Database): NutritionCache | undefined {
   if (!process.env.USDA_FDC_API_KEY) return undefined;
   const usdaClient = createUsdaFdcClient();
-  const nutritionCache = createNutritionCache(db, usdaClient);
-  return { nutritionCache };
+  return createNutritionCache(db, usdaClient);
 }
 
 export async function runPipeline(params: {
@@ -64,7 +63,7 @@ export async function runPipeline(params: {
   } = params;
   const outputs: AgentEnvelope[] = [];
 
-  const nutritionTools = db ? createNutritionToolContext(db) : undefined;
+  const nutritionCache = db ? createNutritionCacheIfAvailable(db) : undefined;
 
   const orderedAgents = PIPELINE_ORDER.filter((a) => agents.includes(a));
 
@@ -94,7 +93,7 @@ export async function runPipeline(params: {
         previousOutputs: outputs,
         runId,
         callPhysician,
-        nutritionTools: NUTRITION_TOOL_AGENTS.has(agentName) ? nutritionTools : undefined,
+        nutritionCache: NUTRITION_TOOL_AGENTS.has(agentName) ? nutritionCache : undefined,
       };
       const output = await runner(client, context);
       outputs.push(output);

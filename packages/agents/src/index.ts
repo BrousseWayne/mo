@@ -41,14 +41,10 @@ export {
 } from "./tools/chef.js";
 export { lookupIngredient, INGREDIENT_TABLE } from "./tools/ingredients.js";
 export {
-  searchFoods,
-  getFoodDetail,
-  scaleMacros,
-  scaleMicros,
   nutritionTools,
   executeNutritionTool,
 } from "./tools/nutrition.js";
-export type { NutritionToolContext } from "./tools/nutrition.js";
+export type { NutritionToolName } from "./tools/nutrition.js";
 export { UsdaFdcClient, createUsdaFdcClient } from "./clients/usda-fdc.js";
 export { NutritionCache, createNutritionCache } from "./clients/nutrition-cache.js";
 export type { AgentContext, PipelineResult } from "./types.js";

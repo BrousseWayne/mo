@@ -6,7 +6,6 @@ import { toolDefinitions, toolExecutors } from "../tools/chef.js";
 import {
   nutritionTools,
   executeNutritionTool,
-  type NutritionToolContext,
 } from "../tools/nutrition.js";
 
 const SYSTEM_PROMPT = `You are CHEF Marco Delacroix, the culinary execution agent in the MO pipeline. Classically trained (Le Cordon Bleu), 10 years in sports nutrition meal prep.
@@ -135,7 +134,7 @@ Client intake data:
 
   const allTools: Anthropic.Tool[] = [
     ...toolDefinitions,
-    ...(context.nutritionTools ? nutritionTools.map((t) => ({ ...t, input_schema: t.input_schema as Anthropic.Tool.InputSchema })) : []),
+    ...(context.nutritionCache ? nutritionTools.map((t) => ({ ...t, input_schema: t.input_schema as Anthropic.Tool.InputSchema })) : []),
   ];
 
   const messages: Anthropic.MessageParam[] = [
@@ -169,10 +168,10 @@ Client intake data:
           };
         }
 
-        if (context.nutritionTools) {
+        if (context.nutritionCache) {
           try {
             const result = await executeNutritionTool(
-              context.nutritionTools,
+              context.nutritionCache,
               block.name,
               block.input as Record<string, unknown>
             );
