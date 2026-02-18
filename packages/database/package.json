@@ -18,6 +18,7 @@
     "push": "drizzle-kit push"
   },
   "dependencies": {
+    "@mo/shared": "workspace:*",
     "drizzle-orm": "^0.38",
     "postgres": "^3.4"
   },

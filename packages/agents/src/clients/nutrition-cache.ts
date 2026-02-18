@@ -1,13 +1,16 @@
-import { eq } from "drizzle-orm";
-import { foods, type Database } from "@mo/database";
+import { foods, createFoodQueries, foodRowToDetail, foodDetailToRow, type Database } from "@mo/database";
 import type { FoodSearchResult, FoodDetail, ScaledMacros, ScaledMicros } from "@mo/shared";
 import type { UsdaFdcClient } from "./usda-fdc.js";
 
 export class NutritionCache {
+  private queries: ReturnType<typeof createFoodQueries>;
+
   constructor(
     private db: Database,
     private usdaClient: UsdaFdcClient
-  ) {}
+  ) {
+    this.queries = createFoodQueries(db);
+  }
 
   async searchFoods(
     query: string,
@@ -17,58 +20,14 @@ export class NutritionCache {
   }
 
   async getFoodDetail(fdcId: number): Promise<FoodDetail> {
-    const cached = await this.db
-      .select()
-      .from(foods)
-      .where(eq(foods.fdc_id, fdcId))
-      .limit(1);
+    const rows = await this.queries.findById.execute({ fdcId });
 
-    if (cached.length > 0) {
-      const food = cached[0];
-      return {
-        fdc_id: food.fdc_id,
-        description: food.description || "",
-        category: food.category || "",
-        data_type: food.data_type,
-        macros_per_100g: {
-          calories_kcal: food.calories_kcal,
-          protein_g: food.protein_g,
-          fat_g: food.fat_g,
-          carbs_g: food.carbs_g,
-          fiber_g: food.fiber_g,
-        },
-        micros_per_100g: {
-          calcium_mg: food.calcium_mg,
-          iron_mg: food.iron_mg,
-          vitamin_d_ug: food.vitamin_d_ug,
-          vitamin_b12_ug: food.vitamin_b12_ug,
-          folate_dfe_ug: food.folate_dfe_ug,
-        },
-        portions: (food.portions as { description: string; gram_weight: number }[]) || [],
-      };
+    if (rows.length > 0) {
+      return foodRowToDetail(rows[0]);
     }
 
     const detail = await this.usdaClient.getFoodDetail(fdcId);
-
-    await this.db.insert(foods).values({
-      fdc_id: detail.fdc_id,
-      name: detail.description,
-      description: detail.description,
-      category: detail.category,
-      data_type: detail.data_type,
-      calories_kcal: detail.macros_per_100g.calories_kcal,
-      protein_g: detail.macros_per_100g.protein_g,
-      fat_g: detail.macros_per_100g.fat_g,
-      carbs_g: detail.macros_per_100g.carbs_g,
-      fiber_g: detail.macros_per_100g.fiber_g,
-      calcium_mg: detail.micros_per_100g.calcium_mg,
-      iron_mg: detail.micros_per_100g.iron_mg,
-      vitamin_d_ug: detail.micros_per_100g.vitamin_d_ug,
-      vitamin_b12_ug: detail.micros_per_100g.vitamin_b12_ug,
-      folate_dfe_ug: detail.micros_per_100g.folate_dfe_ug,
-      portions: detail.portions,
-    });
-
+    await this.db.insert(foods).values(foodDetailToRow(detail));
     return detail;
   }
 

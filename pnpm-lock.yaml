@@ -76,6 +76,9 @@ importers:
 
   packages/database:
     dependencies:
+      '@mo/shared':
+        specifier: workspace:*
+        version: link:../shared
       drizzle-orm:
         specifier: ^0.38
         version: 0.38.4(postgres@3.4.8)
