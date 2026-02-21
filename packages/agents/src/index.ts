@@ -43,6 +43,7 @@ export { lookupIngredient, INGREDIENT_TABLE } from "./tools/ingredients.js";
 export {
   nutritionTools,
   executeNutritionTool,
+  isNutritionTool,
 } from "./tools/nutrition.js";
 export type { NutritionToolName } from "./tools/nutrition.js";
 export { UsdaFdcClient, createUsdaFdcClient } from "./clients/usda-fdc.js";

@@ -6,6 +6,7 @@ import { toolDefinitions, toolExecutors } from "../tools/chef.js";
 import {
   nutritionTools,
   executeNutritionTool,
+  isNutritionTool,
 } from "../tools/nutrition.js";
 
 const SYSTEM_PROMPT = `You are CHEF Marco Delacroix, the culinary execution agent in the MO pipeline. Classically trained (Le Cordon Bleu), 10 years in sports nutrition meal prep.
@@ -100,18 +101,18 @@ Output ONLY the JSON object, no additional text.`;
 
 export async function runChef(
   client: Anthropic,
-  context: AgentContext
+  context: AgentContext,
 ): Promise<AgentEnvelope> {
   const dietitianOutput = context.previousOutputs.find(
-    (o) => o.from_agent === "DIETITIAN"
+    (o) => o.from_agent === "DIETITIAN",
   );
 
   const scientistOutput = context.previousOutputs.find(
-    (o) => o.from_agent === "SCIENTIST"
+    (o) => o.from_agent === "SCIENTIST",
   );
 
   const nutritionistOutput = context.previousOutputs.find(
-    (o) => o.from_agent === "NUTRITIONIST"
+    (o) => o.from_agent === "NUTRITIONIST",
   );
 
   const userMessage = `Generate recipes for the meal plan below.
@@ -134,7 +135,7 @@ Client intake data:
 
   const allTools: Anthropic.Tool[] = [
     ...toolDefinitions,
-    ...(context.nutritionCache ? nutritionTools.map((t) => ({ ...t, input_schema: t.input_schema as Anthropic.Tool.InputSchema })) : []),
+    ...(context.nutritionCache ? nutritionTools : []),
   ];
 
   const messages: Anthropic.MessageParam[] = [
@@ -154,49 +155,54 @@ Client intake data:
 
   while (response.stop_reason === "tool_use") {
     const toolUseBlocks = response.content.filter(
-      (b): b is Anthropic.ToolUseBlock => b.type === "tool_use"
+      (b): b is Anthropic.ToolUseBlock => b.type === "tool_use",
     );
 
     const toolResults: Anthropic.ToolResultBlockParam[] = await Promise.all(
-      toolUseBlocks.map(async (block) => {
-        const syncExecutor = toolExecutors[block.name];
-        if (syncExecutor) {
-          return {
-            type: "tool_result" as const,
-            tool_use_id: block.id,
-            content: JSON.stringify(syncExecutor(block.input as Record<string, unknown>)),
-          };
-        }
+      toolUseBlocks.map(
+        async (block): Promise<Anthropic.ToolResultBlockParam> => {
+          const input = block.input as Record<string, unknown>;
+          const syncExecutor = toolExecutors[block.name];
 
-        if (context.nutritionCache) {
-          try {
-            const result = await executeNutritionTool(
-              context.nutritionCache,
-              block.name,
-              block.input as Record<string, unknown>
-            );
+          if (syncExecutor) {
             return {
-              type: "tool_result" as const,
+              type: "tool_result",
               tool_use_id: block.id,
-              content: JSON.stringify(result),
-            };
-          } catch (err) {
-            return {
-              type: "tool_result" as const,
-              tool_use_id: block.id,
-              content: JSON.stringify({ error: err instanceof Error ? err.message : String(err) }),
-              is_error: true,
+              content: JSON.stringify(syncExecutor(input)),
             };
           }
-        }
 
-        return {
-          type: "tool_result" as const,
-          tool_use_id: block.id,
-          content: JSON.stringify({ error: `Unknown tool: ${block.name}` }),
-          is_error: true,
-        };
-      })
+          if (context.nutritionCache && isNutritionTool(block.name)) {
+            try {
+              const result = await executeNutritionTool(
+                context.nutritionCache,
+                block.name,
+                input,
+              );
+              return {
+                type: "tool_result",
+                tool_use_id: block.id,
+                content: JSON.stringify(result),
+              };
+            } catch (err) {
+              const message = err instanceof Error ? err.message : String(err);
+              return {
+                type: "tool_result",
+                tool_use_id: block.id,
+                content: JSON.stringify({ error: message }),
+                is_error: true,
+              };
+            }
+          }
+
+          return {
+            type: "tool_result",
+            tool_use_id: block.id,
+            content: JSON.stringify({ error: `Unknown tool: ${block.name}` }),
+            is_error: true,
+          };
+        },
+      ),
     );
 
     messages.push({ role: "assistant", content: response.content });
@@ -216,7 +222,7 @@ Client intake data:
   }
 
   const textBlock = response.content.find(
-    (b): b is Anthropic.TextBlock => b.type === "text"
+    (b): b is Anthropic.TextBlock => b.type === "text",
   );
 
   if (!textBlock) {
@@ -229,7 +235,7 @@ Client intake data:
 
   if (!jsonMatch) {
     throw new Error(
-      `CHEF: Could not extract JSON from response: ${textBlock.text.slice(0, 200)}`
+      `CHEF: Could not extract JSON from response: ${textBlock.text.slice(0, 200)}`,
     );
   }
 

@@ -1,18 +1,28 @@
+import type Anthropic from "@anthropic-ai/sdk";
 import type { NutritionCache } from "../clients/nutrition-cache.js";
 
-export type NutritionToolName =
-  | "search_foods"
-  | "get_food_detail"
-  | "scale_macros"
-  | "scale_micros";
+const NUTRITION_TOOL_NAMES = [
+  "search_foods",
+  "get_food_detail",
+  "scale_macros",
+  "scale_micros",
+] as const;
 
-export const nutritionTools = [
+export type NutritionToolName = (typeof NUTRITION_TOOL_NAMES)[number];
+
+const NUTRITION_TOOL_SET: ReadonlySet<string> = new Set(NUTRITION_TOOL_NAMES);
+
+export function isNutritionTool(name: string): name is NutritionToolName {
+  return NUTRITION_TOOL_SET.has(name);
+}
+
+export const nutritionTools: Anthropic.Tool[] = [
   {
-    name: "search_foods" as const,
+    name: "search_foods",
     description:
       "Search USDA FoodData Central for foods matching a query. Returns up to 10 results with macros per 100g. Use this to find FDC IDs for specific ingredients.",
     input_schema: {
-      type: "object" as const,
+      type: "object",
       properties: {
         query: {
           type: "string",
@@ -29,11 +39,11 @@ export const nutritionTools = [
     },
   },
   {
-    name: "get_food_detail" as const,
+    name: "get_food_detail",
     description:
       "Get complete nutrition data for a specific food by FDC ID. Returns macros, micros, and portion sizes. Data is cached in PostgreSQL after first fetch.",
     input_schema: {
-      type: "object" as const,
+      type: "object",
       properties: {
         fdcId: {
           type: "number",
@@ -44,11 +54,11 @@ export const nutritionTools = [
     },
   },
   {
-    name: "scale_macros" as const,
+    name: "scale_macros",
     description:
       "Calculate scaled macros for a specific food amount. Takes FDC ID and gram amount, returns calories and macros for that portion.",
     input_schema: {
-      type: "object" as const,
+      type: "object",
       properties: {
         fdcId: {
           type: "number",
@@ -63,11 +73,11 @@ export const nutritionTools = [
     },
   },
   {
-    name: "scale_micros" as const,
+    name: "scale_micros",
     description:
       "Calculate scaled micronutrients for a specific food amount. Returns calcium, iron, vitamin D, B12, and folate for the specified portion. Use for micronutrient-sensitive recipes (Ca-Fe competition, cycle-phase optimization).",
     input_schema: {
-      type: "object" as const,
+      type: "object",
       properties: {
         fdcId: {
           type: "number",
@@ -81,14 +91,30 @@ export const nutritionTools = [
       required: ["fdcId", "amountGrams"],
     },
   },
-] as const;
+];
+
+export interface SearchFoodsInput {
+  query: string;
+  dataType?: string[];
+}
+
+export interface FdcIdInput {
+  fdcId: number;
+}
+
+export interface ScaleInput {
+  fdcId: number;
+  amountGrams: number;
+}
+
+export type NutritionToolInput = SearchFoodsInput | FdcIdInput | ScaleInput;
 
 export async function executeNutritionTool(
   cache: NutritionCache,
   toolName: string,
   toolInput: Record<string, unknown>
 ): Promise<unknown> {
-  switch (toolName as NutritionToolName) {
+  switch (toolName) {
     case "search_foods":
       return cache.searchFoods(
         toolInput.query as string,

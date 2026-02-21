@@ -3,9 +3,9 @@ import Anthropic from "@anthropic-ai/sdk";
 import { dietitianOutputSchema, type AgentEnvelope } from "@mo/shared";
 import type { AgentContext } from "../types.js";
 import { toolDefinitions, toolExecutors } from "../tools/dietitian.js";
-import { nutritionTools, executeNutritionTool } from "../tools/nutrition.js";
+import { nutritionTools, executeNutritionTool, isNutritionTool } from "../tools/nutrition.js";
 
-const DIETITIAN_NUTRITION_TOOLS = ["search_foods", "scale_macros"] as const;
+const DIETITIAN_NUTRITION_TOOLS = new Set(["search_foods", "scale_macros"]);
 
 const SYSTEM_PROMPT = `You are DIETITIAN, the meal plan architecture agent in the MO wellness system. Your color is #F4A261 (orange). You are third in the agent pipeline.
 
@@ -102,9 +102,7 @@ export async function runDietitian(
     (o) => o.from_agent === "NUTRITIONIST"
   );
 
-  const dietitianNutritionTools = nutritionTools
-    .filter((t) => (DIETITIAN_NUTRITION_TOOLS as readonly string[]).includes(t.name))
-    .map((t) => ({ ...t, input_schema: t.input_schema as Anthropic.Tool.InputSchema }));
+  const dietitianNutritionTools = nutritionTools.filter((t) => DIETITIAN_NUTRITION_TOOLS.has(t.name));
 
   const allTools: Anthropic.Tool[] = [
     ...toolDefinitions,
@@ -135,47 +133,25 @@ export async function runDietitian(
     );
 
     const toolResults: Anthropic.ToolResultBlockParam[] = await Promise.all(
-      toolUseBlocks.map(async (block) => {
+      toolUseBlocks.map(async (block): Promise<Anthropic.ToolResultBlockParam> => {
+        const input = block.input as Record<string, unknown>;
         const syncExecutor = toolExecutors[block.name];
+
         if (syncExecutor) {
-          return {
-            type: "tool_result" as const,
-            tool_use_id: block.id,
-            content: JSON.stringify(syncExecutor(block.input as Record<string, unknown>)),
-          };
+          return { type: "tool_result", tool_use_id: block.id, content: JSON.stringify(syncExecutor(input)) };
         }
 
-        if (
-          context.nutritionCache &&
-          (DIETITIAN_NUTRITION_TOOLS as readonly string[]).includes(block.name)
-        ) {
+        if (context.nutritionCache && isNutritionTool(block.name) && DIETITIAN_NUTRITION_TOOLS.has(block.name)) {
           try {
-            const result = await executeNutritionTool(
-              context.nutritionCache,
-              block.name,
-              block.input as Record<string, unknown>
-            );
-            return {
-              type: "tool_result" as const,
-              tool_use_id: block.id,
-              content: JSON.stringify(result),
-            };
+            const result = await executeNutritionTool(context.nutritionCache, block.name, input);
+            return { type: "tool_result", tool_use_id: block.id, content: JSON.stringify(result) };
           } catch (err) {
-            return {
-              type: "tool_result" as const,
-              tool_use_id: block.id,
-              content: JSON.stringify({ error: err instanceof Error ? err.message : String(err) }),
-              is_error: true,
-            };
+            const message = err instanceof Error ? err.message : String(err);
+            return { type: "tool_result", tool_use_id: block.id, content: JSON.stringify({ error: message }), is_error: true };
           }
         }
 
-        return {
-          type: "tool_result" as const,
-          tool_use_id: block.id,
-          content: JSON.stringify({ error: `Unknown tool: ${block.name}` }),
-          is_error: true,
-        };
+        return { type: "tool_result", tool_use_id: block.id, content: JSON.stringify({ error: `Unknown tool: ${block.name}` }), is_error: true };
       })
     );
 

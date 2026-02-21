@@ -48,30 +48,20 @@ interface FdcFoodDetail {
   foodPortions?: FdcPortion[];
 }
 
-interface RateLimitState {
-  requests: number[];
-}
-
 function getNutrientValue(nutrients: FdcNutrient[], targetId: number): number | undefined {
   for (const n of nutrients) {
-    if ("nutrientId" in n && n.nutrientId === targetId) {
-      return n.value;
-    }
-    if ("nutrient" in n && n.nutrient?.id === targetId) {
-      return n.amount;
-    }
+    if ("nutrientId" in n && n.nutrientId === targetId) return n.value;
+    if ("nutrient" in n && n.nutrient?.id === targetId) return n.amount;
   }
   return undefined;
 }
 
-class UsdaFdcClient {
+export class UsdaFdcClient {
   private apiKey: string;
-  private rateLimitState: RateLimitState = { requests: [] };
+  private requestTimestamps: number[] = [];
 
   constructor(apiKey: string) {
-    if (!apiKey) {
-      throw new Error("USDA FDC API key is required");
-    }
+    if (!apiKey) throw new Error("USDA FDC API key is required");
     this.apiKey = apiKey;
   }
 
@@ -79,19 +69,14 @@ class UsdaFdcClient {
     const now = Date.now();
     const windowStart = now - FDC_RATE_WINDOW_MS;
 
-    this.rateLimitState.requests = this.rateLimitState.requests.filter(
-      (timestamp) => timestamp > windowStart
-    );
+    this.requestTimestamps = this.requestTimestamps.filter((ts) => ts > windowStart);
 
-    if (this.rateLimitState.requests.length >= FDC_RATE_LIMIT) {
-      const oldestRequest = this.rateLimitState.requests[0];
-      const waitMs = oldestRequest + FDC_RATE_WINDOW_MS - now;
-      throw new Error(
-        `USDA FDC rate limit exceeded. Retry after ${Math.ceil(waitMs / 1000)}s`
-      );
+    if (this.requestTimestamps.length >= FDC_RATE_LIMIT) {
+      const waitMs = this.requestTimestamps[0] + FDC_RATE_WINDOW_MS - now;
+      throw new Error(`USDA FDC rate limit exceeded. Retry after ${Math.ceil(waitMs / 1000)}s`);
     }
 
-    this.rateLimitState.requests.push(now);
+    this.requestTimestamps.push(now);
   }
 
   private extractMacros(nutrients: FdcNutrient[]): MacrosPer100g {
@@ -128,28 +113,17 @@ class UsdaFdcClient {
     }));
   }
 
-  async searchFoods(
-    query: string,
-    dataType?: string[]
-  ): Promise<FoodSearchResult[]> {
+  async searchFoods(query: string, dataType?: string[]): Promise<FoodSearchResult[]> {
     this.checkRateLimit();
 
-    const params = new URLSearchParams({
-      api_key: this.apiKey,
-      query,
-      pageSize: "10",
-    });
-
+    const params = new URLSearchParams({ api_key: this.apiKey, query, pageSize: "10" });
     if (dataType && dataType.length > 0) {
       dataType.forEach((dt) => params.append("dataType", dt));
     }
 
     const response = await fetch(`${FDC_BASE_URL}/foods/search?${params}`);
-
     if (!response.ok) {
-      throw new Error(
-        `USDA FDC search failed: ${response.status} ${response.statusText}`
-      );
+      throw new Error(`USDA FDC search failed: ${response.status} ${response.statusText}`);
     }
 
     const data = await response.json();
@@ -166,16 +140,10 @@ class UsdaFdcClient {
   async getFoodDetail(fdcId: number): Promise<FoodDetail> {
     this.checkRateLimit();
 
-    const params = new URLSearchParams({
-      api_key: this.apiKey,
-    });
-
+    const params = new URLSearchParams({ api_key: this.apiKey });
     const response = await fetch(`${FDC_BASE_URL}/food/${fdcId}?${params}`);
-
     if (!response.ok) {
-      throw new Error(
-        `USDA FDC food detail failed: ${response.status} ${response.statusText}`
-      );
+      throw new Error(`USDA FDC food detail failed: ${response.status} ${response.statusText}`);
     }
 
     const food: FdcFoodDetail = await response.json();
@@ -194,12 +162,6 @@ class UsdaFdcClient {
 
 export function createUsdaFdcClient(): UsdaFdcClient {
   const apiKey = process.env.USDA_FDC_API_KEY;
-  if (!apiKey) {
-    throw new Error(
-      "USDA_FDC_API_KEY environment variable is required"
-    );
-  }
+  if (!apiKey) throw new Error("USDA_FDC_API_KEY environment variable is required");
   return new UsdaFdcClient(apiKey);
 }
-
-export { UsdaFdcClient };

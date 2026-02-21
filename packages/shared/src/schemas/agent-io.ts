@@ -162,6 +162,7 @@ const recipeSchema = z.object({
       item: z.string(),
       amount_g: z.number(),
       prep_notes: z.string().nullable(),
+      fdc_id: z.number().nullable().optional(),
     })
   ),
   macros_per_serving: z.object({

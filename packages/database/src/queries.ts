@@ -29,7 +29,9 @@ export function foodRowToDetail(row: FoodRow): FoodDetail {
   };
 }
 
-export function foodDetailToRow(detail: FoodDetail) {
+export type FoodInsert = typeof foods.$inferInsert;
+
+export function foodDetailToRow(detail: FoodDetail): FoodInsert {
   return {
     fdc_id: detail.fdc_id,
     name: detail.description,
