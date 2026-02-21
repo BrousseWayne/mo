@@ -2,7 +2,7 @@
 
 ## Female Mass Gain Protocol — Evidence-Based Reference System
 
-### Version 1.0 | Subject: Female, 174cm, 55kg, BMI 18.5, Target 65kg
+### Version 2.0 | Subject: Female, 174cm, 55kg, BMI 18.5, Target 65kg
 
 ---
 
@@ -21,6 +21,11 @@
 11. [PROTOCOL: TRACKING & ADJUSTMENTS](#section-11-tracking)
 12. [TIMELINE & EXPECTATIONS](#section-12-timeline)
 13. [REFERENCE INDEX](#section-13-references)
+14. [EXERCISE POOL CATALOG](#section-14-exercise-pool)
+15. [PHASE 0: GYM INTRODUCTION PROTOCOL](#section-15-phase-0)
+16. [WARM-UP PROTOCOLS](#section-16-warmup)
+17. [GYM ANXIETY FRAMEWORK](#section-17-gym-anxiety)
+18. [PSYCHOLOGICAL FAT GAIN PREPARATION](#section-18-fat-gain-psych)
 
 ---
 
@@ -651,3 +656,522 @@ When advising this subject, prioritize interventions in this order:
 **When user asks about cardio**: "For your goal, limit cardio to 1-2 short sessions of 15-20 minutes at low intensity per week. Your priority is creating a caloric surplus, and excessive cardio directly opposes that. Walking 5,000-7,000 steps/day is enough for cardiovascular health."
 
 **When user is frustrated with slow visible results**: "Real muscle hypertrophy typically becomes visible after 6-8 weeks minimum. In the first months, most gains are neural (your brain learning to recruit muscles) and compositional (glycogen, water, early fat). The visual transformation accelerates around months 3-4. Trust the process — the science is unambiguous that untrained women respond to progressive overload."
+
+---
+
+<a id="section-14-exercise-pool"></a>
+
+# 14. EXERCISE POOL CATALOG
+
+Organized by movement pattern. Each entry includes difficulty tier (1 = beginner, 5 = advanced), equipment requirements, primary muscles, coaching cues, and common errors.
+
+## 14.1 Hip Hinge
+
+| Exercise | Equipment | Tier | Primary Muscles | Coaching Cues | Common Errors |
+|---|---|---|---|---|---|
+| Glute Bridge | None | 1 | Glute max, hamstrings | Drive through heels, squeeze glutes at top for 2s, maintain neutral spine | Hyperextending lumbar spine at top, pushing through toes, losing glute tension at bottom |
+| Single-Leg Glute Bridge | None | 2 | Glute max, hamstrings | Extend one leg, drive through planted heel, keep hips level | Hips rotating to one side, overarching lower back, using momentum |
+| Dumbbell RDL | Dumbbells | 2 | Hamstrings, glute max, erectors | Push hips BACK (not down), keep DBs close to legs, feel hamstring stretch, flat back | Rounding lower back, bending knees excessively (turning into squat), looking up |
+| Barbell RDL | Barbell | 3 | Hamstrings, glute max, erectors | Bar tracks legs, hip hinge until stretch limit, squeeze glutes to stand | Allowing bar to drift forward, insufficient hip hinge depth, jerking the concentric |
+| Hip Thrust (Barbell) | Barbell, bench | 3 | Glute max, hamstrings | Upper back on bench edge, drive through heels, full hip extension, chin tucked | Hyperextending lumbar, insufficient range of motion, neck cranking |
+| Single-Leg Hip Thrust | Bench | 4 | Glute max, hamstrings | One foot planted, other knee to chest, maintain level hips | Rotating pelvis, compensating with lower back, insufficient lockout |
+| Conventional Deadlift | Barbell | 4 | Posterior chain, quads, core | Bar over mid-foot, chest up, drive floor away, lockout with glutes | Rounding back, hips rising before chest, bar drifting from body |
+| Sumo Deadlift | Barbell | 4 | Glute max, adductors, quads | Wide stance toes out, grip inside knees, push knees out, chest up | Knees caving, hips shooting up, pulling with back |
+
+## 14.2 Squat
+
+| Exercise | Equipment | Tier | Primary Muscles | Coaching Cues | Common Errors |
+|---|---|---|---|---|---|
+| Bodyweight Squat | None | 1 | Quads, glutes | Feet shoulder width, sit back and down, knees track toes, thighs to parallel | Knees caving inward, heels lifting, forward lean with rounded back |
+| Goblet Squat | Dumbbell/KB | 1 | Quads, glutes, core | Hold weight at chest, elbows inside knees, sit between legs | Elbows flaring wide, insufficient depth, weight shifting to toes |
+| Barbell Back Squat | Barbell, rack | 3 | Quads, glutes, hamstrings | Bar on upper traps, brace core, break at hips and knees simultaneously | Butt wink at depth, knees caving, good-morning pattern (hips rise first) |
+| Barbell Front Squat | Barbell, rack | 4 | Quads, glutes, core | Clean grip or cross-arm, elbows high, upright torso, full depth | Elbows dropping, wrists collapsing, forward lean |
+| Leg Press | Leg press machine | 2 | Quads, glutes | Feet high and wide for glute emphasis, full range without lower back lifting | Lower back rounding off pad, partial range of motion, knees locking out |
+| Hack Squat | Hack squat machine | 3 | Quads, glutes | Shoulders against pad, full depth, controlled eccentric | Knees tracking too far forward, bouncing at bottom |
+
+## 14.3 Lunge
+
+| Exercise | Equipment | Tier | Primary Muscles | Coaching Cues | Common Errors |
+|---|---|---|---|---|---|
+| Static Lunge | None | 1 | Quads, glutes | Split stance, lower straight down, front knee over ankle, upright torso | Front knee shooting past toes, leaning forward, back knee slamming floor |
+| Split Squat | None/DBs | 2 | Quads, glutes | Elevated rear foot optional, straight down movement, 90-degree angles | Stance too narrow (balance issues), excessive forward lean |
+| Walking Lunge | Dumbbells | 2 | Quads, glutes, hamstrings | Long stride, controlled step, push through front heel | Torso wobbling, short stride (quad dominant), knees caving |
+| Bulgarian Split Squat | Dumbbells, bench | 3 | Quads, glutes, hamstrings | Rear foot on bench, torso slightly forward for glute emphasis, full depth | Rear foot too high, excessive forward lean, stance too short |
+| Reverse Lunge | Dumbbells | 2 | Glutes, quads | Step back (not forward), keep weight on front leg, push through front heel | Leaning backward, pushing off rear foot, losing balance |
+
+## 14.4 Horizontal Push
+
+| Exercise | Equipment | Tier | Primary Muscles | Coaching Cues | Common Errors |
+|---|---|---|---|---|---|
+| Wall Push-Up | Wall | 1 | Pecs, anterior delts, triceps | Hands slightly wider than shoulders on wall, full range, core tight | Flaring elbows 90 degrees, sagging hips, partial range |
+| Kneeling Push-Up | Mat | 1 | Pecs, anterior delts, triceps | Straight line from knees to head, lower chest to floor | Hips sagging or piking, elbows flaring wide |
+| Push-Up | None | 2 | Pecs, anterior delts, triceps | Hands under shoulders, full range, body rigid plank | Sagging hips, flared elbows, head dropping forward |
+| Dumbbell Bench Press | Dumbbells, bench | 2 | Pecs, anterior delts, triceps | Feet flat, slight arch, lower to chest level, press to lockout | Bouncing off chest, excessive arch, uneven pressing |
+| Barbell Bench Press | Barbell, bench, rack | 3 | Pecs, anterior delts, triceps | Retract scapulae, bar to mid-chest, feet planted, drive through heels | Flattening back, flaring elbows 90 degrees, bouncing bar |
+
+## 14.5 Horizontal Pull
+
+| Exercise | Equipment | Tier | Primary Muscles | Coaching Cues | Common Errors |
+|---|---|---|---|---|---|
+| Seated Band Row | Resistance band | 1 | Mid-back, rhomboids, rear delts | Sit tall, squeeze shoulder blades together, row to belly button | Rounding forward, using momentum, shrugging shoulders |
+| Dumbbell Row | Dumbbell, bench | 2 | Lats, rhomboids, mid-traps | One hand on bench, row to hip, squeeze at top 1s | Rotating torso, rowing to armpit instead of hip, using momentum |
+| Seated Cable Row | Cable machine | 2 | Lats, rhomboids, mid-traps | Sit upright, pull to belly button, squeeze shoulder blades, controlled return | Leaning back excessively, momentum rowing, rounding forward on eccentric |
+| Barbell Row | Barbell | 3 | Lats, rhomboids, mid-traps, erectors | Hinge forward 45 degrees, row to lower rib cage, flat back | Excessive torso movement, rounding back, rowing too high (traps dominant) |
+| Chest-Supported Row | Dumbbells, incline bench | 2 | Lats, rhomboids, rear delts | Lie face down on incline bench, row both DBs, eliminates momentum | Lifting chest off pad, incomplete range of motion |
+
+## 14.6 Vertical Push
+
+| Exercise | Equipment | Tier | Primary Muscles | Coaching Cues | Common Errors |
+|---|---|---|---|---|---|
+| Seated Dumbbell OHP | Dumbbells, bench | 2 | Anterior/lateral delts, triceps | Seat at 90 degrees, press from ear level to overhead, neutral grip option | Arching back excessively, pressing in front of face, uneven lockout |
+| Standing Barbell OHP | Barbell | 3 | Anterior/lateral delts, triceps, core | Grip just outside shoulders, press straight up, squeeze glutes for stability | Excessive back arch, pressing around face, wrist deviation |
+| Lateral Raises | Dumbbells | 2 | Lateral deltoids | Slight forward lean, raise to shoulder height, lead with elbows | Swinging weight, raising above shoulder, shrugging |
+| Front Raises | Dumbbells | 2 | Anterior deltoids | Alternating arms, raise to eye level, controlled tempo | Using momentum, raising too high, leaning backward |
+| Face Pulls | Cable machine | 2 | Rear delts, external rotators | High cable, pull to face, externally rotate at end, squeeze | Pulling too low, no external rotation, leaning back |
+
+## 14.7 Vertical Pull
+
+| Exercise | Equipment | Tier | Primary Muscles | Coaching Cues | Common Errors |
+|---|---|---|---|---|---|
+| Band Lat Pulldown | Resistance band | 1 | Lats, biceps, rear delts | Anchor band high, pull elbows to sides, feel lats stretch and contract | Using only arms (no lat engagement), incomplete range |
+| Lat Pulldown (Machine) | Cable machine | 2 | Lats, biceps, teres major | Lean back slightly, pull bar to upper chest, elbows to hips | Pulling behind neck, using momentum, leaning too far back |
+| Assisted Pull-Up | Assisted pull-up machine | 3 | Lats, biceps, teres major | Full dead hang at bottom, pull chin over bar, controlled descent | Kipping, partial range, not reaching full extension |
+| Pull-Up | Pull-up bar | 5 | Lats, biceps, teres major, core | Dead hang start, pull until chin clears bar, 2s negative | Kipping/swinging, partial reps, neck cranking to reach bar |
+| Chin-Up | Pull-up bar | 4 | Lats, biceps | Supinated grip, same cues as pull-up but more bicep emphasis | Same as pull-up errors, plus excessive wrist strain |
+
+## 14.8 Isolation
+
+| Exercise | Equipment | Tier | Primary Muscles | Coaching Cues | Common Errors |
+|---|---|---|---|---|---|
+| Dumbbell Bicep Curl | Dumbbells | 1 | Biceps brachii | Mind-muscle connection, slow eccentric (3s), full extension at bottom | Swinging body, incomplete range, rushing eccentric |
+| Hammer Curl | Dumbbells | 1 | Brachialis, brachioradialis | Neutral grip, same tempo cues as curl | Swinging, flaring elbows |
+| Tricep Pushdown | Cable machine | 1 | Triceps | Pin elbows at sides, extend fully, squeeze at bottom | Elbows moving forward, leaning into cable, partial extension |
+| Overhead Tricep Extension | Dumbbell/cable | 2 | Triceps (long head) | Elbows pointing forward, lower behind head, full extension | Elbows flaring wide, insufficient range, arching back |
+| Seated Leg Curl | Leg curl machine | 1 | Hamstrings | Full range of motion, slow eccentric (3s), squeeze at full contraction | Lifting hips, incomplete range, using momentum |
+| Lying Leg Curl | Leg curl machine | 1 | Hamstrings | Hips flat against pad, curl to full contraction, controlled return | Hips lifting off pad, partial range, jerking weight |
+| Leg Extension | Leg extension machine | 1 | Quadriceps | Full extension, pause at top 1s, controlled eccentric | Locking out aggressively, using momentum, partial range |
+| Calf Raise (Standing) | Smith machine/machine | 1 | Gastrocnemius, soleus | Full stretch at bottom, rise to toes, pause at top 2s | Bouncing, partial range, bending knees |
+
+## 14.9 Abduction (Mandatory for Hip Dips)
+
+| Exercise | Equipment | Tier | Primary Muscles | Coaching Cues | Common Errors |
+|---|---|---|---|---|---|
+| Side-Lying Hip Abduction | Mat, optional ankle weight | 1 | Gluteus medius, TFL | Lie on side, lift top leg 30-45 degrees, slow tempo (2-1-3), keep hips stacked | Rolling backward, lifting too high, using momentum |
+| Banded Lateral Walk | Mini loop band | 1 | Gluteus medius | Band above knees or ankles, quarter squat position, step sideways, maintain tension | Standing too tall, letting band snap back, feet too close |
+| Cable Hip Abduction | Cable machine | 2 | Gluteus medius | Stand sideways to cable, ankle strap on far leg, lift away from cable, controlled return | Leaning excessively, using momentum, rotating hips |
+| Seated Hip Abduction (Machine) | Hip abduction machine | 1 | Gluteus medius, piriformis | Push knees out against pads, squeeze at end range 2s, controlled return | Bouncing, partial range, leaning forward |
+| Fire Hydrant | Mat, optional band | 1 | Gluteus medius | All fours, lift knee to side keeping 90-degree bend, hips level | Rotating torso, shifting weight, arching back |
+| Standing Banded Hip Abduction | Mini loop band | 1 | Gluteus medius | Stand on one leg, other leg lifts sideways against band, hold support for balance | Leaning away from working leg, rotating pelvis |
+
+## 14.10 Core
+
+| Exercise | Equipment | Tier | Primary Muscles | Coaching Cues | Common Errors |
+|---|---|---|---|---|---|
+| Dead Bug | Mat | 1 | Transverse abdominis, rectus abdominis | Press lower back into floor, opposite arm/leg extend, exhale on extension | Lower back arching off floor, moving too fast, holding breath |
+| Bird Dog | Mat | 1 | Erectors, transverse abdominis, glutes | All fours, extend opposite arm/leg simultaneously, keep spine neutral | Rotating hips, arching back, rushing repetitions |
+| Plank | Mat | 1 | Transverse abdominis, rectus abdominis, obliques | Forearms and toes, straight line ears to ankles, brace core, breathe | Hips sagging, hips piking, holding breath |
+| Pallof Press | Cable machine/band | 2 | Obliques, transverse abdominis | Stand perpendicular to cable, press hands straight out, resist rotation | Rotating toward or away from cable, arms bending |
+| Cable Woodchop | Cable machine | 2 | Obliques, transverse abdominis | High to low or low to high, rotate through thoracic spine, arms straight | Rotating through lumbar spine, bending arms, using momentum |
+| Ab Wheel Rollout | Ab wheel | 4 | Rectus abdominis, lats, serratus | Start from knees, roll out maintaining flat back, pull back with abs | Lower back hyperextending, insufficient range, using hip flexors |
+
+---
+
+<a id="section-15-phase-0"></a>
+
+# 15. PHASE 0: GYM INTRODUCTION PROTOCOL
+
+2-week protocol for complete beginners. Movement pattern learning, empty bar work, machine alternatives. Zero progressive overload. RPE 5-6 maximum.
+
+## 15.1 Evidence Base
+
+Mersmann et al. (2017, _Frontiers in Physiology_): Tendon stiffness adaptation lags muscle adaptation. NSCA periodization literature: all models begin with anatomical adaptation phase for safety. 2 weeks appropriate for healthy 28-year-old beginner with no injury history.
+
+## 15.2 Purpose
+
+Tendon/ligament preparation, neural pathway establishment, movement pattern learning, confidence building. Connective tissue adapts SLOWER than muscle. Skipping this phase risks tendinopathy and poor motor patterns.
+
+## 15.3 Duration Guidance
+
+| Population | Recommended Duration |
+|---|---|
+| Fit returning to exercise | 1-2 weeks |
+| General untrained adult | 3-4 weeks |
+| Very deconditioned/sedentary | Up to 8 weeks |
+| Healthy 28-year-old beginner | 2 weeks |
+
+## 15.4 Phase 0 Rules
+
+- Bodyweight or very light load ONLY
+- No progressive overload
+- RPE 5-6 maximum
+- Focus 100% on movement quality and mind-muscle connection
+- 3 sessions/week
+- Teach RPE from session 1
+
+## 15.5 Session Templates
+
+### Session A (Day 1)
+
+| Exercise | Sets x Reps | Load | Focus |
+|---|---|---|---|
+| Bodyweight Glute Bridge | 2 x 15 | BW | Learn hip extension, feel glutes contract |
+| Goblet Squat (light KB or no weight) | 2 x 12 | 0-8 kg | Depth, knee tracking, upright torso |
+| Band-Assisted Lat Pulldown or Band Pull-Apart | 2 x 12 | Light band | Feel lats engage, retract shoulder blades |
+| Side-lying Hip Abduction | 2 x 15/side | BW | Slow, controlled — feel the outer hip |
+| Dead Bug | 2 x 8/side | BW | Bracing, breathing pattern, pelvic control |
+
+### Session B (Day 2)
+
+| Exercise | Sets x Reps | Load | Focus |
+|---|---|---|---|
+| Broomstick/Empty Bar RDL | 2 x 12 | 0-10 kg | Hip hinge pattern — push hips BACK, feel hamstring stretch |
+| Split Squat (no weight) | 2 x 10/leg | BW | Balance, knee stability, hip flexor stretch |
+| Seated Band Row | 2 x 12 | Light band | Squeeze shoulder blades, feel mid-back |
+| Wall Push-Up or Kneeling Push-Up | 2 x 10 | BW | Push pattern, core engaged |
+| Banded Lateral Walk | 2 x 10/side | Mini band | Glute medius activation for hip dips |
+
+### Session C (Day 3)
+
+| Exercise | Sets x Reps | Load | Focus |
+|---|---|---|---|
+| Bodyweight Squat to Box | 2 x 12 | BW | Consistent depth, control the descent |
+| Glute Bridge (single-leg if stable) | 2 x 12/side | BW | Unilateral glute activation |
+| Dumbbell Row (very light) | 2 x 10/side | 2-5 kg | Pulling pattern, row to hip |
+| Lateral Raises (very light or water bottles) | 2 x 12 | 0.5-2 kg | Shoulder isolation, control |
+| Bird Dog | 2 x 8/side | BW | Balance, anti-rotation, stability |
+
+## 15.6 Phase 0 Readiness Criteria (All Must Be Met)
+
+- Can perform bodyweight squat to parallel with good form x 15
+- Can perform glute bridge with clear glute activation (not hamstring dominant)
+- Can demonstrate hip hinge with flat back (broomstick test)
+- Can perform split squat with stable balance
+- No joint pain during any movement
+- Completed 6 sessions minimum
+
+## 15.7 Home Training Alternative
+
+For clients who start at home before transitioning to the gym.
+
+### Minimum Equipment
+
+| Equipment | Purpose | Cost |
+|---|---|---|
+| Resistance bands (mini loop + long) | Glute activation, back work, progressive overload | 15-30 |
+| Dumbbells (2-20 kg range) | Hip hinge loading, rows, compounds | 50-200 |
+| Sturdy chair/bench | Split squats, hip thrusts, step-ups | 0-50 |
+| Yoga mat | Floor exercises | 15-30 |
+
+Total: approximately 80-200 for minimum viable setup.
+
+### 12-Week Home Program Structure
+
+**Weeks 1-4 (Foundation)**:
+- Glute Bridge 3x15, add 5 kg dumbbell Week 3
+- Goblet Squat 3x12 (5 kg to 8 kg)
+- DB Row 3x10/side (5 kg to 8 kg)
+- Banded Lateral Walk 2x15/side
+- Band Pull-Apart 2x15
+- Split Squat 2x10/leg, add DB Week 3
+
+**Weeks 5-8 (Loading)**:
+- Single-Leg Glute Bridge 3x12/side + dumbbell
+- Bulgarian Split Squat 3x10/leg (5 kg to 12 kg)
+- DB RDL 3x12 (8 kg to 12 kg)
+- Band Lat Pulldown 3x12
+- DB Row 3x10/side (8 kg to 12 kg)
+- Side-lying Hip Abduction (banded) 3x15/side
+
+**Weeks 9-12 (Intensity)**:
+- Hip Thrust (back on bench, DB on hips) 3x12
+- Bulgarian Split Squat 3x12/leg (heaviest DBs, slow eccentric)
+- Sumo Squat 3x12 (12 kg+)
+- Single-Arm Row 3x10/side (12 kg+, pause at top)
+- DB Pullover 3x12 (8-12 kg)
+- Standing Banded Hip Abduction 3x15/side
+
+### Home Progression Rules
+
+1. When all reps completed with 2-3 RIR across all sets, progress
+2. Sequence: Add reps (+3) then add load then add sets (up to 4)
+3. If no heavier dumbbell: slow tempo (3-1-2), pause reps, single-leg variants
+
+### Transition to Gym Criteria
+
+- Completed 12-week home program
+- Using heaviest available dumbbells for all exercises
+- Confident in all movement patterns
+- Psychologically ready (per gym anxiety framework)
+
+## 15.8 Machine Alternatives for Gym Beginners
+
+Machines provide guided movement paths that reduce coordination demands. Use when free weight version feels intimidating.
+
+| Free Weight Exercise | Machine Alternative | When to Transition |
+|---|---|---|
+| Barbell Hip Thrust | Smith Machine Hip Thrust | When comfortable with setup and bracing |
+| Barbell Back Squat | Leg Press or Smith Machine Squat | When able to maintain neutral spine unloaded |
+| Barbell RDL | Lying Leg Curl + Back Extension | When hip hinge pattern mastered with broomstick |
+| Dumbbell Row | Seated Cable Row or Machine Row | When shoulder retraction is automatic |
+| Barbell OHP | Seated Machine Press | When core stability sufficient for standing press |
+| Pull-Up | Lat Pulldown Machine | Indefinite until sufficient strength (BW pull-up) |
+
+---
+
+<a id="section-16-warmup"></a>
+
+# 16. WARM-UP PROTOCOLS
+
+## 16.1 General Warm-Up (All Sessions)
+
+5-10 minutes of low-intensity cardiovascular activity to raise core temperature, increase blood flow, and prepare joints. Heart rate target: 50-60% of max.
+
+**Options** (choose one):
+- Brisk walking on incline treadmill
+- Stationary bike (low resistance)
+- Elliptical (low resistance)
+- Rowing machine (light pace)
+- Jump rope (light)
+
+## 16.2 Specific Warm-Up by Training Focus
+
+### Lower Body Focus
+
+| Order | Exercise | Reps/Duration | Purpose |
+|---|---|---|---|
+| 1 | General cardio | 5 min | Raise body temperature |
+| 2 | Bodyweight squats (slow, full depth) | 10 | Hip, knee, ankle mobility |
+| 3 | Glute bridges | 15 | Glute activation, hip extension pattern |
+| 4 | Banded lateral walks | 10/side | Glute medius activation |
+| 5 | Empty bar or broomstick RDL | 8 | Hip hinge pattern prep |
+| 6 | First working set at 50% target weight | 8 | Ramp-up set, groove movement pattern |
+
+### Upper Body Focus
+
+| Order | Exercise | Reps/Duration | Purpose |
+|---|---|---|---|
+| 1 | General cardio | 5 min | Raise body temperature |
+| 2 | Band pull-aparts | 15 | Shoulder/upper back activation, scapular retraction |
+| 3 | Push-ups (modified if needed) | 8 | Pec/tricep activation, shoulder warm-up |
+| 4 | Arm circles (forward + backward) | 10 each | Shoulder joint lubrication |
+| 5 | Band dislocates (light band) | 10 | Shoulder mobility through full range |
+| 6 | First working set at 50% target weight | 8 | Ramp-up set |
+
+### Full Body Focus
+
+| Order | Exercise | Reps/Duration | Purpose |
+|---|---|---|---|
+| 1 | General cardio | 5 min | Raise body temperature |
+| 2 | Bodyweight squats | 10 | Lower body mobility |
+| 3 | Glute bridges | 12 | Glute activation |
+| 4 | Band pull-aparts | 12 | Upper back activation |
+| 5 | Banded lateral walks | 8/side | Glute medius activation |
+| 6 | Inchworms | 5 | Full body integration, hamstring stretch, shoulder prep |
+| 7 | First working set at 50% target weight | 8 | Ramp-up set |
+
+## 16.3 Activation Sequences
+
+### Glute Activation Circuit (Pre-Lower Body)
+
+For clients with difficulty engaging glutes during compounds. Perform as a circuit with minimal rest.
+
+| Exercise | Reps | Cue |
+|---|---|---|
+| Clamshell (banded) | 15/side | Feel the outer glute fire, not the hip flexor |
+| Single-Leg Glute Bridge | 10/side | Press through heel, squeeze at top 2s |
+| Banded Monster Walk | 10 steps each direction | Quarter squat, constant band tension |
+
+### Shoulder Activation Circuit (Pre-Upper Body)
+
+| Exercise | Reps | Cue |
+|---|---|---|
+| Band external rotation | 15/side | Elbow pinned to side, rotate outward |
+| Scapular push-up | 10 | Only protract/retract shoulder blades in plank |
+| Y-T-W raises (prone, light or bodyweight) | 8 each | Arms form Y, then T, then W shape |
+
+## 16.4 Warm-Up Principles
+
+- Never skip the general warm-up; cold muscles are injury-prone
+- Activation work is most important for muscles that are hard to "feel" during compounds (glute medius, lower traps, rear delts)
+- Ramp-up sets are mandatory for the first compound of each session
+- Static stretching is NOT recommended pre-training (Kay & Blazevich 2012: reduces force production 5-7% acutely). Save for post-training or separate mobility sessions
+- Dynamic movements only before training
+
+---
+
+<a id="section-17-gym-anxiety"></a>
+
+# 17. GYM ANXIETY FRAMEWORK
+
+## 17.1 Prevalence Data
+
+- 65% of women avoid the gym due to anxiety or fear of judgment (Ultimate Performance survey)
+- 58% feel people will judge them if they don't know how to use equipment
+- 45% feel too unfit to start attending the gym
+- 76% felt uncomfortable exercising in public (Myprotein survey)
+
+Gym anxiety is the default experience for most women, not a personal failing. Addressing it directly is prerequisite to training consistency.
+
+## 17.2 Self-Efficacy Framework (Bandura 1977)
+
+Four sources of self-efficacy, ordered by impact:
+
+| Source | Application | Implementation |
+|---|---|---|
+| Past Performance (strongest) | Create early success experiences | Phase 0 at home provides mastery experiences before gym exposure |
+| Vicarious Experience | Observe similar others succeeding | Videos of female beginners; female trainer presence |
+| Verbal Persuasion | Encouragement from respected sources | Partner support; positive self-talk scripts; coach reinforcement |
+| Physiological Cues | Interpret body signals positively | Reframe nervousness as excitement; normal arousal response |
+
+## 17.3 Progressive Exposure Protocol
+
+### Stage 1: Home Training (Weeks 1-2)
+
+- **Location**: Home exclusively
+- **Goal**: Master movement patterns in private with zero external pressure
+- **Milestone**: Comfortable performing all Phase 0 exercises with correct form
+- **Anxiety target**: Establish training as a normal daily behavior
+- **Coping strategies**: Training at preferred time of day, comfortable clothing, familiar environment
+
+### Stage 2: Gym Orientation (Weeks 3-4)
+
+- **Location**: Gym during off-peak hours (early morning 6-7am, mid-afternoon 2-4pm)
+- **Visit 1**: Orientation tour only. Walk through the gym. Locate equipment. No training
+- **Visit 2**: Use 1-2 machines only (leg press, cable row) for 10-15 minutes. Leave when done
+- **Visit 3-4**: Low-traffic areas first (machines, stretching area). Avoid free weight area if anxiety is high
+- **Milestone**: Can enter the gym, locate equipment, and perform 2-3 machine exercises without distress
+- **Coping strategies**: Gym crowding apps to time visits, headphones with music, training with partner
+
+### Stage 3: Full Gym Access (Week 5+)
+
+- **Location**: Gradual expansion into all gym areas
+- **Week 5-6**: Add free weight exercises one at a time (dumbbells first, then barbells)
+- **Week 7+**: Full training program in any area of the gym
+- **Milestone**: Comfortable in the weights area during moderate traffic
+- **Coping strategies**: Consistent schedule (same days, same times builds familiarity), written training plan (removes "what do I do?" uncertainty)
+
+### Stage 4: Independent Training (Week 8+)
+
+- **Location**: Gym at any time
+- **Goal**: Training without partner if needed, during any gym traffic level
+- **Milestone**: Initiating gym visits independently, asking staff about equipment, recovering from missed sessions without shame spiral
+- **Coping strategies**: Progress photos for confidence, gym friendships or nods of recognition, internal locus of validation
+
+## 17.4 Practical Strategies
+
+| Strategy | Mechanism | When to Use |
+|---|---|---|
+| Training with partner | Social buffer reduces perceived threat | Stages 2-3, taper as confidence grows |
+| Off-peak timing | Fewer observers, more equipment access | Stages 2-3, relax timing constraints at Stage 4 |
+| Gym crowding apps | Predictability reduces uncertainty | All stages |
+| Headphones with music | Creates psychological bubble, reduces social awareness | All stages |
+| Written training plan | Removes "looking lost" fear, provides purpose | All stages |
+| Female trainers | Reduces gender intimidation in weights area | Stages 2-3 |
+| Consistent schedule | Familiarity with staff and regulars reduces novelty anxiety | Stage 3+ |
+| Visualization | Mental rehearsal of gym routine reduces anticipatory anxiety | Pre-visit, all stages |
+
+## 17.5 Confidence Building Milestones
+
+Track these concrete milestones to objectify progress:
+
+1. Entered a gym and walked through it
+2. Used a machine for the first time
+3. Completed a full workout at the gym
+4. Used free weights (dumbbells)
+5. Used a barbell for the first time
+6. Asked gym staff for help with equipment
+7. Trained during moderate-traffic hours
+8. Completed a full week (3 sessions) consistently
+9. Trained without a partner
+10. Recovered from a missed session without guilt and returned the next scheduled day
+
+## 17.6 When Gym Anxiety Requires Escalation
+
+- Panic attacks triggered by gym environment → Flag to PHYSICIAN for anxiety evaluation
+- Complete avoidance despite 4+ weeks of graduated exposure → Consider psychology referral
+- Anxiety expanding to other life domains → PHYSICIAN referral
+- Social anxiety severe enough to prevent all public exercise → PHYSICIAN referral
+
+---
+
+<a id="section-18-fat-gain-psych"></a>
+
+# 18. PSYCHOLOGICAL FAT GAIN PREPARATION
+
+## 18.1 Why This Section Exists
+
+At BMI 18.5, intentional weight gain (including fat gain) is medically appropriate and aesthetically desired. However, psychological resistance to weight gain is common even when the goal is explicitly to gain weight. Body image disruption during a bulking phase can derail the entire protocol if not addressed proactively.
+
+## 18.2 Reframing Weight Gain at BMI 18.5
+
+### Medical Framing
+
+| Current State (BMI 18.5) | Target State (BMI 21.5) | Clinical Significance |
+|---|---|---|
+| Borderline underweight | Mid-healthy range | Reduced all-cause mortality (Lancet 2009, 900,000 adults) |
+| Potential menstrual irregularity | Restored hormonal function | Mallinson 2013: menses restored in 23-74 days with caloric increase |
+| Reduced estrogen | Normal estrogen levels | Improved satellite cell function, bone density, mood |
+| Elevated cortisol | Normalized cortisol | Reduced catabolism, improved recovery, better sleep |
+| Weakened immunity | Restored immune function | Fewer illnesses, better training consistency |
+
+### Aesthetic Framing
+
+The fat is not incidental to the goal; it IS the goal alongside muscle. At BMI 18.5:
+- Muscle alone cannot produce the aesthetic outcome (fullness, curves, projection)
+- Fat distributes to hips, thighs, and glutes in premenopausal women (Pedersen 2004)
+- Muscle underneath + fat on top = projection, shape, and contour
+- The combination of muscle scaffolding + gynoidal fat creates the hourglass aesthetic
+
+## 18.3 Common Psychological Responses and Reframes
+
+| Normal Experience | Physiological Reality | Reframe |
+|---|---|---|
+| "My belly looks bigger" | New fat sits superficially before hormonal signals redistribute it. Estrogen directs fat preferentially to hips/glutes/thighs. Belly fat gain is minimal in premenopausal women in surplus (Steiner & Berry 2022) | "This is temporary central distribution. Estrogen will redirect it. Give it 4-6 weeks." |
+| "I'm gaining but don't look more muscular" | Fat gain precedes visible muscle in months 1-3. Neural adaptations come first. True hypertrophy becomes visible after 6-8 weeks minimum | "Strength gains ARE happening inside. The visual transformation starts around month 3." |
+| "The mirror looks worse" | Body dysmorphia sensitivity INCREASES during weight gain. Mirror assessment is unreliable during active body change | "Mirrors lie during bulking. Trust the tape measure. Waist-to-hip ratio is your real metric." |
+| "I should add cardio to burn off some fat" | Compensatory cardio directly sabotages the caloric surplus. Every extra 200 kcal burned is 200 kcal NOT going to muscle and hormonal restoration | "The protocol already includes the right amount of activity. Extra cardio removes the calories your body needs." |
+| "I want muscle but not fat" | At BMI 18.5, gaining only muscle is physiologically impossible without pharmacological intervention. Fat is required for hormonal normalization | "Fat is part of the prescription. It restores your hormones, protects your bones, and fills out your frame. You need both." |
+| "I feel puffy/bloated" | Creatine loading adds 1-3 kg intracellular water. Increased carbohydrate intake increases glycogen stores. Both are functional, not cosmetic | "The 'puffiness' is functional hydration. Your muscles are literally holding more fuel." |
+| "People will notice I gained weight" | Weight distributed across a 174 cm frame means each kg produces minimal visual change. The first 3-5 kg are largely invisible to others | "1 kg distributed across your height is undetectable to anyone but you." |
+
+## 18.4 Progress Metrics Beyond the Scale
+
+To counteract over-reliance on scale weight and mirror assessment:
+
+| Metric | Why It Matters | How to Track |
+|---|---|---|
+| Strength progression | Directly measures muscle adaptation, immune to water/fat fluctuation | Training log: weight x reps per exercise per session |
+| Waist-to-hip ratio | Tracks fat distribution pattern, not total fat | Tape measure biweekly |
+| Circumference measurements | Tracks WHERE mass is going (hips, thighs, arms) | Tape measure biweekly at consistent anatomical landmarks |
+| Training consistency | Adherence is the strongest predictor of long-term outcomes | Calendar: sessions completed per week |
+| Energy levels | Normalized hormones and glycogen improve subjective energy | Weekly 1-10 self-rating |
+| Sleep quality | Improved nutrition and training enhance sleep architecture | Weekly 1-10 self-rating |
+| Menstrual regularity | Key indicator of hormonal restoration at BMI 18.5 | Monthly tracking |
+| Recovery between sessions | DOMS duration and intensity should decrease over time | Session notes |
+
+## 18.5 Body Image Support Strategies
+
+### Proactive Approaches
+
+- **Progress photos with objective commentary**: Monthly photos with measurements provide objective data that counteracts subjective mirror distortion. Compare photos side-by-side with 3-month intervals, not day-to-day
+- **Social media hygiene**: Unfollow accounts that promote extreme leanness or before/after content framed around weight loss. Follow accounts of women in healthy BMI range who train for strength and performance
+- **Clothing strategy**: Purchase clothes that fit the current body. Tight clothes from the previous weight create constant negative reminders. New clothes that fit well improve body satisfaction
+- **Focus on function**: Track what the body CAN DO (weights lifted, exercises mastered, endurance improvements) rather than what it LOOKS LIKE. Performance identity is more resilient than appearance identity
+- **Partner education**: Brief the partner on the protocol so they can reinforce positive framing and avoid well-intentioned but harmful comments
+
+### Reactive Approaches (When Distress Occurs)
+
+- Acknowledge the feeling without dismissing it: discomfort with body change is normal
+- Redirect to objective data: measurements, training log, energy levels
+- Reference the timeline: fat redistribution takes 4-8 weeks to stabilize
+- Normalize the experience: 100% of women gaining weight experience body image fluctuations
+- Distinguish between discomfort (normal, manageable) and distress (may need professional support)
+
+## 18.6 Red Flags Requiring Escalation
+
+- Panic attacks about eating or weight gain → PHYSICIAN referral
+- Purging behaviors (vomiting, laxatives, excessive exercise) → PHYSICIAN + eating disorder specialist
+- Calorie restriction despite being underweight → PHYSICIAN + psychology referral
+- Compulsive body checking (>5x daily mirror/scale) → Monitor closely, escalate if persistent
+- Social withdrawal due to body image → PHYSICIAN + psychology referral
+- Statements indicating desire for BMI < 18.5 → Immediate PHYSICIAN referral (potential eating disorder)

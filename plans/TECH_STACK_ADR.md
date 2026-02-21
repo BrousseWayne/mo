@@ -190,7 +190,7 @@ Zod Schema (source of truth)
   └── OpenAPI spec (via @fastify/swagger, optional)
 ```
 
-- `zod-to-json-schema`: Converts Zod schemas to JSON Schema objects for Anthropic's `input_schema` field in tool definitions. Eliminates the need to maintain parallel hand-written JSON Schemas alongside Zod schemas.
+- `zod-to-json-schema` (not currently used): Originally planned to convert Zod schemas to JSON Schema for Anthropic's `input_schema` field. In practice, tool `input_schema` objects are hand-written JSON Schema in the tool definition files for simplicity. The conversion could be adopted later if schema drift becomes an issue.
 - `@fastify/swagger` + `@fastify/swagger-ui` (optional): Fastify can derive OpenAPI specs from route schemas. Since Zod schemas already define request/response shapes, this auto-generates API docs at `/docs` with minimal configuration. Nice for personal reference but not essential.
 
 ---

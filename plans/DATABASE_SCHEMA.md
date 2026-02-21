@@ -4,6 +4,30 @@ Version 2.0 (Drizzle ORM)
 
 ---
 
+## Implementation Notes (2026-02-18)
+
+The spec below describes the target schema. The MVP codebase (`packages/database/src/schema.ts`) diverges in these areas:
+
+| Spec | Actual Codebase | Notes |
+|---|---|---|
+| `clients` table | Implemented as `users` (id, created_at only) | Full client fields deferred to post-MVP |
+| `intake_responses` table | Implemented (id, user_id FK, data jsonb, created_at) | Not in original spec — added for intake storage |
+| `pipeline_runs` FK to `programs` | FK to `users` + `intake_responses` | `programs` table not yet implemented |
+| `pipeline_runs.trigger` column | Not implemented | Trigger type tracking deferred |
+| `pipeline_runs.status` enum includes `cancelled` | Actual enum: `pending, running, completed, failed, paused` | `paused` replaces `cancelled` |
+| `pipeline_runs.errorMessage` + `errorAgent` | Single `error` text column | Simplified for MVP |
+| `pipeline_runs.startedAt` | Not implemented (uses `created_at`) | Deferred |
+| `pipeline_runs` has `agents_requested` | Not in spec | Added for tracking which agents to run |
+| `agent_messages` table | Implemented as `agent_outputs` | Different column structure |
+| `agent_messages` columns: `from_agent`, `to_agent`, `dataType`, `payload`, `version` | `agent_outputs` columns: `agent_name`, `envelope` (jsonb), `duration_ms`, `llm_tokens_used` | Full envelope stored as jsonb blob |
+| Schema layout: multi-file `src/db/schema/*.ts` | Single flat file `src/schema.ts` | Simplified for MVP |
+| `foods` table | Implemented in `schema.ts` with `real()` columns | Spec uses `decimal()`; actual uses `real()` for macros/micros |
+| Redis cache layer | Not implemented | PostgreSQL-only caching via `nutrition-cache.ts` |
+
+The spec remains the target architecture for post-MVP. Future tables (programs, weekly_plans, meal_slots, recipes, training_sessions, progress_entries, adjustments, red_flags, physician_queries) are correctly marked as "Future" in their respective sections.
+
+---
+
 ## 1. Entity-Relationship Summary
 
 ### Core Entities

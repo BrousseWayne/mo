@@ -6,6 +6,25 @@
 
 ---
 
+## Implementation Notes (2026-02-18)
+
+The spec below describes the original design. The implemented codebase diverges in these areas:
+
+| Spec | Actual Codebase | Notes |
+|---|---|---|
+| 3 tools: `search_food`, `get_food_macros`, `get_food_micros` | 4 tools: `search_foods`, `get_food_detail`, `scale_macros`, `scale_micros` | Tool names and count differ |
+| Tool input fields: `fdc_id`, `amount_g` | Actual fields: `fdcId`, `amountGrams` (camelCase) | Parameter naming convention changed |
+| `NutritionCacheConfig` takes `{redis, db, usdaClient}` | `NutritionCache` takes `(db, usdaClient)` | No Redis — PostgreSQL-only caching |
+| Two-tier Redis + PostgreSQL lookup cascade | PostgreSQL-only caching | Redis layer not implemented |
+| Factory functions: `createNutritionToolDefinitions()`, `createNutritionToolExecutors(ctx)` | Exports: `nutritionTools` array, `executeNutritionTool(cache, toolName, input)` | Different API shape |
+| `FDC_NUTRIENT_IDS` has only `energy: 1008` | Adds `energy_atwater_general: 2047`, `energy_atwater_specific: 2048` | Full energy lookup fallback chain |
+| `AgentContext` gains `nutritionTools?: NutritionToolContext` | `AgentContext` gains `nutritionCache?: NutritionCache` | Field name and type differ |
+| Tool availability: DIETITIAN gets `search_food` + `get_food_macros` | Only CHEF gets nutrition tools (DIETITIAN does not) | Simplified — DIETITIAN validates via slot specs, not ingredient lookups |
+
+The spec remains useful as architectural reference for the USDA FDC integration design rationale, nutrient ID mappings, and future extensions (grocery list, inventory, picture-based tracking).
+
+---
+
 ## 1. Problem Statement
 
 All macro data in MO is hardcoded in markdown artifacts. CHEF creates recipes with manually estimated totals. DIETITIAN specifies slot targets without ingredient-level validation. No mechanism verifies that a recipe's ingredients sum to claimed macros.

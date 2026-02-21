@@ -1,6 +1,6 @@
 # MO Project Tracker
 
-**Last updated**: 2026-02-11
+**Last updated**: 2026-02-18
 
 **Status markers**: `[x]` done | `[-]` in progress | `[ ]` todo | `[~]` archived/superseded
 
@@ -10,12 +10,12 @@
 
 ### Agent System Prompts
 
-- [x] SCIENTIST — Calculation engine, tiered BMR/TDEE/macro system (2026-02-07)
+- [x] SCIENTIST — v2 redesign: 5 decision frameworks, knowledge externalization to body-composition-science.md, enriched output with reasoning chains (2026-02-18)
 - [x] NUTRITIONIST — v2 redesign: generative decision frameworks, knowledge externalization, enriched output (2026-02-11)
 - [x] DIETITIAN — v2 redesign: generative slot grammar, rotation engines, compliance risk assessment (2026-02-11)
 - [x] CHEF — Pattern-based recipe generation, technique-first cooking, 9 cuisine kits (2026-02-08)
-- [x] COACH — Training programming, 3-phase progression, recovery protocols (2026-02-07)
-- [x] PHYSICIAN — On-demand health advisory, red flags, referrals (2026-02-07)
+- [x] COACH — v2 redesign: 6 decision frameworks, generative session grammar, knowledge externalization (2026-02-18)
+- [x] PHYSICIAN — v2 redesign: 4 decision frameworks, generative response model, knowledge externalization to medical-reference.md (2026-02-18)
 - [x] Pipeline orchestration spec — Sequential pipeline, feedback loop schema (2026-02-08)
 
 ### Artifacts (Runtime-Injected Content)
@@ -35,6 +35,8 @@
 - [x] cuisine-profiles.md — 9 cuisine flavor kits (2026-02-09)
 - [x] nutrition-science.md — MPS, supplements, cycle physiology, Ca-Fe science (2026-02-11)
 - [x] meal-architecture.md — Meal timing, compliance psychology, substitution science (2026-02-11)
+- [x] body-composition-science.md — BMR derivation, activity factors, surplus science, protein targets, measurement methods, myth-busting evidence (2026-02-18)
+- [x] medical-reference.md — Underweight physiology, deficiencies, supplement pharmacology, refeeding, psychology (2026-02-18)
 
 ### Rules & Constraints
 
@@ -48,7 +50,7 @@
 - [x] CLIENT_PROFILE.md — Target client locked parameters (2026-02-07)
 - [x] TECH_STACK_ADR.md — Architecture decision record (2026-02-09)
 - [x] DATABASE_SCHEMA.md — PostgreSQL schema design (2026-02-09)
-- [x] MVP_IMPLEMENTATION_PLAN.md — SCIENTIST agent implementation plan (2026-02-09)
+- [~] MVP_IMPLEMENTATION_PLAN.md — SCIENTIST agent implementation plan (archived 2026-02-18, all 6 agents + API implemented)
 - [x] NUTRITION_API_SPEC.md — USDA FoodData Central integration spec (2026-02-09)
 - [~] IMPLEMENT_5_AGENTS.md — Implementation plan for 5 remaining agents (archived 2026-02-11, all agents implemented)
 - [ ] API_CONTRACT.md — Full REST endpoint definitions, auth, rate limiting (was P1-7)
@@ -93,7 +95,7 @@
 
 ### Infrastructure
 
-- [ ] .env.example — Document required environment variables
+- [x] .env.example — Document required environment variables (2026-02-09)
 - [ ] CI pipeline — GitHub Actions or equivalent
 - [ ] E2E integration tests — Full pipeline with real Claude API call
 

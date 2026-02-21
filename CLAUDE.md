@@ -63,10 +63,12 @@ Agents communicate via structured JSON:
 
 ```json
 {
+  "message_id": "UUID",
   "from_agent": "SCIENTIST",
   "to_agent": "NUTRITIONIST",
   "data_type": "macro_targets",
   "payload": { ... },
+  "pipeline_run_id": "UUID",
   "timestamp": "ISO8601",
   "version": "1.0"
 }
@@ -104,6 +106,7 @@ packages/shared/                       # SHARED: Zod schemas, constants
   src/schemas/intake.ts                # IntakeData schema
   src/schemas/agent-io.ts              # AgentEnvelope + 6 agent output schemas
   src/schemas/pipeline.ts              # PipelineRunRequest, PipelineStatus schemas
+  src/schemas/nutrition.ts             # Nutrition data Zod schemas (FDC types)
   src/constants.ts                     # Agent list, activity factors, macro ranges
 
 packages/database/                     # DATABASE: Drizzle ORM + PostgreSQL
@@ -112,6 +115,7 @@ packages/database/                     # DATABASE: Drizzle ORM + PostgreSQL
   src/index.ts                         # Barrel export
   src/schema.ts                        # users, intake_responses, pipeline_runs, agent_outputs
   src/client.ts                        # createDb() with postgres.js driver
+  src/queries.ts                       # Database query helpers
   drizzle.config.ts                    # Drizzle Kit config
 
 packages/agents/                       # AGENTS: tool functions + LLM agent runners
@@ -126,6 +130,7 @@ packages/agents/                       # AGENTS: tool functions + LLM agent runn
   src/tools/chef.ts                    # 3 recipe/batch functions + tool definitions
   src/tools/coach.ts                   # 4 training programming functions + tool definitions
   src/tools/physician.ts               # 3 health advisory functions + tool definitions
+  src/tools/nutrition.ts               # Nutrition lookup tools (search, scale macros/micros)
   src/tools/ingredients.ts             # 41-entry ingredient macro lookup table
   src/tools/__tests__/scientist.test.ts     # SCIENTIST tool unit tests
   src/tools/__tests__/nutritionist.test.ts  # NUTRITIONIST tool unit tests
@@ -133,6 +138,10 @@ packages/agents/                       # AGENTS: tool functions + LLM agent runn
   src/tools/__tests__/chef.test.ts          # CHEF tool unit tests
   src/tools/__tests__/coach.test.ts         # COACH tool unit tests
   src/tools/__tests__/physician.test.ts     # PHYSICIAN tool unit tests
+  src/tools/__tests__/nutrition.test.ts    # Nutrition tool unit tests
+  src/clients/usda-fdc.ts              # USDA FoodData Central API client
+  src/clients/nutrition-cache.ts       # Nutrition data PostgreSQL cache
+  src/clients/__tests__/usda-fdc.test.ts   # USDA client unit tests
   src/agents/scientist.ts              # SCIENTIST agent: system prompt + tool-use loop
   src/agents/nutritionist.ts           # NUTRITIONIST agent: nutrition strategy runner
   src/agents/dietitian.ts              # DIETITIAN agent: meal template runner
@@ -167,7 +176,6 @@ plans/                                 # ARCHITECTURE: decisions & schemas
   CLIENT_PROFILE.md                    # Target client locked parameters
   TECH_STACK_ADR.md                    # Architecture decision record
   DATABASE_SCHEMA.md                   # PostgreSQL schema design
-  MVP_IMPLEMENTATION_PLAN.md           # MVP implementation plan
   NUTRITION_API_SPEC.md                # USDA FoodData Central integration spec
 knowledge/                             # REFERENCE: non-authoritative context
   references.md                        # Scientific references
@@ -179,12 +187,15 @@ knowledge/                             # REFERENCE: non-authoritative context
   cooking-techniques.md                # French techniques, sauces, stocks
   flavor-science.md                    # Taste elements, balancing, seasoning stack
   cuisine-profiles.md                  # 9 cuisine flavor kits
+  body-composition-science.md          # BMR, activity factors, surplus science, protein targets, measurement methods
+  medical-reference.md                 # Underweight physiology, deficiencies, supplement pharmacology, refeeding
 
 audits/                                # TRACKING: temporal, non-authoritative
   FULL_AUDIT_REPORT.md                 # 6-pass audit results
 
 archive/                               # HISTORICAL: non-authoritative
   IMPLEMENT_5_AGENTS.md               # Superseded: all 5 agents now implemented
+  MVP_IMPLEMENTATION_PLAN.md          # Superseded: all 6 agents + API implemented
   BMAD_LITE_PROPOSAL.md               # Early architecture proposal
   conversation-brief.md                # Original project brief
   EXPERT_AUDIT_25_flags.md             # Pre-restructure audit flags
@@ -229,7 +240,7 @@ See [TRACKER.md](./TRACKER.md) for full item-level tracking.
 - All 6 agent system prompts written and audited
 - Pipeline orchestration spec formalized
 - 3 artifacts (meal template, batch cooking, shakes) macro-verified
-- 9 knowledge bases (references, client protocol, training, food science, cooking techniques, flavor science, cuisine profiles, nutrition science, meal architecture)
+- 11 knowledge bases (references, client protocol, training, food science, cooking techniques, flavor science, cuisine profiles, nutrition science, meal architecture, body composition science, medical reference)
 
 ### Architecture — Complete
 - Tech stack ADR, database schema, MVP implementation plan, nutrition API spec, client profile
@@ -240,7 +251,7 @@ See [TRACKER.md](./TRACKER.md) for full item-level tracking.
 - `packages/database`: Drizzle ORM schema (4 tables), client, migrations
 - `packages/agents`: All 6 agents implemented (tools, runners, unit tests — 58 tests across 6 suites), pipeline orchestrator with PHYSICIAN on-demand callback
 - `apps/api`: Fastify server with 4 routes (intake, pipeline run/status, agent output)
-- Remaining: E2E tests, CI, .env.example
+- Remaining: E2E tests, CI
 
 ### Pending (Non-Code)
 - P1-7: Full API contract (auth, rate limiting, error format)

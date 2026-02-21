@@ -376,7 +376,7 @@ Always output structured slot specifications for CHEF using the specified JSON s
     "adaptation_triggers": []
   },
   "timestamp": "ISO8601",
-  "version": "2.0"
+  "version": "1.0"
 }
 ```
 
@@ -619,7 +619,7 @@ Always output structured slot specifications for CHEF using the specified JSON s
     }
   },
   "timestamp": "ISO8601",
-  "version": "2.0"
+  "version": "1.0"
 }
 ```
 
