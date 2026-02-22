@@ -4,6 +4,7 @@ import cors from "@fastify/cors";
 import Anthropic from "@anthropic-ai/sdk";
 import { createDb, type Database } from "@mo/database";
 import { registerRoutes } from "./routes/index.js";
+import { registerErrorHandler } from "./errors.js";
 import { createPipelineQueue } from "./jobs/queue.js";
 import { createPipelineWorker } from "./jobs/pipeline-worker.js";
 import type { Queue } from "bullmq";
@@ -34,6 +35,7 @@ app.decorate("queue", queue);
 
 createPipelineWorker(redisUrl, db, anthropic);
 
+registerErrorHandler(app);
 await registerRoutes(app);
 
 const port = Number(process.env.PORT ?? 3000);

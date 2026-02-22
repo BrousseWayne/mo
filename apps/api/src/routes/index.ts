@@ -6,6 +6,8 @@ import { programRoutes } from "./programs.js";
 import { checkinRoutes } from "./checkins.js";
 import { trainingRoutes } from "./training.js";
 import { complianceRoutes } from "./compliance.js";
+import { healthRoutes } from "./health.js";
+import { adminRoutes } from "./admin.js";
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(intakeRoutes);
@@ -15,4 +17,6 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(checkinRoutes);
   await app.register(trainingRoutes);
   await app.register(complianceRoutes);
+  await app.register(healthRoutes);
+  await app.register(adminRoutes);
 }
