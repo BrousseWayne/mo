@@ -306,6 +306,14 @@ export const pantryItems = pgTable("pantry_items", {
   added_at: timestamp("added_at").defaultNow().notNull(),
 });
 
+export const ingredientPrices = pgTable("ingredient_prices", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  ingredient_name: text("ingredient_name").notNull(),
+  price_per_kg: real("price_per_kg").notNull(),
+  store: text("store"),
+  recorded_at: timestamp("recorded_at").defaultNow().notNull(),
+});
+
 export const progressPhotos = pgTable("progress_photos", {
   id: uuid("id").defaultRandom().primaryKey(),
   program_id: uuid("program_id").references(() => programs.id).notNull(),

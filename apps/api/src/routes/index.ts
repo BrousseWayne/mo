@@ -23,6 +23,9 @@ import { pantryRoutes } from "./pantry.js";
 import { messageRoutes } from "./messages.js";
 import { photoRoutes } from "./photos.js";
 import { calendarRoutes } from "./calendar.js";
+import { wearableRoutes } from "./wearables.js";
+import { projectionRoutes } from "./projection.js";
+import { ingredientPriceRoutes } from "./ingredient-prices.js";
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(intakeRoutes);
@@ -49,4 +52,7 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(messageRoutes);
   await app.register(photoRoutes);
   await app.register(calendarRoutes);
+  await app.register(wearableRoutes);
+  await app.register(projectionRoutes);
+  await app.register(ingredientPriceRoutes);
 }
