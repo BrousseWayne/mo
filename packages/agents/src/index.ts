@@ -64,5 +64,8 @@ export { generateInsights } from "./insights/engine.js";
 export { checkCompletionCriteria, generateCompletionSummary } from "./tools/completion.js";
 export { detectImplicitPreferences } from "./tools/preferences.js";
 export type { ImplicitPreferences } from "./tools/preferences.js";
+export { detectTimingPatterns } from "./insights/timing.js";
+export { generateCuriosityHook, generatePipelineHook } from "./insights/hooks.js";
+export { generateReengagementPrompt } from "./insights/reengagement.js";
 export type { Insight } from "./insights/generators.js";
 export type { Milestone } from "./tools/milestones.js";
