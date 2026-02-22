@@ -46,6 +46,7 @@ export async function runPipeline(params: {
   intake: IntakeData;
   agents: string[];
   db?: Database;
+  cachedOutputs?: AgentEnvelope[];
   onAgentStart?: (agent: string) => void;
   onAgentComplete?: (agent: string, output: AgentEnvelope) => void;
   onAgentError?: (agent: string, error: Error) => void;
@@ -56,11 +57,12 @@ export async function runPipeline(params: {
     intake,
     agents,
     db,
+    cachedOutputs,
     onAgentStart,
     onAgentComplete,
     onAgentError,
   } = params;
-  const outputs: AgentEnvelope[] = [];
+  const outputs: AgentEnvelope[] = cachedOutputs ? [...cachedOutputs] : [];
 
   const nutritionCache = db ? createNutritionCacheIfAvailable(db) : undefined;
 

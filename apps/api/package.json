@@ -9,14 +9,15 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "fastify": "^5",
-    "@fastify/cors": "^11",
     "@anthropic-ai/sdk": "^0.39",
-    "drizzle-orm": "^0.38",
-    "@mo/shared": "workspace:*",
-    "@mo/database": "workspace:*",
+    "@fastify/cors": "^11",
     "@mo/agents": "workspace:*",
-    "dotenv": "^16"
+    "@mo/database": "workspace:*",
+    "@mo/shared": "workspace:*",
+    "bullmq": "^5.70.0",
+    "dotenv": "^16",
+    "drizzle-orm": "^0.38",
+    "fastify": "^5"
   },
   "devDependencies": {
     "tsx": "^4"

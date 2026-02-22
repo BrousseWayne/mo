@@ -1,12 +1,11 @@
 import type { FastifyInstance } from "fastify";
 import { eq } from "drizzle-orm";
-import { pipelineRunRequestSchema, type IntakeData } from "@mo/shared";
+import { pipelineRunRequestSchema } from "@mo/shared";
 import {
   pipelineRuns,
   agentOutputs,
   intakeResponses,
 } from "@mo/database";
-import { runPipeline } from "@mo/agents";
 
 export async function pipelineRoutes(app: FastifyInstance) {
   app.post("/pipeline/run", async (request, reply) => {
@@ -42,42 +41,21 @@ export async function pipelineRoutes(app: FastifyInstance) {
       .values({
         user_id,
         intake_response_id,
-        status: "running",
+        status: "pending",
         agents_requested: agents,
+        trigger: "initial",
       })
       .returning();
 
-    const result = await runPipeline({
-      client: app.anthropic,
+    await app.queue.add("pipeline.initial", {
+      type: "pipeline.initial" as const,
       runId: run.id,
-      intake: intakeRow.data as IntakeData,
+      userId: user_id,
+      intakeResponseId: intake_response_id,
       agents,
-      db: app.db,
-      onAgentStart: async (agent) => {
-        await app.db
-          .update(pipelineRuns)
-          .set({ current_agent: agent })
-          .where(eq(pipelineRuns.id, run.id));
-      },
-      onAgentComplete: async (agent, output) => {
-        await app.db.insert(agentOutputs).values({
-          pipeline_run_id: run.id,
-          agent_name: agent,
-          envelope: output,
-        });
-      },
     });
 
-    await app.db
-      .update(pipelineRuns)
-      .set({
-        status: result.status,
-        error: result.error ?? null,
-        completed_at: new Date(),
-      })
-      .where(eq(pipelineRuns.id, run.id));
-
-    return { success: true, data: { run_id: run.id, status: result.status } };
+    return { success: true, data: { run_id: run.id, status: "pending" } };
   });
 
   app.get<{ Params: { id: string } }>(
