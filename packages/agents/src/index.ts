@@ -62,5 +62,7 @@ export { detectNewMilestones } from "./tools/milestones.js";
 export { generateExplanation } from "./tools/explanations.js";
 export { generateInsights } from "./insights/engine.js";
 export { checkCompletionCriteria, generateCompletionSummary } from "./tools/completion.js";
+export { detectImplicitPreferences } from "./tools/preferences.js";
+export type { ImplicitPreferences } from "./tools/preferences.js";
 export type { Insight } from "./insights/generators.js";
 export type { Milestone } from "./tools/milestones.js";
