@@ -21,6 +21,8 @@ import { insightRoutes } from "./insights.js";
 import { techniqueRoutes } from "./techniques.js";
 import { pantryRoutes } from "./pantry.js";
 import { messageRoutes } from "./messages.js";
+import { photoRoutes } from "./photos.js";
+import { calendarRoutes } from "./calendar.js";
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(intakeRoutes);
@@ -45,4 +47,6 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(techniqueRoutes);
   await app.register(pantryRoutes);
   await app.register(messageRoutes);
+  await app.register(photoRoutes);
+  await app.register(calendarRoutes);
 }

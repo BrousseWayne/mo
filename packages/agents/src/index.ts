@@ -77,3 +77,4 @@ export type { Insight } from "./insights/generators.js";
 export type { Milestone } from "./tools/milestones.js";
 export { formatAgentOutput, formatScientistOutput, formatCoachOutput, formatChefOutput, formatNutritionistOutput, formatDietitianOutput, formatPhysicianOutput } from "./formatting/user-messages.js";
 export { generateAdjustmentNarrative } from "./formatting/adjustment-narrative.js";
+export { generateWeeklyReport } from "./formatting/weekly-report.js";
