@@ -6,9 +6,10 @@ import {
   agentOutputs,
   intakeResponses,
   updateProgramTargets,
+  createSessionsFromCoachOutput,
 } from "@mo/database";
 import type { Database } from "@mo/database";
-import type { IntakeData, AgentEnvelope, ScientistOutput } from "@mo/shared";
+import type { IntakeData, AgentEnvelope, ScientistOutput, CoachOutput } from "@mo/shared";
 import { runPipeline } from "@mo/agents";
 import { PIPELINE_QUEUE_NAME, type PipelineJobData } from "./queue.js";
 
@@ -68,15 +69,37 @@ export function createPipelineWorker(
             duration_ms: trace?.duration_ms,
           });
 
-          if (agent === "SCIENTIST" && run.program_id) {
-            const payload = (output as AgentEnvelope).payload as unknown as ScientistOutput;
-            await updateProgramTargets(db, run.program_id, {
-              target_intake_kcal: payload.target_intake_kcal,
-              protein_g: payload.macros.protein_g,
-              fat_g: payload.macros.fat_g,
-              carbs_g: payload.macros.carbs_g,
-              surplus_kcal: payload.surplus_kcal,
-            });
+          if (run.program_id) {
+            const envelope = output as AgentEnvelope;
+
+            if (agent === "SCIENTIST") {
+              const payload = envelope.payload as unknown as ScientistOutput;
+              await updateProgramTargets(db, run.program_id, {
+                target_intake_kcal: payload.target_intake_kcal,
+                protein_g: payload.macros.protein_g,
+                fat_g: payload.macros.fat_g,
+                carbs_g: payload.macros.carbs_g,
+                surplus_kcal: payload.surplus_kcal,
+              });
+            }
+
+            if (agent === "COACH") {
+              const payload = envelope.payload as unknown as CoachOutput;
+              const { programs: programsTable } = await import("@mo/database");
+              const [program] = await db
+                .select()
+                .from(programsTable)
+                .where(eq(programsTable.id, run.program_id))
+                .limit(1);
+              if (program) {
+                await createSessionsFromCoachOutput(
+                  db,
+                  run.program_id,
+                  program.current_week,
+                  payload
+                );
+              }
+            }
           }
         },
       });

@@ -4,6 +4,7 @@ import { pipelineRoutes } from "./pipeline.js";
 import { agentsRoutes } from "./agents.js";
 import { programRoutes } from "./programs.js";
 import { checkinRoutes } from "./checkins.js";
+import { trainingRoutes } from "./training.js";
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(intakeRoutes);
@@ -11,4 +12,5 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(agentsRoutes);
   await app.register(programRoutes);
   await app.register(checkinRoutes);
+  await app.register(trainingRoutes);
 }

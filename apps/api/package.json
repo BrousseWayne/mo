@@ -17,7 +17,8 @@
     "bullmq": "^5.70.0",
     "dotenv": "^16",
     "drizzle-orm": "^0.38",
-    "fastify": "^5"
+    "fastify": "^5",
+    "zod": "^3.24"
   },
   "devDependencies": {
     "tsx": "^4"
