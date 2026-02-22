@@ -277,6 +277,26 @@ export const milestones = pgTable("milestones", {
   metadata: jsonb("metadata"),
 });
 
+export const notificationPreferences = pgTable("notification_preferences", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  program_id: uuid("program_id").references(() => programs.id).notNull(),
+  checkin_reminder_day: integer("checkin_reminder_day").default(0).notNull(),
+  checkin_reminder_hour: integer("checkin_reminder_hour").default(9).notNull(),
+  measurement_reminder_enabled: boolean("measurement_reminder_enabled").default(true).notNull(),
+  training_reminder_enabled: boolean("training_reminder_enabled").default(true).notNull(),
+  insight_notifications_enabled: boolean("insight_notifications_enabled").default(true).notNull(),
+});
+
+export const notificationLog = pgTable("notification_log", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  program_id: uuid("program_id").references(() => programs.id),
+  channel: text("channel").notNull(),
+  title: text("title").notNull(),
+  body: text("body").notNull(),
+  metadata: jsonb("metadata"),
+  sent_at: timestamp("sent_at").defaultNow().notNull(),
+});
+
 export const foods = pgTable("foods", {
   fdc_id: integer("fdc_id").primaryKey(),
   name: text("name").notNull(),
