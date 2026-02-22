@@ -9,6 +9,10 @@ import { complianceRoutes } from "./compliance.js";
 import { healthRoutes } from "./health.js";
 import { adminRoutes } from "./admin.js";
 import { redFlagRoutes } from "./red-flags.js";
+import { dashboardRoutes } from "./dashboard.js";
+import { chartRoutes } from "./charts.js";
+import { mealPlanRoutes } from "./meal-plan.js";
+import { recipeRoutes } from "./recipes.js";
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(intakeRoutes);
@@ -21,4 +25,8 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(healthRoutes);
   await app.register(adminRoutes);
   await app.register(redFlagRoutes);
+  await app.register(dashboardRoutes);
+  await app.register(chartRoutes);
+  await app.register(mealPlanRoutes);
+  await app.register(recipeRoutes);
 }
