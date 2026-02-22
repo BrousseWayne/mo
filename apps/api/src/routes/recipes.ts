@@ -1,6 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { getRecipeById, searchRecipes, updateRecipeRating } from "@mo/database";
+import { scaleRecipe } from "@mo/agents";
 
 export async function recipeRoutes(app: FastifyInstance) {
   app.get<{ Params: { id: string } }>(
@@ -26,6 +27,22 @@ export async function recipeRoutes(app: FastifyInstance) {
         limit: request.query.limit ? Number(request.query.limit) : 50,
       });
       return { success: true, data: recipes };
+    }
+  );
+
+  app.get<{ Params: { id: string }; Querystring: { factor?: string } }>(
+    "/recipes/:id/scaled",
+    async (request, reply) => {
+      const recipe = await getRecipeById(app.db, request.params.id);
+      if (!recipe) {
+        return reply.status(404).send({
+          success: false,
+          error: { code: "NOT_FOUND", message: "Recipe not found" },
+        });
+      }
+      const factor = request.query.factor ? Number(request.query.factor) : 2;
+      const scaled = scaleRecipe(recipe as any, factor);
+      return { success: true, data: scaled };
     }
   );
 

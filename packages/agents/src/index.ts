@@ -56,3 +56,5 @@ export type { ComplianceReport } from "./tools/compliance.js";
 export { evaluateAllTriggers } from "./triggers/engine.js";
 export { getAgentsToRerun } from "./triggers/reexecution-map.js";
 export * from "./triggers/evaluators.js";
+export { generateShoppingList } from "./tools/shopping.js";
+export { scaleRecipe } from "./tools/recipe-utils.js";
