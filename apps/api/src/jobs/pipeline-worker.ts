@@ -1,9 +1,14 @@
 import { Worker } from "bullmq";
 import { eq } from "drizzle-orm";
 import Anthropic from "@anthropic-ai/sdk";
-import { pipelineRuns, agentOutputs, intakeResponses } from "@mo/database";
+import {
+  pipelineRuns,
+  agentOutputs,
+  intakeResponses,
+  updateProgramTargets,
+} from "@mo/database";
 import type { Database } from "@mo/database";
-import type { IntakeData, AgentEnvelope } from "@mo/shared";
+import type { IntakeData, AgentEnvelope, ScientistOutput } from "@mo/shared";
 import { runPipeline } from "@mo/agents";
 import { PIPELINE_QUEUE_NAME, type PipelineJobData } from "./queue.js";
 
@@ -62,6 +67,17 @@ export function createPipelineWorker(
             llm_trace: trace ?? null,
             duration_ms: trace?.duration_ms,
           });
+
+          if (agent === "SCIENTIST" && run.program_id) {
+            const payload = (output as AgentEnvelope).payload as unknown as ScientistOutput;
+            await updateProgramTargets(db, run.program_id, {
+              target_intake_kcal: payload.target_intake_kcal,
+              protein_g: payload.macros.protein_g,
+              fat_g: payload.macros.fat_g,
+              carbs_g: payload.macros.carbs_g,
+              surplus_kcal: payload.surplus_kcal,
+            });
+          }
         },
       });
 
