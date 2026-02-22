@@ -115,6 +115,17 @@ export async function runChef(
     (o) => o.from_agent === "NUTRITIONIST",
   );
 
+  let recipeMemory = "";
+  if (context.recentRecipes?.length) {
+    recipeMemory += `\n\nRecently generated recipes (AVOID repeating these):\n${context.recentRecipes.join(", ")}`;
+  }
+  if (context.ratedRecipes?.length) {
+    const liked = context.ratedRecipes.filter((r) => r.rating >= 4).map((r) => r.name);
+    const disliked = context.ratedRecipes.filter((r) => r.rating <= 2).map((r) => r.name);
+    if (liked.length) recipeMemory += `\nHighly rated recipes (user liked these, create similar): ${liked.join(", ")}`;
+    if (disliked.length) recipeMemory += `\nPoorly rated recipes (user disliked these, avoid similar): ${disliked.join(", ")}`;
+  }
+
   const userMessage = `Generate recipes for the meal plan below.
 
 DIETITIAN output (meal template and slot specs):
@@ -131,7 +142,7 @@ Client intake data:
 - Spice tolerance: ${(context.intake as Record<string, unknown>).spice_tolerance ?? "medium"}
 - Cooking skill: ${context.intake.cooking_skill ?? "beginner"}
 - Equipment: ${JSON.stringify(context.intake.equipment_access ?? [])}
-- Food aversions: ${JSON.stringify(context.intake.food_aversions ?? ["peanut butter", "nut butters"])}`;
+- Food aversions: ${JSON.stringify(context.intake.food_aversions ?? ["peanut butter", "nut butters"])}${recipeMemory}`;
 
   const allTools: Anthropic.Tool[] = [
     ...toolDefinitions,

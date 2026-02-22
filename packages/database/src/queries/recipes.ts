@@ -1,6 +1,6 @@
-import { eq, and, ilike, lte, desc } from "drizzle-orm";
+import { eq, and, ilike, lte, gte, desc, isNotNull } from "drizzle-orm";
 import type { Database } from "../client.js";
-import { recipes } from "../schema.js";
+import { recipes, pipelineRuns } from "../schema.js";
 
 type RecipeInsert = typeof recipes.$inferInsert;
 type RecipeSelect = typeof recipes.$inferSelect;
@@ -57,6 +57,49 @@ export async function searchRecipes(
   if (conditions.length > 0) query = query.where(and(...conditions));
   if (opts?.limit) query = query.limit(opts.limit);
   return query;
+}
+
+export async function getRecentRecipeNames(
+  db: Database,
+  programId: string,
+  weeks: number
+): Promise<string[]> {
+  const cutoff = new Date();
+  cutoff.setDate(cutoff.getDate() - weeks * 7);
+
+  const rows = await db
+    .select({ recipe_name: recipes.recipe_name })
+    .from(recipes)
+    .innerJoin(pipelineRuns, eq(recipes.source_run_id, pipelineRuns.id))
+    .where(
+      and(
+        eq(pipelineRuns.program_id, programId),
+        gte(recipes.created_at, cutoff)
+      )
+    )
+    .orderBy(desc(recipes.created_at));
+
+  return rows.map((r) => r.recipe_name);
+}
+
+export async function getRecipeRatings(
+  db: Database,
+  programId: string
+): Promise<{ name: string; rating: number }[]> {
+  const rows = await db
+    .select({ recipe_name: recipes.recipe_name, rating: recipes.rating })
+    .from(recipes)
+    .innerJoin(pipelineRuns, eq(recipes.source_run_id, pipelineRuns.id))
+    .where(
+      and(
+        eq(pipelineRuns.program_id, programId),
+        isNotNull(recipes.rating)
+      )
+    );
+
+  return rows
+    .filter((r) => r.rating !== null)
+    .map((r) => ({ name: r.recipe_name, rating: r.rating! }));
 }
 
 export async function updateRecipeRating(

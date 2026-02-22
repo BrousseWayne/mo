@@ -14,6 +14,8 @@ export interface AgentContext {
   runId: string;
   callPhysician?: (query: PhysicianQuery) => Promise<AgentEnvelope>;
   nutritionCache?: NutritionCache;
+  recentRecipes?: string[];
+  ratedRecipes?: { name: string; rating: number }[];
 }
 
 export interface PipelineResult {
