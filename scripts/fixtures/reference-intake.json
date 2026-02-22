@@ -1,0 +1,21 @@
+{
+  "age": 28,
+  "height_cm": 174,
+  "current_weight_kg": 55,
+  "target_weight_kg": 65,
+  "training_status": "beginner",
+  "training_frequency_per_week": 3,
+  "estimated_daily_calories": 1800,
+  "daily_step_count": "lightly_active",
+  "menstrual_cycle_length": "26_30",
+  "cycle_tracking": true,
+  "sleep_hours": 7,
+  "stress_level": 4,
+  "previous_weight_gain_attempts": "Tried eating more but lost motivation after 2 weeks",
+  "food_aversions": ["peanut_butter", "nut_butters"],
+  "appetite_level": "low",
+  "cooking_skill": "basic",
+  "partner_cooks": true,
+  "equipment_access": "commercial_gym",
+  "gym_anxiety_level": "moderate"
+}

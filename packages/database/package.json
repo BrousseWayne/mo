@@ -15,7 +15,8 @@
     "build": "tsc",
     "generate": "drizzle-kit generate",
     "migrate": "drizzle-kit migrate",
-    "push": "drizzle-kit push"
+    "push": "drizzle-kit push",
+    "seed": "tsx src/seed.ts"
   },
   "dependencies": {
     "@mo/shared": "workspace:*",

@@ -1,0 +1,46 @@
+{
+  "message_id": "00000000-0000-0000-0000-000000000001",
+  "from_agent": "SCIENTIST",
+  "to_agent": "NUTRITIONIST",
+  "data_type": "macro_targets",
+  "payload": {
+    "bmr_kcal": 1337,
+    "tdee_kcal": 1838,
+    "target_intake_kcal": 2338,
+    "surplus_kcal": 500,
+    "macros": {
+      "protein_g": 99,
+      "protein_g_per_kg": 1.8,
+      "fat_g": 78,
+      "fat_percent": 30,
+      "carbs_g": 282,
+      "fiber_g_min": 25
+    },
+    "hydration_L": 2.2,
+    "weekly_weight_target_kg": 0.35,
+    "projected_timeline_months": 7,
+    "ramp_up": [
+      { "week": 1, "target_kcal": 2038, "surplus_vs_baseline": 200, "method": "Add calorie-dense snack" },
+      { "week": 2, "target_kcal": 2138, "surplus_vs_baseline": 300, "method": "Increase lunch portion" },
+      { "week": 3, "target_kcal": 2238, "surplus_vs_baseline": 400, "method": "Add pre-sleep shake" },
+      { "week": 4, "target_kcal": 2338, "surplus_vs_baseline": 500, "method": "Full target" }
+    ],
+    "adaptation_period_complete": false,
+    "adjustment_triggered": false,
+    "adjustment_type": null,
+    "adjustment_amount_kcal": null,
+    "training_phase": "phase_0",
+    "weeks_on_program": 0,
+    "client_constraints": {
+      "food_aversions": ["peanut_butter", "nut_butters"],
+      "appetite_level": "low",
+      "cooking_skill": "basic",
+      "partner_cooks": true
+    },
+    "red_flags": [],
+    "notes": ["Low appetite — prioritize calorie-dense foods, liquid calories"]
+  },
+  "pipeline_run_id": "00000000-0000-0000-0000-000000000000",
+  "timestamp": "2026-01-01T00:00:00.000Z",
+  "version": "1.0"
+}

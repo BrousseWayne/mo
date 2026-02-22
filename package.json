@@ -9,7 +9,10 @@
     "test": "turbo test",
     "db:generate": "pnpm --filter @mo/database generate",
     "db:migrate": "pnpm --filter @mo/database migrate",
-    "db:push": "pnpm --filter @mo/database push"
+    "db:push": "pnpm --filter @mo/database push",
+    "db:seed": "pnpm --filter @mo/database seed",
+    "bootstrap": "tsx scripts/bootstrap.ts",
+    "playground": "tsx scripts/playground.ts"
   },
   "devDependencies": {
     "dotenv": "^16",
