@@ -18,6 +18,8 @@ import { milestoneRoutes } from "./milestones.js";
 import { scheduleRoutes } from "./schedule.js";
 import { adjustmentRoutes } from "./adjustments.js";
 import { insightRoutes } from "./insights.js";
+import { techniqueRoutes } from "./techniques.js";
+import { pantryRoutes } from "./pantry.js";
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(intakeRoutes);
@@ -39,4 +41,6 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(scheduleRoutes);
   await app.register(adjustmentRoutes);
   await app.register(insightRoutes);
+  await app.register(techniqueRoutes);
+  await app.register(pantryRoutes);
 }

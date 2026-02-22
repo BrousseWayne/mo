@@ -10,3 +10,4 @@ export * from "./queries/red-flags.js";
 export * from "./queries/recipes.js";
 export * from "./queries/milestones.js";
 export * from "./queries/outcomes.js";
+export * from "./queries/pantry.js";

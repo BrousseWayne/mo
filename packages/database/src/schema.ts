@@ -297,6 +297,15 @@ export const notificationLog = pgTable("notification_log", {
   sent_at: timestamp("sent_at").defaultNow().notNull(),
 });
 
+export const pantryItems = pgTable("pantry_items", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  name: text("name").notNull(),
+  category: text("category").notNull(),
+  quantity_g: real("quantity_g").notNull(),
+  expires_at: timestamp("expires_at"),
+  added_at: timestamp("added_at").defaultNow().notNull(),
+});
+
 export const foods = pgTable("foods", {
   fdc_id: integer("fdc_id").primaryKey(),
   name: text("name").notNull(),

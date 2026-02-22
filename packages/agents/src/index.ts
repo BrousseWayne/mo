@@ -67,5 +67,7 @@ export type { ImplicitPreferences } from "./tools/preferences.js";
 export { detectTimingPatterns } from "./insights/timing.js";
 export { generateCuriosityHook, generatePipelineHook } from "./insights/hooks.js";
 export { generateReengagementPrompt } from "./insights/reengagement.js";
+export { lookupTechnique, listTechniques } from "./tools/techniques.js";
+export { detectRepetition } from "./insights/variety.js";
 export type { Insight } from "./insights/generators.js";
 export type { Milestone } from "./tools/milestones.js";
