@@ -15,7 +15,8 @@ import {
   getSessionsForWeek,
   getUnresolvedUrgentFlags,
 } from "@mo/database";
-import { evaluateAllTriggers, getAgentsToRerun } from "@mo/agents";
+import { evaluateAllTriggers, getAgentsToRerun, detectNewMilestones } from "@mo/agents";
+import { getMilestones, createMilestone } from "@mo/database";
 
 export async function checkinRoutes(app: FastifyInstance) {
   app.post<{ Params: { id: string } }>(
@@ -77,6 +78,23 @@ export async function checkinRoutes(app: FastifyInstance) {
         current_weight_kg: data.weight_kg,
         current_week: weekNumber,
       });
+
+      const existingMilestones = await getMilestones(app.db, program.id);
+      const allProgress = await getProgressHistory(app.db, program.id, { limit: 52 });
+      const allSessions: { week_number: number; status: string; exercises: unknown }[] = [];
+      for (let w = 1; w <= weekNumber; w++) {
+        const ws = await getSessionsForWeek(app.db, program.id, w);
+        for (const s of ws) allSessions.push({ week_number: s.week_number, status: s.status, exercises: s.exercises });
+      }
+      const newMilestones = detectNewMilestones(
+        { current_weight_kg: data.weight_kg, target_weight_kg: program.target_weight_kg },
+        allProgress.map((p) => ({ week_number: p.week_number, weight_kg: p.weight_kg, minimum_viable_days_count: p.minimum_viable_days_count, created_at: p.created_at })),
+        allSessions,
+        existingMilestones.map((m) => ({ type: m.type, value: m.value }))
+      );
+      for (const ms of newMilestones) {
+        await createMilestone(app.db, { program_id: program.id, type: ms.type, value: ms.value, achieved_at: new Date(ms.achieved_at) });
+      }
 
       const recentProgress = await getProgressHistory(app.db, program.id, { limit: 10 });
       const sessions = await getSessionsForWeek(app.db, program.id, weekNumber);

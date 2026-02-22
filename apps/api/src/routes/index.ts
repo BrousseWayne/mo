@@ -14,6 +14,7 @@ import { chartRoutes } from "./charts.js";
 import { mealPlanRoutes } from "./meal-plan.js";
 import { recipeRoutes } from "./recipes.js";
 import { shoppingRoutes } from "./shopping.js";
+import { milestoneRoutes } from "./milestones.js";
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(intakeRoutes);
@@ -31,4 +32,5 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(mealPlanRoutes);
   await app.register(recipeRoutes);
   await app.register(shoppingRoutes);
+  await app.register(milestoneRoutes);
 }

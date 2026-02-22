@@ -8,3 +8,4 @@ export * from "./queries/interactions.js";
 export * from "./queries/physician.js";
 export * from "./queries/red-flags.js";
 export * from "./queries/recipes.js";
+export * from "./queries/milestones.js";

@@ -268,6 +268,15 @@ export const interactionEvents = pgTable("interaction_events", {
   created_at: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const milestones = pgTable("milestones", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  program_id: uuid("program_id").references(() => programs.id).notNull(),
+  type: text("type").notNull(),
+  value: real("value"),
+  achieved_at: timestamp("achieved_at").defaultNow().notNull(),
+  metadata: jsonb("metadata"),
+});
+
 export const foods = pgTable("foods", {
   fdc_id: integer("fdc_id").primaryKey(),
   name: text("name").notNull(),
