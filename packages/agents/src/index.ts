@@ -51,3 +51,6 @@ export { NutritionCache, createNutritionCache } from "./clients/nutrition-cache.
 export type { AgentContext, PipelineResult } from "./types.js";
 export { createTraceCollector } from "./agents/trace.js";
 export type { LlmTrace, TraceCollector } from "./agents/trace.js";
+export { evaluateAllTriggers } from "./triggers/engine.js";
+export { getAgentsToRerun } from "./triggers/reexecution-map.js";
+export * from "./triggers/evaluators.js";

@@ -1,5 +1,7 @@
 import type { FastifyInstance } from "fastify";
+import { eq, desc } from "drizzle-orm";
 import { weeklyCheckinSchema } from "@mo/shared";
+import type { AgentEnvelope } from "@mo/shared";
 import {
   getProgramById,
   updateProgramTargets,
@@ -7,7 +9,12 @@ import {
   getProgressHistory,
   getRecentWeights,
   computeWeekNumber,
+  agentOutputs,
+  pipelineRuns,
+  adjustments,
+  getSessionsForWeek,
 } from "@mo/database";
+import { evaluateAllTriggers, getAgentsToRerun } from "@mo/agents";
 
 export async function checkinRoutes(app: FastifyInstance) {
   app.post<{ Params: { id: string } }>(
@@ -58,7 +65,104 @@ export async function checkinRoutes(app: FastifyInstance) {
         current_week: weekNumber,
       });
 
-      return { success: true, data: { checkin_id: entry.id, week_number: weekNumber } };
+      const recentProgress = await getProgressHistory(app.db, program.id, { limit: 10 });
+      const sessions = await getSessionsForWeek(app.db, program.id, weekNumber);
+      const trainingSessions = sessions.map((s) => ({
+        exercises: (s.exercises as { name: string; actual?: { weight_kg: number; reps: number }[] }[]),
+        status: s.status,
+        week_number: s.week_number,
+      }));
+
+      const triggers = evaluateAllTriggers(
+        {
+          current_week: weekNumber,
+          current_weight_kg: data.weight_kg,
+          target_weight_kg: program.target_weight_kg,
+          last_recalc_weight_kg: program.last_recalc_weight_kg,
+          last_protein_recalc_at: program.last_protein_recalc_at,
+          started_at: program.started_at,
+        },
+        recentProgress.map((p) => ({
+          weight_kg: p.weight_kg,
+          week_number: p.week_number,
+          waist_cm: p.waist_cm,
+          hip_cm: p.hip_cm,
+          minimum_viable_days_count: p.minimum_viable_days_count,
+        })),
+        trainingSessions
+      );
+
+      let pipelineRunId: string | null = null;
+
+      if (triggers.length > 0) {
+        const { rerun, skip } = getAgentsToRerun(triggers);
+
+        const latestRun = await app.db
+          .select()
+          .from(pipelineRuns)
+          .where(eq(pipelineRuns.program_id, program.id))
+          .orderBy(desc(pipelineRuns.created_at))
+          .limit(1);
+
+        const cachedOutputs: AgentEnvelope[] = [];
+        if (latestRun[0]) {
+          const outputs = await app.db
+            .select()
+            .from(agentOutputs)
+            .where(eq(agentOutputs.pipeline_run_id, latestRun[0].id));
+
+          for (const agentName of skip) {
+            const cached = outputs.find((o) => o.agent_name === agentName);
+            if (cached) cachedOutputs.push(cached.envelope as AgentEnvelope);
+          }
+        }
+
+        const [run] = await app.db
+          .insert(pipelineRuns)
+          .values({
+            user_id: program.user_id,
+            intake_response_id: program.intake_response_id,
+            program_id: program.id,
+            status: "pending",
+            agents_requested: rerun,
+            trigger: "weekly_checkin",
+          })
+          .returning();
+
+        pipelineRunId = run.id;
+
+        for (const trigger of triggers) {
+          await app.db.insert(adjustments).values({
+            program_id: program.id,
+            pipeline_run_id: run.id,
+            trigger_type: trigger.trigger_type,
+            old_values: trigger.old_values,
+            new_values: trigger.new_values,
+            affected_agents: trigger.affected_agents,
+            reason: trigger.reason,
+          });
+        }
+
+        await app.queue.add("pipeline.checkin", {
+          type: "pipeline.checkin" as const,
+          runId: run.id,
+          userId: program.user_id,
+          intakeResponseId: program.intake_response_id,
+          programId: program.id,
+          agents: rerun,
+          cachedOutputs,
+        });
+      }
+
+      return {
+        success: true,
+        data: {
+          checkin_id: entry.id,
+          week_number: weekNumber,
+          triggers_fired: triggers.map((t) => t.trigger_type),
+          pipeline_run_id: pipelineRunId,
+        },
+      };
     }
   );
 
