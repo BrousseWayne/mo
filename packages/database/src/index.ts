@@ -5,3 +5,5 @@ export * from "./queries/programs.js";
 export * from "./queries/progress.js";
 export * from "./queries/training.js";
 export * from "./queries/interactions.js";
+export * from "./queries/physician.js";
+export * from "./queries/red-flags.js";

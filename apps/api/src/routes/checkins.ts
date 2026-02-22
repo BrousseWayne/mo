@@ -13,6 +13,7 @@ import {
   pipelineRuns,
   adjustments,
   getSessionsForWeek,
+  getUnresolvedUrgentFlags,
 } from "@mo/database";
 import { evaluateAllTriggers, getAgentsToRerun } from "@mo/agents";
 
@@ -32,6 +33,18 @@ export async function checkinRoutes(app: FastifyInstance) {
         return reply.status(400).send({
           success: false,
           error: { code: "PROGRAM_NOT_ACTIVE", message: `Program is ${program.status}` },
+        });
+      }
+
+      const urgentFlags = await getUnresolvedUrgentFlags(app.db, program.id);
+      if (urgentFlags.length > 0) {
+        return reply.status(409).send({
+          success: false,
+          error: {
+            code: "UNRESOLVED_RED_FLAGS",
+            message: `${urgentFlags.length} unresolved urgent red flag(s) must be acknowledged or resolved before check-in`,
+            details: urgentFlags.map((f) => ({ id: f.id, type: f.flag_type })),
+          },
         });
       }
 
