@@ -314,6 +314,16 @@ export const ingredientPrices = pgTable("ingredient_prices", {
   recorded_at: timestamp("recorded_at").defaultNow().notNull(),
 });
 
+export const programDisruptions = pgTable("program_disruptions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  program_id: uuid("program_id").references(() => programs.id).notNull(),
+  type: text("type").notNull(),
+  start_date: timestamp("start_date").notNull(),
+  end_date: timestamp("end_date").notNull(),
+  notes: text("notes"),
+  created_at: timestamp("created_at").defaultNow().notNull(),
+});
+
 export const progressPhotos = pgTable("progress_photos", {
   id: uuid("id").defaultRandom().primaryKey(),
   program_id: uuid("program_id").references(() => programs.id).notNull(),
