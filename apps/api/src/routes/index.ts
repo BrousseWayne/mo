@@ -20,6 +20,7 @@ import { adjustmentRoutes } from "./adjustments.js";
 import { insightRoutes } from "./insights.js";
 import { techniqueRoutes } from "./techniques.js";
 import { pantryRoutes } from "./pantry.js";
+import { messageRoutes } from "./messages.js";
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(intakeRoutes);
@@ -43,4 +44,5 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(insightRoutes);
   await app.register(techniqueRoutes);
   await app.register(pantryRoutes);
+  await app.register(messageRoutes);
 }
