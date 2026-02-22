@@ -60,4 +60,6 @@ export { generateShoppingList } from "./tools/shopping.js";
 export { scaleRecipe } from "./tools/recipe-utils.js";
 export { detectNewMilestones } from "./tools/milestones.js";
 export { generateExplanation } from "./tools/explanations.js";
+export { generateInsights } from "./insights/engine.js";
+export type { Insight } from "./insights/generators.js";
 export type { Milestone } from "./tools/milestones.js";

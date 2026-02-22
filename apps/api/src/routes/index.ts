@@ -17,6 +17,7 @@ import { shoppingRoutes } from "./shopping.js";
 import { milestoneRoutes } from "./milestones.js";
 import { scheduleRoutes } from "./schedule.js";
 import { adjustmentRoutes } from "./adjustments.js";
+import { insightRoutes } from "./insights.js";
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(intakeRoutes);
@@ -37,4 +38,5 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(milestoneRoutes);
   await app.register(scheduleRoutes);
   await app.register(adjustmentRoutes);
+  await app.register(insightRoutes);
 }
