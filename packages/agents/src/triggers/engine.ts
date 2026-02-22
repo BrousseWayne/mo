@@ -8,6 +8,8 @@ import {
   evaluateWeightMilestone,
   evaluateProteinRecalc,
   evaluateCompliance,
+  evaluateTierProgression,
+  evaluatePhaseTransition,
 } from "./evaluators.js";
 
 interface Program {
@@ -17,6 +19,8 @@ interface Program {
   last_recalc_weight_kg: number | null;
   last_protein_recalc_at: Date | null;
   started_at: Date;
+  current_tier?: string | null;
+  current_phase?: string | null;
 }
 
 interface WeightEntry {
@@ -51,6 +55,8 @@ const TRIGGER_PRIORITY: string[] = [
   "protein_recalc",
   "training_stall",
   "compliance",
+  "tier_progression",
+  "phase_transition",
 ];
 
 export function evaluateAllTriggers(
@@ -105,6 +111,15 @@ export function evaluateAllTriggers(
 
   const compliance = evaluateCompliance(mvdCounts);
   if (compliance) results.push(compliance);
+
+  const tier = evaluateTierProgression(
+    recentProgress.map((p) => ({ week_number: p.week_number, minimum_viable_days_count: p.minimum_viable_days_count })),
+    program.current_tier ?? null
+  );
+  if (tier) results.push(tier);
+
+  const phase = evaluatePhaseTransition(trainingSessions, program.current_phase ?? null);
+  if (phase) results.push(phase);
 
   const hasInsufficientGain = results.some((r) => r.trigger_type === "insufficient_gain");
   const hasExcessiveGain = results.some((r) => r.trigger_type === "excessive_gain");
