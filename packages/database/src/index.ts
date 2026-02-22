@@ -4,3 +4,4 @@ export { createFoodQueries, foodRowToDetail, foodDetailToRow, type FoodRow, type
 export * from "./queries/programs.js";
 export * from "./queries/progress.js";
 export * from "./queries/training.js";
+export * from "./queries/interactions.js";
