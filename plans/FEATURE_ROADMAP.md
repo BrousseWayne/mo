@@ -432,15 +432,15 @@ Architectural designs for both are in **Appendix A** and **Appendix B**.
 **Effort**: L
 **Touches**: Knowledge base maintenance process
 
-<!-- will a single or maybe 2 with the creator a male but, shouldnt change much for me, be enough data ? -->
+### D-4: Outcome Tracking & Self-Learning [MAJOR]
 
-### D-4: Outcome Tracking & Population Learning
+**Description**: Over time, track what actually worked: which surplus levels produced the best gain rate? Which cuisines had highest compliance? Which exercises showed fastest progression? The system learns from its own historical data.
 
-**Description**: Over time, track what actually worked: which surplus levels produced the best gain rate? Which cuisines had highest compliance? Which exercises showed fastest progression? The system should learn from its own historical data.
+**Single-user reality**: With one user (and the developer as a secondary test subject), statistical power is limited. The system cannot derive population-level conclusions. But it can still: detect personal patterns (she always skips Thursday training → reschedule), track what worked for *her* specifically (almond butter compliance >> tahini), identify which CHEF recipes she actually cooked vs ignored, measure her individual response curves (surplus → gain rate over months). N=1 longitudinal data is valuable — the system becomes deeply personalized rather than statistically generalizable.
 
-**Dependencies**: T-2
-**Effort**: XL
-**Touches**: Analytics pipeline, aggregate queries on single-user historical data
+**Dependencies**: T-2, T-6
+**Effort**: L
+**Touches**: Analytics queries on single-user historical data, pattern detection module
 
 ### D-5: Static User Model Refresh [MAJOR]
 

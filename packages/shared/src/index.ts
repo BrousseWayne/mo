@@ -3,3 +3,7 @@ export * from "./schemas/intake.js";
 export * from "./schemas/agent-io.js";
 export * from "./schemas/pipeline.js";
 export * from "./schemas/nutrition.js";
+export * from "./schemas/checkin.js";
+export * from "./schemas/adjustment.js";
+export * from "./schemas/program.js";
+export * from "./schemas/trigger.js";

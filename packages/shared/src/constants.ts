@@ -49,3 +49,28 @@ export const FDC_NUTRIENT_IDS = {
 export const FDC_BASE_URL = "https://api.nal.usda.gov/fdc/v1";
 export const FDC_RATE_LIMIT = 1000;
 export const FDC_RATE_WINDOW_MS = 3_600_000;
+
+export const TRIGGER_THRESHOLDS = {
+  min_weekly_gain: 0.25,
+  max_weekly_gain: 0.75,
+  calorie_increase: 200,
+  calorie_decrease: 150,
+  waist_hip_weeks: 4,
+  stall_sessions: 3,
+  stall_lifts: 2,
+  milestone_interval_kg: 5,
+  protein_recalc_days: 30,
+  compliance_mvd_threshold: 2,
+} as const;
+
+export const RE_EXECUTION_MAP: Record<string, { rerun: string[]; skip: string[] }> = {
+  insufficient_gain: { rerun: ["SCIENTIST", "NUTRITIONIST", "DIETITIAN", "CHEF"], skip: ["COACH"] },
+  excessive_gain: { rerun: ["SCIENTIST", "NUTRITIONIST", "DIETITIAN", "CHEF"], skip: ["COACH"] },
+  waist_hip_flag: { rerun: ["SCIENTIST", "NUTRITIONIST", "DIETITIAN", "CHEF", "COACH"], skip: [] },
+  training_stall: { rerun: ["COACH"], skip: ["SCIENTIST", "NUTRITIONIST", "DIETITIAN", "CHEF"] },
+  weight_milestone: { rerun: ["SCIENTIST", "NUTRITIONIST"], skip: ["DIETITIAN", "CHEF", "COACH"] },
+  protein_recalc: { rerun: ["SCIENTIST", "NUTRITIONIST", "DIETITIAN", "CHEF"], skip: ["COACH"] },
+  compliance: { rerun: ["DIETITIAN", "CHEF"], skip: ["SCIENTIST", "NUTRITIONIST", "COACH"] },
+  tier_progression: { rerun: ["SCIENTIST", "NUTRITIONIST", "DIETITIAN", "CHEF"], skip: ["COACH"] },
+  phase_transition: { rerun: ["SCIENTIST", "COACH"], skip: ["NUTRITIONIST", "DIETITIAN", "CHEF"] },
+};
