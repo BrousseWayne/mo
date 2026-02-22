@@ -1,5 +1,6 @@
 import type { AgentEnvelope, IntakeData } from "@mo/shared";
 import type { NutritionCache } from "./clients/nutrition-cache.js";
+import type { LlmTrace } from "./agents/trace.js";
 
 export interface PhysicianQuery {
   query_type: string;
@@ -18,6 +19,7 @@ export interface AgentContext {
 export interface PipelineResult {
   runId: string;
   outputs: AgentEnvelope[];
+  traces: Record<string, LlmTrace>;
   status: "completed" | "failed" | "paused";
   error?: string;
 }

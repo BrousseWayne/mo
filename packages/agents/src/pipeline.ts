@@ -2,6 +2,7 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { IntakeData, AgentEnvelope } from "@mo/shared";
 import type { Database } from "@mo/database";
 import type { AgentContext, PipelineResult } from "./types.js";
+import type { LlmTrace } from "./agents/trace.js";
 import { createUsdaFdcClient } from "./clients/usda-fdc.js";
 import { createNutritionCache, type NutritionCache } from "./clients/nutrition-cache.js";
 import { runScientist } from "./agents/scientist.js";
@@ -48,7 +49,7 @@ export async function runPipeline(params: {
   db?: Database;
   cachedOutputs?: AgentEnvelope[];
   onAgentStart?: (agent: string) => void;
-  onAgentComplete?: (agent: string, output: AgentEnvelope) => void;
+  onAgentComplete?: (agent: string, output: AgentEnvelope, trace?: LlmTrace) => void;
   onAgentError?: (agent: string, error: Error) => void;
 }): Promise<PipelineResult> {
   const {
@@ -63,6 +64,7 @@ export async function runPipeline(params: {
     onAgentError,
   } = params;
   const outputs: AgentEnvelope[] = cachedOutputs ? [...cachedOutputs] : [];
+  const traces: Record<string, LlmTrace> = {};
 
   const nutritionCache = db ? createNutritionCacheIfAvailable(db) : undefined;
 
@@ -74,6 +76,7 @@ export async function runPipeline(params: {
       return {
         runId,
         outputs,
+        traces,
         status: "failed",
         error: `Agent ${agentName} not implemented`,
       };
@@ -96,20 +99,35 @@ export async function runPipeline(params: {
         callPhysician,
         nutritionCache: NUTRITION_TOOL_AGENTS.has(agentName) ? nutritionCache : undefined,
       };
+
+      const startMs = Date.now();
       const output = await runner(client, context);
+      const durationMs = Date.now() - startMs;
+
+      const trace: LlmTrace = {
+        agent: agentName,
+        model: "claude-sonnet-4-5-20250929",
+        turns: [],
+        total_input_tokens: 0,
+        total_output_tokens: 0,
+        duration_ms: durationMs,
+      };
+      traces[agentName] = trace;
+
       outputs.push(output);
-      onAgentComplete?.(agentName, output);
+      onAgentComplete?.(agentName, output, trace);
     } catch (err) {
       const error = err instanceof Error ? err : new Error(String(err));
       onAgentError?.(agentName, error);
       return {
         runId,
         outputs,
+        traces,
         status: "failed",
         error: `${agentName}: ${error.message}`,
       };
     }
   }
 
-  return { runId, outputs, status: "completed" };
+  return { runId, outputs, traces, status: "completed" };
 }

@@ -49,3 +49,5 @@ export type { NutritionToolName } from "./tools/nutrition.js";
 export { UsdaFdcClient, createUsdaFdcClient } from "./clients/usda-fdc.js";
 export { NutritionCache, createNutritionCache } from "./clients/nutrition-cache.js";
 export type { AgentContext, PipelineResult } from "./types.js";
+export { createTraceCollector } from "./agents/trace.js";
+export type { LlmTrace, TraceCollector } from "./agents/trace.js";

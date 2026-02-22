@@ -54,11 +54,13 @@ export function createPipelineWorker(
             .set({ current_agent: agent })
             .where(eq(pipelineRuns.id, runId));
         },
-        onAgentComplete: async (agent, output) => {
+        onAgentComplete: async (agent, output, trace) => {
           await db.insert(agentOutputs).values({
             pipeline_run_id: runId,
             agent_name: agent,
             envelope: output,
+            llm_trace: trace ?? null,
+            duration_ms: trace?.duration_ms,
           });
         },
       });
