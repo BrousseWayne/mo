@@ -72,5 +72,6 @@ export { detectRepetition } from "./insights/variety.js";
 export { detectWeightAnomaly, detectMeasurementInconsistency } from "./tools/anomaly.js";
 export { detrendWeight, rollingAverage } from "./tools/detrending.js";
 export { projectTrajectory, getTrajectoryDeviation } from "./tools/trajectory.js";
+export { detectScientistHallucinations, detectChefHallucinations } from "./validation/hallucination.js";
 export type { Insight } from "./insights/generators.js";
 export type { Milestone } from "./tools/milestones.js";
