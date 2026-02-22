@@ -8,7 +8,11 @@ import {
   getProgramById,
   listPrograms,
   transitionStatus,
+  updateProgramTargets,
+  getProgressHistory,
+  getMilestones,
 } from "@mo/database";
+import { checkCompletionCriteria, generateCompletionSummary } from "@mo/agents";
 
 export async function programRoutes(app: FastifyInstance) {
   app.post("/programs", async (request, reply) => {
@@ -100,6 +104,19 @@ export async function programRoutes(app: FastifyInstance) {
       }
 
       try {
+        const program = await getProgramById(app.db, request.params.id);
+        if (!program) {
+          return reply.status(404).send({ success: false, error: { code: "NOT_FOUND", message: "Program not found" } });
+        }
+
+        if (parsed.data === "paused" && program.status === "active") {
+          await updateProgramTargets(app.db, program.id, { paused_at: new Date() } as any);
+        }
+
+        if (parsed.data === "active" && program.status === "paused") {
+          await updateProgramTargets(app.db, program.id, { paused_at: null } as any);
+        }
+
         const updated = await transitionStatus(app.db, request.params.id, parsed.data);
         return { success: true, data: updated };
       } catch (err) {
@@ -109,6 +126,35 @@ export async function programRoutes(app: FastifyInstance) {
         }
         return reply.status(400).send({ success: false, error: { code: "INVALID_TRANSITION", message: msg } });
       }
+    }
+  );
+
+  app.get<{ Params: { id: string } }>(
+    "/programs/:id/completion-check",
+    async (request, reply) => {
+      const program = await getProgramById(app.db, request.params.id);
+      if (!program) {
+        return reply.status(404).send({
+          success: false,
+          error: { code: "NOT_FOUND", message: "Program not found" },
+        });
+      }
+
+      const entries = await getProgressHistory(app.db, program.id, { limit: 52 });
+      const isComplete = checkCompletionCriteria(program, entries.map((e) => ({ week_number: e.week_number, weight_kg: e.weight_kg })));
+
+      if (!isComplete) {
+        return { success: true, data: { eligible: false } };
+      }
+
+      const milestones = await getMilestones(app.db, program.id);
+      const summary = generateCompletionSummary(
+        program,
+        entries.map((e) => ({ week_number: e.week_number, weight_kg: e.weight_kg })),
+        milestones.map((m) => ({ type: m.type, value: m.value }))
+      );
+
+      return { success: true, data: { eligible: true, summary } };
     }
   );
 }
