@@ -27,7 +27,7 @@ export {
   applyCalorieTier,
   buildEmergencyProtocol,
 } from "./tools/dietitian.js";
-export { runPhysician } from "./agents/physician.js";
+export { runPhysician, runPhysicianProactiveReview, detectProactiveConcerns } from "./agents/physician.js";
 export {
   classifyRedFlag,
   lookupSupplementSafety,

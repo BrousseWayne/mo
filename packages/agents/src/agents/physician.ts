@@ -77,6 +77,114 @@ After using any necessary tools, produce your final output as a single JSON obje
 
 Output ONLY the JSON object, no additional text.`;
 
+interface SubjectiveMarkers {
+  energy?: number;
+  sleep_quality?: number;
+  mood?: number;
+  appetite?: number;
+}
+
+interface ProgressEntry {
+  week_number: number;
+  subjective_markers?: SubjectiveMarkers | null;
+}
+
+interface ProactiveProgram {
+  current_weight_kg: number;
+  target_weight_kg: number;
+}
+
+export function detectProactiveConcerns(
+  entries: ProgressEntry[]
+): string | null {
+  if (entries.length < 3) return null;
+
+  const sorted = [...entries].sort((a, b) => b.week_number - a.week_number);
+  const recent = sorted.slice(0, 3).filter((e) => e.subjective_markers);
+  if (recent.length < 3) return null;
+
+  const concerns: string[] = [];
+
+  const energyValues = recent.map((e) => e.subjective_markers!.energy).filter((v): v is number => v !== undefined);
+  if (energyValues.length >= 3 && energyValues.every((v) => v < 4)) {
+    concerns.push(`Persistent low energy (avg ${(energyValues.reduce((a, b) => a + b, 0) / energyValues.length).toFixed(1)}/10) for ${energyValues.length}+ weeks`);
+  }
+
+  const moodValues = recent.map((e) => e.subjective_markers!.mood).filter((v): v is number => v !== undefined);
+  if (moodValues.length >= 3) {
+    const declining = moodValues.every((v, i) => i === 0 || v <= moodValues[i - 1]);
+    if (declining && moodValues[moodValues.length - 1] < 5) {
+      concerns.push("Declining mood trend over recent weeks");
+    }
+  }
+
+  const appetiteValues = recent.map((e) => e.subjective_markers!.appetite).filter((v): v is number => v !== undefined);
+  if (appetiteValues.length >= 3 && appetiteValues.every((v) => v < 3)) {
+    concerns.push("Persistent appetite suppression");
+  }
+
+  const sleepValues = recent.map((e) => e.subjective_markers!.sleep_quality).filter((v): v is number => v !== undefined);
+  if (sleepValues.length >= 3 && sleepValues.every((v) => v < 4)) {
+    concerns.push("Persistent poor sleep quality");
+  }
+
+  if (concerns.length === 0) return null;
+  return concerns.join(". ") + ".";
+}
+
+export async function runPhysicianProactiveReview(
+  client: Anthropic,
+  program: ProactiveProgram,
+  recentEntries: ProgressEntry[]
+): Promise<AgentEnvelope | null> {
+  const concerns = detectProactiveConcerns(recentEntries);
+  if (!concerns) return null;
+
+  const query = `Proactive review: Client is on a weight gain program (current ${program.current_weight_kg}kg, target ${program.target_weight_kg}kg). The following concerns were detected from their weekly check-in subjective markers:\n\n${concerns}\n\nProvide medical context and recommendations. If any of these could indicate a condition requiring professional evaluation, flag with referral_needed: true.`;
+
+  const messages: Anthropic.MessageParam[] = [
+    { role: "user", content: query },
+  ];
+
+  const response = await client.messages.create({
+    model: "claude-haiku-4-5-20251001",
+    max_tokens: 2048,
+    system: SYSTEM_PROMPT,
+    tools: toolDefinitions,
+    messages,
+  });
+
+  const textBlock = response.content.find(
+    (b): b is Anthropic.TextBlock => b.type === "text"
+  );
+
+  if (!textBlock) return null;
+
+  const jsonMatch =
+    textBlock.text.match(/```json\n([\s\S]*?)\n```/) ??
+    textBlock.text.match(/\{[\s\S]*\}/);
+
+  if (!jsonMatch) return null;
+
+  try {
+    const raw = JSON.parse(jsonMatch[1] ?? jsonMatch[0]);
+    const validated = physicianOutputSchema.parse(raw);
+
+    return {
+      message_id: randomUUID(),
+      from_agent: "PHYSICIAN",
+      to_agent: "USER",
+      data_type: "proactive_review",
+      payload: validated as unknown as Record<string, unknown>,
+      pipeline_run_id: "",
+      timestamp: new Date().toISOString(),
+      version: "1.0",
+    };
+  } catch {
+    return null;
+  }
+}
+
 export async function runPhysician(
   client: Anthropic,
   context: AgentContext,
