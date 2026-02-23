@@ -402,9 +402,9 @@ Architectural designs for both are in **Appendix A** and **Appendix B**.
 
 ---
 
-<!-- as a fact we should try to kee[ as much data as we can. Persistence is key -->
-
 ## 6. Data & Knowledge
+
+**Guiding principle**: Persistence is key. Store everything, discard nothing. Data that seems redundant today becomes the training signal, the debugging trace, or the motivational evidence tomorrow. Disk is cheap; lost data is irreplaceable. Every interaction, every measurement, every agent decision, every skipped meal — capture it.
 
 ### D-1: Recipe Database Accumulation [MAJOR]
 
@@ -450,11 +450,51 @@ Architectural designs for both are in **Appendix A** and **Appendix B**.
 **Effort**: M
 **Touches**: User profile update API, how intake data flows into agents
 
+### D-6: Full Pipeline Run Archival [CRITICAL]
+
+**Description**: Every pipeline run stores agent outputs, but not: the exact system prompts used, the full LLM conversation (tool calls, reasoning), the input context assembled for each agent, token counts per turn, latency per tool call. When debugging why CHEF produced a bad recipe 3 weeks ago, you need the full replay — not just the final JSON.
+
+**Dependencies**: None
+**Effort**: M
+**Touches**: Agent runners (capture full conversation), `agent_outputs` table (add `llm_trace` JSONB column)
+
+### D-7: User Interaction Log [CRITICAL]
+
+**Description**: Log every user-facing interaction: check-in submissions, recipe views, training log entries, meal swaps, skipped meals, recipe ratings, chat messages. This is the raw behavioral signal that feeds D-4 and A-3.
+
+**Dependencies**: T-1
+**Effort**: M
+**Touches**: New `interaction_events` table, event logging middleware
+
+### D-8: Body Measurement History [MAJOR]
+
+**Description**: Beyond weight: waist, hip, arm, thigh circumference time series. Photo metadata (date, pose, lighting conditions). DEXA or bioimpedance data if available. The richer the measurement history, the better SCIENTIST can distinguish muscle gain from fat gain.
+
+**Dependencies**: T-2, U-4
+**Effort**: S
+**Touches**: `progress_entries` table (already has measurement fields), measurement input UI
+
+### D-9: Ingredient Price Tracking
+
+**Description**: Track ingredient costs over time per store/source. Enables CHEF to optimize for budget when requested, detect seasonal price changes, suggest substitutions when a staple gets expensive.
+
+**Dependencies**: D-1, X-1
+**Effort**: M
+**Touches**: Ingredient metadata, price tracking table
+
+### D-10: Sleep & Recovery Data Store
+
+**Description**: Dedicated storage for sleep quality, duration, HRV, stress markers — either self-reported or from wearables (X-2). COACH uses this for autoregulation, PHYSICIAN for trend monitoring.
+
+**Dependencies**: T-2
+**Effort**: S
+**Touches**: `progress_entries` expansion or dedicated `recovery_entries` table
+
 ---
 
-## 7. Integrations
+## 7. Integrations & Partner Tools
 
-<!-- We need to expand these as tools for the partner, me to be honest. Let's think about user facing features for the cook -->
+The cook (partner) is the execution engine for everything CHEF and DIETITIAN design. If the cook's workflow is painful, compliance drops to zero regardless of how good the plan is. These tools make the cook's life easier — and by extension, make the whole system work.
 
 ### X-1: Grocery/Shopping Lists [CRITICAL]
 
@@ -474,11 +514,69 @@ Architectural designs for both are in **Appendix A** and **Appendix B**.
 **Effort**: L per integration
 **Touches**: New integration service, progress_entries auto-population
 
+### X-3: Cook's Dashboard [CRITICAL]
+
+**Description**: Partner-facing view of the week: what to cook when, batch cooking schedule, today's meals to prep, ingredient status (what's in the fridge vs what needs buying). Different from the user's meal plan view (U-6) — this is the *production* view, not the *consumption* view. Shows: prep time, cook time, parallel cooking windows, equipment needed, defrost reminders.
+
+**Dependencies**: U-3, X-1
+**Effort**: L
+**Touches**: `apps/web/` (cook view), CHEF output formatting
+
+### X-4: Batch Cooking Planner [CRITICAL]
+
+**Description**: CHEF already generates batch cooking protocols (`chef-batch-cooking.md`), but the cook needs an interactive planner: which batch cooking day covers which meals, what to prep in what order for maximum parallel efficiency, storage instructions per item, reheat instructions. A timeline view of the batch cooking session — "start rice at 0:00, while rice cooks prep vegetables at 0:05, start sauce at 0:15..."
+
+**Dependencies**: X-3
+**Effort**: M
+**Touches**: Batch cooking sequencer module, cook view UI
+
+### X-5: Technique Reference & Video Links [MAJOR]
+
+**Description**: When CHEF prescribes "brunoise the carrots" or "make a roux", link to the technique in `knowledge/cooking-techniques.md` — or better, to a curated video. The cook's skill improves over time and the system should track this (D-5) to gradually increase recipe complexity.
+
+**Current state**: `knowledge/cooking-techniques.md` has French technique descriptions. No linking mechanism from recipes to technique reference.
+
+**Dependencies**: None
+**Effort**: S
+**Touches**: CHEF output enrichment, technique reference UI
+
+### X-6: Pantry & Inventory Tracker [MAJOR]
+
+**Description**: Track what ingredients are available at home. When generating shopping lists (X-1), subtract pantry stock. Flag expiring ingredients so CHEF can prioritize using them. After a batch cooking day, update inventory with prepared items and their storage duration.
+
+**Dependencies**: X-1
+**Effort**: M
+**Touches**: New `pantry_items` table, inventory management API
+
+### X-7: Recipe Scaling Calculator [MAJOR]
+
+**Description**: The cook sometimes needs to scale: double a recipe for meal prep, halve it because half the batch is already done, adjust for different portion sizes. Auto-recalculate all ingredient quantities and cooking times. Preserve macro accuracy through scaling.
+
+**Dependencies**: D-1
+**Effort**: S
+**Touches**: Recipe utility functions, UI component
+
+### X-8: Cook Feedback Channel [MAJOR]
+
+**Description**: The cook needs to report back: "this recipe was too complex", "she didn't like the texture", "the sauce broke", "this took 2 hours not 30 minutes". This feeds into D-4 (outcome tracking) and A-1 (CHEF memory). Rate recipes, flag issues, suggest modifications — from the cook's perspective.
+
+**Dependencies**: D-1, D-7
+**Effort**: M
+**Touches**: Feedback API, CHEF context enrichment
+
+### X-9: Kitchen Timer & Session Mode
+
+**Description**: When the cook starts a recipe or batch cooking session, enter "kitchen mode": step-by-step instructions with large text, voice-friendly (no small buttons with wet hands), integrated timers per step, "next step" navigation, hands-free progression.
+
+**Dependencies**: X-3
+**Effort**: L
+**Touches**: `apps/web/` (kitchen mode UI), recipe step parser
+
 ---
 
 ## 8. Lifecycle & Engagement
 
-<!-- We need to expand this massively the user is unmotivted, i don't blame sport is hard. But we need to maximize engagement. But she is smart, it needs to be subtle and fun -->
+**Design principle**: The user is smart and unmotivated about sport. Engagement mechanics must be subtle, never patronizing. No gamification cheese (streaks, badges, leaderboards). Instead: genuine insight from her own data, frictionless logging, well-timed information that makes her *curious* about her own progress. The system earns engagement by being genuinely useful — not by guilt-tripping or cheerleading.
 
 ### L-1: Program Lifecycle Management [CRITICAL]
 
@@ -490,23 +588,95 @@ Architectural designs for both are in **Appendix A** and **Appendix B**.
 **Effort**: L
 **Touches**: `packages/database/src/schema.ts`, program state management, API routes
 
-### L-2: Milestone/Achievement System [CRITICAL]
+### L-2: Milestone Detection [CRITICAL]
 
-**Description**: No defined milestones (first 1kg, first lift progression, first phase transition, 50% to goal). No celebration mechanics. COACH spec says "celebrates progress explicitly" but has no data structure to detect or surface milestones.
+**Description**: No defined milestones (first 1kg, first lift progression, first phase transition, 50% to goal). COACH spec says "celebrates progress explicitly" but has no data structure to detect or surface milestones.
 
 **Dependencies**: T-2, T-5
 **Effort**: M
 **Touches**: Milestone detection logic, notification triggers
 
----
+### L-3: Data-Driven Insights ("Did You Know...") [CRITICAL]
 
-<!-- We need to expand these, a way for the dev (me) to have better insight into what is happening at every steps would be immensly useful. Dependencies graph, execution flow charts, we can and should add as much quality of life as possible-->
+**Description**: Surface genuinely interesting patterns from her own data. Not "you're doing great!" but "your squat jumped 5kg in the last 3 weeks — that's twice the rate of the first month. The surplus increase from week 4 probably contributed." Or: "you've skipped Thursday training 3 of the last 4 weeks — would moving it to Saturday work better?" Insights that are specific, data-backed, and actionable. She's smart — treat her like it.
+
+**Dependencies**: T-2, T-5, T-6, D-4
+**Effort**: L
+**Touches**: Insight generation module, SCIENTIST/COACH output enrichment
+
+### L-4: Friction-Free Logging [CRITICAL]
+
+**Description**: Every tap, every form field, every extra screen is a reason to skip logging. Minimize friction ruthlessly: one-tap meal confirmation ("ate as planned"), pre-filled training from last session (just change what's different), quick-entry for weight (scale → phone → done), photo with auto-date. The less effort logging takes, the more data you get, the better the system works.
+
+**Dependencies**: U-5, U-6
+**Effort**: M
+**Touches**: All input UIs, default/pre-fill logic
+
+### L-5: Smart Timing & Context [MAJOR]
+
+**Description**: Don't send a training reminder at 6am if she always trains at 7pm. Don't ask for a check-in on a day she's historically unavailable. Learn her patterns and communicate at the right moment. Send the batch cooking plan on Saturday morning if that's when the cook preps. Show tomorrow's meal plan in the evening, not at noon.
+
+**Dependencies**: D-7, U-2
+**Effort**: M
+**Touches**: Notification scheduling, user behavior pattern detection
+
+### L-6: Low-Friction Re-engagement [MAJOR]
+
+**Description**: When she misses a week (or three), the system should not guilt-trip, not reset, not act like nothing happened. It should: acknowledge the gap matter-of-factly, show what changed (weight, if she logged), offer a gentle restart ("want to pick up where you left off, or should we recalculate?"), lower the bar for the first week back (fewer meals, lighter training). Make coming back easier than staying away.
+
+**Dependencies**: L-1, T-2
+**Effort**: M
+**Touches**: Program pause/resume logic, re-engagement flow, COACH/DIETITIAN context
+
+### L-7: Progress Narratives [MAJOR]
+
+**Description**: Monthly or phase-end summary that tells her story in data: where she started, what happened, where she is. Not a report card — a narrative. "In December you gained 1.8kg, mostly during the first two weeks when compliance was highest. Your deadlift went from 40kg to 50kg. January was slower — the holiday break cost about a week of momentum, but you recovered quickly." SCIENTIST provides the data, the narrative layer makes it meaningful.
+
+**Dependencies**: T-2, D-4, U-7
+**Effort**: M
+**Touches**: Narrative generation module (LLM-powered), report delivery
+
+### L-8: Curiosity Hooks [MAJOR]
+
+**Description**: Subtle prompts that make her want to check the app. Not notifications that say "log your workout!" but: "SCIENTIST updated your trajectory — want to see?" or "CHEF tried something new for Thursday dinner" or "your hip measurement changed — here's what that means." Information pull, not compliance push.
+
+**Dependencies**: U-2, L-3
+**Effort**: M
+**Touches**: Notification content strategy, insight-to-notification pipeline
+
+### L-9: Graceful Degradation
+
+**Description**: When data is incomplete (missed a check-in, forgot to log training, skipped measurements), the system should still function — with reduced confidence. Not: "missing data, can't evaluate." Instead: "based on available data, here's what we think, confidence is lower this week." The trigger engine (T-3) should have a minimum-viable-data threshold, not an all-or-nothing gate.
+
+**Dependencies**: T-3
+**Effort**: M
+**Touches**: Trigger engine (confidence scoring), missing data handling
+
+### L-10: Variety & Surprise
+
+**Description**: Routine kills motivation. CHEF should introduce new cuisines gradually (from the 9 cuisine kits). COACH should rotate accessory exercises. The system should recognize when it's been too repetitive ("you've had the same breakfast 12 days running — want some variety?") and proactively shake things up. Not random — informed by her preferences and the data.
+
+**Dependencies**: A-1, D-4
+**Effort**: M
+**Touches**: CHEF recipe selection, COACH exercise rotation, variety detection logic
+
+### L-11: Goal Visualization
+
+**Description**: Show the destination concretely: what does 65kg look like for her frame? What lifts will she likely hit by then? How will her measurements change? Not abstract "you'll be healthier" — concrete projections from SCIENTIST's models. Update as real data comes in.
+
+**Dependencies**: T-8, U-3
+**Effort**: M
+**Touches**: Projection visualization, SCIENTIST trajectory model
+
+---
 
 ## 9. Developer Experience
 
+**Guiding principle**: The developer (you) needs to see inside the machine at every step. When something goes wrong — a bad recipe, a weird macro, a trigger that didn't fire — you need to trace exactly what happened, what each agent saw, what it decided, and why. The more visibility into the pipeline, the faster you iterate. Invest heavily here.
+
 ### DX-1: Agent Playground [CRITICAL]
 
-**Description**: To iterate on CHEF's prompt, you must run the full pipeline. Need a sandbox where you feed an agent specific input and inspect output in isolation.
+**Description**: To iterate on CHEF's prompt, you must run the full pipeline. Need a sandbox where you feed an agent specific input and inspect output in isolation. Feed CHEF a specific DIETITIAN output, tweak the prompt, compare outputs side by side. Same for any agent.
 
 **Dependencies**: None
 **Effort**: M
@@ -528,6 +698,70 @@ Architectural designs for both are in **Appendix A** and **Appendix B**.
 **Effort**: M
 **Touches**: `apps/api/` (Fastify OpenAPI plugin)
 
+### DX-4: Pipeline Execution Visualizer [CRITICAL]
+
+**Description**: Real-time or post-hoc visual trace of a pipeline run: which agent ran when, how long each took, what tokens were consumed, what tools were called, what the intermediate outputs looked like. A timeline view where you click an agent and see its full context (input, system prompt, tool calls, output). Think Chrome DevTools for the agent pipeline.
+
+**Dependencies**: D-6, I-4
+**Effort**: L
+**Touches**: Pipeline event logging, visualization UI (`apps/web/` or standalone dev tool)
+
+### DX-5: Dependency Graph [CRITICAL]
+
+**Description**: Visual graph of all feature, data, and agent dependencies. Which agents consume which outputs. Which DB tables feed which tools. Which triggers re-run which agents. This document has dependency chains described in text — they should be rendered as an interactive DAG. Auto-generated from code (Zod schemas, pipeline config, trigger matrix).
+
+**Dependencies**: None
+**Effort**: M
+**Touches**: Graph generation script, visualization (Mermaid, D3, or similar)
+
+### DX-6: Agent I/O Inspector [CRITICAL]
+
+**Description**: For any pipeline run, inspect the exact input assembled for each agent (the `AgentContext`) and the exact output returned. Side-by-side diff between runs. Highlight where Agent B's output deviated from Agent A's expectations. Flag when CHEF's macros don't match DIETITIAN's spec — visually, before you even run validation.
+
+**Dependencies**: D-6
+**Effort**: M
+**Touches**: Pipeline run viewer, agent output comparison UI
+
+### DX-7: Cost & Token Dashboard [MAJOR]
+
+**Description**: Per-run and aggregate view of: tokens in/out per agent, cost per agent, cost per pipeline run, cost trend over time, most expensive agents, most expensive tool calls. Identify where money is going — is CHEF burning 10x the tokens of SCIENTIST? Is the reflection pass (Q-5) worth its cost?
+
+**Dependencies**: I-4, I-5
+**Effort**: M
+**Touches**: Token/cost aggregation queries, dashboard UI
+
+### DX-8: Prompt Diff & History [MAJOR]
+
+**Description**: When you edit an agent's system prompt, see: the exact diff, the output difference on the same input, token count change, cost impact. Version control for prompts with output comparison. Currently prompts are embedded in agent runner files with no history beyond git.
+
+**Dependencies**: Q-9, DX-1
+**Effort**: M
+**Touches**: Prompt versioning system, diff viewer
+
+### DX-9: Validation Report View [MAJOR]
+
+**Description**: After Q-1 (recipe verification) and Q-2 (cross-agent checks) run, see the results in a structured view: which checks passed, which failed, by how much, for which items. Not buried in logs — a dedicated validation dashboard. When CHEF's claimed 450 kcal recipe actually sums to 520 kcal via USDA, show the ingredient-level breakdown.
+
+**Dependencies**: Q-1, Q-2
+**Effort**: M
+**Touches**: Validation result storage, report UI
+
+### DX-10: Local Dev Environment Bootstrap [MAJOR]
+
+**Description**: One command to: start PostgreSQL (docker-compose up), run migrations, seed synthetic data (DX-2), start the API server, optionally start the web app. Currently requires manual multi-step setup. A `pnpm dev:full` that gets everything running.
+
+**Dependencies**: DX-2
+**Effort**: S
+**Touches**: Root `package.json` scripts, seed scripts, docker-compose
+
+### DX-11: Agent Execution Replay
+
+**Description**: Take a stored pipeline run (D-6) and replay it: same inputs, same context, but with the current prompt version. Compare outputs. Did the prompt change improve things? Regression detection for prompt engineering.
+
+**Dependencies**: D-6, DX-1, DX-8
+**Effort**: L
+**Touches**: Replay engine, comparison UI
+
 ---
 
 ## Build Order (Phased)
@@ -536,13 +770,15 @@ Architectural designs for both are in **Appendix A** and **Appendix B**.
 
 Unlocks everything. No user-facing value alone, but everything depends on it.
 
-| Item | Description                    | Effort |
-| ---- | ------------------------------ | ------ |
-| I-2  | Background job processing      | L      |
-| DX-2 | Seed data / synthetic profiles | M      |
-| DX-1 | Agent playground               | M      |
+| Item  | Description                    | Effort |
+| ----- | ------------------------------ | ------ |
+| I-2   | Background job processing      | L      |
+| DX-2  | Seed data / synthetic profiles | M      |
+| DX-1  | Agent playground               | M      |
+| DX-10 | Dev environment bootstrap      | S      |
+| D-6   | Full pipeline run archival     | M      |
 
-**Why I-1 (auth) isn't here**: For a single-user MVP, auth can be deferred. The temporal loop is more urgent. Auth becomes critical at multi-user.
+**Outcome**: Dev environment is easy to bootstrap, agents can be tested in isolation, and every pipeline run is fully traced for debugging.
 
 ### Phase 1: Core Loop
 
@@ -553,50 +789,110 @@ The system becomes temporal. This is the highest-impact work.
 | T-1  | Check-in API + DB tables     | M      | —          |
 | T-2  | Progress history storage     | M      | T-1        |
 | T-5  | Training session logging     | M      | T-2        |
+| T-6  | Compliance tracking          | M      | T-1, T-5   |
 | T-3  | Trigger evaluation engine    | L      | T-1, T-2   |
 | T-4  | Partial re-execution         | M      | T-3        |
 | D-5  | Static user model refresh    | M      | T-1        |
+| D-7  | User interaction log         | M      | T-1        |
 | L-1  | Program lifecycle management | L      | T-2        |
 
-**Outcome**: User submits weekly check-ins → SCIENTIST evaluates triggers → affected agents re-run → updated plan delivered. The adaptive loop is live.
+**Outcome**: User submits weekly check-ins → SCIENTIST evaluates triggers → affected agents re-run → updated plan delivered. All interactions logged. The adaptive loop is live.
 
-### Phase 2: Quality & Safety
+### Phase 2: Quality & Observability
 
-Outputs become trustworthy. Can partially parallelize with Phase 1.
+Outputs become trustworthy. System becomes visible. Can partially parallelize with Phase 1.
 
-| Item | Description                    | Effort | Depends on |
-| ---- | ------------------------------ | ------ | ---------- |
-| Q-2  | Cross-agent consistency checks | M      | —          |
-| Q-1  | Recipe macro verification      | M      | —          |
-| Q-3  | Golden dataset                 | XL     | DX-2       |
-| Q-6  | PHYSICIAN audit trail          | M      | T-2        |
-| Q-7  | Referral follow-up tracking    | M      | Q-6        |
-| Q-8  | Ongoing ED detection           | L      | T-2, T-5   |
-| I-4  | Observability                  | M      | —          |
+| Item  | Description                    | Effort | Depends on |
+| ----- | ------------------------------ | ------ | ---------- |
+| Q-2   | Cross-agent consistency checks | M      | —          |
+| Q-1   | Recipe macro verification      | M      | —          |
+| I-4   | Observability                  | M      | —          |
+| DX-4  | Pipeline execution visualizer  | L      | D-6, I-4   |
+| DX-5  | Dependency graph               | M      | —          |
+| DX-6  | Agent I/O inspector            | M      | D-6        |
+| Q-3   | Golden dataset                 | XL     | DX-2       |
+| Q-6   | PHYSICIAN audit trail          | M      | T-2        |
+| Q-7   | Referral follow-up tracking    | M      | Q-6        |
+| DX-3  | API documentation              | M      | —          |
 
-**Outcome**: Agent outputs are verified against each other and against USDA ground truth. Medical recommendations are auditable. Edge cases tested.
+**Outcome**: Agent outputs verified against each other and USDA ground truth. Full pipeline visibility for the developer. Medical recommendations auditable.
 
-### Phase 3: Intelligence & UX
+### Phase 3: UX & Engagement
 
-The system becomes smart and usable.
+The system becomes usable. The user and the cook get real interfaces.
 
-| Item    | Description                    | Effort | Depends on                    |
-| ------- | ------------------------------ | ------ | ----------------------------- |
-| T-6     | Compliance tracking            | M      | T-1, T-5                      |
-| D-1     | Recipe database accumulation   | L      | Q-1                           |
-| A-1     | CHEF recipe memory             | L      | D-1                           |
-| A-4     | PHYSICIAN proactive monitoring | L      | T-2, Q-6                      |
-| U-2     | Notifications & reminders      | L      | T-1, I-2                      |
-| U-3     | Progress dashboard             | XL     | T-2                           |
-| L-2     | Milestone/achievement system   | M      | T-2, T-5                      |
-| DX-3    | API documentation              | M      | —                             |
-| ~~I-1~~ | ~~Authentication~~             | —      | REMOVED (single-user project) |
+| Item | Description                    | Effort | Depends on       |
+| ---- | ------------------------------ | ------ | ---------------- |
+| U-3  | Progress dashboard             | XL     | T-2              |
+| U-5  | Training session UI            | L      | T-5, U-3         |
+| U-6  | Meal plan viewer               | L      | U-3, T-6         |
+| X-1  | Grocery/shopping lists         | M      | D-1              |
+| X-3  | Cook's dashboard               | L      | U-3, X-1         |
+| X-4  | Batch cooking planner          | M      | X-3              |
+| L-2  | Milestone detection            | M      | T-2, T-5         |
+| L-3  | Data-driven insights           | L      | T-2, T-5, T-6    |
+| L-4  | Friction-free logging          | M      | U-5, U-6         |
+| U-2  | Notifications & reminders      | L      | T-1, I-2         |
+| D-1  | Recipe database accumulation   | L      | Q-1              |
 
-### Phase 4: Scale & Polish
+**Outcome**: User has a dashboard, can log training and meals with minimal friction, and receives genuine insights. Cook has a dedicated workflow. Engagement is driven by curiosity, not guilt.
 
-Differentiators. Build when the core product is solid.
+### Phase 4: Intelligence & Personalization
 
-T-7, T-8, Q-4, Q-5, Q-9, I-3, I-5, I-6, I-7, A-2, A-3, A-5, A-6, U-1, U-4, U-5, U-6, D-2, D-3, D-4, X-1, X-2, X-3
+The system gets smarter over time.
+
+| Item | Description                    | Effort | Depends on       |
+| ---- | ------------------------------ | ------ | ---------------- |
+| A-1  | CHEF recipe memory             | L      | D-1              |
+| A-4  | PHYSICIAN proactive monitoring | L      | T-2, Q-6         |
+| D-4  | Outcome tracking & self-learning | L    | T-2, T-6         |
+| A-3  | DIETITIAN substitution learning | M     | T-6, D-5         |
+| L-5  | Smart timing & context         | M      | D-7, U-2         |
+| L-6  | Low-friction re-engagement     | M      | L-1, T-2         |
+| L-8  | Curiosity hooks                | M      | U-2, L-3         |
+| L-10 | Variety & surprise             | M      | A-1, D-4         |
+| X-5  | Technique reference & links    | S      | —                |
+| X-6  | Pantry & inventory tracker     | M      | X-1              |
+| X-8  | Cook feedback channel          | M      | D-1, D-7         |
+
+### Phase 5: Advanced & Polish
+
+Differentiators and nice-to-haves. Build when the core product is solid.
+
+| Item | Description                    | Effort |
+| ---- | ------------------------------ | ------ |
+| T-7  | Anomaly detection & detrending | L      |
+| T-8  | Predictive trajectory          | L      |
+| Q-4  | Hallucination detection        | XL     |
+| Q-5  | Agent self-correction          | L      |
+| Q-9  | Prompt versioning & A/B        | L      |
+| I-5  | LLM cost optimization          | M      |
+| I-6  | Data backup & recovery         | M      |
+| A-2  | COACH autoregulation           | XL     |
+| A-5  | Cross-agent signal propagation | L      |
+| A-6  | SCIENTIST predictive mode      | M      |
+| U-1  | User communication layer       | XL     |
+| U-4  | Photo tracking                 | L      |
+| U-7  | Weekly report / summary        | M      |
+| U-8  | Adjustment explanations        | M      |
+| U-9  | Adaptive communication style   | M      |
+| U-10 | Calendar & schedule view       | M      |
+| U-11 | Cultural & calendar awareness  | M      |
+| D-2  | Knowledge versioning           | M      |
+| D-3  | Evidence base update pipeline  | L      |
+| D-8  | Body measurement history       | S      |
+| D-9  | Ingredient price tracking      | M      |
+| D-10 | Sleep & recovery data store    | S      |
+| X-2  | Wearable integrations          | L      |
+| X-7  | Recipe scaling calculator      | S      |
+| X-9  | Kitchen timer & session mode   | L      |
+| L-7  | Progress narratives            | M      |
+| L-9  | Graceful degradation           | M      |
+| L-11 | Goal visualization             | M      |
+| DX-7 | Cost & token dashboard         | M      |
+| DX-8 | Prompt diff & history          | M      |
+| DX-9 | Validation report view         | M      |
+| DX-11| Agent execution replay         | L      |
 
 ---
 
