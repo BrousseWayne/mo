@@ -1,8 +1,11 @@
-import "dotenv/config";
 import { readFileSync } from "fs";
 import { resolve } from "path";
+import { fileURLToPath } from "url";
+import { config } from "dotenv";
 import Anthropic from "@anthropic-ai/sdk";
 import type { IntakeData, AgentEnvelope } from "@mo/shared";
+
+config({ path: fileURLToPath(new URL("../.env", import.meta.url)) });
 
 const args = process.argv.slice(2);
 

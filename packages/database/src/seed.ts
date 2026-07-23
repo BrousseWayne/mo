@@ -1,6 +1,9 @@
-import "dotenv/config";
+import { fileURLToPath } from "node:url";
+import { config } from "dotenv";
 import { createDb } from "./client.js";
 import { users, intakeResponses, programs } from "./schema.js";
+
+config({ path: fileURLToPath(new URL("../../../.env", import.meta.url)) });
 
 const profiles = [
   {
