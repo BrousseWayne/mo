@@ -123,7 +123,17 @@
 
 - [x] 1.8 Program seeding from agents/artifacts/ without the LLM pipeline — coach-training-program.md authored (Phase 0, from training KB §15), artifact parsers in packages/agents/src/artifacts/ (schema-validated DIETITIAN/COACH payloads, 15 tests), `pnpm seed:program` creates user + intake + program targets + completed run + agent outputs + week-1 training sessions; meal-plan and training endpoints serve real data (2026-07-23)
 - [x] 1.9 apps/client per FRONTEND_PLAN.md, reduced scope — intake wizard (6 steps) → POST /programs/from-artifacts, dashboard (progress ring, KPIs, macro targets, adjustments), weekly check-in with trigger feedback, meal plan (day tabs, slot alternatives), training week + session logging (actuals, complete/skip); port 5174; browser-smoke-tested end-to-end incl. full wizard flow; progress/photos/calendar and apps/kitchen deferred (2026-07-23)
-- [ ] 1.10 Run the temporal loop for real — weekly check-ins → trigger engine → parametric adjustments
+- [ ] 1.10 Run the temporal loop for real (spec detailed in ROADMAP_2026-07.md, 2026-07-23)
+  - [ ] 10a Deterministic adjustment executor at check-in (apply trigger new_values; stop enqueuing pipeline.checkin; fix current_tier/current_phase omission in checkins.ts)
+  - [ ] 10b Weekly session generation (phase_0 copy; later phases double progression on actuals)
+  - [ ] 10c coach-training-program-phase1.md artifact + phase transition wiring
+  - [ ] 10d Multi-week simulation E2E test (definition of done for Phase 1)
+  - [ ] 10e Hygiene: programs.paused_at column, purge test programs, push to GitHub
+
+## Client Content — ROADMAP_2026-07.md Phase 3
+
+- [ ] 3.14 Glossary artifact + in-app glossary page (RULES-compliant definitions)
+- [ ] 3.15 Exercise form-video links (schema + artifacts + parser + client link; verify URLs)
 
 ---
 

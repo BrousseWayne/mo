@@ -77,16 +77,44 @@ entry point for resuming work after 5 months of dormancy (last commit 2026-02-23
 
 ## Phase 1 — Non-AI critical path (the actual product)
 
-8. **Program seeding without the pipeline**: build a seed path that creates a program
-   from `agents/artifacts/` (parse `dietitian-meal-template.md`; author the training
-   program once as a static artifact the same way). The pipeline-run endpoint remains
-   but is not on the critical path.
-9. **Build `apps/client`** per `plans/FRONTEND_PLAN.md`, reduced scope: intake wizard →
-   dashboard → check-in → meal plan → training session logging. Defer `apps/kitchen`
-   and the progress/photos/calendar pages until one real usage cycle has happened.
-10. **Run the temporal loop for real**: weekly check-ins → trigger engine (already
-    implemented and unit-tested) → parametric adjustments (portion scaling, slot
-    swaps). This is the feature that makes MO a coach instead of a plan document.
+8. ~~**Program seeding without the pipeline**~~ — done 2026-07-23. `pnpm seed:program`
+   and `POST /programs/from-artifacts`: deterministic SCIENTIST targets from the
+   intake (pure tools), `dietitian-meal-template.md` and `coach-training-program.md`
+   parsed into schema-validated agent outputs, week-1 training sessions created.
+9. ~~**Build `apps/client`**~~ — done 2026-07-23 in reduced scope (intake wizard,
+   dashboard, check-in, meal plan, training logging; port 5174). `apps/kitchen` and
+   progress/photos/calendar still deferred.
+10. **Run the temporal loop for real** — the feature that makes MO a coach instead of
+    a plan document. Done when the item 10d simulation passes. In order:
+    - **10a. Deterministic adjustment executor.** The trigger evaluators already emit
+      actionable `new_values` (`calorie_increase_kcal` / `calorie_decrease_kcal`,
+      `milestone_kg`, `new_tier`, `new_phase`). At check-in, apply them to the
+      program row directly: recalc kcal/macros with the SCIENTIST tools on calorie
+      and milestone triggers, update `last_recalc_weight_kg` /
+      `last_protein_recalc_at`, persist tier/phase changes. Stop enqueuing
+      `pipeline.checkin` while no LLM adapter exists (today every triggered check-in
+      creates a run that dies on the 401). Fix the known bug: `checkins.ts` omits
+      `current_tier`/`current_phase` when calling `evaluateAllTriggers`, so tier and
+      phase triggers can never fire live.
+    - **10b. Weekly session generation.** `training_sessions` exist only for week 1.
+      When a check-in advances the week, materialize that week's sessions: phase_0
+      copies the artifact template; later phases apply the progression rules to the
+      previous week's logged actuals (double progression per COACH.md).
+    - **10c. Phase 1 artifact + transition.** Author
+      `coach-training-program-phase1.md` (Foundation: 3x/week full body, initial
+      progressive overload, ~10 sets/muscle/week — COACH.md phase table + training
+      KB sections on programming). On the `phase_transition` trigger, update
+      `program.current_phase` and generate the next week from the new phase's
+      artifact. The parser is already format-generic; keep the same table format.
+    - **10d. Multi-week simulation test.** E2E test: seeded program, 6 scripted
+      weekly check-ins (weights, MVD counts, logged sessions); assert adjustments
+      are applied to the program row, sessions exist every week, phase_0 → phase_1
+      happens once criteria are met, and no pipeline run is enqueued. This test is
+      the definition of done for Phase 1.
+    - **10e. Hygiene before real use.** Add the missing `programs.paused_at` column
+      (the pause route writes it but it doesn't exist — silent no-op); cancel the
+      accumulated test programs in the dev DB leaving one clean program; push to
+      GitHub so CI finally runs.
 
 ## Phase 2 — Optional AI layer (headless Claude Code)
 
@@ -95,12 +123,44 @@ entry point for resuming work after 5 months of dormancy (last commit 2026-02-23
     stays swappable. Auth: `claude setup-token` → `CLAUDE_CODE_OAUTH_TOKEN` (1-year
     OAuth token). Headless usage draws from the Max 5-hour/weekly limits — fine at
     personal cadence.
-12. **Priority AI uses**: CHEF recipe variety/regeneration, PHYSICIAN ad-hoc Q&A.
-    Do **not** attempt full 6-agent pipeline runs until the Phase 1 loop is alive.
+    Design notes (2026-07-23):
+    - The SDK tool-use loop does **not** transfer to `claude -p`. For the two
+      priority uses, prompt for schema-validated JSON in one shot and verify
+      in-process afterwards with the existing deterministic validators
+      (`validation/recipe-macros.ts`, hallucination checks) instead of giving the
+      model tools.
+    - Adapter lives in `packages/agents/src/llm/` behind a small interface; select
+      implementation via env (`LLM_MODE=headless|api`). Model ids come from
+      `CLAUDE_MODELS` (packages/shared) mapped to `--model`. Subprocess timeout +
+      one retry on Zod failure, feeding the validation error back into the prompt.
+12. **Priority AI uses**: CHEF recipe variety/regeneration (fills the empty
+    `recipes` table and makes shopping-list/recipe endpoints live), PHYSICIAN ad-hoc
+    Q&A. Do **not** attempt full 6-agent pipeline runs until the Phase 1 loop is
+    alive.
 13. **ToS boundary**: subscription auth is for personal use only — never embed the
     OAuth token in anything serving third parties. If MO ever goes multi-client,
     switch to API keys (and revisit the Agent SDK, whose usage bills against the Max
     monthly credit pool instead of the 5h/weekly limits).
+
+## Phase 3 — Client content (independent of the loop)
+
+14. **Glossary.** In-app glossary page in `apps/client` covering every term the UI
+    and artifacts expose to the client: RPE, minimum viable day, phase/tier, surplus,
+    ramp-up, casein, follicular/luteal/menstrual, progressive overload, double
+    progression, batch cooking, MPS. Content is a committed, RULES.md-audited
+    artifact (`agents/artifacts/glossary.md`) parsed like the other artifacts and
+    served via a small endpoint, or a typed constant in `@mo/shared` — decide in
+    session, but definitions MUST use the RULES.md correct alternatives (no banned
+    terms, fat gain framed positively). Link it from the dashboard and from the
+    terms themselves where they appear (RPE badge, check-in labels).
+15. **Exercise video links.** Every exercise in the training artifacts gets a form
+    video URL from a reputable coaching channel; verify each link resolves before
+    committing (WebSearch/WebFetch in session). Plumbing: optional `video_url` on
+    the coach exercise schema (`agent-io.ts`) → extra column in the artifact
+    exercise tables → parser → link in the exercise card in `apps/client`
+    ("watch form video"). Existing seeded sessions won't have URLs — regenerate or
+    accept the gap for week 1. Videos are form references, not medical advice;
+    PHYSICIAN referral rules unchanged.
 
 ## Standing guardrails
 
