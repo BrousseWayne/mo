@@ -62,6 +62,8 @@ export { processCheckin } from "./checkin/process-checkin.js";
 export type { CheckinResult } from "./checkin/process-checkin.js";
 export { generateWeekSessions } from "./training/generate-week.js";
 export type { LoggedSession, LoggedExercise } from "./training/generate-week.js";
+export { createLlmClient, HeadlessLlmClient, ApiLlmClient, extractJson } from "./llm/index.js";
+export type { LlmJsonClient, LlmJsonRequest, LlmMode } from "./llm/index.js";
 export { generateShoppingList } from "./tools/shopping.js";
 export { scaleRecipe } from "./tools/recipe-utils.js";
 export { detectNewMilestones } from "./tools/milestones.js";
