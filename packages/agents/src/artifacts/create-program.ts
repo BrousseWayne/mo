@@ -50,6 +50,7 @@ export async function createProgramFromArtifacts(
   const dietitianPayload = parseMealTemplate(input.mealTemplateMd);
   const coachPayload = parseTrainingProgram(input.trainingProgramMd);
 
+  const now = new Date();
   const [program] = await db
     .insert(programs)
     .values({
@@ -62,10 +63,11 @@ export async function createProgramFromArtifacts(
       fat_g: scientistPayload.macros.fat_g,
       carbs_g: scientistPayload.macros.carbs_g,
       surplus_kcal: scientistPayload.surplus_kcal,
+      last_recalc_weight_kg: input.intake.current_weight_kg,
+      last_protein_recalc_at: now,
     })
     .returning();
 
-  const now = new Date();
   const [run] = await db
     .insert(pipelineRuns)
     .values({

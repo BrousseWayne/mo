@@ -57,6 +57,10 @@ export async function updateProgramTargets(
     surplus_kcal?: number;
     current_weight_kg?: number;
     current_week?: number;
+    current_tier?: "tier_0" | "tier_1" | "tier_2";
+    current_phase?: "phase_0" | "phase_1" | "phase_2";
+    last_recalc_weight_kg?: number;
+    last_protein_recalc_at?: Date;
   }
 ): Promise<ProgramSelect> {
   const [updated] = await db

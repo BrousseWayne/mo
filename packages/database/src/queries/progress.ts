@@ -79,7 +79,7 @@ export async function getRecentMeasurements(
     .limit(n);
 }
 
-export function computeWeekNumber(program: { started_at: Date }): number {
+export function computeWeekNumber(program: { started_at: Date }, now: Date = new Date()): number {
   const msPerWeek = 7 * 24 * 60 * 60 * 1000;
-  return Math.floor((Date.now() - program.started_at.getTime()) / msPerWeek) + 1;
+  return Math.floor((now.getTime() - program.started_at.getTime()) / msPerWeek) + 1;
 }

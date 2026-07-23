@@ -62,10 +62,11 @@ const TRIGGER_PRIORITY: string[] = [
 export function evaluateAllTriggers(
   program: Program,
   recentProgress: ProgressEntry[],
-  trainingSessions: TrainingSession[]
+  trainingSessions: TrainingSession[],
+  now: Date = new Date()
 ): TriggerResult[] {
   const adaptationComplete = program.current_week > ADAPTATION_WEEKS;
-  const startWeight = program.target_weight_kg - (program.target_weight_kg - program.current_weight_kg);
+  const startWeight = program.last_recalc_weight_kg ?? program.current_weight_kg;
 
   const weights: WeightEntry[] = recentProgress.map((p) => ({
     weight_kg: p.weight_kg,
@@ -102,7 +103,7 @@ export function evaluateAllTriggers(
 
   const proteinRecalc = evaluateProteinRecalc(
     program.last_protein_recalc_at,
-    new Date()
+    now
   );
   if (proteinRecalc) results.push(proteinRecalc);
 
