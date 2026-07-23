@@ -100,7 +100,7 @@ describe("evaluateAllTriggers", () => {
     expect(tier!.new_values).toEqual({ new_tier: "tier_1" });
   });
 
-  it("fires phase transition when current_phase is provided and lifts progress", () => {
+  it("fires phase transition once 6 phase 0 sessions are completed", () => {
     const program = {
       ...baseProgram,
       current_weight_kg: 57.0,
@@ -109,18 +109,32 @@ describe("evaluateAllTriggers", () => {
       current_tier: "tier_0",
       current_phase: "phase_0",
     };
-    const sessions = [1, 2, 3, 4].map((week) => ({
+    const sessions = [1, 1, 1, 2, 2, 2].map((week) => ({
       week_number: week,
       status: "completed",
-      exercises: [
-        { name: "Goblet Squat", actual: [{ weight_kg: 4 + week, reps: 12 }] },
-        { name: "Dumbbell Row", actual: [{ weight_kg: 2 + week, reps: 10 }] },
-        { name: "Split Squat", actual: [{ weight_kg: week, reps: 10 }] },
-      ],
+      exercises: [],
     }));
     const result = evaluateAllTriggers(program, [], sessions);
     const phase = result.find((r) => r.trigger_type === "phase_transition");
     expect(phase).toBeDefined();
     expect(phase!.new_values).toEqual({ new_phase: "phase_1" });
+  });
+
+  it("never fires phase transition outside phase 0", () => {
+    const program = {
+      ...baseProgram,
+      current_weight_kg: 57.0,
+      last_recalc_weight_kg: 57.0,
+      last_protein_recalc_at: new Date(),
+      current_tier: "tier_0",
+      current_phase: "phase_1",
+    };
+    const sessions = Array.from({ length: 12 }, (_, i) => ({
+      week_number: Math.floor(i / 3) + 1,
+      status: "completed",
+      exercises: [],
+    }));
+    const result = evaluateAllTriggers(program, [], sessions);
+    expect(result.find((r) => r.trigger_type === "phase_transition")).toBeUndefined();
   });
 });

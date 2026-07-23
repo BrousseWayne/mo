@@ -8,3 +8,8 @@ export function createDb(url: string) {
 }
 
 export type Database = ReturnType<typeof createDb>;
+
+export async function closeDb(db: Database): Promise<void> {
+  const client = (db as unknown as { $client: { end: () => Promise<void> } }).$client;
+  await client.end();
+}

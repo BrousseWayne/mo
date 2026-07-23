@@ -219,50 +219,25 @@ export function evaluateTierProgression(
   return null;
 }
 
+const PHASE_0_SESSIONS_REQUIRED = 6;
+
 export function evaluatePhaseTransition(
   sessions: TrainingSession[],
   currentPhase: string | null
 ): TriggerResult | null {
-  if (!currentPhase || currentPhase === "phase_2") return null;
-  if (sessions.length < 4) return null;
+  if (currentPhase !== "phase_0") return null;
 
-  const completed = sessions.filter((s) => s.status === "completed").sort((a, b) => b.week_number - a.week_number);
-  if (completed.length < 4) return null;
+  const completed = sessions.filter((s) => s.status === "completed");
+  if (completed.length < PHASE_0_SESSIONS_REQUIRED) return null;
 
-  const recent = completed.slice(0, 4);
-  let progressingExercises = 0;
-  let totalExercises = 0;
-
-  const exerciseProgress = new Map<string, number[]>();
-  for (const session of recent) {
-    for (const ex of session.exercises) {
-      if (!ex.actual?.length) continue;
-      const maxLoad = Math.max(...ex.actual.map((s) => s.weight_kg * s.reps));
-      const existing = exerciseProgress.get(ex.name) ?? [];
-      existing.push(maxLoad);
-      exerciseProgress.set(ex.name, existing);
-    }
-  }
-
-  for (const [, loads] of exerciseProgress) {
-    if (loads.length < 3) continue;
-    totalExercises++;
-    if (loads[0] > loads[loads.length - 1]) progressingExercises++;
-  }
-
-  if (totalExercises >= 3 && progressingExercises / totalExercises >= 0.6) {
-    const nextPhase = currentPhase === "phase_0" ? "phase_1" : "phase_2";
-    return {
-      trigger_type: "phase_transition",
-      adjustment_kcal: null,
-      affected_agents: ["SCIENTIST", "COACH"],
-      old_values: { current_phase: currentPhase },
-      new_values: { new_phase: nextPhase },
-      reason: `${progressingExercises}/${totalExercises} exercises progressing over 4 weeks. Eligible for ${nextPhase}`,
-    };
-  }
-
-  return null;
+  return {
+    trigger_type: "phase_transition",
+    adjustment_kcal: null,
+    affected_agents: ["SCIENTIST", "COACH"],
+    old_values: { current_phase: currentPhase },
+    new_values: { new_phase: "phase_1" },
+    reason: `${completed.length} phase 0 sessions completed (minimum ${PHASE_0_SESSIONS_REQUIRED}) — eligible for phase_1 (Foundation)`,
+  };
 }
 
 export function evaluateCompliance(
