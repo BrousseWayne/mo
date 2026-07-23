@@ -5,7 +5,7 @@ export async function apiFetch<T>(path: string): Promise<T> {
   try {
     res = await fetch(`${BASE}${path}`);
   } catch {
-    throw new Error("API unreachable — is the backend running on :3000?");
+    throw new Error("API unreachable — is the backend running on :3100?");
   }
 
   const contentType = res.headers.get("content-type") ?? "";
