@@ -91,6 +91,7 @@ Agents communicate via structured JSON:
 - `.env` lives at the repo root and is resolved explicitly by drizzle.config, seed, API, and scripts (never relies on package cwd)
 - API default port: **3100** (3000 conflicts with another local project)
 - `pnpm bootstrap` — checks services, creates role/database if missing, pushes schema, seeds if empty
+- `pnpm seed:program` — creates a complete program (meal plan + training sessions) from agents/artifacts/, no LLM
 - `pnpm build` / `pnpm test` / `pnpm dev` — Turborepo across all packages
 - `pnpm db:generate` / `db:migrate` / `db:push` / `db:seed` — Drizzle. Migrations are authoritative for fresh environments; `db:push` for dev iteration
 
@@ -111,6 +112,7 @@ tsconfig.base.json                     # Shared TypeScript config
 scripts/                               # Dev scripts (run from repo root)
   bootstrap.ts                         # Native Postgres/Redis checks, role/db creation, push + seed
   playground.ts                        # Run a single agent against fixture data
+  seed-program.ts                      # Seed a full program from agents/artifacts/ (no LLM)
   fixtures/                            # reference-intake.json, scientist-output.json
 
 packages/shared/                       # SHARED: Zod schemas, constants
@@ -157,6 +159,8 @@ packages/agents/                       # AGENTS: tool functions + LLM agent runn
                                        #   re-engagement, curiosity hooks
   src/formatting/                      # User-facing output: adjustment narratives,
                                        #   user messages, weekly reports
+  src/artifacts/                       # Parsers: static artifacts → schema-validated
+                                       #   DIETITIAN/COACH payloads (no LLM)
   src/__tests__/e2e/                   # Check-in flow E2E suite (no LLM required)
   src/**/__tests__/                    # 145 unit tests across 21 suites
 
@@ -193,6 +197,7 @@ agents/artifacts/                      # DELIVERABLES: runtime-injected content
   chef-batch-cooking.md                # Batch cooking protocols, sauce recipes
   chef-shake-recipes.md                # Calorie-dense shake formulations
   dietitian-meal-template.md           # 7-day meal template with alternatives
+  coach-training-program.md            # Phase 0 training program (parsed by seed:program)
 
 plans/                                 # ARCHITECTURE: decisions & schemas
   ROADMAP_2026-07.md                   # Audit findings + execution roadmap (current entry point)
@@ -254,7 +259,7 @@ See [TRACKER.md](./TRACKER.md) for full item-level tracking and [plans/ROADMAP_2
 - Environment sanity (2026-07-23, ROADMAP Phase 0): root .env resolution, green root test run, native Postgres/Redis dev environment, port 3100, centralized model IDs, CI, docs sync
 
 ### In Progress (ROADMAP Phase 1 — non-AI critical path)
-- 1.8 Program seeding from agents/artifacts/ without the LLM pipeline
+- ~~1.8 Program seeding from agents/artifacts/~~ done 2026-07-23 (`pnpm seed:program`)
 - 1.9 apps/client (reduced scope: intake wizard, dashboard, check-in, meal plan, training logging)
 - 1.10 Run the temporal loop for real (weekly check-ins → triggers → parametric adjustments)
 

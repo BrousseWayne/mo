@@ -121,7 +121,7 @@
 
 ## Non-AI Critical Path — ROADMAP_2026-07.md Phase 1
 
-- [ ] 1.8 Program seeding from agents/artifacts/ without the LLM pipeline
+- [x] 1.8 Program seeding from agents/artifacts/ without the LLM pipeline — coach-training-program.md authored (Phase 0, from training KB §15), artifact parsers in packages/agents/src/artifacts/ (schema-validated DIETITIAN/COACH payloads, 15 tests), `pnpm seed:program` creates user + intake + program targets + completed run + agent outputs + week-1 training sessions; meal-plan and training endpoints serve real data (2026-07-23)
 - [ ] 1.9 apps/client per FRONTEND_PLAN.md (reduced scope: intake wizard, dashboard, check-in, meal plan, training logging)
 - [ ] 1.10 Run the temporal loop for real — weekly check-ins → trigger engine → parametric adjustments
 
