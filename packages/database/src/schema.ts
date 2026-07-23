@@ -115,6 +115,7 @@ export const programs = pgTable("programs", {
   current_tier: calorieTierEnum("current_tier").default("tier_0").notNull(),
   current_week: integer("current_week").default(1).notNull(),
   started_at: timestamp("started_at").defaultNow().notNull(),
+  paused_at: timestamp("paused_at"),
   target_weight_kg: real("target_weight_kg").notNull(),
   current_weight_kg: real("current_weight_kg").notNull(),
   target_intake_kcal: integer("target_intake_kcal").notNull(),

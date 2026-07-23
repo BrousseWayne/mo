@@ -163,11 +163,11 @@ export async function programRoutes(app: FastifyInstance) {
         }
 
         if (parsed.data === "paused" && program.status === "active") {
-          await updateProgramTargets(app.db, program.id, { paused_at: new Date() } as any);
+          await updateProgramTargets(app.db, program.id, { paused_at: new Date() });
         }
 
         if (parsed.data === "active" && program.status === "paused") {
-          await updateProgramTargets(app.db, program.id, { paused_at: null } as any);
+          await updateProgramTargets(app.db, program.id, { paused_at: null });
         }
 
         const updated = await transitionStatus(app.db, request.params.id, parsed.data);

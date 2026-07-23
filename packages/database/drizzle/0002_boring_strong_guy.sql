@@ -1,0 +1,1 @@
+ALTER TABLE "programs" ADD COLUMN "paused_at" timestamp;

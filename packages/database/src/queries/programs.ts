@@ -61,6 +61,7 @@ export async function updateProgramTargets(
     current_phase?: "phase_0" | "phase_1" | "phase_2";
     last_recalc_weight_kg?: number;
     last_protein_recalc_at?: Date;
+    paused_at?: Date | null;
   }
 ): Promise<ProgramSelect> {
   const [updated] = await db
