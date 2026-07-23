@@ -8,15 +8,17 @@ import type { Program } from "../api/types";
 export function ClientLayout() {
   const { programId, setProgramId } = useProgramId();
   const navigate = useNavigate();
-  const { data: programs, loading } = useQuery<Program[]>(programId ? null : "/programs");
+  const { data: programs, loading } = useQuery<Program[]>("/programs");
 
   useEffect(() => {
-    if (programId || loading) return;
-    if (programs === null) return;
+    if (loading || programs === null) return;
+    const stored = programs.find((p) => p.id === programId);
+    if (stored?.status === "active") return;
     const active = programs.find((p) => p.status === "active");
     if (active) {
       setProgramId(active.id);
     } else {
+      setProgramId(null);
       navigate("/intake", { replace: true });
     }
   }, [programId, programs, loading, setProgramId, navigate]);
