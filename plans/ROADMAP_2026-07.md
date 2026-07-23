@@ -124,6 +124,11 @@ entry point for resuming work after 5 months of dormancy (last commit 2026-02-23
 
 ## Phase 2 — Optional AI layer (headless Claude Code)
 
+Done 2026-07-23: adapter in `packages/agents/src/llm/` (LLM_MODE=headless|api),
+CHEF recipe generation verified by the deterministic macro validator, PHYSICIAN
+ad-hoc Q&A endpoint, ToS note in .env.example + CLAUDE.md. Both uses verified
+with real end-to-end calls. Original spec follows:
+
 11. **Headless adapter**: `claude -p --output-format json` + Zod validation with
     retry, behind the same interface as the current agent runners so the API-key path
     stays swappable. Auth: `claude setup-token` → `CLAUDE_CODE_OAUTH_TOKEN` (1-year
@@ -149,6 +154,12 @@ entry point for resuming work after 5 months of dormancy (last commit 2026-02-23
     monthly credit pool instead of the 5h/weekly limits).
 
 ## Phase 3 — Client content (independent of the loop)
+
+Done 2026-07-23: GLOSSARY constant in @mo/shared + /glossary page with per-term
+anchors and inline links (14 chosen the typed-constant option); video_url on the
+COACH exercise schema, Video column in both training artifacts (26 URLs, each
+verified via YouTube oEmbed), form-video link on the client exercise card.
+Original spec follows:
 
 14. **Glossary.** In-app glossary page in `apps/client` covering every term the UI
     and artifacts expose to the client: RPE, minimum viable day, phase/tier, surplus,

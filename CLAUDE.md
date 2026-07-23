@@ -82,7 +82,7 @@ Agents communicate via structured JSON:
 - Client frontend: React 19 + Vite + react-router 7 (apps/client, port 5174; reduced scope of plans/FRONTEND_PLAN.md — apps/kitchen and progress/photos/calendar pages deferred)
 - Mobile: React Native + Expo (later)
 - Agent Orchestration: Custom TypeScript pipeline
-- LLM: Anthropic Claude (model IDs centralized in `CLAUDE_MODELS`, packages/shared). No valid API key — LLM calls will go through headless Claude Code (`claude -p`), see plans/ROADMAP_2026-07.md Phase 2
+- LLM: Anthropic Claude (model IDs centralized in `CLAUDE_MODELS`, packages/shared). No valid API key — LLM calls go through the headless Claude Code adapter (`packages/agents/src/llm/`, `claude -p`, `LLM_MODE=headless|api`). **ToS boundary**: subscription auth (`CLAUDE_CODE_OAUTH_TOKEN` or the CLI's stored login) is for personal use only — never embed it in anything serving third parties; if MO ever goes multi-client, switch to `LLM_MODE=api` with a real API key
 - Notifications: Firebase Cloud Messaging (later)
 - Cloud: AWS (ECS Fargate, RDS, ElastiCache) (later)
 
@@ -165,6 +165,8 @@ packages/agents/                       # AGENTS: tool functions + LLM agent runn
                                        #   DIETITIAN/COACH payloads (no LLM)
   src/checkin/                         # processCheckin: deterministic check-in orchestration
   src/training/                        # Weekly session generation (double progression)
+  src/llm/                             # Headless Claude Code adapter (claude -p, LLM_MODE),
+                                       #   CHEF recipe generation, PHYSICIAN Q&A
   src/__tests__/e2e/                   # Check-in flow + six-week simulation (real Postgres)
   src/**/__tests__/                    # 202 tests across 28 suites
 
@@ -272,10 +274,12 @@ See [TRACKER.md](./TRACKER.md) for full item-level tracking and [plans/ROADMAP_2
 - Implementation Phases 0-5 (2026-02): schema expansion, BullMQ pipeline, check-in loop + trigger engine, cross-agent validation, observability, insights, anomaly detection, formatters, admin dashboard
 - Environment sanity (2026-07-23, ROADMAP Phase 0): root .env resolution, green root test run, native Postgres/Redis dev environment, port 3100, centralized model IDs, CI, docs sync
 - ROADMAP Phase 1 — non-AI critical path (2026-07-23): program seeding from agents/artifacts/ (`pnpm seed:program`, POST /programs/from-artifacts), apps/client (intake wizard → dashboard → check-in → meals → training logging), and the temporal loop (1.10): deterministic adjustment executor at check-in (`processCheckin` in @mo/agents — no pipeline enqueued), weekly session generation with double progression, phase_0 → phase_1 transition from `coach-training-program-phase1.md`, six-week simulation E2E in CI (Postgres service)
+- ROADMAP Phase 2 — optional AI layer (2026-07-23): headless Claude Code adapter (`packages/agents/src/llm/`, `LLM_MODE=headless|api`, Zod + one retry), CHEF recipe generation verified by the deterministic macro validator (POST /programs/:id/recipes/generate — fills the recipes table), PHYSICIAN ad-hoc Q&A (POST /programs/:id/physician/ask); both verified with real end-to-end calls
+- ROADMAP Phase 3 — client content (2026-07-23): in-app glossary (GLOSSARY in @mo/shared, /glossary page), verified exercise form-video links in both training artifacts
 
 ### Known Gaps
 
-- The 6-agent LLM pipeline has never run end-to-end (invalid API key; headless adapter is ROADMAP Phase 2)
+- The 6-agent LLM pipeline has never run end-to-end (headless adapter exists for CHEF recipes and PHYSICIAN Q&A; full pipeline runs deliberately deferred — the deterministic loop is the product)
 - `progress_entries` has no real-world data — zero actual usage cycles so far
 - P1-7 API contract, P2-14 golden dataset, P3-17/18/19 (see TRACKER.md)
 

@@ -130,6 +130,12 @@
   - [x] 10d Six-week simulation E2E test (real Postgres, 7 tests): weekly session materialization, phase_0→phase_1, tier_0→tier_1, +200 kcal applied to the program row, protein restamp, double progression 20→22.5→hold→25 kg, no pipeline runs enqueued (2026-07-23)
   - [x] 10e Hygiene: programs.paused_at column (migration 0002, pause route no longer a silent no-op), dev DB reduced to one clean seeded program, CI runs the simulation against a Postgres service (DATABASE_URL passed through turbo) (2026-07-23)
 
+## Optional AI Layer — ROADMAP_2026-07.md Phase 2
+
+- [x] 2.11 Headless adapter — `packages/agents/src/llm/`: LlmJsonClient behind `LLM_MODE=headless|api` (HeadlessLlmClient spawns `claude -p --output-format json` with subprocess timeout, CLAUDE_CODE_OAUTH_TOKEN passthrough, stale ANTHROPIC_API_KEY stripped from the child env; ApiLlmClient keeps the SDK path swappable); one-shot schema-validated JSON with fence/brace extraction and one retry feeding Zod issues back; verified with a real call (2026-07-23)
+- [x] 2.12 Priority AI uses — CHEF recipe generation constrained to INGREDIENT_TABLE, every recipe checked by validation/recipe-macros.ts with one corrective round (POST /programs/:id/recipes/generate; recipes rows verified=true, completed manual CHEF run + envelope for recipe memory); PHYSICIAN ad-hoc Q&A (POST /programs/:id/physician/ask, persisted to physician_queries). Real end-to-end calls: 1 PHYSICIAN answer (3 cited sources, disclaimer), 2 CHEF recipes with declared macros exactly matching the deterministic computation (2026-07-23)
+- [x] 2.13 ToS boundary documented — subscription auth is personal-use only, never embedded for third parties; multi-client would switch to LLM_MODE=api with an API key (.env.example + CLAUDE.md) (2026-07-23)
+
 ## Client Content — ROADMAP_2026-07.md Phase 3
 
 - [x] 3.14 Glossary — typed `GLOSSARY` constant in @mo/shared (14 RULES-audited entries: RPE, minimum viable day, phase, tier, surplus, ramp-up, casein, follicular/luteal/menstrual, progressive overload, double progression, batch cooking, MPS); /glossary page in apps/client with per-term anchors, linked from dashboard (phase/tier badges, surplus, footer link), RPE badge on session page, and check-in cycle/consistency labels; browser-smoke-tested (2026-07-23)
