@@ -212,6 +212,7 @@ export const coachOutputSchema = z.object({
             notes: z.string(),
             target_rpe: z.number(),
             progression_rule: z.string(),
+            target_weight_kg: z.number().optional(),
           })
         ),
       })

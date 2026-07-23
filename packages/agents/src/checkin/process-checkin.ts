@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { intakeSchema, type TriggerResult, type WeeklyCheckin } from "@mo/shared";
+import { coachOutputSchema, intakeSchema, type TriggerResult, type WeeklyCheckin } from "@mo/shared";
 import {
   adjustments,
   intakeResponses,
@@ -11,11 +11,14 @@ import {
   getMilestones,
   createMilestone,
   computeWeekNumber,
+  getLatestAgentEnvelope,
+  createSessionsFromCoachOutput,
   type Database,
 } from "@mo/database";
 import { evaluateAllTriggers } from "../triggers/engine.js";
 import { executeAdjustments, type ProgramAdjustmentUpdates, type ClientProfile } from "../triggers/executor.js";
 import { detectNewMilestones } from "../tools/milestones.js";
+import { generateWeekSessions, type LoggedExercise } from "../training/generate-week.js";
 
 type ProgramRow = typeof programs.$inferSelect;
 
@@ -24,6 +27,7 @@ export interface CheckinResult {
   week_number: number;
   triggers: TriggerResult[];
   applied_updates: ProgramAdjustmentUpdates;
+  sessions_created: number;
 }
 
 async function loadClientProfile(
@@ -166,10 +170,39 @@ export async function processCheckin(
     }
   }
 
+  let sessionsCreated = 0;
+  if (!allSessions.some((s) => s.week_number === weekNumber)) {
+    const envelope = await getLatestAgentEnvelope(db, program.id, "COACH");
+    const payload =
+      envelope && typeof envelope === "object" && "payload" in envelope
+        ? (envelope as { payload: unknown }).payload
+        : undefined;
+    const coach = coachOutputSchema.safeParse(payload);
+    if (coach.success) {
+      const previousWeek = Math.max(0, ...allSessions.map((s) => s.week_number));
+      const previousSessions = allSessions
+        .filter((s) => s.week_number === previousWeek)
+        .map((s) => ({
+          day_of_week: s.day_of_week,
+          status: s.status,
+          exercises: s.exercises as LoggedExercise[],
+        }));
+      const created = await createSessionsFromCoachOutput(db, program.id, weekNumber, {
+        ...coach.data,
+        program: {
+          ...coach.data.program,
+          sessions: generateWeekSessions(coach.data, previousSessions),
+        },
+      });
+      sessionsCreated = created.length;
+    }
+  }
+
   return {
     checkin_id: entry.id,
     week_number: weekNumber,
     triggers,
     applied_updates: applied,
+    sessions_created: sessionsCreated,
   };
 }

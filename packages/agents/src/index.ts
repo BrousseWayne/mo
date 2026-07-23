@@ -60,6 +60,8 @@ export { executeAdjustments } from "./triggers/executor.js";
 export type { ProgramAdjustmentUpdates, ClientProfile } from "./triggers/executor.js";
 export { processCheckin } from "./checkin/process-checkin.js";
 export type { CheckinResult } from "./checkin/process-checkin.js";
+export { generateWeekSessions } from "./training/generate-week.js";
+export type { LoggedSession, LoggedExercise } from "./training/generate-week.js";
 export { generateShoppingList } from "./tools/shopping.js";
 export { scaleRecipe } from "./tools/recipe-utils.js";
 export { detectNewMilestones } from "./tools/milestones.js";
