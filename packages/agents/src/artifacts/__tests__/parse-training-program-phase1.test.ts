@@ -34,6 +34,14 @@ describe("parseTrainingProgram (phase 1 artifact)", () => {
     }
   });
 
+  it("parses a video url for every exercise", () => {
+    for (const session of output.program.sessions) {
+      for (const exercise of session.exercises) {
+        expect(exercise.video_url).toMatch(/^https:\/\/www\.youtube\.com\/watch\?v=/);
+      }
+    }
+  });
+
   it("keeps compounds at RPE 7 and isolation at RPE 8", () => {
     const rpes = output.program.sessions.flatMap((s) => s.exercises.map((e) => e.target_rpe));
     expect(Math.min(...rpes)).toBe(7);

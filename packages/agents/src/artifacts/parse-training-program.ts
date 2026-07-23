@@ -29,7 +29,7 @@ function parseSessions(md: string) {
     const warmup = parseBullets(block.split(/^\|/m)[0]);
     const exercises = parseTable(block)
       .slice(1)
-      .map(([name, sets, reps, rest, rpe, progression, notes]) => ({
+      .map(([name, sets, reps, rest, rpe, progression, notes, video]) => ({
         name,
         sets: Number(sets),
         reps,
@@ -37,6 +37,7 @@ function parseSessions(md: string) {
         target_rpe: Number(rpe),
         progression_rule: progression,
         notes,
+        ...(video ? { video_url: video } : {}),
       }));
     return { day: header[1].toLowerCase(), focus, warmup, exercises };
   });

@@ -84,4 +84,12 @@ describe("parseTrainingProgram", () => {
       expect(text).not.toContain(term);
     }
   });
+
+  it("parses a video url for every exercise", () => {
+    for (const session of output.program.sessions) {
+      for (const exercise of session.exercises) {
+        expect(exercise.video_url).toMatch(/^https:\/\/www\.youtube\.com\/watch\?v=/);
+      }
+    }
+  });
 });

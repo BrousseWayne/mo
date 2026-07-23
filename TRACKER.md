@@ -133,7 +133,7 @@
 ## Client Content — ROADMAP_2026-07.md Phase 3
 
 - [x] 3.14 Glossary — typed `GLOSSARY` constant in @mo/shared (14 RULES-audited entries: RPE, minimum viable day, phase, tier, surplus, ramp-up, casein, follicular/luteal/menstrual, progressive overload, double progression, batch cooking, MPS); /glossary page in apps/client with per-term anchors, linked from dashboard (phase/tier badges, surplus, footer link), RPE badge on session page, and check-in cycle/consistency labels; browser-smoke-tested (2026-07-23)
-- [ ] 3.15 Exercise form-video links (schema + artifacts + parser + client link; verify URLs)
+- [x] 3.15 Exercise form-video links — 26 unique exercises across both training artifacts get a Video column (reputable channels: Squat University, Renaissance Periodization, Bret Contreras/Glute Lab, Jeff Nippard, E3 Rehab...); every URL verified twice via YouTube oEmbed (title + channel match); optional video_url on the COACH exercise schema + parser 8th column + "Watch form video" link and target weight display on the apps/client exercise card; dev program re-seeded so week-1 sessions carry URLs; browser-smoke-tested (2026-07-23)
 
 ---
 

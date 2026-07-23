@@ -23,13 +23,13 @@ Foundation block: 3x/week full body, initial progressive overload via double pro
 - Bodyweight squats x 10 (slow, controlled)
 - Banded lateral walks x 8/side
 
-| Exercise                  | Sets | Reps       | Rest (s) | Target RPE | Progression              | Notes                                                          |
-|---------------------------|------|------------|----------|------------|--------------------------|----------------------------------------------------------------|
-| Barbell Hip Thrust        | 3    | 10-15      | 120      | 7          | double_progression_2.5kg | Start with bar only (20 kg); pause and squeeze glutes at top   |
-| Goblet Squat              | 3    | 8-12       | 120      | 7          | double_progression_2.5kg | Depth to parallel, upright torso; move to barbell when >16 kg  |
-| Lat Pulldown              | 3    | 8-12       | 90       | 7          | double_progression_2.5kg | Pull elbows to hips, not hands to chin                         |
-| Side-lying Hip Abduction  | 2    | 15-20/side | 60       | 8          | double_progression_1kg   | Slow, no momentum; add ankle weight once top of range reached  |
-| Face Pull                 | 2    | 15-20      | 60       | 8          | double_progression_1kg   | Rope to face, elbows high; posture and rear shoulder           |
+| Exercise                  | Sets | Reps       | Rest (s) | Target RPE | Progression              | Notes                                                          | Video |
+|---------------------------|------|------------|----------|------------|--------------------------|----------------------------------------------------------------|-------|
+| Barbell Hip Thrust        | 3    | 10-15      | 120      | 7          | double_progression_2.5kg | Start with bar only (20 kg); pause and squeeze glutes at top   | https://www.youtube.com/watch?v=LM8XHLYJoYs |
+| Goblet Squat              | 3    | 8-12       | 120      | 7          | double_progression_2.5kg | Depth to parallel, upright torso; move to barbell when >16 kg  | https://www.youtube.com/watch?v=aEbQO49ru4Q |
+| Lat Pulldown              | 3    | 8-12       | 90       | 7          | double_progression_2.5kg | Pull elbows to hips, not hands to chin                         | https://www.youtube.com/watch?v=VXKfH6ciEBI |
+| Side-lying Hip Abduction  | 2    | 15-20/side | 60       | 8          | double_progression_1kg   | Slow, no momentum; add ankle weight once top of range reached  | https://www.youtube.com/watch?v=-rDiQXjeXO0 |
+| Face Pull                 | 2    | 15-20      | 60       | 8          | double_progression_1kg   | Rope to face, elbows high; posture and rear shoulder           | https://www.youtube.com/watch?v=cc0tasCalHg |
 
 ## Session B — Wednesday
 
@@ -41,13 +41,13 @@ Foundation block: 3x/week full body, initial progressive overload via double pro
 - Bodyweight split squats x 6/leg
 - Band pull-aparts x 12
 
-| Exercise                  | Sets | Reps       | Rest (s) | Target RPE | Progression              | Notes                                                          |
-|---------------------------|------|------------|----------|------------|--------------------------|----------------------------------------------------------------|
-| Romanian Deadlift         | 3    | 8-12       | 120      | 7          | double_progression_2.5kg | Dumbbells first, barbell later; feel the hamstring stretch     |
-| Bulgarian Split Squat     | 3    | 10-12/leg  | 90       | 7          | double_progression_1kg   | Rear foot on bench; hold one dumbbell per hand                 |
-| Seated Cable Row          | 3    | 8-12       | 90       | 7          | double_progression_2.5kg | Squeeze shoulder blades together; back thickness               |
-| Dumbbell Curl             | 2    | 10-12      | 60       | 8          | double_progression_1kg   | Focus on feeling the biceps contract through the full range    |
-| Cable Hip Abduction       | 2    | 15-20/side | 60       | 8          | double_progression_1kg   | Standing, low cable, leg out to the side; gluteus medius       |
+| Exercise                  | Sets | Reps       | Rest (s) | Target RPE | Progression              | Notes                                                          | Video |
+|---------------------------|------|------------|----------|------------|--------------------------|----------------------------------------------------------------|-------|
+| Romanian Deadlift         | 3    | 8-12       | 120      | 7          | double_progression_2.5kg | Dumbbells first, barbell later; feel the hamstring stretch     | https://www.youtube.com/watch?v=_oyxCn2iSjU |
+| Bulgarian Split Squat     | 3    | 10-12/leg  | 90       | 7          | double_progression_1kg   | Rear foot on bench; hold one dumbbell per hand                 | https://www.youtube.com/watch?v=hPlKPjohFS0 |
+| Seated Cable Row          | 3    | 8-12       | 90       | 7          | double_progression_2.5kg | Squeeze shoulder blades together; back thickness               | https://www.youtube.com/watch?v=sP_4vybjVJs |
+| Dumbbell Curl             | 2    | 10-12      | 60       | 8          | double_progression_1kg   | Focus on feeling the biceps contract through the full range    | https://www.youtube.com/watch?v=yTWO2th-RIY |
+| Cable Hip Abduction       | 2    | 15-20/side | 60       | 8          | double_progression_1kg   | Standing, low cable, leg out to the side; gluteus medius       | https://www.youtube.com/watch?v=vSqhrbzZb7A |
 
 ## Session C — Friday
 
@@ -59,13 +59,13 @@ Foundation block: 3x/week full body, initial progressive overload via double pro
 - Band pull-aparts x 12
 - Arm circles and scapular retractions x 10
 
-| Exercise                  | Sets | Reps       | Rest (s) | Target RPE | Progression              | Notes                                                          |
-|---------------------------|------|------------|----------|------------|--------------------------|----------------------------------------------------------------|
-| Leg Press                 | 3    | 10-15      | 120      | 7          | double_progression_2.5kg | Feet high and wide on the platform for glutes and hamstrings   |
-| Barbell Hip Thrust        | 3    | 10-15      | 90       | 7          | double_progression_2.5kg | Second weekly glute max dose; same setup as Monday             |
-| Wide Lat Pulldown         | 3    | 8-12       | 90       | 7          | double_progression_2.5kg | Wide grip; progress toward assisted pull-ups over time         |
-| Lateral Raise             | 3    | 12-15      | 60       | 8          | double_progression_1kg   | Strict control; shoulder width for visual balance              |
-| Seated Leg Curl           | 2    | 10-15      | 60       | 8          | double_progression_2.5kg | Hamstring isolation; smallest machine increment available      |
+| Exercise                  | Sets | Reps       | Rest (s) | Target RPE | Progression              | Notes                                                          | Video |
+|---------------------------|------|------------|----------|------------|--------------------------|----------------------------------------------------------------|-------|
+| Leg Press                 | 3    | 10-15      | 120      | 7          | double_progression_2.5kg | Feet high and wide on the platform for glutes and hamstrings   | https://www.youtube.com/watch?v=B6rGDcfyPto |
+| Barbell Hip Thrust        | 3    | 10-15      | 90       | 7          | double_progression_2.5kg | Second weekly glute max dose; same setup as Monday             | https://www.youtube.com/watch?v=LM8XHLYJoYs |
+| Wide Lat Pulldown         | 3    | 8-12       | 90       | 7          | double_progression_2.5kg | Wide grip; progress toward assisted pull-ups over time         | https://www.youtube.com/watch?v=lueEJGjTuPQ |
+| Lateral Raise             | 3    | 12-15      | 60       | 8          | double_progression_1kg   | Strict control; shoulder width for visual balance              | https://www.youtube.com/watch?v=n5dsI9qQXwY |
+| Seated Leg Curl           | 2    | 10-15      | 60       | 8          | double_progression_2.5kg | Hamstring isolation; smallest machine increment available      | https://www.youtube.com/watch?v=jobEeklwrrs |
 
 ---
 

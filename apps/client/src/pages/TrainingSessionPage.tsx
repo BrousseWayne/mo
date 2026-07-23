@@ -115,8 +115,14 @@ export function TrainingSessionPage() {
           </div>
           <div className="muted">
             {ex.sets} × {ex.reps} · rest {ex.rest_sec}s
+            {ex.target_weight_kg !== undefined ? ` · target ${ex.target_weight_kg} kg` : ""}
           </div>
           <div className="muted" style={{ marginTop: 4 }}>{ex.notes}</div>
+          {ex.video_url ? (
+            <a href={ex.video_url} target="_blank" rel="noreferrer" style={{ fontSize: "0.85rem" }}>
+              Watch form video ↗
+            </a>
+          ) : null}
           <div className="set-header">
             <span>Set</span>
             <span>kg</span>

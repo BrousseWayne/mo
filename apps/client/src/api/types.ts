@@ -75,6 +75,8 @@ export interface Exercise {
   notes: string;
   target_rpe: number;
   progression_rule: string;
+  target_weight_kg?: number;
+  video_url?: string;
   actual?: ExerciseActualSet[];
 }
 
