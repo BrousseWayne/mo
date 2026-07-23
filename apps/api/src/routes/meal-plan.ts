@@ -1,6 +1,11 @@
 import type { FastifyInstance } from "fastify";
-import { eq, desc } from "drizzle-orm";
-import { getProgramById, agentOutputs, pipelineRuns } from "@mo/database";
+import { getProgramById, getLatestAgentEnvelope } from "@mo/database";
+
+function envelopePayload(envelope: unknown): unknown {
+  return envelope && typeof envelope === "object" && "payload" in envelope
+    ? (envelope as { payload: unknown }).payload
+    : null;
+}
 
 export async function mealPlanRoutes(app: FastifyInstance) {
   app.get<{ Params: { id: string }; Querystring: { week?: string } }>(
@@ -14,30 +19,18 @@ export async function mealPlanRoutes(app: FastifyInstance) {
         });
       }
 
-      const latestRun = await app.db
-        .select()
-        .from(pipelineRuns)
-        .where(eq(pipelineRuns.program_id, program.id))
-        .orderBy(desc(pipelineRuns.created_at))
-        .limit(1);
+      const dietitian = await getLatestAgentEnvelope(app.db, program.id, "DIETITIAN");
+      const chef = await getLatestAgentEnvelope(app.db, program.id, "CHEF");
 
-      if (!latestRun[0]) {
+      if (!dietitian && !chef) {
         return { success: true, data: null };
       }
-
-      const outputs = await app.db
-        .select()
-        .from(agentOutputs)
-        .where(eq(agentOutputs.pipeline_run_id, latestRun[0].id));
-
-      const dietitianOutput = outputs.find((o) => o.agent_name === "DIETITIAN");
-      const chefOutput = outputs.find((o) => o.agent_name === "CHEF");
 
       return {
         success: true,
         data: {
-          template: dietitianOutput?.envelope ? (dietitianOutput.envelope as any).payload : null,
-          recipes: chefOutput?.envelope ? (chefOutput.envelope as any).payload : null,
+          template: envelopePayload(dietitian),
+          recipes: envelopePayload(chef),
         },
       };
     }

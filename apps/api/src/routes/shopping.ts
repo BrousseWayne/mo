@@ -1,7 +1,12 @@
 import type { FastifyInstance } from "fastify";
-import { eq, desc } from "drizzle-orm";
-import { getProgramById, agentOutputs, pipelineRuns } from "@mo/database";
+import { getProgramById, getLatestAgentEnvelope } from "@mo/database";
 import { generateShoppingList } from "@mo/agents";
+
+function chefPayload(envelope: unknown): Record<string, unknown> | null {
+  return envelope && typeof envelope === "object" && "payload" in envelope
+    ? ((envelope as { payload: Record<string, unknown> }).payload ?? null)
+    : null;
+}
 
 export async function shoppingRoutes(app: FastifyInstance) {
   app.get<{ Params: { id: string }; Querystring: { week?: string } }>(
@@ -15,29 +20,12 @@ export async function shoppingRoutes(app: FastifyInstance) {
         });
       }
 
-      const latestRun = await app.db
-        .select()
-        .from(pipelineRuns)
-        .where(eq(pipelineRuns.program_id, program.id))
-        .orderBy(desc(pipelineRuns.created_at))
-        .limit(1);
-
-      if (!latestRun[0]) {
+      const payload = chefPayload(await getLatestAgentEnvelope(app.db, program.id, "CHEF"));
+      if (!payload) {
         return { success: true, data: [] };
       }
 
-      const outputs = await app.db
-        .select()
-        .from(agentOutputs)
-        .where(eq(agentOutputs.pipeline_run_id, latestRun[0].id));
-
-      const chefOutput = outputs.find((o) => o.agent_name === "CHEF");
-      if (!chefOutput?.envelope) {
-        return { success: true, data: [] };
-      }
-
-      const payload = (chefOutput.envelope as any).payload;
-      const recipes = payload?.recipes ?? payload?.weekly_recipes ?? [];
+      const recipes = (payload.recipes ?? payload.weekly_recipes ?? []) as Parameters<typeof generateShoppingList>[0];
       const shoppingList = generateShoppingList(recipes);
 
       return { success: true, data: shoppingList };
@@ -55,24 +43,7 @@ export async function shoppingRoutes(app: FastifyInstance) {
         });
       }
 
-      const latestRun = await app.db
-        .select()
-        .from(pipelineRuns)
-        .where(eq(pipelineRuns.program_id, program.id))
-        .orderBy(desc(pipelineRuns.created_at))
-        .limit(1);
-
-      if (!latestRun[0]) {
-        return { success: true, data: null };
-      }
-
-      const outputs = await app.db
-        .select()
-        .from(agentOutputs)
-        .where(eq(agentOutputs.pipeline_run_id, latestRun[0].id));
-
-      const chefOutput = outputs.find((o) => o.agent_name === "CHEF");
-      const payload = chefOutput?.envelope ? (chefOutput.envelope as any).payload : null;
+      const payload = chefPayload(await getLatestAgentEnvelope(app.db, program.id, "CHEF"));
 
       return {
         success: true,
