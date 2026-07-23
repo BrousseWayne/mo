@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-MO (Multi-Agent Wellness Orchestrator) is a pipeline-based coaching system for female body recomposition. Monorepo scaffolded with Turborepo + pnpm. All 6 agents implemented (tools, agent runners, unit tests). Fastify API live with 4 routes. All 6 agent specs, pipeline orchestration, and knowledge bases are complete.
+MO (Multi-Agent Wellness Orchestrator) is a pipeline-based coaching system for female body recomposition. Monorepo scaffolded with Turborepo + pnpm. All 6 agents implemented (tools, agent runners, 145 unit tests). Fastify API with ~64 endpoints across 29 route files, BullMQ async pipeline, admin dashboard (apps/web). The 6-agent LLM pipeline has never completed end-to-end (no valid Anthropic API key); per [plans/ROADMAP_2026-07.md](./plans/ROADMAP_2026-07.md), MO is being rebuilt as a deterministic self-coaching tool first, with the LLM layer as an optional enhancement via headless Claude Code.
 
 ### Target Use Case
 
@@ -76,14 +76,23 @@ Agents communicate via structured JSON:
 
 ## Tech Stack (see plans/TECH_STACK_ADR.md)
 
-- Backend: Fastify (TypeScript) + PostgreSQL
-- Frontend: React Router v7 + Vite (later, not MVP)
+- Backend: Fastify (TypeScript) + PostgreSQL (Drizzle ORM) + Redis (BullMQ async pipeline)
+- Admin dashboard: React 19 + Vite + react-router 7 (apps/web)
+- Client frontend: apps/client per plans/FRONTEND_PLAN.md (not built yet)
 - Mobile: React Native + Expo (later)
 - Agent Orchestration: Custom TypeScript pipeline
-- LLM: Anthropic Claude (Sonnet 4.5 pipeline, Haiku 4.5 PHYSICIAN)
-- Cache: Redis (later, not MVP)
+- LLM: Anthropic Claude (model IDs centralized in `CLAUDE_MODELS`, packages/shared). No valid API key — LLM calls will go through headless Claude Code (`claude -p`), see plans/ROADMAP_2026-07.md Phase 2
 - Notifications: Firebase Cloud Messaging (later)
 - Cloud: AWS (ECS Fargate, RDS, ElastiCache) (later)
+
+## Dev Environment
+
+- PostgreSQL and Redis are **native Homebrew services** (no Docker): `postgresql://mo:mo@127.0.0.1:5432/mo`, `redis://127.0.0.1:6379`
+- `.env` lives at the repo root and is resolved explicitly by drizzle.config, seed, API, and scripts (never relies on package cwd)
+- API default port: **3100** (3000 conflicts with another local project)
+- `pnpm bootstrap` — checks services, creates role/database if missing, pushes schema, seeds if empty
+- `pnpm build` / `pnpm test` / `pnpm dev` — Turborepo across all packages
+- `pnpm db:generate` / `db:migrate` / `db:push` / `db:seed` — Drizzle. Migrations are authoritative for fresh environments; `db:push` for dev iteration
 
 ## File Structure
 
@@ -97,66 +106,79 @@ package.json                           # Root workspace (pnpm + Turborepo)
 pnpm-workspace.yaml                    # Workspace config
 turbo.json                             # Turborepo pipeline config
 tsconfig.base.json                     # Shared TypeScript config
-docker-compose.yml                     # PostgreSQL 16 container
+.github/workflows/ci.yml               # CI: pnpm build + per-package tests
+
+scripts/                               # Dev scripts (run from repo root)
+  bootstrap.ts                         # Native Postgres/Redis checks, role/db creation, push + seed
+  playground.ts                        # Run a single agent against fixture data
+  fixtures/                            # reference-intake.json, scientist-output.json
 
 packages/shared/                       # SHARED: Zod schemas, constants
-  package.json                         # Package config
-  tsconfig.json                        # TypeScript config
   src/index.ts                         # Barrel export
   src/schemas/intake.ts                # IntakeData schema
   src/schemas/agent-io.ts              # AgentEnvelope + 6 agent output schemas
   src/schemas/pipeline.ts              # PipelineRunRequest, PipelineStatus schemas
   src/schemas/nutrition.ts             # Nutrition data Zod schemas (FDC types)
-  src/constants.ts                     # Agent list, activity factors, macro ranges
+  src/schemas/program.ts               # Program lifecycle schemas
+  src/schemas/checkin.ts               # Weekly check-in schemas
+  src/schemas/trigger.ts               # Trigger evaluation schemas
+  src/schemas/adjustment.ts            # Adjustment schemas
+  src/constants.ts                     # Agent list, activity factors, macro ranges, CLAUDE_MODELS
 
 packages/database/                     # DATABASE: Drizzle ORM + PostgreSQL
-  package.json                         # Package config
-  tsconfig.json                        # TypeScript config
-  src/index.ts                         # Barrel export
-  src/schema.ts                        # users, intake_responses, pipeline_runs, agent_outputs
+  src/schema.ts                        # 20 tables: users, intake_responses, pipeline_runs,
+                                       #   agent_outputs, foods, programs, progress_entries,
+                                       #   training_sessions, adjustments, interaction_events,
+                                       #   physician_queries, red_flags, recipes, milestones,
+                                       #   notification_log, notification_preferences,
+                                       #   pantry_items, program_disruptions, progress_photos,
+                                       #   ingredient_prices
   src/client.ts                        # createDb() with postgres.js driver
-  src/queries.ts                       # Database query helpers
-  drizzle.config.ts                    # Drizzle Kit config
+  src/queries.ts                       # Legacy query helpers
+  src/queries/                         # Per-domain query helpers (programs, progress, training,
+                                       #   recipes, milestones, red-flags, physician, pantry,
+                                       #   outcomes, interactions)
+  src/seed.ts                          # 3 seed profiles (reference, intermediate, underweight-anxious)
+  drizzle.config.ts                    # Drizzle Kit config (resolves root .env)
+  drizzle/                             # Migrations (0000 + 0001, covers all 20 tables)
 
-packages/agents/                       # AGENTS: tool functions + LLM agent runners
-  package.json                         # Package config
-  tsconfig.json                        # TypeScript config
-  src/index.ts                         # Barrel export
+packages/agents/                       # AGENTS: tool functions + LLM agent runners + engines
   src/pipeline.ts                      # Sequential pipeline orchestrator (all 6 agents)
   src/types.ts                         # AgentContext, PipelineResult, PhysicianQuery
-  src/tools/scientist.ts               # 5 pure calculation functions + tool definitions
-  src/tools/nutritionist.ts            # 4 nutrition strategy functions + tool definitions
-  src/tools/dietitian.ts               # 3 meal architecture functions + tool definitions
-  src/tools/chef.ts                    # 3 recipe/batch functions + tool definitions
-  src/tools/coach.ts                   # 4 training programming functions + tool definitions
-  src/tools/physician.ts               # 3 health advisory functions + tool definitions
-  src/tools/nutrition.ts               # Nutrition lookup tools (search, scale macros/micros)
-  src/tools/ingredients.ts             # 41-entry ingredient macro lookup table
-  src/tools/__tests__/scientist.test.ts     # SCIENTIST tool unit tests
-  src/tools/__tests__/nutritionist.test.ts  # NUTRITIONIST tool unit tests
-  src/tools/__tests__/dietitian.test.ts     # DIETITIAN tool unit tests
-  src/tools/__tests__/chef.test.ts          # CHEF tool unit tests
-  src/tools/__tests__/coach.test.ts         # COACH tool unit tests
-  src/tools/__tests__/physician.test.ts     # PHYSICIAN tool unit tests
-  src/tools/__tests__/nutrition.test.ts    # Nutrition tool unit tests
-  src/clients/usda-fdc.ts              # USDA FoodData Central API client
-  src/clients/nutrition-cache.ts       # Nutrition data PostgreSQL cache
-  src/clients/__tests__/usda-fdc.test.ts   # USDA client unit tests
-  src/agents/scientist.ts              # SCIENTIST agent: system prompt + tool-use loop
-  src/agents/nutritionist.ts           # NUTRITIONIST agent: nutrition strategy runner
-  src/agents/dietitian.ts              # DIETITIAN agent: meal template runner
-  src/agents/chef.ts                   # CHEF agent: recipe generation runner
-  src/agents/coach.ts                  # COACH agent: training program runner
-  src/agents/physician.ts              # PHYSICIAN agent: on-demand health advisory (Haiku)
+  src/tools/                           # Pure per-agent tool functions + definitions
+                                       #   (scientist, nutritionist, dietitian, chef, coach,
+                                       #   physician, nutrition lookup, ingredients table)
+  src/agents/                          # LLM runners, one per agent (inert without API key)
+  src/clients/                         # USDA FDC API client + PostgreSQL nutrition cache
+  src/triggers/                        # Check-in trigger engine: evaluators, re-execution map
+  src/validation/                      # Cross-agent validation, hallucination detection,
+                                       #   recipe macro verification
+  src/insights/                        # Insights engine: generators, timing, variety,
+                                       #   re-engagement, curiosity hooks
+  src/formatting/                      # User-facing output: adjustment narratives,
+                                       #   user messages, weekly reports
+  src/__tests__/e2e/                   # Check-in flow E2E suite (no LLM required)
+  src/**/__tests__/                    # 145 unit tests across 21 suites
 
-apps/api/                              # API: Fastify server
-  package.json                         # Package config
-  tsconfig.json                        # TypeScript config
+apps/api/                              # API: Fastify server (~64 endpoints, port 3100)
   src/index.ts                         # Fastify bootstrap
-  src/routes/index.ts                  # Route registration
-  src/routes/intake.ts                 # POST /intake
-  src/routes/pipeline.ts               # POST /pipeline/run, GET /pipeline/:id
-  src/routes/agents.ts                 # GET /agents/:name/output/:runId
+  src/env.ts                           # Resolves root .env
+  src/errors.ts                        # Unified error handler
+  src/jobs/                            # BullMQ queue + pipeline/notification workers
+  src/routes/                          # 29 route files: intake, pipeline, agents, programs,
+                                       #   checkins, training, compliance, adjustments, dashboard,
+                                       #   charts, meal-plan, recipes, shopping, milestones,
+                                       #   schedule, insights, red-flags, health, admin, calendar,
+                                       #   photos, messages, pantry, techniques, ingredient-prices,
+                                       #   projection, wearables, disruptions
+
+apps/web/                              # ADMIN DASHBOARD: React 19 + Vite + react-router 7
+  src/pages/                           # 9 pages: Home, PipelineList, PipelineDetail,
+                                       #   AgentInspector, TriggerDashboard, ProgramTimeline,
+                                       #   DataExplorer, Stats, SystemMap
+  src/components/                      # AgentBadge, DataTable, JsonViewer, LoadingState, StatusBadge
+  src/api/client.ts                    # Fetch wrapper (proxies /api → :3100)
+  src/layouts/, src/hooks/, src/styles/
 
 agents/                                # AUTHORITATIVE: system prompts + I/O schemas
   SCIENTIST.md                         # Calculation engine agent
@@ -173,10 +195,14 @@ agents/artifacts/                      # DELIVERABLES: runtime-injected content
   dietitian-meal-template.md           # 7-day meal template with alternatives
 
 plans/                                 # ARCHITECTURE: decisions & schemas
+  ROADMAP_2026-07.md                   # Audit findings + execution roadmap (current entry point)
   CLIENT_PROFILE.md                    # Target client locked parameters
   TECH_STACK_ADR.md                    # Architecture decision record
   DATABASE_SCHEMA.md                   # PostgreSQL schema design
   NUTRITION_API_SPEC.md                # USDA FoodData Central integration spec
+  FEATURE_ROADMAP.md                   # Feature roadmap that drove Phases 0-5 (2026-02)
+  FRONTEND_PLAN.md                     # apps/client plan
+
 knowledge/                             # REFERENCE: non-authoritative context
   references.md                        # Scientific references
   client-protocol.md                   # Client biohacking protocol
@@ -194,23 +220,8 @@ audits/                                # TRACKING: temporal, non-authoritative
   FULL_AUDIT_REPORT.md                 # 6-pass audit results
 
 archive/                               # HISTORICAL: non-authoritative
-  IMPLEMENT_5_AGENTS.md               # Superseded: all 5 agents now implemented
-  MVP_IMPLEMENTATION_PLAN.md          # Superseded: all 6 agents + API implemented
-  BMAD_LITE_PROPOSAL.md               # Early architecture proposal
-  conversation-brief.md                # Original project brief
-  EXPERT_AUDIT_25_flags.md             # Pre-restructure audit flags
-  futur_stack_FR.md                    # French-language stack exploration
-  initial.md                           # Initial project notes
-  MO_Agent_Development_Plan.md         # Superseded (extracted to CLIENT_PROFILE.md)
-  REMAINING_FIXES_2026-02-09.md        # Migrated to TRACKER.md
-  old_plans/                           # Previous plan versions
-    prompt1.md                         # First prompt draft
-    prompt-iterations.md               # Prompt iteration history
-    MO_Agent_Development_Plan_v2.md    # Dev plan v2
-    MO_Agent_Development_Plan_v2.1.md  # Dev plan v2.1
-  compass_artifacts/                   # Original compass exports
-    compass_artifact_wf-01788e2e-*.md  # Compass workflow export 1
-    compass_artifact_wf-2f159dd6-*.md  # Compass workflow export 2
+  (superseded plans, early proposals, prompt iterations, compass exports,
+   newfeatures.md gap analysis superseded by Phases 4-5)
 ```
 
 ## Cross-Cutting Constraints
@@ -234,30 +245,23 @@ If conflict exists, higher-numbered documents defer to lower-numbered ones.
 
 ## Development Status
 
-See [TRACKER.md](./TRACKER.md) for full item-level tracking.
+See [TRACKER.md](./TRACKER.md) for full item-level tracking and [plans/ROADMAP_2026-07.md](./plans/ROADMAP_2026-07.md) for the current execution roadmap.
 
-### Documentation — Complete
-- All 6 agent system prompts written and audited
-- Pipeline orchestration spec formalized
-- 3 artifacts (meal template, batch cooking, shakes) macro-verified
-- 11 knowledge bases (references, client protocol, training, food science, cooking techniques, flavor science, cuisine profiles, nutrition science, meal architecture, body composition science, medical reference)
+### Complete
+- Documentation: 6 agent specs, pipeline spec, 3 macro-verified artifacts, 11 knowledge bases
+- Architecture: tech stack ADR, database schema, nutrition API spec, client profile, frontend plan
+- Implementation Phases 0-5 (2026-02): schema expansion, BullMQ pipeline, check-in loop + trigger engine, cross-agent validation, observability, insights, anomaly detection, formatters, admin dashboard
+- Environment sanity (2026-07-23, ROADMAP Phase 0): root .env resolution, green root test run, native Postgres/Redis dev environment, port 3100, centralized model IDs, CI, docs sync
 
-### Architecture — Complete
-- Tech stack ADR, database schema, MVP implementation plan, nutrition API spec, client profile
+### In Progress (ROADMAP Phase 1 — non-AI critical path)
+- 1.8 Program seeding from agents/artifacts/ without the LLM pipeline
+- 1.9 apps/client (reduced scope: intake wizard, dashboard, check-in, meal plan, training logging)
+- 1.10 Run the temporal loop for real (weekly check-ins → triggers → parametric adjustments)
 
-### Implementation — In Progress
-- Monorepo scaffolded (Turborepo + pnpm, 3 packages + 1 app)
-- `packages/shared`: Zod schemas (intake, agent-io with 6 output schemas, pipeline) + constants
-- `packages/database`: Drizzle ORM schema (4 tables), client, migrations
-- `packages/agents`: All 6 agents implemented (tools, runners, unit tests — 58 tests across 6 suites), pipeline orchestrator with PHYSICIAN on-demand callback
-- `apps/api`: Fastify server with 4 routes (intake, pipeline run/status, agent output)
-- Remaining: E2E tests, CI
-
-### Pending (Non-Code)
-- P1-7: Full API contract (auth, rate limiting, error format)
-- P1-9: Feedback loop remaining specs (check-in UI, notifications, partial data)
-- P2-14: Test matrix and golden dataset
-- P3-16 through P3-19: UI wireframes, COACH optimization, food cost tiers, missing health guardrails
+### Known Gaps
+- The 6-agent LLM pipeline has never run end-to-end (invalid API key; headless adapter is ROADMAP Phase 2)
+- `progress_entries` has no real-world data — zero actual usage cycles so far
+- P1-7 API contract, P2-14 golden dataset, P3-17/18/19 (see TRACKER.md)
 
 ## Session-End Protocol
 

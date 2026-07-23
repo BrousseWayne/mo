@@ -1,6 +1,6 @@
 # MO Project Tracker
 
-**Last updated**: 2026-02-18
+**Last updated**: 2026-07-23
 
 **Status markers**: `[x]` done | `[-]` in progress | `[ ]` todo | `[~]` archived/superseded
 
@@ -53,8 +53,11 @@
 - [~] MVP_IMPLEMENTATION_PLAN.md — SCIENTIST agent implementation plan (archived 2026-02-18, all 6 agents + API implemented)
 - [x] NUTRITION_API_SPEC.md — USDA FoodData Central integration spec (2026-02-09)
 - [~] IMPLEMENT_5_AGENTS.md — Implementation plan for 5 remaining agents (archived 2026-02-11, all agents implemented)
-- [ ] API_CONTRACT.md — Full REST endpoint definitions, auth, rate limiting (was P1-7)
-- [ ] GENERALIZATION_SPEC.md — Multi-client parameterization spec (was P2-15)
+- [x] FEATURE_ROADMAP.md — Feature roadmap that drove implementation Phases 0-5 (2026-02-19)
+- [x] FRONTEND_PLAN.md — Client-facing frontend plan (2026-02-23)
+- [x] ROADMAP_2026-07.md — Audit findings + execution roadmap; entry point after dormancy (2026-07-23)
+- [ ] API_CONTRACT.md — Full REST endpoint definitions, auth, rate limiting, error format (was P1-7)
+- [ ] GENERALIZATION_SPEC.md — Multi-client parameterization spec (was P2-15; deprioritized 2026-07-23: single-client tool is a locked decision in ROADMAP_2026-07.md)
 
 ---
 
@@ -63,41 +66,64 @@
 ### Monorepo Scaffolding (MVP Steps 1-3)
 
 - [x] Root config — package.json, pnpm-workspace.yaml, turbo.json, tsconfig.base.json (2026-02-09)
-- [x] Docker Compose — PostgreSQL 16 container (2026-02-09)
+- [~] Docker Compose — PostgreSQL 16 container (2026-02-09; removed 2026-07-23, dev uses native Homebrew PostgreSQL + Redis)
 - [x] .gitignore — node_modules, dist, .env exclusions (2026-02-09)
-- [x] packages/shared — Zod schemas (intake, agent-io, pipeline), constants (2026-02-09)
-- [x] packages/database — Drizzle ORM schema, client, migrations (2026-02-09)
+- [x] packages/shared — Zod schemas (intake, agent-io, pipeline, program, checkin, trigger, adjustment, nutrition), constants (2026-02-09, extended through 2026-02-23)
+- [x] packages/database — Drizzle ORM schema (20 tables), client, migrations, per-domain query helpers (2026-02-09, extended through 2026-02-23)
 
-### SCIENTIST Agent (MVP Steps 4-5)
+### Agents (MVP Steps 4-6 + v2 redesign)
 
-- [x] packages/agents/src/tools/scientist.ts — 5 pure calculation functions + tool definitions (2026-02-09)
-- [x] packages/agents/src/tools/__tests__/scientist.test.ts — Unit tests against known values (2026-02-09)
-- [x] packages/agents/src/agents/scientist.ts — System prompt + Claude tool-use loop (2026-02-09)
-
-### Pipeline Runner (MVP Step 6)
-
-- [x] packages/agents/src/pipeline.ts — Sequential orchestrator, agent registry (2026-02-09)
-
-### API Routes (MVP Step 7)
-
-- [x] apps/api/src/index.ts — Fastify bootstrap (2026-02-09)
-- [x] apps/api/src/routes/intake.ts — POST /intake (2026-02-09)
-- [x] apps/api/src/routes/pipeline.ts — POST /pipeline/run, GET /pipeline/:id (2026-02-09)
-- [x] apps/api/src/routes/agents.ts — GET /agents/:name/output/:runId (2026-02-09)
-
-### Remaining Agents
-
+- [x] SCIENTIST agent — Tools + agent runner + tests (2026-02-09)
 - [x] NUTRITIONIST agent — Tools + agent runner + tests (2026-02-11)
 - [x] DIETITIAN agent — Tools + agent runner + tests (2026-02-11)
 - [x] CHEF agent — Tools + agent runner + tests, hardcoded ingredient table (2026-02-11)
 - [x] COACH agent — Tools + agent runner + tests (2026-02-11)
 - [x] PHYSICIAN agent — On-demand invocation handler + tests (2026-02-11)
+- [x] Pipeline orchestrator — Sequential runner, agent registry, PHYSICIAN callback, archival with LLM trace (2026-02-09, extended 2026-02-19)
+- [x] USDA FoodData Central integration — API client, PostgreSQL nutrition cache, lookup tools (2026-02-18)
+
+### Feature Phases 0-5 (2026-02-19 → 2026-02-23, per FEATURE_ROADMAP.md)
+
+- [x] Phase 0 — Schema expansion, shared Zod schemas, Redis + BullMQ async pipeline, seed data, bootstrap + playground scripts, pipeline archival
+- [x] Phase 1 — Program CRUD, check-in API + progress storage, training session logging, trigger evaluation engine (7 evaluators), partial re-execution, compliance computation
+- [x] Phase 2 — Cross-agent validation, recipe macro verification, observability (health/stats/error handler), PHYSICIAN audit + referral tracking
+- [x] Phase 3 — Dashboard/charts/meal-plan/recipe endpoints, shopping list + recipe scaling + batch cooking, milestones, notification infrastructure, adjustment explanations, insights engine, program pause/resume lifecycle
+- [x] Phase 4 — CHEF recipe memory, PHYSICIAN proactive monitoring, outcome tracking + implicit preferences, smart timing + re-engagement, tier progression + phase transition triggers, technique reference, pantry CRUD, variety detection
+- [x] Phase 5 — Anomaly detection + cycle detrending + trajectory projection, hallucination detection, LLM cost tracking + data export, formatters + unified message API, progress photos + iCal export + weekly reports, ingredient prices + projection + wearable stub, training autoregulation + cross-agent signals, program disruptions, E2E check-in flow test suite
+
+### API (apps/api)
+
+- [x] Fastify server — bootstrap, error handler, BullMQ queue + pipeline/notification workers (2026-02-19)
+- [x] 29 route files, ~64 endpoints — intake, pipeline, agents, programs, checkins, training, compliance, adjustments, dashboard, charts, meal-plan, recipes, shopping, milestones, schedule, insights, red-flags, health, admin, calendar, photos, messages, pantry, techniques, ingredient-prices, projection, wearables, disruptions (2026-02-19 → 2026-02-23)
+
+### Admin Dashboard (apps/web)
+
+- [x] React 19 + Vite + react-router 7, 9 pages: Home, PipelineList, PipelineDetail, AgentInspector, TriggerDashboard, ProgramTimeline, DataExplorer, Stats, SystemMap (2026-02-23)
 
 ### Infrastructure
 
 - [x] .env.example — Document required environment variables (2026-02-09)
-- [ ] CI pipeline — GitHub Actions or equivalent
-- [ ] E2E integration tests — Full pipeline with real Claude API call
+- [x] CI pipeline — GitHub Actions: pnpm build + per-package tests (2026-07-23)
+- [x] E2E integration tests — Check-in flow suite, no LLM required (2026-02-23)
+- [ ] E2E pipeline run with real LLM — never completed; blocked on invalid Anthropic API key, will go through headless Claude Code (ROADMAP_2026-07.md Phase 2)
+
+---
+
+## Environment Sanity — ROADMAP_2026-07.md Phase 0 (2026-07-23)
+
+- [x] 0.1 dotenv resolves root .env explicitly (drizzle.config, seed, API, playground)
+- [x] 0.2 Root `pnpm test` green — @mo/shared passes with no test files
+- [x] 0.3 Database story settled — native PostgreSQL (postgresql://mo:mo@127.0.0.1:5432/mo) + native Redis; Docker Compose removed; migrations regenerated (0001 adds the 7 missing tables; fresh `db:migrate` = `db:push` = 20 tables); bootstrap checks native services, creates role/db, skips seed on non-empty DB
+- [x] 0.4 API default port 3100 (3000 conflicted with another local project)
+- [x] 0.5 Claude model IDs centralized in `CLAUDE_MODELS` (packages/shared)
+- [x] 0.6 GitHub Actions CI added
+- [x] 0.7 TRACKER.md + CLAUDE.md updated for Phases 0-5; newfeatures.md archived
+
+## Non-AI Critical Path — ROADMAP_2026-07.md Phase 1
+
+- [ ] 1.8 Program seeding from agents/artifacts/ without the LLM pipeline
+- [ ] 1.9 apps/client per FRONTEND_PLAN.md (reduced scope: intake wizard, dashboard, check-in, meal plan, training logging)
+- [ ] 1.10 Run the temporal loop for real — weekly check-ins → trigger engine → parametric adjustments
 
 ---
 
@@ -107,7 +133,7 @@
 
 - [ ] P1-7: Define API contract — Full REST endpoint definitions, auth model, rate limiting, error format
 - [x] P1-8: Resolve external file references — Decision: tool-use (USDA API) + RAG (static artifacts) (2026-02-09)
-- [-] P1-9: Specify feedback loop — Pipeline.md section 7 partially done; remaining: check-in UI spec, notification triggers, partial data handling, multi-trigger priority, user-facing adjustment communication
+- [-] P1-9: Specify feedback loop — Implementation now exists (check-in API, trigger engine, partial re-execution, notifications, adjustment narratives; Phases 1-5). Remaining: check-in UI (apps/client, item 1.9)
 
 ### P2 — Important But Non-Blocking
 
@@ -118,12 +144,12 @@
 - [x] P2-11D: Fix uncited DIETITIAN myth-busting claims (2026-02-09)
 - [x] P2-12: Fix shake recipe macro discrepancies (2026-02-09)
 - [x] P2-13: Fix carbohydrate targets in protocol and dev plan prose (2026-02-09)
-- [ ] P2-14: Create test matrix and golden dataset — 3-5 client profiles, expected outputs, edge cases
-- [ ] P2-15: Multi-client generalization spec — Parameterize for different ages, weights, goals, sexes
+- [ ] P2-14: Create test matrix and golden dataset — 3-5 client profiles, expected outputs, edge cases (seed profiles reference/intermediate/underweight-anxious are a starting point)
+- [~] P2-15: Multi-client generalization spec — Deprioritized; single-client tool locked in ROADMAP_2026-07.md (2026-07-23)
 
 ### P3 — Nice to Have
 
-- [ ] P3-16: UI wireframes — Intake form, plan view, check-in, progress dashboard, PHYSICIAN chat
+- [-] P3-16: UI wireframes — Superseded by FRONTEND_PLAN.md for apps/client (2026-02-23)
 - [ ] P3-17: COACH prompt optimization — Measure token count, chunking strategy if >4k tokens
-- [ ] P3-18: Food cost tiers — Budget/standard/premium tiers for meal planning
+- [ ] P3-18: Food cost tiers — ingredient_prices table + endpoints exist (Phase 5); meal-plan tiering not built
 - [ ] P3-19: Add missing health guardrails — ED detection for CHEF, RED-S for SCIENTIST, amenorrhea for NUTRITIONIST
