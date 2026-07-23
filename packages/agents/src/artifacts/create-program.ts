@@ -23,7 +23,7 @@ export interface CreateProgramFromArtifactsInput {
   trainingProgramMd: string;
 }
 
-function buildEnvelope(
+export function buildEnvelope(
   from: string,
   to: string,
   dataType: string,

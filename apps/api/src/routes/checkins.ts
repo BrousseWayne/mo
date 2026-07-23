@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import type { FastifyInstance } from "fastify";
 import { weeklyCheckinSchema } from "@mo/shared";
 import {
@@ -7,7 +8,15 @@ import {
   computeWeekNumber,
   getUnresolvedUrgentFlags,
 } from "@mo/database";
-import { processCheckin } from "@mo/agents";
+import { processCheckin, PHASE_TRAINING_ARTIFACTS } from "@mo/agents";
+
+const ARTIFACTS_DIR = new URL("../../../../agents/artifacts/", import.meta.url);
+
+function loadTrainingArtifact(phase: string): string | undefined {
+  const file = PHASE_TRAINING_ARTIFACTS[phase];
+  if (!file) return undefined;
+  return readFileSync(new URL(file, ARTIFACTS_DIR), "utf-8");
+}
 
 export async function checkinRoutes(app: FastifyInstance) {
   app.post<{ Params: { id: string } }>(
@@ -48,7 +57,7 @@ export async function checkinRoutes(app: FastifyInstance) {
         });
       }
 
-      const result = await processCheckin(app.db, program, parsed.data);
+      const result = await processCheckin(app.db, program, parsed.data, { loadTrainingArtifact });
 
       return {
         success: true,

@@ -4,6 +4,8 @@ import {
   adjustments,
   intakeResponses,
   programs,
+  pipelineRuns,
+  agentOutputs,
   createProgressEntry,
   updateProgramTargets,
   getProgressHistory,
@@ -19,6 +21,8 @@ import { evaluateAllTriggers } from "../triggers/engine.js";
 import { executeAdjustments, type ProgramAdjustmentUpdates, type ClientProfile } from "../triggers/executor.js";
 import { detectNewMilestones } from "../tools/milestones.js";
 import { generateWeekSessions, type LoggedExercise } from "../training/generate-week.js";
+import { parseTrainingProgram } from "../artifacts/parse-training-program.js";
+import { buildEnvelope } from "../artifacts/create-program.js";
 
 type ProgramRow = typeof programs.$inferSelect;
 
@@ -49,7 +53,10 @@ export async function processCheckin(
   db: Database,
   program: ProgramRow,
   data: WeeklyCheckin,
-  opts: { now?: Date } = {}
+  opts: {
+    now?: Date;
+    loadTrainingArtifact?: (phase: string) => string | undefined;
+  } = {}
 ): Promise<CheckinResult> {
   const now = opts.now ?? new Date();
   const weekNumber = computeWeekNumber(program, now);
@@ -167,6 +174,31 @@ export async function processCheckin(
 
     if (Object.keys(applied).length > 0) {
       await updateProgramTargets(db, program.id, applied);
+    }
+
+    if (applied.current_phase) {
+      const artifactMd = opts.loadTrainingArtifact?.(applied.current_phase);
+      if (artifactMd) {
+        const coachPayload = parseTrainingProgram(artifactMd);
+        const [run] = await db
+          .insert(pipelineRuns)
+          .values({
+            user_id: program.user_id,
+            intake_response_id: program.intake_response_id,
+            program_id: program.id,
+            trigger: "adjustment",
+            status: "completed",
+            agents_requested: ["COACH"],
+            started_at: now,
+            completed_at: now,
+          })
+          .returning();
+        await db.insert(agentOutputs).values({
+          pipeline_run_id: run.id,
+          agent_name: "COACH",
+          envelope: buildEnvelope("COACH", "USER", "training_program", coachPayload, run.id),
+        });
+      }
     }
   }
 
