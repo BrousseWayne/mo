@@ -70,6 +70,37 @@ importers:
         specifier: ^4
         version: 4.21.0
 
+  apps/client:
+    dependencies:
+      '@mo/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      react:
+        specifier: ^19
+        version: 19.2.4
+      react-dom:
+        specifier: ^19
+        version: 19.2.4(react@19.2.4)
+      react-router:
+        specifier: ^7
+        version: 7.13.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+    devDependencies:
+      '@types/react':
+        specifier: ^19
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^4
+        version: 4.7.0(vite@6.4.1(@types/node@18.19.130)(tsx@4.21.0))
+      typescript:
+        specifier: ^5.7
+        version: 5.9.3
+      vite:
+        specifier: ^6
+        version: 6.4.1(@types/node@18.19.130)(tsx@4.21.0)
+
   apps/web:
     dependencies:
       '@mo/shared':
