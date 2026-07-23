@@ -127,6 +127,7 @@ packages/shared/                       # SHARED: Zod schemas, constants
   src/schemas/trigger.ts               # Trigger evaluation schemas
   src/schemas/adjustment.ts            # Adjustment schemas
   src/constants.ts                     # Agent list, activity factors, macro ranges, CLAUDE_MODELS
+  src/glossary.ts                      # GLOSSARY: client-facing term definitions (RULES-audited)
 
 packages/database/                     # DATABASE: Drizzle ORM + PostgreSQL
   src/schema.ts                        # 20 tables: users, intake_responses, pipeline_runs,
@@ -181,7 +182,7 @@ apps/api/                              # API: Fastify server (~64 endpoints, por
 
 apps/client/                           # USER FRONTEND: mobile-first, port 5174
   src/pages/                           # DashboardPage, CheckinPage, MealPlanPage,
-                                       #   TrainingWeekPage, TrainingSessionPage,
+                                       #   TrainingWeekPage, TrainingSessionPage, GlossaryPage,
                                        #   intake/ (6-step IntakeWizardPage + sections)
   src/components/                      # BottomNav, field widgets (Choice/Number/Slider/Toggle/Text)
   src/context/ProgramContext.tsx       # Active programId (localStorage), auto-pick or → /intake
@@ -209,6 +210,7 @@ agents/artifacts/                      # DELIVERABLES: runtime-injected content
   chef-shake-recipes.md                # Calorie-dense shake formulations
   dietitian-meal-template.md           # 7-day meal template with alternatives
   coach-training-program.md            # Phase 0 training program (parsed by seed:program)
+  coach-training-program-phase1.md     # Phase 1 Foundation program (loaded on phase transition)
 
 plans/                                 # ARCHITECTURE: decisions & schemas
   ROADMAP_2026-07.md                   # Audit findings + execution roadmap (current entry point)
