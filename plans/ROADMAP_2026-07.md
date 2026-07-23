@@ -84,8 +84,14 @@ entry point for resuming work after 5 months of dormancy (last commit 2026-02-23
 9. ~~**Build `apps/client`**~~ — done 2026-07-23 in reduced scope (intake wizard,
    dashboard, check-in, meal plan, training logging; port 5174). `apps/kitchen` and
    progress/photos/calendar still deferred.
-10. **Run the temporal loop for real** — the feature that makes MO a coach instead of
-    a plan document. Done when the item 10d simulation passes. In order:
+10. ~~**Run the temporal loop for real**~~ — done 2026-07-23. All five sub-items
+    landed: deterministic executor at check-in (`executeAdjustments` +
+    `processCheckin` in @mo/agents), weekly session generation with double
+    progression targets, `coach-training-program-phase1.md` + phase transition
+    (evaluator rewritten to the COACH.md criterion: 6 completed phase 0
+    sessions), six-week simulation E2E green locally and in CI (Postgres
+    service + migrations), `programs.paused_at` added, dev DB left with one
+    clean program. Original spec follows:
     - **10a. Deterministic adjustment executor.** The trigger evaluators already emit
       actionable `new_values` (`calorie_increase_kcal` / `calorie_decrease_kcal`,
       `milestone_kg`, `new_tier`, `new_phase`). At check-in, apply them to the

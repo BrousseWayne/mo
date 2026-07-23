@@ -123,12 +123,12 @@
 
 - [x] 1.8 Program seeding from agents/artifacts/ without the LLM pipeline — coach-training-program.md authored (Phase 0, from training KB §15), artifact parsers in packages/agents/src/artifacts/ (schema-validated DIETITIAN/COACH payloads, 15 tests), `pnpm seed:program` creates user + intake + program targets + completed run + agent outputs + week-1 training sessions; meal-plan and training endpoints serve real data (2026-07-23)
 - [x] 1.9 apps/client per FRONTEND_PLAN.md, reduced scope — intake wizard (6 steps) → POST /programs/from-artifacts, dashboard (progress ring, KPIs, macro targets, adjustments), weekly check-in with trigger feedback, meal plan (day tabs, slot alternatives), training week + session logging (actuals, complete/skip); port 5174; browser-smoke-tested end-to-end incl. full wizard flow; progress/photos/calendar and apps/kitchen deferred (2026-07-23)
-- [ ] 1.10 Run the temporal loop for real (spec detailed in ROADMAP_2026-07.md, 2026-07-23)
-  - [ ] 10a Deterministic adjustment executor at check-in (apply trigger new_values; stop enqueuing pipeline.checkin; fix current_tier/current_phase omission in checkins.ts)
-  - [ ] 10b Weekly session generation (phase_0 copy; later phases double progression on actuals)
-  - [ ] 10c coach-training-program-phase1.md artifact + phase transition wiring
-  - [ ] 10d Multi-week simulation E2E test (definition of done for Phase 1)
-  - [ ] 10e Hygiene: programs.paused_at column, purge test programs, push to GitHub
+- [x] 1.10 Run the temporal loop for real (2026-07-23)
+  - [x] 10a Deterministic adjustment executor at check-in — `executeAdjustments` (calorie deltas, TDEE recalc at milestones with phase-based activity factor, protein restamp, tier/phase persistence) + `processCheckin` orchestration extracted into @mo/agents; tier/phase and cross-week sessions now reach the trigger engine; milestone baseline = last_recalc_weight_kg (initialized at program creation); pipeline.checkin no longer enqueued, adjustments recorded with pipeline_run_id null (2026-07-23)
+  - [x] 10b Weekly session generation — `generateWeekSessions` (phase template copy; `double_progression_<kg>` rules derive target_weight_kg from previous week's logged actuals); optional target_weight_kg on COACH exercise schema; sessions materialized at check-in when the week has none (2026-07-23)
+  - [x] 10c coach-training-program-phase1.md (Foundation, from training KB §6) + phase transition wiring — on phase_transition, the new phase's artifact is parsed and stored as a completed COACH run; evaluatePhaseTransition rewritten: deterministic phase_0 → phase_1 after 6 completed sessions per COACH.md (old load-progression rule contradicted phase 0's zero-overload design) (2026-07-23)
+  - [x] 10d Six-week simulation E2E test (real Postgres, 7 tests): weekly session materialization, phase_0→phase_1, tier_0→tier_1, +200 kcal applied to the program row, protein restamp, double progression 20→22.5→hold→25 kg, no pipeline runs enqueued (2026-07-23)
+  - [x] 10e Hygiene: programs.paused_at column (migration 0002, pause route no longer a silent no-op), dev DB reduced to one clean seeded program, CI runs the simulation against a Postgres service (DATABASE_URL passed through turbo) (2026-07-23)
 
 ## Client Content — ROADMAP_2026-07.md Phase 3
 

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-MO (Multi-Agent Wellness Orchestrator) is a pipeline-based coaching system for female body recomposition. Monorepo scaffolded with Turborepo + pnpm. All 6 agents implemented (tools, agent runners, 145 unit tests). Fastify API with ~64 endpoints across 29 route files, BullMQ async pipeline, admin dashboard (apps/web). The 6-agent LLM pipeline has never completed end-to-end (no valid Anthropic API key); per [plans/ROADMAP_2026-07.md](./plans/ROADMAP_2026-07.md), MO is being rebuilt as a deterministic self-coaching tool first, with the LLM layer as an optional enhancement via headless Claude Code.
+MO (Multi-Agent Wellness Orchestrator) is a pipeline-based coaching system for female body recomposition. Monorepo scaffolded with Turborepo + pnpm. All 6 agents implemented (tools, agent runners, 202 tests). Fastify API with ~64 endpoints across 29 route files, BullMQ async pipeline, admin dashboard (apps/web). The 6-agent LLM pipeline has never completed end-to-end (no valid Anthropic API key); per [plans/ROADMAP_2026-07.md](./plans/ROADMAP_2026-07.md), MO is being rebuilt as a deterministic self-coaching tool first, with the LLM layer as an optional enhancement via headless Claude Code.
 
 ### Target Use Case
 
@@ -162,8 +162,10 @@ packages/agents/                       # AGENTS: tool functions + LLM agent runn
                                        #   user messages, weekly reports
   src/artifacts/                       # Parsers: static artifacts → schema-validated
                                        #   DIETITIAN/COACH payloads (no LLM)
-  src/__tests__/e2e/                   # Check-in flow E2E suite (no LLM required)
-  src/**/__tests__/                    # 145 unit tests across 21 suites
+  src/checkin/                         # processCheckin: deterministic check-in orchestration
+  src/training/                        # Weekly session generation (double progression)
+  src/__tests__/e2e/                   # Check-in flow + six-week simulation (real Postgres)
+  src/**/__tests__/                    # 202 tests across 28 suites
 
 apps/api/                              # API: Fastify server (~64 endpoints, port 3100)
   src/index.ts                         # Fastify bootstrap
@@ -267,12 +269,7 @@ See [TRACKER.md](./TRACKER.md) for full item-level tracking and [plans/ROADMAP_2
 - Architecture: tech stack ADR, database schema, nutrition API spec, client profile, frontend plan
 - Implementation Phases 0-5 (2026-02): schema expansion, BullMQ pipeline, check-in loop + trigger engine, cross-agent validation, observability, insights, anomaly detection, formatters, admin dashboard
 - Environment sanity (2026-07-23, ROADMAP Phase 0): root .env resolution, green root test run, native Postgres/Redis dev environment, port 3100, centralized model IDs, CI, docs sync
-
-### In Progress (ROADMAP Phase 1 — non-AI critical path)
-
-- ~~1.8 Program seeding from agents/artifacts/~~ done 2026-07-23 (`pnpm seed:program`, POST /programs/from-artifacts)
-- ~~1.9 apps/client~~ done 2026-07-23 (intake wizard → dashboard → check-in → meals → training logging)
-- 1.10 Run the temporal loop for real (weekly check-ins → triggers → parametric adjustments)
+- ROADMAP Phase 1 — non-AI critical path (2026-07-23): program seeding from agents/artifacts/ (`pnpm seed:program`, POST /programs/from-artifacts), apps/client (intake wizard → dashboard → check-in → meals → training logging), and the temporal loop (1.10): deterministic adjustment executor at check-in (`processCheckin` in @mo/agents — no pipeline enqueued), weekly session generation with double progression, phase_0 → phase_1 transition from `coach-training-program-phase1.md`, six-week simulation E2E in CI (Postgres service)
 
 ### Known Gaps
 
