@@ -132,7 +132,7 @@
 
 ## Client Content — ROADMAP_2026-07.md Phase 3
 
-- [ ] 3.14 Glossary artifact + in-app glossary page (RULES-compliant definitions)
+- [x] 3.14 Glossary — typed `GLOSSARY` constant in @mo/shared (14 RULES-audited entries: RPE, minimum viable day, phase, tier, surplus, ramp-up, casein, follicular/luteal/menstrual, progressive overload, double progression, batch cooking, MPS); /glossary page in apps/client with per-term anchors, linked from dashboard (phase/tier badges, surplus, footer link), RPE badge on session page, and check-in cycle/consistency labels; browser-smoke-tested (2026-07-23)
 - [ ] 3.15 Exercise form-video links (schema + artifacts + parser + client link; verify URLs)
 
 ---

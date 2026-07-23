@@ -7,6 +7,7 @@ import { CheckinPage } from "./pages/CheckinPage";
 import { MealPlanPage } from "./pages/MealPlanPage";
 import { TrainingWeekPage } from "./pages/TrainingWeekPage";
 import { TrainingSessionPage } from "./pages/TrainingSessionPage";
+import { GlossaryPage } from "./pages/GlossaryPage";
 
 export function App() {
   return (
@@ -20,6 +21,7 @@ export function App() {
             <Route path="meals" element={<MealPlanPage />} />
             <Route path="training" element={<TrainingWeekPage />} />
             <Route path="training/:sessionId" element={<TrainingSessionPage />} />
+            <Route path="glossary" element={<GlossaryPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

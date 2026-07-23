@@ -72,8 +72,12 @@ export function DashboardPage() {
             </div>
             <div className="muted">average rate</div>
             <div style={{ marginTop: 8 }}>
-              <span className="badge low">{phaseLabel(data.current_phase)}</span>{" "}
-              <span className="badge medium">{phaseLabel(data.current_tier)}</span>
+              <Link to="/glossary#phase" className="badge low" style={{ textDecoration: "none" }}>
+                {phaseLabel(data.current_phase)}
+              </Link>{" "}
+              <Link to="/glossary#tier" className="badge medium" style={{ textDecoration: "none" }}>
+                {phaseLabel(data.current_tier)}
+              </Link>
             </div>
           </div>
         </div>
@@ -96,7 +100,11 @@ export function DashboardPage() {
           <div style={{ fontSize: "1.3rem", fontWeight: 700 }}>
             {program.target_intake_kcal} kcal{" "}
             <span className="muted" style={{ fontWeight: 400 }}>
-              (+{program.surplus_kcal} surplus)
+              (+{program.surplus_kcal}{" "}
+              <Link to="/glossary#surplus" style={{ color: "inherit" }}>
+                surplus
+              </Link>
+              )
             </span>
           </div>
           {totalKcal > 0 ? (
@@ -152,6 +160,9 @@ export function DashboardPage() {
             Training
           </Link>
         </div>
+        <Link to="/glossary" className="muted" style={{ display: "block", marginTop: 12, fontSize: "0.85rem" }}>
+          New to a term? Open the glossary →
+        </Link>
       </div>
     </>
   );

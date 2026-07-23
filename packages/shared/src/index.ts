@@ -7,3 +7,4 @@ export * from "./schemas/checkin.js";
 export * from "./schemas/adjustment.js";
 export * from "./schemas/program.js";
 export * from "./schemas/trigger.js";
+export * from "./glossary.js";

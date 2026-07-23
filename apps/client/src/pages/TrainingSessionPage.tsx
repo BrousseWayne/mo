@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useParams, useNavigate, Link } from "react-router";
 import { useProgramId } from "../context/ProgramContext";
 import { useQuery } from "../hooks/use-query";
 import { useMutation } from "../hooks/use-mutation";
@@ -109,7 +109,9 @@ export function TrainingSessionPage() {
         <div className="card" key={ex.name}>
           <div className="slot-head">
             <span className="slot-name">{ex.name}</span>
-            <span className="badge low">RPE {ex.target_rpe}</span>
+            <Link to="/glossary#rpe" className="badge low" style={{ textDecoration: "none" }}>
+              RPE {ex.target_rpe}
+            </Link>
           </div>
           <div className="muted">
             {ex.sets} × {ex.reps} · rest {ex.rest_sec}s

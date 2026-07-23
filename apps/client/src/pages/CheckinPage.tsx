@@ -110,7 +110,12 @@ export function CheckinPage() {
       </div>
 
       <div className="card">
-        <h2>Cycle</h2>
+        <h2>
+          Cycle{" "}
+          <Link to="/glossary#follicular" className="muted" style={{ fontSize: "0.75rem", fontWeight: 400 }}>
+            what are these?
+          </Link>
+        </h2>
         <ChoiceField
           label="Current phase"
           hint="if you track it"
@@ -134,7 +139,12 @@ export function CheckinPage() {
       </div>
 
       <div className="card">
-        <h2>Eating consistency</h2>
+        <h2>
+          Eating consistency{" "}
+          <Link to="/glossary#minimum-viable-day" className="muted" style={{ fontSize: "0.75rem", fontWeight: 400 }}>
+            what counts?
+          </Link>
+        </h2>
         <SliderField
           label="Days you hit all 5 meals"
           min={0}
