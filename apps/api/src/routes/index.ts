@@ -27,6 +27,7 @@ import { wearableRoutes } from "./wearables.js";
 import { projectionRoutes } from "./projection.js";
 import { ingredientPriceRoutes } from "./ingredient-prices.js";
 import { disruptionRoutes } from "./disruptions.js";
+import { physicianRoutes } from "./physician.js";
 
 export async function registerRoutes(app: FastifyInstance) {
   await app.register(intakeRoutes);
@@ -57,4 +58,5 @@ export async function registerRoutes(app: FastifyInstance) {
   await app.register(projectionRoutes);
   await app.register(ingredientPriceRoutes);
   await app.register(disruptionRoutes);
+  await app.register(physicianRoutes);
 }

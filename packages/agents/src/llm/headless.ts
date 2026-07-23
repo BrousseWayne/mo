@@ -14,6 +14,7 @@ function buildEnv(): NodeJS.ProcessEnv {
   const env = { ...process.env };
   delete env.CLAUDECODE;
   delete env.CLAUDE_CODE_ENTRYPOINT;
+  delete env.ANTHROPIC_API_KEY;
   return env;
 }
 
