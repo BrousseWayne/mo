@@ -12,6 +12,11 @@ export const AGENT_COLORS: Record<AgentName | typeof PHYSICIAN_AGENT, string> = 
   PHYSICIAN: "#E63946",
 };
 
+export const CLAUDE_MODELS = {
+  pipeline: "claude-sonnet-4-5-20250929",
+  physician: "claude-haiku-4-5-20251001",
+} as const;
+
 export const ACTIVITY_FACTORS = {
   sedentary: 1.2,
   lightly_active: 1.375,

@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
-import { physicianOutputSchema, type AgentEnvelope } from "@mo/shared";
+import { CLAUDE_MODELS, physicianOutputSchema, type AgentEnvelope } from "@mo/shared";
 import type { AgentContext } from "../types.js";
 import { toolDefinitions, toolExecutors } from "../tools/physician.js";
 
@@ -147,7 +147,7 @@ export async function runPhysicianProactiveReview(
   ];
 
   const response = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
+    model: CLAUDE_MODELS.physician,
     max_tokens: 2048,
     system: SYSTEM_PROMPT,
     tools: toolDefinitions,
@@ -199,7 +199,7 @@ export async function runPhysician(
   ];
 
   let response = await client.messages.create({
-    model: "claude-haiku-4-5-20251001",
+    model: CLAUDE_MODELS.physician,
     max_tokens: 4096,
     system: SYSTEM_PROMPT,
     tools: toolDefinitions,
@@ -238,7 +238,7 @@ export async function runPhysician(
     messages.push({ role: "user", content: toolResults });
 
     response = await client.messages.create({
-      model: "claude-haiku-4-5-20251001",
+      model: CLAUDE_MODELS.physician,
       max_tokens: 4096,
       system: SYSTEM_PROMPT,
       tools: toolDefinitions,

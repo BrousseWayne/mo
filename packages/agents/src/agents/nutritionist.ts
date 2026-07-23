@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
-import { nutritionistOutputSchema, type AgentEnvelope } from "@mo/shared";
+import { CLAUDE_MODELS, nutritionistOutputSchema, type AgentEnvelope } from "@mo/shared";
 import type { AgentContext } from "../types.js";
 import { toolDefinitions, toolExecutors } from "../tools/nutritionist.js";
 
@@ -122,7 +122,7 @@ ${JSON.stringify(context.intake, null, 2)}`;
   ];
 
   let response = await client.messages.create({
-    model: "claude-sonnet-4-5-20250929",
+    model: CLAUDE_MODELS.pipeline,
     max_tokens: 4096,
     system: SYSTEM_PROMPT,
     tools: toolDefinitions,
@@ -161,7 +161,7 @@ ${JSON.stringify(context.intake, null, 2)}`;
     messages.push({ role: "user", content: toolResults });
 
     response = await client.messages.create({
-      model: "claude-sonnet-4-5-20250929",
+      model: CLAUDE_MODELS.pipeline,
       max_tokens: 4096,
       system: SYSTEM_PROMPT,
       tools: toolDefinitions,

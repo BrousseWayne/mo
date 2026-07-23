@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
-import { chefOutputSchema, type AgentEnvelope } from "@mo/shared";
+import { CLAUDE_MODELS, chefOutputSchema, type AgentEnvelope } from "@mo/shared";
 import type { AgentContext } from "../types.js";
 import { toolDefinitions, toolExecutors } from "../tools/chef.js";
 import {
@@ -154,7 +154,7 @@ Client intake data:
   ];
 
   let response = await client.messages.create({
-    model: "claude-sonnet-4-5-20250929",
+    model: CLAUDE_MODELS.pipeline,
     max_tokens: 8192,
     system: SYSTEM_PROMPT,
     tools: allTools,
@@ -220,7 +220,7 @@ Client intake data:
     messages.push({ role: "user", content: toolResults });
 
     response = await client.messages.create({
-      model: "claude-sonnet-4-5-20250929",
+      model: CLAUDE_MODELS.pipeline,
       max_tokens: 8192,
       system: SYSTEM_PROMPT,
       tools: allTools,

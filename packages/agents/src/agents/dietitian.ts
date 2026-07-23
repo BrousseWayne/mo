@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
-import { dietitianOutputSchema, type AgentEnvelope } from "@mo/shared";
+import { CLAUDE_MODELS, dietitianOutputSchema, type AgentEnvelope } from "@mo/shared";
 import type { AgentContext } from "../types.js";
 import { toolDefinitions, toolExecutors } from "../tools/dietitian.js";
 import { nutritionTools, executeNutritionTool, isNutritionTool } from "../tools/nutrition.js";
@@ -117,7 +117,7 @@ export async function runDietitian(
   ];
 
   let response = await client.messages.create({
-    model: "claude-sonnet-4-5-20250929",
+    model: CLAUDE_MODELS.pipeline,
     max_tokens: 8192,
     system: SYSTEM_PROMPT,
     tools: allTools,
@@ -159,7 +159,7 @@ export async function runDietitian(
     messages.push({ role: "user", content: toolResults });
 
     response = await client.messages.create({
-      model: "claude-sonnet-4-5-20250929",
+      model: CLAUDE_MODELS.pipeline,
       max_tokens: 8192,
       system: SYSTEM_PROMPT,
       tools: allTools,

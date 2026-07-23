@@ -1,5 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
-import type { IntakeData, AgentEnvelope } from "@mo/shared";
+import { CLAUDE_MODELS, type IntakeData, type AgentEnvelope } from "@mo/shared";
 import type { Database } from "@mo/database";
 import type { AgentContext, PipelineResult } from "./types.js";
 import type { LlmTrace } from "./agents/trace.js";
@@ -106,7 +106,7 @@ export async function runPipeline(params: {
 
       const trace: LlmTrace = {
         agent: agentName,
-        model: "claude-sonnet-4-5-20250929",
+        model: CLAUDE_MODELS.pipeline,
         turns: [],
         total_input_tokens: 0,
         total_output_tokens: 0,

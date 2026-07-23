@@ -1,6 +1,6 @@
 import { randomUUID } from "node:crypto";
 import Anthropic from "@anthropic-ai/sdk";
-import { scientistOutputSchema, type AgentEnvelope } from "@mo/shared";
+import { CLAUDE_MODELS, scientistOutputSchema, type AgentEnvelope } from "@mo/shared";
 import type { AgentContext } from "../types.js";
 import { toolDefinitions, toolExecutors } from "../tools/scientist.js";
 
@@ -92,7 +92,7 @@ export async function runScientist(
   ];
 
   let response = await client.messages.create({
-    model: "claude-sonnet-4-5-20250929",
+    model: CLAUDE_MODELS.pipeline,
     max_tokens: 4096,
     system: SYSTEM_PROMPT,
     tools: toolDefinitions,
@@ -131,7 +131,7 @@ export async function runScientist(
     messages.push({ role: "user", content: toolResults });
 
     response = await client.messages.create({
-      model: "claude-sonnet-4-5-20250929",
+      model: CLAUDE_MODELS.pipeline,
       max_tokens: 4096,
       system: SYSTEM_PROMPT,
       tools: toolDefinitions,
