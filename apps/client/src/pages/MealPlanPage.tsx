@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useProgramId } from "../context/ProgramContext";
 import { useQuery } from "../hooks/use-query";
-import type { MealPlanData, MealSlot } from "../api/types";
+import { useMutation } from "../hooks/use-mutation";
+import type { MealPlanData, MealSlot, RecipeGenerateResult, StoredRecipe } from "../api/types";
 
 const DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 const SLOT_ORDER = ["breakfast", "lunch", "snack", "dinner", "presleep"];
@@ -58,12 +59,63 @@ function SlotCard({ slotKey, slot }: { slotKey: string; slot: MealSlot }) {
   );
 }
 
+function RecipeCard({ recipe }: { recipe: StoredRecipe }) {
+  const [open, setOpen] = useState(false);
+  const m = recipe.macros_per_serving;
+  return (
+    <div className="card">
+      <div className="slot-head">
+        <span className="slot-name">{recipe.recipe_name}</span>
+        <span className="badge low">{recipe.cuisine}</span>
+      </div>
+      <div className="muted">
+        {m.protein_g}g protein · {m.calories} kcal/serving · {recipe.time_prep + recipe.time_cook} min
+        {recipe.verified ? " · macros verified" : ""}
+      </div>
+      <button type="button" className="btn ghost" style={{ width: "auto", minHeight: 32, padding: 0 }} onClick={() => setOpen((s) => !s)}>
+        {open ? "Hide recipe" : "Show recipe"}
+      </button>
+      {open ? (
+        <>
+          <h2 style={{ marginTop: 8 }}>Ingredients</h2>
+          <ul className="bullets">
+            {recipe.ingredients.map((ing, i) => (
+              <li key={i}>
+                {ing.amount_g} g {ing.item}
+                {ing.prep_notes ? ` — ${ing.prep_notes}` : ""}
+              </li>
+            ))}
+          </ul>
+          <h2 style={{ marginTop: 8 }}>Steps</h2>
+          <ol className="bullets">
+            {recipe.instructions.map((step, i) => (
+              <li key={i}>{step}</li>
+            ))}
+          </ol>
+          {recipe.batch_notes ? <p className="muted" style={{ marginTop: 6 }}>{recipe.batch_notes}</p> : null}
+        </>
+      ) : null}
+    </div>
+  );
+}
+
 export function MealPlanPage() {
   const { programId } = useProgramId();
   const [day, setDay] = useState(todayKey());
   const { data, loading, error } = useQuery<MealPlanData>(
     programId ? `/programs/${programId}/meal-plan` : null
   );
+  const { data: recipes, refetch: refetchRecipes } = useQuery<StoredRecipe[]>("/recipes?limit=20");
+  const { mutate, loading: generating, error: generateError } = useMutation<RecipeGenerateResult>();
+  const [generated, setGenerated] = useState<RecipeGenerateResult | null>(null);
+
+  const generate = async () => {
+    if (!programId) return;
+    setGenerated(null);
+    const res = await mutate(`/programs/${programId}/recipes/generate`, "POST", { count: 2 });
+    setGenerated(res);
+    refetchRecipes();
+  };
 
   if (loading) return <div className="page-loading">Loading…</div>;
   if (error) return <div className="error-box">{error}</div>;
@@ -103,6 +155,24 @@ export function MealPlanPage() {
             <SlotCard key={s} slotKey={s} slot={daySlots[s]} />
           ))
         : <div className="card muted">No template for this day.</div>}
+
+      <h1 style={{ marginTop: 24 }}>Recipes</h1>
+      <p className="page-sub">
+        Chef-generated variations on your lunch and dinner slots, macro-checked against the ingredient table.
+      </p>
+      {generateError ? <div className="error-box">{generateError}</div> : null}
+      {generated ? (
+        <div className="success-box">
+          {generated.recipes_created} recipe{generated.recipes_created === 1 ? "" : "s"} added
+          {generated.rejected.length > 0 ? ` · ${generated.rejected.length} rejected by the macro check` : ""}.
+        </div>
+      ) : null}
+      <button type="button" className="btn secondary" disabled={generating} onClick={generate} style={{ marginBottom: 10 }}>
+        {generating ? "Cooking up ideas… (1-2 minutes)" : "Generate 2 new recipes"}
+      </button>
+      {recipes?.length
+        ? recipes.map((r) => <RecipeCard key={r.id} recipe={r} />)
+        : <div className="card muted">No recipes yet — generate some for variety.</div>}
     </>
   );
 }

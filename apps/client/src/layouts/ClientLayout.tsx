@@ -13,7 +13,7 @@ export function ClientLayout() {
   useEffect(() => {
     if (loading || programs === null) return;
     const stored = programs.find((p) => p.id === programId);
-    if (stored?.status === "active") return;
+    if (stored && (stored.status === "active" || stored.status === "paused")) return;
     const active = programs.find((p) => p.status === "active");
     if (active) {
       setProgramId(active.id);

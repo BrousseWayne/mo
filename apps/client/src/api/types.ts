@@ -53,12 +53,68 @@ export interface MealSlot {
 
 export type DayTemplate = Record<string, MealSlot>;
 
+export interface GeneratedRecipe {
+  recipe_name: string;
+  cuisine: string;
+  servings: number;
+  ingredients: { item: string; amount_g: number; prep_notes: string | null }[];
+  macros_per_serving: { protein_g: number; fat_g: number; carbs_g: number; fiber_g?: number; calories: number };
+  instructions: string[];
+  time: { prep_min: number; cook_min: number };
+  batch_notes?: string;
+  storage?: { fridge_days: number; freezer_friendly: boolean };
+  calorie_boost_options?: string[];
+}
+
 export interface MealPlanData {
   template: {
     weekly_template: Record<string, DayTemplate>;
     rotation_schedule: Record<string, Record<string, string>>;
   } | null;
-  recipes: { recipes: unknown[] } | null;
+  recipes: { recipes: GeneratedRecipe[] } | null;
+}
+
+export interface StoredRecipe {
+  id: string;
+  recipe_name: string;
+  cuisine: string;
+  servings: number;
+  ingredients: { item: string; amount_g: number; prep_notes: string | null }[];
+  macros_per_serving: { protein_g: number; fat_g: number; carbs_g: number; fiber_g?: number; calories: number };
+  instructions: string[];
+  time_prep: number;
+  time_cook: number;
+  batch_notes: string | null;
+  verified: boolean;
+  rating: number | null;
+}
+
+export interface RecipeGenerateResult {
+  recipes_created: number;
+  recipe_ids: string[];
+  pipeline_run_id: string | null;
+  rejected: { recipe_name: string; deviations: unknown[] }[];
+}
+
+export interface PhysicianAnswer {
+  query_id: string;
+  response: string;
+  sources: { author: string; year: number; publication?: string; finding: string }[];
+  mechanism_explained: string;
+  timeline: string | null;
+  referral_needed: boolean;
+  referral_target: string | null;
+  urgency: "routine" | "soon" | "urgent";
+  pipeline_action: "continue" | "pause" | "abort";
+  disclaimer: string;
+}
+
+export interface PhysicianQueryRow {
+  id: string;
+  query: string;
+  response: Omit<PhysicianAnswer, "query_id"> | null;
+  urgency: "routine" | "soon" | "urgent";
+  created_at: string;
 }
 
 export interface ExerciseActualSet {

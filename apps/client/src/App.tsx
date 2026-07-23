@@ -8,6 +8,8 @@ import { MealPlanPage } from "./pages/MealPlanPage";
 import { TrainingWeekPage } from "./pages/TrainingWeekPage";
 import { TrainingSessionPage } from "./pages/TrainingSessionPage";
 import { GlossaryPage } from "./pages/GlossaryPage";
+import { PhysicianPage } from "./pages/PhysicianPage";
+import { SettingsPage } from "./pages/SettingsPage";
 
 export function App() {
   return (
@@ -22,6 +24,8 @@ export function App() {
             <Route path="training" element={<TrainingWeekPage />} />
             <Route path="training/:sessionId" element={<TrainingSessionPage />} />
             <Route path="glossary" element={<GlossaryPage />} />
+            <Route path="health" element={<PhysicianPage />} />
+            <Route path="settings" element={<SettingsPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -160,6 +160,14 @@ export function DashboardPage() {
             Training
           </Link>
         </div>
+        <div className="btn-row" style={{ marginTop: 10 }}>
+          <Link to="/health" className="btn secondary" style={{ textDecoration: "none" }}>
+            Ask the physician
+          </Link>
+          <Link to="/settings" className="btn secondary" style={{ textDecoration: "none" }}>
+            Settings
+          </Link>
+        </div>
         <Link to="/glossary" className="muted" style={{ display: "block", marginTop: 12, fontSize: "0.85rem" }}>
           New to a term? Open the glossary →
         </Link>

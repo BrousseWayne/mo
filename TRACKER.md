@@ -143,6 +143,12 @@
 
 ---
 
+## Post-Roadmap Fixes & In-App Controls (2026-07-24)
+
+- [x] ClientLayout validates the stored program id (stale cancelled id no longer hides fresh data; paused programs stay usable) (2026-07-24)
+- [x] Meal-plan and shopping routes resolve DIETITIAN/CHEF envelopes per agent instead of inside the single latest run (recipe generation was hiding the meal template) (2026-07-24)
+- [x] In-app admin controls (single-user tool, no curl needed): /settings (pause/resume, cancel program → restart intake), /health (PHYSICIAN Q&A with sources + history), recipes section on Meals (generate button + stored recipe cards with macro-verified flag) (2026-07-24)
+
 ## Audit Items (Migrated from REMAINING_FIXES.md)
 
 ### P1 — Should Do Before Production
