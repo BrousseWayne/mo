@@ -80,6 +80,8 @@ export { generateAdjustmentNarrative } from "./formatting/adjustment-narrative.j
 export { generateWeeklyReport } from "./formatting/weekly-report.js";
 export { parseMealTemplate } from "./artifacts/parse-meal-template.js";
 export { parseTrainingProgram } from "./artifacts/parse-training-program.js";
+export { buildScientistPayload } from "./artifacts/scientist-payload.js";
+export { createProgramFromArtifacts } from "./artifacts/create-program.js";
 export { autoregulateSession } from "./tools/autoregulation.js";
 export { detectCrossAgentSignals } from "./tools/signals.js";
 export type { CrossAgentSignal } from "./tools/signals.js";

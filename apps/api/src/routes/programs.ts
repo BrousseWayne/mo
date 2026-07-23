@@ -1,6 +1,7 @@
+import { readFileSync } from "node:fs";
 import type { FastifyInstance } from "fastify";
 import { eq } from "drizzle-orm";
-import { programCreateSchema, programStatusZod } from "@mo/shared";
+import { programCreateSchema, programStatusZod, intakeSchema } from "@mo/shared";
 import {
   intakeResponses,
   pipelineRuns,
@@ -12,9 +13,61 @@ import {
   getProgressHistory,
   getMilestones,
 } from "@mo/database";
-import { checkCompletionCriteria, generateCompletionSummary } from "@mo/agents";
+import { checkCompletionCriteria, generateCompletionSummary, createProgramFromArtifacts } from "@mo/agents";
+
+const ARTIFACTS_DIR = new URL("../../../../agents/artifacts/", import.meta.url);
 
 export async function programRoutes(app: FastifyInstance) {
+  app.post("/programs/from-artifacts", async (request, reply) => {
+    const parsed = programCreateSchema.safeParse(request.body);
+    if (!parsed.success) {
+      return reply.status(400).send({
+        success: false,
+        error: { code: "VALIDATION_ERROR", message: "Invalid request", details: parsed.error.flatten() },
+      });
+    }
+
+    const { user_id, intake_response_id } = parsed.data;
+
+    const [intakeRow] = await app.db
+      .select()
+      .from(intakeResponses)
+      .where(eq(intakeResponses.id, intake_response_id))
+      .limit(1);
+
+    if (!intakeRow) {
+      return reply.status(404).send({
+        success: false,
+        error: { code: "NOT_FOUND", message: "Intake response not found" },
+      });
+    }
+
+    const intakeParsed = intakeSchema.safeParse(intakeRow.data);
+    if (!intakeParsed.success) {
+      return reply.status(422).send({
+        success: false,
+        error: { code: "INVALID_INTAKE", message: "Stored intake data does not match the intake schema", details: intakeParsed.error.flatten() },
+      });
+    }
+
+    const { program, run, sessionsCount } = await createProgramFromArtifacts(app.db, {
+      userId: user_id,
+      intakeResponseId: intake_response_id,
+      intake: intakeParsed.data,
+      mealTemplateMd: readFileSync(new URL("dietitian-meal-template.md", ARTIFACTS_DIR), "utf-8"),
+      trainingProgramMd: readFileSync(new URL("coach-training-program.md", ARTIFACTS_DIR), "utf-8"),
+    });
+
+    return {
+      success: true,
+      data: {
+        program_id: program.id,
+        pipeline_run_id: run.id,
+        training_sessions_created: sessionsCount,
+      },
+    };
+  });
+
   app.post("/programs", async (request, reply) => {
     const parsed = programCreateSchema.safeParse(request.body);
     if (!parsed.success) {
