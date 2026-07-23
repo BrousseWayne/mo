@@ -78,6 +78,8 @@ export type { Milestone } from "./tools/milestones.js";
 export { formatAgentOutput, formatScientistOutput, formatCoachOutput, formatChefOutput, formatNutritionistOutput, formatDietitianOutput, formatPhysicianOutput } from "./formatting/user-messages.js";
 export { generateAdjustmentNarrative } from "./formatting/adjustment-narrative.js";
 export { generateWeeklyReport } from "./formatting/weekly-report.js";
+export { parseMealTemplate } from "./artifacts/parse-meal-template.js";
+export { parseTrainingProgram } from "./artifacts/parse-training-program.js";
 export { autoregulateSession } from "./tools/autoregulation.js";
 export { detectCrossAgentSignals } from "./tools/signals.js";
 export type { CrossAgentSignal } from "./tools/signals.js";

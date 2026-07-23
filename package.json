@@ -12,9 +12,14 @@
     "db:push": "pnpm --filter @mo/database push",
     "db:seed": "pnpm --filter @mo/database seed",
     "bootstrap": "tsx scripts/bootstrap.ts",
-    "playground": "tsx scripts/playground.ts"
+    "playground": "tsx scripts/playground.ts",
+    "seed:program": "tsx scripts/seed-program.ts"
   },
   "devDependencies": {
+    "@mo/agents": "workspace:*",
+    "@mo/database": "workspace:*",
+    "@mo/shared": "workspace:*",
+    "drizzle-orm": "^0.38",
     "dotenv": "^16",
     "tsx": "^4",
     "turbo": "^2",
