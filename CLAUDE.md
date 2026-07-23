@@ -22,14 +22,14 @@ PHYSICIAN is on-demand (any agent can invoke it for health questions or red flag
 
 ### 6 Agents
 
-| Agent        | Color   | Owns                                                    | Position |
-|--------------|---------|--------------------------------------------------------|----------|
-| SCIENTIST    | #457B9D | Calculations: BMR, TDEE, macros, metrics, timelines    | 1st (sequential) |
+| Agent        | Color   | Owns                                                                | Position         |
+| ------------ | ------- | ------------------------------------------------------------------- | ---------------- |
+| SCIENTIST    | #457B9D | Calculations: BMR, TDEE, macros, metrics, timelines                 | 1st (sequential) |
 | NUTRITIONIST | #2A9D8F | Strategy: MPS optimization, protein distribution, cycle adjustments | 2nd (sequential) |
-| DIETITIAN    | #F4A261 | Architecture: weekly meal templates, substitutions, slot specs | 3rd (sequential) |
-| CHEF         | #E9C46A | Execution: recipes, batch cooking, culinary techniques | 4th (sequential) |
-| COACH        | #9B5DE5 | Programming: training, progression, recovery protocols | 5th (sequential) |
-| PHYSICIAN    | #E63946 | Health advisory: red flags, referrals, medical context | On-demand |
+| DIETITIAN    | #F4A261 | Architecture: weekly meal templates, substitutions, slot specs      | 3rd (sequential) |
+| CHEF         | #E9C46A | Execution: recipes, batch cooking, culinary techniques              | 4th (sequential) |
+| COACH        | #9B5DE5 | Programming: training, progression, recovery protocols              | 5th (sequential) |
+| PHYSICIAN    | #E63946 | Health advisory: red flags, referrals, medical context              | On-demand        |
 
 ### Agent Boundaries
 
@@ -48,6 +48,7 @@ PHYSICIAN is on-demand (any agent can invoke it for health questions or red flag
 ## Canonical Rules
 
 **See [RULES.md](./RULES.md)** for the complete, authoritative reference on:
+
 - Banned terminology (somatotypes, "fast metabolism", "toning", etc.)
 - Correct alternatives and evidence-based framing
 - Food constraints (no peanut butter, no nut butters)
@@ -77,8 +78,8 @@ Agents communicate via structured JSON:
 ## Tech Stack (see plans/TECH_STACK_ADR.md)
 
 - Backend: Fastify (TypeScript) + PostgreSQL (Drizzle ORM) + Redis (BullMQ async pipeline)
-- Admin dashboard: React 19 + Vite + react-router 7 (apps/web)
-- Client frontend: apps/client per plans/FRONTEND_PLAN.md (not built yet)
+- Admin dashboard: React 19 + Vite + react-router 7 (apps/web, port 5173)
+- Client frontend: React 19 + Vite + react-router 7 (apps/client, port 5174; reduced scope of plans/FRONTEND_PLAN.md — apps/kitchen and progress/photos/calendar pages deferred)
 - Mobile: React Native + Expo (later)
 - Agent Orchestration: Custom TypeScript pipeline
 - LLM: Anthropic Claude (model IDs centralized in `CLAUDE_MODELS`, packages/shared). No valid API key — LLM calls will go through headless Claude Code (`claude -p`), see plans/ROADMAP_2026-07.md Phase 2
@@ -176,6 +177,14 @@ apps/api/                              # API: Fastify server (~64 endpoints, por
                                        #   photos, messages, pantry, techniques, ingredient-prices,
                                        #   projection, wearables, disruptions
 
+apps/client/                           # USER FRONTEND: mobile-first, port 5174
+  src/pages/                           # DashboardPage, CheckinPage, MealPlanPage,
+                                       #   TrainingWeekPage, TrainingSessionPage,
+                                       #   intake/ (6-step IntakeWizardPage + sections)
+  src/components/                      # BottomNav, field widgets (Choice/Number/Slider/Toggle/Text)
+  src/context/ProgramContext.tsx       # Active programId (localStorage), auto-pick or → /intake
+  src/api/, src/hooks/, src/layouts/, src/styles/
+
 apps/web/                              # ADMIN DASHBOARD: React 19 + Vite + react-router 7
   src/pages/                           # 9 pages: Home, PipelineList, PipelineDetail,
                                        #   AgentInspector, TriggerDashboard, ProgramTimeline,
@@ -232,19 +241,19 @@ archive/                               # HISTORICAL: non-authoritative
 ## Cross-Cutting Constraints
 
 - All output in English, metric units only (kg, cm, g, ml, kcal)
-- Peanut butter and nut butters excluded from all recommendations (substitutes: tahini, sunflower seed butter, coconut cream, avocado)
+- Peanut butter and nut butters and nuts excluded from all recommendations (substitutes: tahini, sunflower seed butter, coconut cream, avocado)
 - Fat gain framed as desired outcome at BMI 18.5, not negative side effect
 - Health guardrails trigger medical referral on: amenorrhea >3mo, eating disorder history, persistent training pain >1wk, thyroid dysfunction signs, RED-S indicators
 
 ## Compliance Hierarchy
 
 1. **RULES.md** — absolute authority
-2. **agents/*.md** — agent system prompts
+2. **agents/\*.md** — agent system prompts
 3. **plans/CLIENT_PROFILE.md** — locked client parameters
 4. **agents/pipeline.md** — pipeline orchestration
-5. **plans/*.md** — architecture decisions
-6. **agents/artifacts/*.md** — deliverable content
-7. **knowledge/*.md** — supporting reference
+5. **plans/\*.md** — architecture decisions
+6. **agents/artifacts/\*.md** — deliverable content
+7. **knowledge/\*.md** — supporting reference
 
 If conflict exists, higher-numbered documents defer to lower-numbered ones.
 
@@ -253,17 +262,20 @@ If conflict exists, higher-numbered documents defer to lower-numbered ones.
 See [TRACKER.md](./TRACKER.md) for full item-level tracking and [plans/ROADMAP_2026-07.md](./plans/ROADMAP_2026-07.md) for the current execution roadmap.
 
 ### Complete
+
 - Documentation: 6 agent specs, pipeline spec, 3 macro-verified artifacts, 11 knowledge bases
 - Architecture: tech stack ADR, database schema, nutrition API spec, client profile, frontend plan
 - Implementation Phases 0-5 (2026-02): schema expansion, BullMQ pipeline, check-in loop + trigger engine, cross-agent validation, observability, insights, anomaly detection, formatters, admin dashboard
 - Environment sanity (2026-07-23, ROADMAP Phase 0): root .env resolution, green root test run, native Postgres/Redis dev environment, port 3100, centralized model IDs, CI, docs sync
 
 ### In Progress (ROADMAP Phase 1 — non-AI critical path)
-- ~~1.8 Program seeding from agents/artifacts/~~ done 2026-07-23 (`pnpm seed:program`)
-- 1.9 apps/client (reduced scope: intake wizard, dashboard, check-in, meal plan, training logging)
+
+- ~~1.8 Program seeding from agents/artifacts/~~ done 2026-07-23 (`pnpm seed:program`, POST /programs/from-artifacts)
+- ~~1.9 apps/client~~ done 2026-07-23 (intake wizard → dashboard → check-in → meals → training logging)
 - 1.10 Run the temporal loop for real (weekly check-ins → triggers → parametric adjustments)
 
 ### Known Gaps
+
 - The 6-agent LLM pipeline has never run end-to-end (invalid API key; headless adapter is ROADMAP Phase 2)
 - `progress_entries` has no real-world data — zero actual usage cycles so far
 - P1-7 API contract, P2-14 golden dataset, P3-17/18/19 (see TRACKER.md)

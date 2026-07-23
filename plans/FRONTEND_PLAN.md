@@ -1,5 +1,12 @@
 # User Frontend + Cook/Dev Dashboard — Implementation Plan
 
+> **Status 2026-07-23**: `apps/client/` built in reduced scope (intake wizard,
+> dashboard, check-in, meal plan, training logging) per ROADMAP_2026-07.md item
+> 1.9. Program creation goes through `POST /programs/from-artifacts` (no LLM),
+> not the pipeline flow described below. `apps/kitchen/`, the progress/photos/
+> calendar/settings pages, and the "New API Endpoints" section remain unbuilt —
+> deferred until one real usage cycle has happened.
+
 ## Context
 
 The admin dashboard (`apps/web/`) is complete with 8 pages including System Map. Backend has ~68 endpoints across 28 route files. But there is **no user-facing frontend** and **no cook/dev dashboard**. The backend API is 95% complete — the frontend is 0%.
